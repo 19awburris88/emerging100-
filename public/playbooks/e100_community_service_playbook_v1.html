@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — Community Service Playbook v1</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#07090f;--bg2:#0d1120;--bg3:#111827;
+  --gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);
+  --white:#ede8dd;--muted:#6b7280;--light:#9ca3af;
+  --ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);
+  --green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);
+  --amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);
+  --red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);
+  --purple:#a855f7;--purpleb:rgba(168,85,247,0.10);--purplep:rgba(168,85,247,0.25);
+  --teal:#14b8a6;--tealb:rgba(20,184,166,0.12);--tealp:rgba(20,184,166,0.28);
+  --r-r:#ef4444;--r-rb:rgba(239,68,68,0.12);--r-rp:rgba(239,68,68,0.28);
+  --r-a:#f59e0b;--r-ab:rgba(245,158,11,0.12);--r-ap:rgba(245,158,11,0.28);
+  --r-c:#4a9eff;--r-cb:rgba(74,158,255,0.12);--r-cp:rgba(74,158,255,0.28);
+  --r-i:#a855f7;--r-ib:rgba(168,85,247,0.12);--r-ip:rgba(168,85,247,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 0% 0%,rgba(201,168,76,0.055) 0%,transparent 60%),
+             radial-gradient(ellipse 40% 50% at 100% 100%,rgba(16,185,129,0.04) 0%,transparent 60%);}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px 100px;position:relative;z-index:1;}
+
+.tab-nav{display:flex;gap:2px;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px;padding:4px;margin-bottom:36px;flex-wrap:wrap;
+  position:sticky;top:12px;z-index:100;}
+.tab-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  background:none;border:none;color:var(--muted);cursor:pointer;padding:8px 14px;border-radius:7px;transition:all .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.tab-btn.active{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+
+header{padding:56px 0 36px;}
+.breadcrumb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.breadcrumb span{color:var(--gold);}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,84px);letter-spacing:3px;line-height:.88;color:var(--white);}
+h1 em{color:var(--gold);font-style:normal;}
+.header-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.mpill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.mpill.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.mpill.blue{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.mpill.green{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.bar{width:40px;height:2px;background:var(--gold);margin:22px 0;}
+
+.sec{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:14px;margin:40px 0 18px;}
+.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
+.callout{border-radius:10px;padding:16px 20px;font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;}
+.callout.gold{background:rgba(201,168,76,0.07);border:1px solid var(--gmid);}
+.callout.gold strong{color:var(--gold);}
+.callout.green{background:var(--greenb);border:1px solid var(--greenp);}
+.callout.green strong{color:var(--green);}
+.callout.blue{background:var(--acb);border:1px solid var(--acp);}
+.callout.blue strong{color:var(--ac);}
+.callout.amber{background:var(--amberb);border:1px solid var(--amberp);}
+.callout.amber strong{color:var(--amber);}
+.callout.teal{background:var(--tealb);border:1px solid var(--tealp);}
+.callout.teal strong{color:var(--teal);}
+.callout.red{background:var(--redb);border:1px solid var(--redp);}
+.callout.red strong{color:var(--red);}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:12px;}
+.ov-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.ov-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ov-val{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;}
+.ov-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.met-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.met-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.met-l{font-size:12px;color:var(--light);line-height:1.5;}
+
+/* EVENT CARDS */
+.event-grid{display:grid;gap:14px;}
+.event-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:24px 26px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;}
+.event-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;transform:scaleY(0);transform-origin:top;transition:transform .25s ease;}
+.event-card.staple::after{background:var(--gold);}
+.event-card.partner::after{background:var(--green);}
+.event-card.houseless::after{background:var(--teal);}
+.event-card:hover,.event-card.open{background:var(--bg3);}
+.event-card:hover::after,.event-card.open::after{transform:scaleY(1);}
+.ev-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.ev-id{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;}
+.event-card.staple .ev-id{color:var(--gold);}
+.event-card.partner .ev-id{color:var(--green);}
+.event-card.houseless .ev-id{color:var(--teal);}
+.ev-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;color:var(--white);}
+.ev-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px;flex-shrink:0;margin-top:2px;}
+.event-card.staple .ev-badge{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.event-card.partner .ev-badge{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.event-card.houseless .ev-badge{background:var(--tealb);color:var(--teal);border:1px solid var(--tealp);}
+.ev-desc{font-size:12px;color:var(--light);line-height:1.6;margin-bottom:14px;}
+.toggle-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;transition:gap .18s;}
+.event-card.staple .toggle-btn{color:var(--gold);}
+.event-card.partner .toggle-btn{color:var(--green);}
+.event-card.houseless .toggle-btn{color:var(--teal);}
+.toggle-btn:hover{gap:10px;}
+.ev-detail{display:none;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.05);}
+.event-card.open .ev-detail{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.dl-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.event-card.staple .dl-label{color:var(--gold);}
+.event-card.partner .dl-label{color:var(--green);}
+.event-card.houseless .dl-label{color:var(--teal);}
+ul.di{list-style:none;}
+ul.di li{font-size:12px;color:var(--light);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+ul.di li:last-child{border-bottom:none;}
+ul.di li::before{content:'›';flex-shrink:0;margin-top:1px;}
+.event-card.staple ul.di li::before{color:var(--gold);}
+.event-card.partner ul.di li::before{color:var(--green);}
+.event-card.houseless ul.di li::before{color:var(--teal);}
+
+/* RACI */
+.raci-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+thead tr{background:rgba(201,168,76,0.08);}
+th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.r{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap;display:inline-block;}
+.rR{background:var(--r-rb);color:var(--r-r);border:1px solid var(--r-rp);}
+.rA{background:var(--r-ab);color:var(--r-a);border:1px solid var(--r-ap);}
+.rC{background:var(--r-cb);color:var(--r-c);border:1px solid var(--r-cp);}
+.rI{background:var(--r-ib);color:var(--r-i);border:1px solid var(--r-ip);}
+.raci-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.rl{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.07);}
+.tl-item{position:relative;margin-bottom:26px;}
+.tl-dot{position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--ac);}
+.tl-item.key .tl-dot{background:var(--gold);border-color:var(--gold);}
+.tl-item.plan .tl-dot{border-color:var(--amber);}
+.tl-item.partner .tl-dot{border-color:var(--green);}
+.tl-month{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:4px;}
+.tl-item.key .tl-month{color:var(--gold);}
+.tl-item.plan .tl-month{color:var(--amber);}
+.tl-item.partner .tl-month{color:var(--green);}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:4px;}
+.tl-desc{font-size:12px;color:var(--light);line-height:1.6;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.tl-tag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:4px;color:var(--muted);}
+.tl-flag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;}
+.tl-flag.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tl-flag.green{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.tl-flag.amber{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.tl-flag.blue{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.tl-flag.teal{background:var(--tealb);color:var(--teal);border:1px solid var(--tealp);}
+
+/* PARTNER ON-RAMP */
+.onramp-steps{display:grid;gap:10px;}
+.onramp-step{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--green);line-height:1;}
+.step-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:4px;}
+.step-desc{font-size:12px;color:var(--light);line-height:1.6;}
+.step-owner{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:6px;}
+
+/* PARTNER ORG CARDS */
+.org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.org-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.org-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:7px;}
+.org-confirmed .org-type{color:var(--green);}
+.org-tbd .org-type{color:var(--amber);}
+.org-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:4px;}
+.org-detail{font-size:12px;color:var(--light);line-height:1.6;}
+.org-events{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:8px;}
+.status{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border-radius:20px;display:inline-block;margin-top:8px;}
+.status.confirmed{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.status.tbd{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.status.research{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+
+/* CHECKLIST */
+.cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cl-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.cl-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.cl-item{display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);line-height:1.5;}
+.cl-item:last-child{border-bottom:none;}
+.checkbox{width:14px;height:14px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);flex-shrink:0;margin-top:1px;}
+
+/* MKT */
+.mkt-grid{display:grid;gap:10px;}
+.mkt-row{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:start;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.mkt-when{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.mkt-what{font-size:12px;color:var(--light);line-height:1.6;}
+
+/* TAKEAWAYS */
+.tko-grid{display:grid;gap:8px;}
+.tko-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.tko-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);flex-shrink:0;min-width:24px;}
+.tko-text{font-size:12px;color:var(--light);line-height:1.6;}
+.tko-text strong{color:var(--white);}
+.tko-owner{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:4px;}
+
+@media(max-width:640px){
+  .cl-grid,.org-grid,.ov-grid,.metrics-grid{grid-template-columns:1fr;}
+  .mkt-row,.onramp-step{grid-template-columns:1fr;}
+  .event-card.open .ev-detail{grid-template-columns:1fr;}
+}
+
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-section{margin-bottom:28px;}
+.contact-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.contact-type::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.sponsor-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:14px;}
+.sponsor-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sponsor-table thead tr{background:rgba(201,168,76,0.08);}
+.sponsor-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+.sponsor-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+.sponsor-table tr:last-child td{border-bottom:none;}
+.sponsor-table tr:hover td{background:rgba(255,255,255,0.02);}
+.freq-pill{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+
+.cl2-pwrap{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.cl2-plabel{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.cl2-ptrack{flex:1;min-width:80px;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
+.cl2-pfill{height:100%;border-radius:3px;background:var(--gold);transition:width .4s ease;}
+.cl2-pcount{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);white-space:nowrap;}
+.cl2-rbtn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;}
+.cl2-rbtn:hover{color:var(--white);}
+.cl2-sec{margin-bottom:20px;}
+.cl2-shdr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.cl2-shdr::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.cl2-grid{display:grid;gap:6px;}
+.cl2-row{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:11px 14px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;transition:background .18s;}
+.cl2-row:hover{background:var(--bg3);}
+.cl2-row.done{background:rgba(16,185,129,0.04);border-color:rgba(16,185,129,0.2);}
+.cl2-row.done .cl2-lbl{color:var(--muted);text-decoration:line-through;}
+.cl2-row.done .cl2-box{background:var(--green);border-color:var(--green);}
+.cl2-row.done .cl2-box::after{opacity:1;}
+.cl2-box{width:17px;height:17px;border-radius:4px;border:2px solid rgba(255,255,255,0.18);flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.cl2-box::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;opacity:0;transition:opacity .18s;}
+.cl2-lbl{font-size:12px;color:var(--white);font-weight:500;line-height:1.5;}
+.cl2-note{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.cl2-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.cl2-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;}
+.ct-req{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.ct-own{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.ct-time{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.ct-if{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.07);}
+.ct-data{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+.mmini{background:var(--bg2);border:1px solid var(--gmid);border-radius:10px;padding:16px 18px;margin-bottom:10px;}
+.mmini-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:7px;}
+.ws-row{background:var(--bg3);border:1px solid rgba(255,255,255,0.06);border-radius:7px;padding:9px 11px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;transition:background .18s;}
+.ws-row:hover{background:rgba(255,255,255,0.04);}
+.ws-row.done{border-color:rgba(201,168,76,0.3);}
+.ws-row.done .ws-nm{color:var(--muted);text-decoration:line-through;}
+.ws-row.done .ws-cb{background:var(--gold);border-color:var(--gold);}
+.ws-row.done .ws-cb::after{opacity:1;}
+.ws-cb{width:14px;height:14px;border-radius:3px;border:2px solid rgba(255,255,255,0.14);flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.ws-cb::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:700;opacity:0;}
+.ws-nm{font-size:11px;color:var(--white);font-weight:500;}
+.ws-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="breadcrumb">The Playbook <span>›</span> External Impact <span>›</span> EXT-03</div>
+  <h1>Community<br><em>Service</em></h1>
+  <div class="header-meta">
+    <span class="mpill gold">3 Staple Events</span>
+    <span class="mpill green">5+ Partner Events</span>
+    <span class="mpill blue">Year-Round</span>
+    <span class="mpill green">Best Partner On-Ramp</span>
+    <span class="mpill blue">v1.0</span>
+  </div>
+  <div class="bar"></div>
+  <p style="font-size:13px;color:var(--light);max-width:640px;line-height:1.7;">
+    Community Service is E100's most visible external program — and its most powerful business development tool. <strong style="color:var(--white)">Serving alongside a company is the first entrance into the E100 house.</strong> No other program converts strangers into partners faster than standing next to them doing good.
+  </p>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('events')">All Events</button>
+  <button class="tab-btn" onclick="showTab('onramp')">Partner On-Ramp</button>
+  <button class="tab-btn" onclick="showTab('orgs')">Partner Orgs</button>
+  <button class="tab-btn" onclick="showTab('leadership')">Leadership</button>
+  <button class="tab-btn" onclick="showTab('raci')">RACI</button>
+  <button class="tab-btn" onclick="showTab('calendar')">Calendar</button>
+  <button class="tab-btn" onclick="showTab('checklist')">Checklist</button>
+  <button class="tab-btn" onclick="showTab('marketing')">Marketing</button>
+  <button class="tab-btn" onclick="showTab('contacts')">Contacts &amp; Budget</button>
+  <button class="tab-btn" onclick="showTab('takeaways')">⚑ To Finalize</button>
+  <button class="tab-btn" onclick="showTab('checklist_cs')">✅ Checklist</button>
+  <button class="tab-btn" onclick="showTab('nchair_cs')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('contacts_cs')">Contacts</button>
+  <button class="tab-btn" onclick="showTab('sponsors_cs')">Past Sponsors</button>
+</div>
+
+
+<!-- ══════ OVERVIEW ══════ -->
+<div id="tab-overview" class="tab-panel active">
+  
+<div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;margin-bottom:16px;">
+  <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">2026–2027 Leadership</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Chairs</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Will Mobley · Josh Powell · Henry Ducre</div>
+      
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Advisors</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Neil Phillips</div>
+    </div>
+    <div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Exec Board Liaison</div>
+      <div style="font-size:13px;color:var(--gold);font-weight:600;">Dr. Tony Price</div>
+    </div>
+  </div>
+</div>
+<div class="sec">Program Overview</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Staple Events</div><div class="ov-val">3 Per Year</div><div class="ov-sub">Together Tailgate · Toy Drive · MLK Day</div></div>
+    <div class="ov-box"><div class="ov-label">Partner Events</div><div class="ov-val">5+ Per Year</div><div class="ov-sub">Backpack drives · Natl Volunteer Week · Hawks · More</div></div>
+    <div class="ov-box"><div class="ov-label">MLK Ownership (New)</div><div class="ov-val">Split Model</div><div class="ov-sub">New Class owns Saturday · Committee owns Monday</div></div>
+    <div class="ov-box"><div class="ov-label">Strategic Role</div><div class="ov-val">Partner On-Ramp</div><div class="ov-sub">Best tool for bringing new partners into E100 ecosystem</div></div>
+    <div class="ov-box"><div class="ov-label">Houseless Focus</div><div class="ov-val">Year-Round</div><div class="ov-sub">Restoring One's Hope · Meals on Wheels · Hands On Atlanta</div></div>
+    <div class="ov-box"><div class="ov-label">2025 Impact</div><div class="ov-val">1,900+ Hours</div><div class="ov-sub">600 volunteers · 8 major events</div></div>
+  </div>
+
+  <div class="sec">The Strategic Truth</div>
+  <div class="callout green">
+    <strong>Community Service is E100's greatest partner acquisition tool.</strong> When a company stands next to E100 members and serves the community together, something shifts. It's no longer a transaction — it's a shared value. That moment of service is the warmest possible introduction to what E100 is. The Partnerships committee should know every company that has ever served with us.
+  </div>
+  <div class="callout gold">
+    <strong>Smaller events are intentional, not secondary.</strong> The backpack drives, the sandwich packing, National Volunteer Week — these are not filler events. They are partner cultivation moments. Each one is an opportunity to invite a new company into the ecosystem. Think of them as the top of the partner funnel.
+  </div>
+  <div class="callout blue">
+    <strong>MLK Day — new ownership model (2025+):</strong> Previously owned entirely by the incoming class. New structure: incoming class owns Saturday, Community Service committee owns Monday. Both days under the same umbrella event. The committee ensures quality, consistency, and community continuity regardless of which class is coming in.
+  </div>
+
+  <div class="sec">2025–2026 Impact Numbers</div>
+  <div class="metrics-grid">
+    <div class="met-box"><div class="met-n">8</div><div class="met-l">Major community events organized</div></div>
+    <div class="met-box"><div class="met-n">1,900+</div><div class="met-l">Hours of community service by E100 members</div></div>
+    <div class="met-box"><div class="met-n">600</div><div class="met-l">Volunteers engaged across all initiatives</div></div>
+    <div class="met-box"><div class="met-n">1,000</div><div class="met-l">Hygiene kits/care packages distributed (Together Tailgate)</div></div>
+    <div class="met-box"><div class="met-n">500</div><div class="met-l">Hygiene kits distributed (MLK Day)</div></div>
+    <div class="met-box"><div class="met-n">300</div><div class="met-l">Volunteers at MLK Day 2025</div></div>
+  </div>
+</div>
+
+
+<!-- ══════ ALL EVENTS ══════ -->
+<div id="tab-events" class="tab-panel">
+  <div class="sec">3 Staple Events</div>
+  <div class="callout gold"><strong>These three happen every year without exception.</strong> They are the backbone of the Community Service calendar. Everything else builds around them.</div>
+  <div class="event-grid">
+
+    <!-- TOGETHER TAILGATE -->
+    <div class="event-card staple" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-S01 · November · Staple</div><div class="ev-name">Together Tailgate</div></div>
+        <span class="ev-badge">Staple Event</span>
+      </div>
+      <p class="ev-desc">Annual service event at BEST Academy providing food, clothing, and resources to families in need. Partners with houseless-focused orgs. One of E100's highest-visibility community moments — 1,000+ hygiene kits, 1,000 encouragement cards, 100 gift cards in 2025.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">2025 Impact</div>
+          <ul class="di">
+            <li>1,000 Hygiene Kits / Care Packages</li>
+            <li>1,000 Hand-Written Encouragement Cards</li>
+            <li>100 Gift Cards given away</li>
+            <li>257 Clothing Items Donated</li>
+            <li>204 Non-Perishable Food Items</li>
+            <li>125 Volunteers</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Key Details</div>
+          <ul class="di">
+            <li>Month: November (annually)</li>
+            <li>Location: BEST Academy</li>
+            <li>Partner orgs: Restoring One's Hope · Meals on Wheels · Margie's House</li>
+            <li>Format: Drive-through or on-site resource distribution</li>
+            <li>Audience: Community families, individuals experiencing homelessness</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Partner On-Ramp Potential</div>
+          <ul class="di">
+            <li>High-visibility event — strong corporate volunteer moment</li>
+            <li>Ideal for new partner first experience with E100</li>
+            <li>Sponsorship: supplies, gift cards, food, hygiene kits</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOY DRIVE -->
+    <div class="event-card staple" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-S02 · December · Staple</div><div class="ev-name">Toy Drive</div></div>
+        <span class="ev-badge">Staple Event</span>
+      </div>
+      <p class="ev-desc">Annual holiday toy drive for Atlanta children in need. A high-visibility, highly shareable community moment that naturally attracts corporate partners and individual donors. Runs throughout December with a collection/distribution anchor event.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">Event Structure</div>
+          <ul class="di">
+            <li>Month: December (annually)</li>
+            <li>Format: Collection campaign + distribution event</li>
+            <li>Toy collection at corporate partner offices</li>
+            <li>Distribution to families and children in need</li>
+            <li>Houseless org partnerships for distribution</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Partner On-Ramp Potential</div>
+          <ul class="di">
+            <li>Easy ask for corporate partners — drop boxes at offices</li>
+            <li>High CSR appeal for companies near holiday season</li>
+            <li>Tagging companies in toy drive content = high engagement</li>
+            <li>Natural follow-up: "Let's do more together in the new year"</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Open Items</div>
+          <ul class="di"><li>Confirm distribution org partner — chairs to provide</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MLK DAY -->
+    <div class="event-card staple" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-S03 · January · Staple · NEW OWNERSHIP</div><div class="ev-name">MLK Day of Service</div></div>
+        <span class="ev-badge">Staple Event</span>
+      </div>
+      <p class="ev-desc">The annual MLK Celebration — a staple day of service uniting students, community partners, and city leaders. Each year focuses on a different theme (2025: affordable housing + Habitat for Humanity build). New ownership model in 2025+: Incoming Class owns Saturday, Community Service Committee owns Monday.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">New Ownership Model</div>
+          <ul class="di">
+            <li><strong>Saturday</strong> — Owned by Incoming Class</li>
+            <li><strong>Monday (MLK Day)</strong> — Owned by Community Service Committee</li>
+            <li>Both days = one unified event umbrella</li>
+            <li>Committee ensures quality & continuity regardless of incoming class</li>
+            <li>Chair coordinates between both parties</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">2025 MLK Day Impact</div>
+          <ul class="di">
+            <li>500 Hygiene Kits / Care Packages</li>
+            <li>300 Volunteers</li>
+            <li>1 Habitat for Humanity Build</li>
+            <li>Theme: Affordable Housing</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Planning Notes</div>
+          <ul class="di">
+            <li>Theme selected by Committee in October/November</li>
+            <li>City leaders + corporate partners invited</li>
+            <li>Annual theme anchors all content and partner asks</li>
+            <li>Habitat for Humanity — ongoing build relationship</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:36px;">Partner Events & Smaller Activations</div>
+  <div class="callout green"><strong>These are not filler — they are the partner funnel.</strong> Each smaller event is a deliberate invitation for a company to experience E100. The goal is to serve together first, then deepen the relationship from there.</div>
+  <div class="event-grid">
+
+    <!-- BACKPACK DRIVE - CHASE -->
+    <div class="event-card partner" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-P01 · July · Partner Event</div><div class="ev-name">Backpack Drive — Chase Bank</div></div>
+        <span class="ev-badge">Partner Event</span>
+      </div>
+      <p class="ev-desc">Annual back-to-school backpack drive in partnership with Chase Bank. July timing sets up students for the new school year. Strong CSR moment for Chase and a high-visibility community event for E100.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">Event Details</div>
+          <ul class="di">
+            <li>Month: July (annually)</li>
+            <li>Partner: Chase Bank</li>
+            <li>Format: Backpack + school supply collection and distribution</li>
+            <li>Audience: Students and families in the Atlanta community</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Partner On-Ramp Notes</div>
+          <ul class="di">
+            <li>Chase is already a service partner — warm relationship</li>
+            <li>Handoff to Partnerships: is Chase a Gala sponsor candidate?</li>
+            <li>Follow up after event: deepen the relationship</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACKPACK DRIVE - GAS SOUTH -->
+    <div class="event-card partner" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-P02 · August · Partner Event</div><div class="ev-name">Backpack Drive — Gas South</div></div>
+        <span class="ev-badge">Partner Event</span>
+      </div>
+      <p class="ev-desc">Annual backpack drive with Gas South, held at BEST Academy in August. Perfect timing — right before school starts. Gas South is a multi-program partner (also BEST sessions, RISE graduation) — this deepens that relationship further.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">Event Details</div>
+          <ul class="di">
+            <li>Month: August (annually)</li>
+            <li>Partner: Gas South</li>
+            <li>Location: BEST Academy</li>
+            <li>Format: Backpack + school supply collection and distribution</li>
+            <li>Timing: Before school year starts — high impact</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Partner Notes</div>
+          <ul class="di">
+            <li>Gas South appears in: BEST sessions, RISE graduation, Community Service</li>
+            <li>This multi-touchpoint relationship = strong sponsor candidate</li>
+            <li>Coordinate with Partnerships team on Gas South account health</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATIONAL VOLUNTEER WEEK -->
+    <div class="event-card partner" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-P03 · April · New 2026</div><div class="ev-name">National Volunteer Week</div></div>
+        <span class="ev-badge">New Initiative</span>
+      </div>
+      <p class="ev-desc">Launched in 2026 — two events organized with Delta and Gas South during National Volunteer Week (April). New annual initiative. E100 organized both events. Strong branding moment — positions E100 as the organizing force behind corporate volunteerism in Atlanta.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">2026 Events</div>
+          <ul class="di">
+            <li>2 events during National Volunteer Week</li>
+            <li>Partners: Delta Air Lines + Gas South</li>
+            <li>E100 organized both events</li>
+            <li>April timing (National Volunteer Week = typically 3rd week of April)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Strategic Opportunity</div>
+          <ul class="di">
+            <li>E100 as the convener of corporate volunteerism in Atlanta</li>
+            <li>Grow to 3–5 partner events during NVW annually</li>
+            <li>Each new company = a potential Gala sponsor or annual partner</li>
+            <li>NVW is a natural hook — companies are already looking to activate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- HAWKS SANDWICH PACKING -->
+    <div class="event-card partner" onclick="toggleEv(this)">
+      <div class="ev-top">
+        <div><div class="ev-id">CS-P04 · Sept/Oct · Partner Event</div><div class="ev-name">Hawks Sandwich Packing</div></div>
+        <span class="ev-badge">Partner Event</span>
+      </div>
+      <p class="ev-desc">Annual sandwich packing event in partnership with the Atlanta Hawks, held in September or October. Combines the Hawks brand with E100's community credibility. High energy, team-oriented format that makes a natural social media moment.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="ev-detail">
+        <div>
+          <div class="dl-label">Event Details</div>
+          <ul class="di">
+            <li>Month: September or October (annually)</li>
+            <li>Partner: Atlanta Hawks</li>
+            <li>Format: Sandwich packing for community distribution</li>
+            <li>Audience: E100 members + Hawks volunteers</li>
+            <li>Distribution partner: TBD — chairs to confirm</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Partner Notes</div>
+          <ul class="di">
+            <li>Hawks are also a C100 Workforce Dev partner</li>
+            <li>Multi-program relationship = strong account</li>
+            <li>Explore: Hawks as Gala sponsor or table buyer</li>
+            <li>Handoff to Partnerships after event</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════ PARTNER ON-RAMP ══════ -->
+<div id="tab-onramp" class="tab-panel">
+  <div class="sec">The Partner On-Ramp — From Service to Sponsor</div>
+  <div class="callout green">
+    <strong>The current reality: organic.</strong> Companies serve with E100, relationships are built, and some eventually become Gala sponsors or program partners — but there's no formal process for making that conversion happen. This playbook documents the recommended on-ramp so it becomes intentional, not accidental.
+  </div>
+
+  <div class="sec">Recommended On-Ramp Process</div>
+  <div class="onramp-steps">
+    <div class="onramp-step">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">Invite to Serve</div>
+        <div class="step-desc">Community Service chair or member identifies a company that aligns with E100's mission. Extends a personal invitation to serve alongside E100 at an upcoming event. No ask for money — just an invitation to do good together. Lower barrier than a sponsorship pitch.</div>
+        <div class="step-owner">Owner: Community Service Chair</div>
+      </div>
+    </div>
+    <div class="onramp-step">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">Serve Together</div>
+        <div class="step-desc">Company shows up. E100 members create a warm, professional, impactful experience. Company volunteers feel the mission, see the org in action, and leave with a genuine connection to E100. This is the most important step — the experience sells everything else.</div>
+        <div class="step-owner">Owner: All E100 members present</div>
+      </div>
+    </div>
+    <div class="onramp-step">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">Follow Up Within 48 Hours</div>
+        <div class="step-desc">Community Service Chair sends a personal thank-you to the company contact within 48 hours. Include photos from the event. Mention the impact made. This is not a sponsorship ask — it's relationship stewardship. Keep the warmth alive.</div>
+        <div class="step-owner">Owner: Community Service Chair</div>
+      </div>
+    </div>
+    <div class="onramp-step">
+      <div class="step-num">04</div>
+      <div>
+        <div class="step-title">Flag & Hand Off to Partnerships</div>
+        <div class="step-desc">Community Service Chair notifies the Partnerships & Fundraising Chair about the company — who the contact is, what event they served at, how it went. This is the formal hand-off. Partnerships now owns the relationship and evaluates fit for Gala sponsorship, program partnership, or deeper engagement.</div>
+        <div class="step-owner">Owner: Community Service Chair → Partnerships Chair</div>
+      </div>
+    </div>
+    <div class="onramp-step">
+      <div class="step-num">05</div>
+      <div>
+        <div class="step-title">Invite Back — Deepen the Relationship</div>
+        <div class="step-desc">Before Partnerships makes a formal ask, invite the company back to another event. Two service experiences > one. By the second time they serve with E100, they feel like part of the family. That's the moment a sponsorship conversation feels natural — not transactional.</div>
+        <div class="step-owner">Owner: Partnerships Chair + Community Service Chair</div>
+      </div>
+    </div>
+    <div class="onramp-step">
+      <div class="step-num">06</div>
+      <div>
+        <div class="step-title">Make the Ask</div>
+        <div class="step-desc">Partnerships Chair presents the company with a partnership or sponsorship opportunity — Gala table, program sponsorship, in-kind support, or annual partnership. By this point the relationship is warm, the company knows what E100 does, and the ask is a natural next step.</div>
+        <div class="step-owner">Owner: Partnerships Chair</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout amber" style="margin-top:16px;">
+    <strong>Critical handoff point:</strong> Step 4 is where this most often breaks down today. The Community Service Chair must formally flag every new company to the Partnerships Chair after every event — not assume someone else will follow up. This is the gap between organic and intentional.
+  </div>
+</div>
+
+
+<!-- ══════ PARTNER ORGS ══════ -->
+<div id="tab-orgs" class="tab-panel">
+  <div class="sec">Community Partner Organizations</div>
+  <div class="callout teal"><strong>These are E100's on-the-ground partners for houseless and community service work.</strong> They bring the community in — E100 brings the volunteers, the resources, and the corporate partners. Together, this is how impact gets made.</div>
+
+  <div class="sec">Confirmed Org Partners</div>
+  <div class="org-grid">
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Confirmed Partner</div>
+      <div class="org-name">Restoring One's Hope</div>
+      <div class="org-detail">Atlanta-based org serving individuals experiencing homelessness. E100 has served alongside them at Together Tailgate and other events. Established relationship.</div>
+      <div class="org-events">Events: Together Tailgate + others</div>
+      <span class="status confirmed">Confirmed Partner</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Confirmed Partner</div>
+      <div class="org-name">Meals on Wheels</div>
+      <div class="org-detail">National org with Atlanta chapter. Delivers meals to homebound seniors and individuals. E100 has partnered on distribution and service events. Well-known brand that adds credibility to E100's service portfolio.</div>
+      <div class="org-events">Events: Together Tailgate + others</div>
+      <span class="status confirmed">Confirmed Partner</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Confirmed Partner</div>
+      <div class="org-name">Hands On Atlanta</div>
+      <div class="org-detail">Atlanta's largest volunteer organization. Connects volunteers to community needs across the city. Strong infrastructure for scaling volunteer coordination. E100 partnership creates access to broader volunteer networks.</div>
+      <div class="org-events">Events: TBD — confirm with chairs</div>
+      <span class="status confirmed">Confirmed Partner</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Confirmed Partner</div>
+      <div class="org-name">Margie's House</div>
+      <div class="org-detail">Atlanta-based org supporting individuals and families in need. Named partner in Together Tailgate. Focused on housing stability and basic needs support.</div>
+      <div class="org-events">Events: Together Tailgate</div>
+      <span class="status confirmed">Confirmed Partner</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Confirmed Partner</div>
+      <div class="org-name">Habitat for Humanity</div>
+      <div class="org-detail">MLK Day 2025 build partner. Home building and repair for families in need. The Habitat build is a high-impact, high-visibility service moment. Strong for corporate volunteer groups.</div>
+      <div class="org-events">Events: MLK Day of Service</div>
+      <span class="status confirmed">Confirmed Partner</span>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:28px;">Partner Orgs — To Research & Add</div>
+  <div class="callout amber"><strong>⚑ Open item:</strong> Additional houseless and community orgs that E100 works with need to be identified. Community Service Chair to compile full org list with contact names. This is a critical institutional knowledge gap.</div>
+  <div class="org-grid">
+    <div class="org-card org-tbd">
+      <div class="org-type">⚑ Research Needed</div>
+      <div class="org-name">Additional Houseless Orgs</div>
+      <div class="org-detail">Chairs know names of additional Atlanta orgs focused on houseless population that E100 has worked with. Need to be formally documented with contact info, what events they've been involved in, and relationship owner.</div>
+      <span class="status research">⚑ Get From Chairs</span>
+    </div>
+    <div class="org-card org-tbd">
+      <div class="org-type">⚑ Research Needed</div>
+      <div class="org-name">Companies Served Alongside</div>
+      <div class="org-detail">Full list of companies that have served alongside E100 at community events. Critical for the partner on-ramp — Partnerships team needs this list to evaluate conversion opportunities. Chair to research and compile.</div>
+      <span class="status research">⚑ Chair Research Item</span>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:28px;">Corporate Partners in Community Service</div>
+  <div class="org-grid">
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Active Corporate Partner</div>
+      <div class="org-name">Chase Bank</div>
+      <div class="org-detail">Backpack Drive partner (July). Established relationship. Evaluate for deeper partnership — Gala sponsorship or program partner.</div>
+      <div class="org-events">Events: Backpack Drive (July)</div>
+      <span class="status confirmed">Active</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Active Corporate Partner</div>
+      <div class="org-name">Gas South</div>
+      <div class="org-detail">Multi-program partner — appears in BEST sessions, RISE graduation, Backpack Drive. One of E100's most embedded corporate relationships.</div>
+      <div class="org-events">Events: Backpack Drive (Aug) · BEST · RISE</div>
+      <span class="status confirmed">Multi-Program</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Active Corporate Partner</div>
+      <div class="org-name">Delta Air Lines</div>
+      <div class="org-detail">National Volunteer Week partner (2026). Also appears in BEST, C100 Career Fair, and Gala. E100's most cross-functional corporate relationship.</div>
+      <div class="org-events">Events: NVW · BEST · C100 · Gala</div>
+      <span class="status confirmed">Multi-Program</span>
+    </div>
+    <div class="org-card org-confirmed">
+      <div class="org-type">● Active Corporate Partner</div>
+      <div class="org-name">Atlanta Hawks</div>
+      <div class="org-detail">Sandwich packing partner (Sept/Oct). Also C100 Workforce Dev panel. Growing relationship — evaluate for Gala or program sponsorship.</div>
+      <div class="org-events">Events: Sandwich Packing · C100 WFD</div>
+      <span class="status confirmed">Active</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ LEADERSHIP ══════ -->
+<div id="tab-leadership" class="tab-panel">
+  <div class="sec">Leadership Structure</div>
+  <div class="sec">Chair Swim Lanes</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;">
+    <div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 1</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Event Planning & Execution</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Owns logistics and execution for all 3 staple events and partner events. Venue coordination, supply procurement, day-of management, volunteer sign-in, run of show.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 2</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Partner Relations & On-Ramp</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Manages all corporate and community org partner relationships. Owns the 6-step Partner On-Ramp — flags every new corporate partner to Partnerships Chair within 48hrs of each event.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 3</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Volunteer Coordination</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Owns volunteer recruitment, mobilization, sign-in, and hour tracking. Submits volunteer hours to Data dept within 48hrs of every event. Manages member and corporate volunteer experience.</div>
+    </div>
+  </div>
+  <div class="callout gold"><strong>1 Chair, 2 Chairs.</strong> The Chair owns the full Community Service calendar and the partner on-ramp handoff process. Sub-chairs own event execution and org partnerships respectively.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div style="grid-column:1/-1;background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair — Community Impact Director</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:8px;">Owns all community service programming · Reports to Exec Board</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.7;">Sets the annual community service calendar. Manages both chairs. Owns the partner on-ramp hand-off to Partnerships — every company that serves with E100 gets flagged within 48 hours. Owns the MLK Day coordination between the incoming class (Saturday) and the committee (Monday). Reports impact data to Exec Board and Data dept.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:8px;">Chair — Event Planning &amp; Execution</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">Owns event planning & execution</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Plans and executes all community service events — logistics, supplies, venue, day-of management. Coordinates volunteer mobilization across E100 membership. Tracks volunteer hours per event. Manages supply procurement (hygiene kits, toys, backpacks, food). Photo/video coordination with Donald Gibson.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:8px;">Chair — Partner Relations &amp; On-Ramp</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Manages relationships with all community org partners (Restoring One's Hope, Meals on Wheels, Hands On Atlanta, Margie's House, Habitat, others). Serves as the primary contact for new corporate partners during service events. Ensures org partners have what they need. Compiles the corporate partner service history list for Partnerships handoff.</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;margin-top:8px;">Owns org partnerships & corporate relationships</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ RACI ══════ -->
+<div id="tab-raci" class="tab-panel">
+  <div class="sec">RACI Matrix</div>
+  <div class="raci-legend">
+    <div class="rl"><span class="r rR">R</span> Responsible</div>
+    <div class="rl"><span class="r rA">A</span> Accountable</div>
+    <div class="rl"><span class="r rC">C</span> Consulted</div>
+    <div class="rl"><span class="r rI">I</span> Informed</div>
+  </div>
+  <div class="raci-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width:200px">Activity</th>
+        <th>Exec Board</th>
+        <th>CS Chair</th>
+        <th>SC: Project Coord</th>
+        <th>SC: Partner Liaison</th>
+        <th>Partnerships Chair</th>
+        <th>Incoming Class</th>
+        <th>Members</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Annual event calendar</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rI">I</span></td><td><span class="r rI">I</span></td><td>—</td></tr>
+      <tr><td><strong>Event planning & logistics</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Volunteer mobilization</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td></tr>
+      <tr><td><strong>Community org partner relationships</strong></td><td>—</td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Corporate partner on-ramp (flag + handoff)</strong></td><td>—</td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>MLK Day — Saturday (Incoming Class)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td></tr>
+      <tr><td><strong>MLK Day — Monday (Committee)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td></tr>
+      <tr><td><strong>Supplies procurement</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Volunteer hour tracking</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Photo, video, 48hr content delivery</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Partner thank-you (48hr)</strong></td><td>—</td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rC">C</span></td><td><span class="r rI">I</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Reporting to Exec Board</strong></td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<!-- ══════ CALENDAR ══════ -->
+<div id="tab-calendar" class="tab-panel active">
+  <div class="sec">Annual Community Service Calendar</div>
+  <div class="timeline">
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">June – July · Planning</div>
+      <div class="tl-title">Annual Planning Kickoff</div>
+      <div class="tl-desc">Chair sets the full event calendar. Confirms all staple events and partner events. Reaches out to Chase Bank for July backpack drive. Identifies MLK Day theme for January. Compiles corporate partner service history list for Partnerships handoff.</div>
+      <div class="tl-tags"><span class="tl-flag amber">Confirm Chase Bank — July Backpack Drive</span><span class="tl-tag">Begin MLK Theme Planning</span></div>
+    </div>
+    <div class="tl-item partner">
+      <div class="tl-dot"></div>
+      <div class="tl-month">July · Partner Event</div>
+      <div class="tl-title">Backpack Drive — Chase Bank</div>
+      <div class="tl-desc">Annual back-to-school backpack drive. Chase Bank is the corporate partner. Distribution to Atlanta students and families. Follow up with Chase within 48hrs. Flag to Partnerships for relationship deepening.</div>
+      <div class="tl-tags"><span class="tl-flag green">Chase Bank</span><span class="tl-tag">Back-to-School</span><span class="tl-tag">Partner On-Ramp Moment</span></div>
+    </div>
+    <div class="tl-item partner">
+      <div class="tl-dot"></div>
+      <div class="tl-month">August · Partner Event</div>
+      <div class="tl-title">Backpack Drive — Gas South @ BEST Academy</div>
+      <div class="tl-desc">Gas South backpack drive at BEST Academy before the school year starts. Highest-impact timing. Coordinate space with Ray Singer. Gas South is a multi-program partner — this touchpoint strengthens the overall relationship.</div>
+      <div class="tl-tags"><span class="tl-flag green">Gas South</span><span class="tl-tag">BEST Academy</span><span class="tl-tag">Pre-School Year</span></div>
+    </div>
+    <div class="tl-item partner">
+      <div class="tl-dot"></div>
+      <div class="tl-month">Sept / Oct · Partner Event</div>
+      <div class="tl-title">Hawks Sandwich Packing</div>
+      <div class="tl-desc">Annual sandwich packing with the Atlanta Hawks. Distribution to houseless community through partner orgs. High-energy team format. Follow up with Hawks contact within 48hrs. Flag to Partnerships.</div>
+      <div class="tl-tags"><span class="tl-flag green">Atlanta Hawks</span><span class="tl-tag">Houseless Community</span><span class="tl-tag">Partner On-Ramp Moment</span></div>
+    </div>
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">October – November · Pre-Event Prep</div>
+      <div class="tl-title">MLK Day Theme Selection + Together Tailgate Prep</div>
+      <div class="tl-desc">Community Service Chair selects MLK Day theme (e.g., affordable housing, food insecurity, education). Begins coordinating with incoming class for Saturday. Simultaneously preps Together Tailgate for November — supplies, org partners, corporate volunteers.</div>
+      <div class="tl-tags"><span class="tl-tag">MLK Theme Selection</span><span class="tl-tag">Incoming Class Coordination</span><span class="tl-tag">Tailgate Prep Begins</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">November · Staple Event</div>
+      <div class="tl-title">Together Tailgate</div>
+      <div class="tl-desc">Annual community event at BEST Academy — always before Thanksgiving. Includes food, turkeys, clothing for the community. Corporate partners and volunteers invited. Built with partner support.. Hygiene kits, care packages, clothing, food, gift cards. Partners: Restoring One's Hope, Meals on Wheels, Margie's House. 100+ volunteers. Strongest single-event partner on-ramp opportunity of the year.</div>
+      <div class="tl-tags"><span class="tl-flag gold">Staple Event</span><span class="tl-tag">BEST Academy</span><span class="tl-tag">Restoring One's Hope</span><span class="tl-tag">Meals on Wheels</span><span class="tl-tag">Margie's House</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">December · Staple Event</div>
+      <div class="tl-title">Toy Drive</div>
+      <div class="tl-desc">Annual holiday toy drive. Collection campaign throughout December, distribution event at close. Corporate partners deploy drop boxes at their offices. High social media moment. Natural conversation starter for deepening partner relationships into the new year.</div>
+      <div class="tl-tags"><span class="tl-flag gold">Staple Event</span><span class="tl-tag">Corporate Drop Boxes</span><span class="tl-tag">Distribution Event</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">January · Staple Event</div>
+      <div class="tl-title">MLK Day of Service</div>
+      <div class="tl-desc">Two-day event. Saturday owned by Incoming Class. Monday (MLK Day) owned by Community Service Committee. Theme set in October/November. City leaders, corporate partners, and community orgs invited. Annual Habitat for Humanity build. 300+ volunteers in 2025.</div>
+      <div class="tl-tags"><span class="tl-flag gold">Staple Event</span><span class="tl-flag blue">Saturday = Incoming Class</span><span class="tl-flag green">Monday = Committee</span><span class="tl-tag">Habitat for Humanity</span></div>
+    </div>
+    <div class="tl-item partner">
+      <div class="tl-dot"></div>
+      <div class="tl-month">April · New Annual Initiative</div>
+      <div class="tl-title">National Volunteer Week (2+ Events)</div>
+      <div class="tl-desc">Launched in 2026. 2+ corporate partner events organized by E100 during National Volunteer Week. Delta and Gas South were 2026 partners. Goal: grow to 3–5 partner events. E100 positions itself as Atlanta's convener of corporate volunteerism.</div>
+      <div class="tl-tags"><span class="tl-flag green">New Annual Initiative</span><span class="tl-tag">Delta</span><span class="tl-tag">Gas South</span><span class="tl-tag">Grow Annually</span></div>
+    </div>
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">May – June · Wrap</div>
+      <div class="tl-title">Year-End Debrief + Partner List Compilation</div>
+      <div class="tl-desc">Sub-chair debrief. Compile full list of companies that served with E100 this year. Submit to Partnerships Chair for evaluation. Update org partner contacts. Document volunteer hours for annual report. Planning cycle restarts in June.</div>
+      <div class="tl-tags"><span class="tl-tag">Debrief</span><span class="tl-tag">Partner List to Partnerships</span><span class="tl-tag">Volunteer Hours Report</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ CHECKLIST ══════ -->
+<div id="tab-checklist" class="tab-panel">
+  <div class="sec">Event Checklist — All Community Service Events</div>
+  <div class="callout gold"><strong>Every event — staple or partner — follows this checklist.</strong> Staple events (Together Tailgate, Toy Drive, MLK Day) have longer lead times. Partner events can move faster. The on-ramp handoff to Partnerships is mandatory for every corporate partner event.</div>
+  <div class="cl-grid">
+    <div class="cl-box">
+      <div class="cl-title">6–8 Weeks Before (Staple Events)</div>
+      <div class="cl-item"><div class="checkbox"></div>Confirm date, location, and format</div>
+      <div class="cl-item"><div class="checkbox"></div>Confirm community org partners</div>
+      <div class="cl-item"><div class="checkbox"></div>Confirm corporate partners / volunteers</div>
+      <div class="cl-item"><div class="checkbox"></div>Supplies procurement begins (kits, toys, food)</div>
+      <div class="cl-item"><div class="checkbox"></div>Budget approved by Treasurer</div>
+      <div class="cl-item"><div class="checkbox"></div>Volunteer recruitment opens to all members</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">3–4 Weeks Before</div>
+      <div class="cl-item"><div class="checkbox"></div>Corporate volunteer RSVP confirmed</div>
+      <div class="cl-item"><div class="checkbox"></div>Supplies on track / in hand</div>
+      <div class="cl-item"><div class="checkbox"></div>Volunteer count confirmed</div>
+      <div class="cl-item"><div class="checkbox"></div>Donald Gibson booked for photo & video</div>
+      <div class="cl-item"><div class="checkbox"></div>Run-of-show drafted</div>
+      <div class="cl-item"><div class="checkbox"></div>Location logistics confirmed</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">Day Of Event</div>
+      <div class="cl-item"><div class="checkbox"></div>Arrive early — setup complete</div>
+      <div class="cl-item"><div class="checkbox"></div>Donald Gibson on site</div>
+      <div class="cl-item"><div class="checkbox"></div>Volunteer sign-in tracked</div>
+      <div class="cl-item"><div class="checkbox"></div>Community org partners briefed</div>
+      <div class="cl-item"><div class="checkbox"></div>Corporate partners welcomed personally by Chair</div>
+      <div class="cl-item"><div class="checkbox"></div>Volunteer hours logged</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">Within 48 Hours — MANDATORY</div>
+      <div class="cl-item"><div class="checkbox"></div>Photos + video to Comms team</div>
+      <div class="cl-item"><div class="checkbox"></div>Post caption written + sent to Comms</div>
+      <div class="cl-item"><div class="checkbox"></div>Partner thank-you sent by Chair</div>
+      <div class="cl-item"><div class="checkbox"></div>⚑ Flag every new corporate partner to Partnerships Chair</div>
+      <div class="cl-item"><div class="checkbox"></div>Volunteer hours submitted to Data dept</div>
+      <div class="cl-item"><div class="checkbox"></div>Debrief note logged</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ MARKETING ══════ -->
+<div id="tab-marketing" class="tab-panel">
+  <div class="sec">Marketing & Communications Strategy</div>
+  <div class="callout gold"><strong>Community Service content is E100's most shareable content.</strong> It shows the org in action, doing good, alongside recognizable corporate brands. Every event is a content opportunity. Project Coordination chair writes captions. Comms posts. 48hr rule applies.</div>
+  <div class="mkt-grid">
+    <div class="mkt-row"><div class="mkt-when">Every Event</div><div class="mkt-what"><strong>Event Recap Post:</strong> 1–2 images + caption. Tag all corporate partners. Name the community org. State the impact in numbers (kits distributed, volunteers mobilized). Due to Comms within 48hrs — no exceptions.</div></div>
+    <div class="mkt-row"><div class="mkt-when">Corporate Partners</div><div class="mkt-what"><strong>Partner Feature:</strong> When a company volunteers alongside E100, give them a dedicated tag and mention. Companies share this content on their own channels — free reach for E100 and stewardship that strengthens the relationship.</div></div>
+    <div class="mkt-row"><div class="mkt-when">Together Tailgate</div><div class="mkt-what"><strong>Signature Content:</strong> Highest-impact visual of the year. Show the scale — kits, clothing, volunteers, families. This is the post that donors and partners share. Give it full production attention from Donald Gibson.</div></div>
+    <div class="mkt-row"><div class="mkt-when">MLK Day</div><div class="mkt-what"><strong>MLK Day Content Series:</strong> Lead with the annual theme. Document Saturday (incoming class) and Monday (committee) separately with a unified visual identity. The Habitat build is the most shareable moment — physical, emotional, visual.</div></div>
+    <div class="mkt-row"><div class="mkt-when">National Volunteer Week</div><div class="mkt-what"><strong>NVW Series:</strong> Each event during NVW gets its own post. Tag every corporate partner. Frame E100 as the organizer — "E100 brought us together." This positions the org as Atlanta's convener of corporate volunteerism.</div></div>
+    <div class="mkt-row"><div class="mkt-when">End of Year</div><div class="mkt-what"><strong>Annual Impact Wrap:</strong> Total volunteer hours, total events, total supplies distributed, total corporate partners who served. This feeds the annual report and is the strongest proof point for funders about community reach.</div></div>
+  </div>
+</div>
+
+
+<!-- ══════ CONTACTS & BUDGET ══════ -->
+<div id="tab-contacts" class="tab-panel">
+
+  <div class="sec">Key Contacts — By Event</div>
+  <div class="callout gold"><strong>These are the people who make events happen on the partner side.</strong> Every contact must have a named owner on the E100 side — the person who maintains that relationship year over year. If that person leaves E100, the relationship needs a formal handoff.</div>
+
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:28px;">
+  <table>
+    <thead>
+      <tr>
+        <th>Partner / Org</th>
+        <th>Contact Name</th>
+        <th>Role</th>
+        <th>Event(s)</th>
+        <th>E100 Relationship Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Atlanta Hawks</strong></td><td>Alexis Roe</td><td>Partner Contact</td><td>Sandwich Packing (Sept/Oct)</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Tru Foundation</strong></td><td>TBD — confirm with chairs</td><td>Toy Distribution Partner</td><td>Toy Drive (December)</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Meals on Wheels Atlanta</strong></td><td>Kinnis Leonard</td><td>Org Partner Contact</td><td>Together Tailgate + others</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Chase Bank</strong></td><td>Lynette Jackson</td><td>Corporate Partner Contact</td><td>Backpack Drive (July)</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Gas South</strong></td><td>Yasmine Vaughn — go through Partnerships Chair</td><td>Corporate Partner Contact</td><td>Backpack Drive (Aug) · BEST · RISE</td><td>Multi-program — coordinate with Partnerships Chair</td></tr>
+      <tr><td><strong>Restoring One's Hope</strong></td><td>Kinnis Leonard or Brittney</td><td>Org Partner Contact</td><td>Together Tailgate + others</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Margie's House</strong></td><td>TBD — confirm with chairs</td><td>Org Partner Contact</td><td>Together Tailgate</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Habitat for Humanity</strong></td><td>TBD — confirm with chairs</td><td>Build Partner</td><td>MLK Day of Service</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Hands On Atlanta</strong></td><td>TBD — confirm with chairs</td><td>Volunteer Org Partner</td><td>TBD — confirm events</td><td>⚑ TBD — assign to Chair: Partner Liaison</td></tr>
+      <tr><td><strong>Delta Air Lines</strong></td><td>TBD — confirm CS contact</td><td>NVW Corporate Partner</td><td>National Volunteer Week</td><td>Multi-program — coordinate with Partnerships Chair</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="sec">Corporate Partner Service History — By Event</div>
+  <div class="callout amber"><strong>⚑ Still incomplete — this is a living document.</strong> Companies listed are confirmed by leadership. Additional companies for each event to be researched and added by the Community Service Chair. The more complete this list, the more powerful the Partnerships team's conversion pipeline becomes.</div>
+
+  <!-- MLK DAY -->
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:24px 0 10px;display:flex;align-items:center;gap:12px;">MLK Day of Service <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:24px;">
+  <table>
+    <thead>
+      <tr><th>Company</th><th>E100 Contact</th><th>Gala Sponsor?</th><th>Other E100 Programs</th><th>Partnerships Next Step</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Delta Air Lines</strong></td><td>Melvia Jones (C100/Career Fair)</td><td>✅ Active Sponsor</td><td>BEST · C100 · Gala · NVW</td><td>Multi-program — maintain</td></tr>
+      <tr><td><strong>Gas South</strong></td><td>TBD — confirm with chairs</td><td>✅ Active Sponsor</td><td>BEST · RISE · Backpack Drive · NVW · Tailgate</td><td>Multi-program — maintain</td></tr>
+      <tr><td><strong>Comcast</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>Together Tailgate</td><td>Multi-event — warm lead. Handoff to Partnerships</td></tr>
+      <tr><td><strong>Zillow</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>MLK only</td><td>Has served — pursue deeper engagement</td></tr>
+      <tr><td><strong>Airbnb</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>MLK only</td><td>Has served — pursue deeper engagement</td></tr>
+      <tr><td><strong>Visa</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>MLK only</td><td>Major brand — high-priority Partnerships lead</td></tr>
+      <tr><td><strong>Walmart</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>MLK · Toy Drive</td><td>Multi-event — warm lead. Handoff to Partnerships</td></tr>
+      <tr><td><strong>Turkey Leg Hut</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>MLK only</td><td>Community brand — in-kind or sponsorship opportunity</td></tr>
+      <tr><td><strong>Atlanta Public Schools</strong></td><td>TBD — confirm with chairs</td><td>N/A — Education partner</td><td>BEST Academy · MLK</td><td>Institutional partner — maintain relationship</td></tr>
+      <tr><td><strong>Georgia-Pacific</strong></td><td>TBD — confirm with chairs</td><td>✅ Active Gala Sponsor</td><td>MLK · Gala</td><td>Active sponsor — deepen community service engagement</td></tr>
+      <tr style="opacity:0.5;"><td colspan="5" style="text-align:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--amber);">⚑ Additional MLK companies to be researched and added by CS Chair</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- TOGETHER TAILGATE -->
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:24px 0 10px;display:flex;align-items:center;gap:12px;">Together Tailgate <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:24px;">
+  <table>
+    <thead>
+      <tr><th>Company</th><th>E100 Contact</th><th>Gala Sponsor?</th><th>Other E100 Programs</th><th>Partnerships Next Step</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Comcast</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>MLK · Tailgate</td><td>Multi-event — warm lead. Handoff to Partnerships</td></tr>
+      <tr><td><strong>Gas South</strong></td><td>TBD — confirm with chairs</td><td>✅ Active Sponsor</td><td>BEST · RISE · Backpack · NVW · MLK</td><td>Multi-program — maintain</td></tr>
+      <tr><td><strong>Target</strong></td><td>TBD — confirm with chairs</td><td>⚑ Evaluate</td><td>Tailgate · C100 (open session)</td><td>Has served — pursue Gala sponsorship conversation</td></tr>
+      <tr style="opacity:0.5;"><td colspan="5" style="text-align:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--amber);">⚑ Additional Tailgate companies to be researched and added by CS Chair</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- TOY DRIVE -->
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:24px 0 10px;display:flex;align-items:center;gap:12px;">Toy Drive <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:24px;">
+  <table>
+    <thead>
+      <tr><th>Company / Org</th><th>E100 Contact</th><th>Role</th><th>Other E100 Programs</th><th>Partnerships Next Step</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Papa John's</strong></td><td>TBD — confirm with chairs</td><td>Corporate Partner / Donor</td><td>Toy Drive only</td><td>Has participated — pursue deeper annual partnership</td></tr>
+      <tr><td><strong>Tru Foundation</strong></td><td>TBD — confirm with chairs</td><td>Distribution Partner</td><td>Toy Drive only</td><td>Community org — maintain relationship</td></tr>
+      <tr><td><strong>Walmart</strong></td><td>TBD — confirm with chairs</td><td>Corporate Partner / Donor</td><td>MLK · Toy Drive</td><td>Multi-event — warm lead. Handoff to Partnerships</td></tr>
+      <tr style="opacity:0.5;"><td colspan="5" style="text-align:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--amber);">⚑ Additional Toy Drive companies to be researched and added by CS Chair</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- OTHER EVENTS -->
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:24px 0 10px;display:flex;align-items:center;gap:12px;">Other Events (Backpack Drives · Hawks · NVW) <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:24px;">
+  <table>
+    <thead>
+      <tr><th>Company</th><th>Event</th><th>E100 Contact</th><th>Gala Sponsor?</th><th>Partnerships Next Step</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Chase Bank</strong></td><td>Backpack Drive (July)</td><td>Lynette Jackson</td><td>⚑ Evaluate</td><td>Warm lead — handoff to Partnerships</td></tr>
+      <tr><td><strong>Gas South</strong></td><td>Backpack Drive (Aug)</td><td>TBD</td><td>✅ Active Sponsor</td><td>Multi-program — maintain</td></tr>
+      <tr><td><strong>Atlanta Hawks</strong></td><td>Sandwich Packing (Sept/Oct)</td><td>Alexis Roe</td><td>⚑ Evaluate</td><td>Warm lead — handoff to Partnerships</td></tr>
+      <tr><td><strong>Delta Air Lines</strong></td><td>National Volunteer Week</td><td>Melvia Jones</td><td>✅ Active Sponsor</td><td>Multi-program — maintain</td></tr>
+      <tr><td><strong>Gas South</strong></td><td>National Volunteer Week</td><td>TBD</td><td>✅ Active Sponsor</td><td>Multi-program — maintain</td></tr>
+      <tr style="opacity:0.5;"><td colspan="5" style="text-align:center;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--amber);">⚑ Additional companies across all events to be researched and added by CS Chair</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- CROSS-EVENT SUMMARY -->
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:24px 0 10px;display:flex;align-items:center;gap:12px;">Cross-Event Summary — Who's Most Embedded <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+  <div class="callout green"><strong>The most embedded partners are the warmest sponsorship leads.</strong> These companies have served across multiple events and/or multiple programs. Partnerships Chair should prioritize these relationships for conversion or deepening.</div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;">
+  <table>
+    <thead>
+      <tr><th>Company</th><th>Service Events</th><th>Total E100 Programs</th><th>Gala Sponsor?</th><th>Priority</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Gas South</strong></td><td>MLK · Tailgate · Backpack (Aug) · NVW</td><td>6 programs</td><td>✅ Yes</td><td style="color:var(--green);font-family:'DM Mono',monospace;font-size:10px;">HIGHEST — most embedded</td></tr>
+      <tr><td><strong>Delta Air Lines</strong></td><td>MLK · NVW</td><td>5 programs</td><td>✅ Yes</td><td style="color:var(--green);font-family:'DM Mono',monospace;font-size:10px;">HIGHEST — most embedded</td></tr>
+      <tr><td><strong>Comcast</strong></td><td>MLK · Tailgate</td><td>2 programs</td><td>⚑ Evaluate</td><td style="color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;">HIGH — multi-event, no sponsorship yet</td></tr>
+      <tr><td><strong>Walmart</strong></td><td>MLK · Toy Drive</td><td>2 programs</td><td>⚑ Evaluate</td><td style="color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;">HIGH — multi-event, major brand</td></tr>
+      <tr><td><strong>Georgia-Pacific</strong></td><td>MLK</td><td>2 programs</td><td>✅ Gold Sponsor</td><td style="color:var(--green);font-family:'DM Mono',monospace;font-size:10px;">ACTIVE — deepen service engagement</td></tr>
+      <tr><td><strong>Target</strong></td><td>Tailgate</td><td>2 programs</td><td>⚑ Evaluate</td><td style="color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;">MEDIUM — has served, evaluate gala fit</td></tr>
+      <tr><td><strong>Visa</strong></td><td>MLK</td><td>1 program</td><td>⚑ Evaluate</td><td style="color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;">HIGH — major brand, single touchpoint</td></tr>
+      <tr><td><strong>Atlanta Hawks</strong></td><td>Sandwich Packing</td><td>2 programs</td><td>⚑ Evaluate</td><td style="color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;">MEDIUM — warm, multi-program</td></tr>
+      <tr><td><strong>Chase Bank</strong></td><td>Backpack Drive</td><td>1 program</td><td>⚑ Evaluate</td><td style="color:var(--amber);font-family:'DM Mono',monospace;font-size:10px;">MEDIUM — warm single touchpoint</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="sec">Budget — Per Event</div>
+  <div class="callout gold"><strong>Budget is provided by the Treasurer on a per-event basis.</strong> Anything above the approved amount requires Exec Board approval. In-kind donations and corporate sponsorships of supplies reduce cash spend. Chair must submit a budget request per event during planning season.</div>
+  <div class="ov-grid">
+    <div class="ov-box">
+      <div class="ov-label">Together Tailgate</div>
+      <div class="ov-val">⚑ TBD</div>
+      <div class="ov-sub">Supplies: hygiene kits, care packages, clothing, gift cards, food. In-kind welcome. Confirm with Treasurer.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">Toy Drive</div>
+      <div class="ov-val">⚑ TBD</div>
+      <div class="ov-sub">Primarily donation-driven. E100 may fund gap toys. Confirm with Treasurer + Tru Foundation.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">MLK Day of Service</div>
+      <div class="ov-val">⚑ TBD</div>
+      <div class="ov-sub">Supplies vary by theme. Habitat build may have material costs. Corporate partners often co-fund. Confirm with Treasurer.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">Backpack Drives (×2)</div>
+      <div class="ov-val">⚑ TBD</div>
+      <div class="ov-sub">Chase and Gas South are the corporate partners — they may fund supplies. Confirm in-kind vs. E100 contribution per drive.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">Hawks Sandwich Packing</div>
+      <div class="ov-val">⚑ TBD</div>
+      <div class="ov-sub">Hawks may fund supplies. Confirm cost split with Alexis Roe annually.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">National Volunteer Week</div>
+      <div class="ov-val">⚑ TBD</div>
+      <div class="ov-sub">2+ events — Delta and Gas South funded in 2026. Confirm cost split annually with each corporate partner.</div>
+    </div>
+  </div>
+
+  <div class="sec">Volunteer Hour Tracking Standard</div>
+  <div class="callout blue"><strong>Volunteer hours are one of E100's most important impact metrics</strong> — reported in the annual impact report, to the parent org, and to funders. Every event must capture hours consistently so the Data department can compile accurately.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+    <div class="ov-box">
+      <div class="ov-label">How to Count Hours</div>
+      <div class="ov-val" style="font-size:12px;margin-top:4px;">Number of E100 volunteers × hours at event = E100 volunteer hours. Corporate partner volunteers tracked separately as "community volunteers."</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">Who Tracks</div>
+      <div class="ov-val" style="font-size:12px;margin-top:4px;">Chair — Event Planning &amp; Execution. Sign-in sheet at every event. Submitted to Data dept within 48 hours of event close.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">Where It Goes</div>
+      <div class="ov-val" style="font-size:12px;margin-top:4px;">Data department logs all hours. Feeds annual impact report. Reported to 100 Black Men of Atlanta and used in Gala program and partner decks.</div>
+    </div>
+    <div class="ov-box">
+      <div class="ov-label">⚑ Tool Needed</div>
+      <div class="ov-val" style="font-size:12px;margin-top:4px;">Standardized sign-in sheet or digital form for every event. Confirm tool with Data dept — currently TBD whether paper or digital.</div>
+    </div>
+  </div>
+
+  <div class="sec">Supply Procurement</div>
+  <div class="callout amber"><strong>⚑ Supply procurement details need to be documented by chairs.</strong> Who orders what, from where, at what cost, and how far in advance varies by event. This is institutional knowledge that currently lives only in the heads of past chairs.</div>
+  <div style="overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);">
+  <table>
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Key Supplies</th>
+        <th>Source</th>
+        <th>Lead Time</th>
+        <th>In-Kind Possible?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Together Tailgate</strong></td><td>Hygiene kits, care packages, clothing, gift cards, food</td><td>⚑ TBD — confirm with chairs</td><td>4–6 weeks</td><td>Yes — corporate sponsors</td></tr>
+      <tr><td><strong>Toy Drive</strong></td><td>Toys for distribution</td><td>Donations + Tru Foundation</td><td>Collections start 4 weeks out</td><td>Yes — corporate drop boxes</td></tr>
+      <tr><td><strong>MLK Day</strong></td><td>Varies by theme</td><td>⚑ TBD — theme-dependent</td><td>6–8 weeks</td><td>Yes — corporate partners</td></tr>
+      <tr><td><strong>Backpack Drives</strong></td><td>Backpacks, school supplies</td><td>Chase / Gas South provide</td><td>4 weeks</td><td>Yes — partner funded</td></tr>
+      <tr><td><strong>Sandwich Packing</strong></td><td>Bread, deli items, bags</td><td>Hawks coordinate</td><td>2–3 weeks</td><td>Yes — Hawks funded</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+</div>
+
+<!-- ══════ TO FINALIZE ══════ -->
+<div id="tab-takeaways" class="tab-panel">
+  <div class="sec">⚑ Open Items — To Finalize with Community Service Chairs</div>
+  <div class="callout amber"><strong>These items need follow-up.</strong> Some are for the Chair, some require research. All flagged with owner. Items marked 🔴 are highest priority.</div>
+  <div class="tko-grid">
+    <div class="tko-item"><div class="tko-num">01</div><div><div class="tko-text"><strong>🔴 Complete Corporate Partner Service History</strong> — Full historical list of every company that has served alongside E100 at community events. Started in the Contacts & Budget tab — Chair to complete. Critical input for the Partnerships team's conversion pipeline.</div><div class="tko-owner">Owner: Community Service Chair — research item</div></div></div>
+    <div class="tko-item"><div class="tko-num">02</div><div><div class="tko-text"><strong>🔴 Assign E100 Relationship Owner to Every Contact</strong> — Every partner contact (Alexis Roe/Hawks, Lynette Jackson/Chase, Kinnis Leonard/MOWA, Tru Foundation, etc.) needs a named E100 member who owns that relationship. If they leave E100, the contact goes with them unless it's documented here.</div><div class="tko-owner">Owner: Community Service Chair + Chair: Partner Liaison</div></div></div>
+    <div class="tko-item"><div class="tko-num">03</div><div><div class="tko-text"><strong>🔴 Adopt the Partner On-Ramp Process</strong> — The 6-step on-ramp in this playbook needs formal sign-off from both the CS Chair and Partnerships Chair. The Step 4 handoff (flag every new company to Partnerships within 48hrs) is the single highest-leverage process improvement available to the org right now.</div><div class="tko-owner">Owner: Community Service Chair + Partnerships Chair</div></div></div>
+    <div class="tko-item"><div class="tko-num">04</div><div><div class="tko-text"><strong>Budget Per Event</strong> — All 6 event budgets in the Contacts & Budget tab are marked TBD. Chair to confirm with Treasurer before planning season. Especially important for Together Tailgate and MLK Day which have the highest supply costs.</div><div class="tko-owner">Owner: Community Service Chair + Treasurer</div></div></div>
+    <div class="tko-item"><div class="tko-num">05</div><div><div class="tko-text"><strong>Supply Procurement Details</strong> — Who orders what, from where, how far in advance, at what cost for each event? This institutional knowledge needs to be pulled from past chairs and documented in the Contacts & Budget tab before it walks out the door.</div><div class="tko-owner">Owner: Community Service Chair — get from past chairs</div></div></div>
+    <div class="tko-item"><div class="tko-num">06</div><div><div class="tko-text"><strong>Volunteer Hour Tracking Tool</strong> — Confirm with Data dept whether tracking is paper sign-in or digital form. Standardize the template and distribute to all event leads before the year starts. Every event must use the same format.</div><div class="tko-owner">Owner: Chair: Project Coordination + Data Dept</div></div></div>
+    <div class="tko-item"><div class="tko-num">07</div><div><div class="tko-text"><strong>Complete List of Houseless Orgs</strong> — Additional Atlanta orgs working with the houseless population beyond the four confirmed. Chairs to provide full list with contact names and which events they've been involved in.</div><div class="tko-owner">Owner: Chair: Partner Liaison — get from chairs</div></div></div>
+    <div class="tko-item"><div class="tko-num">08</div><div><div class="tko-text"><strong>Tru Foundation Contact</strong> — Toy Drive distribution partner confirmed but contact name at Tru Foundation is unknown. Confirm with chairs and add to the contacts table.</div><div class="tko-owner">Owner: Chair: Partner Liaison</div></div></div>
+    <div class="tko-item"><div class="tko-num">09</div><div><div class="tko-text"><strong>Hands On Atlanta — Specific Events</strong> — Confirmed partner but which events they've been part of is TBD. Confirm with chairs and update the org card in the Partner Orgs tab.</div><div class="tko-owner">Owner: Chair: Partner Liaison</div></div></div>
+    <div class="tko-item"><div class="tko-num">10</div><div><div class="tko-text"><strong>MLK Day — Incoming Class Coordination SOP</strong> — The Saturday (Incoming Class) / Monday (Committee) split is documented but the actual handoff process between the two is not. Who coordinates? What's shared? What's the unified brand standard across both days?</div><div class="tko-owner">Owner: Community Service Chair</div></div></div>
+    <div class="tko-item"><div class="tko-num">11</div><div><div class="tko-text"><strong>NVW 2027 Planning</strong> — National Volunteer Week launched in 2026 with 2 events. Goal: grow to 3–5 annually. Begin identifying new partner companies in January. Partnerships Chair owns the pipeline.</div><div class="tko-owner">Owner: CS Chair + Partnerships Chair</div></div></div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">
+  <strong style="color:var(--gold)">Emerging 100 of Atlanta — The Playbook</strong><br>
+  Community Service · EXT-03 · v2.0 · 11 Sections · 8 Events · Living Document
+</div>
+<div id="tab-nchair_cs" class="tab-panel"><div class="mission-space"><div class="mission-space-label">Committee Mission Statement</div><div class="mission-space-text">We still need this for an update — what is the one sentence that defines why Community Service exists within E100?</div></div><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">New Chair Questions — What Would Block You <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div><div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Every question a brand new Community Service Chair would need answered. <span style="color:var(--red);">Red = planning blocker.</span> <span style="color:var(--amber);">Amber = go ask your board liaison.</span> <span style="color:var(--ac);">Blue = good to know.</span></div><div class="nq-grid"><div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What is my budget per event and how do I access it?</strong> Who approves purchases? Do I submit to Treasurer for reimbursement or is there a card?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>How do I order supplies for Together Tailgate?</strong> Who places the order for food, turkeys, hygiene kits, clothing? Which partners contribute supplies vs. what does E100 buy?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Who do I call at each partner org — and do I reach out directly or does someone introduce me?</strong> Chase (Lynette Jackson), Hawks (Alexis Roe), Gas South (Yasmine Vaughn via Partnerships) — what is the protocol for each?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Who at BEST Academy do I coordinate with for Together Tailgate?</strong> The event is on their campus — who is my school contact for logistics, parking, setup?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What happened at each event last year?</strong> How many volunteers, how many community members served, what was donated? I need last year's recaps before I can plan this year.</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>How do I formally flag a new corporate partner to Partnerships?</strong> What is the process — do I text the Partnerships Chair, fill out a form, or update Monday.com?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>What is the volunteer sign-in process day-of?</strong> Is there a system, a sign-in sheet, or a Monday.com form? Who is responsible for collecting and submitting hours to Data?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>National Volunteer Week — what does our commitment look like this year?</strong> Multiple events across one week — which orgs, which days, and what does E100 bring?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>Who is the E100 contact at Restoring One's Hope?</strong> Kinnis Leonard or Brittney — which one do I call and is this a warm relationship or does it need re-establishing?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What does the Partner On-Ramp process look like in practice?</strong> I understand the 6 steps — but what does the actual handoff to Partnerships look like after an event?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>Is there a volunteer recruitment process or does it just go out to all members?</strong> How do members sign up for specific events and how do I track who is coming?</div></div>
+</div></div>
+<div id="tab-contacts_cs" class="tab-panel"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 20px;display:flex;align-items:center;gap:12px;">Key Contacts — Internal &amp; External <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div><div class="contact-section"><div class="contact-type">Internal — E100</div><div class="contact-grid"><div class="contact-card"><div class="cc-role">Exec Board · CS</div><div class="cc-who">Board Liaison</div><div class="cc-how">First call for budget, partner introductions, and anything that needs board approval.</div><div class="cc-map">→ Go to them for: budget, partner intros, event conflicts, escalations</div></div>
+<div class="contact-card"><div class="cc-role">Current Partner Growth</div><div class="cc-who">Partnerships Chair</div><div class="cc-how">Owns all E100 corporate relationships. Go through them before contacting any corporate partner. They provide the warm intro.</div><div class="cc-map">→ Go to them for: corporate partner intros (Gas South, Chase, Hawks), warm leads, flagging new companies</div></div>
+<div class="contact-card"><div class="cc-role">Surveys &amp; Hours</div><div class="cc-who">Data Chair</div><div class="cc-how">Submit volunteer hours to Data within 48hrs of each event.</div><div class="cc-map">→ Go to them for: volunteer hour submission, attendance tracking, impact data</div></div>
+<div class="contact-card"><div class="cc-role">Content</div><div class="cc-who">Comms Chair</div><div class="cc-how">Submit event content within 48hrs of receiving photos from photographer.</div><div class="cc-map">→ Go to them for: posting timeline, caption guidance, photo selection</div></div>
+</div></div><div class="contact-section"><div class="contact-type">External — Partners</div><div class="contact-grid"><div class="contact-card"><div class="cc-role">Chase Bank · Backpack Drive</div><div class="cc-who">Lynette Jackson</div><div class="cc-how">Annual July back-to-school backpack drive. Contact through Partnerships Chair first.</div><div class="cc-map">→ Go to them for: backpack drive logistics, Chase volunteer coordination</div></div>
+<div class="contact-card"><div class="cc-role">Atlanta Hawks · Sandwich Packing</div><div class="cc-who">Alexis Roe</div><div class="cc-how">Annual sandwich packing event at State Farm Arena. Contact through Partnerships Chair first.</div><div class="cc-map">→ Go to them for: Hawks event date, format, volunteer count</div></div>
+<div class="contact-card"><div class="cc-role">Gas South · Community Service</div><div class="cc-who">Yasmine Vaughn</div><div class="cc-how">Gas South CS contact. Always go through Partnerships Chair to reach her — do not contact directly.</div><div class="cc-map">→ IMPORTANT: Always through Partnerships Chair first</div></div>
+<div class="contact-card"><div class="cc-role">Restoring One's Hope</div><div class="cc-who">Kinnis Leonard / Brittney</div><div class="cc-how">Community org partner for Together Tailgate and other events.</div><div class="cc-map">→ Go to them for: event logistics, community org coordination</div></div>
+<div class="contact-card"><div class="cc-role">Toy Drive Distribution</div><div class="cc-who">Tru Foundation</div><div class="cc-how">December Toy Drive distribution partner.</div><div class="cc-map">→ Go to them for: Toy Drive date, distribution logistics, toy drop-off</div></div>
+<div class="contact-card"><div class="cc-role">BEST Academy · Together Tailgate Venue</div><div class="cc-who">Ray Singer</div><div class="cc-how">School-side contact for Together Tailgate campus logistics.</div><div class="cc-map">→ Go to them for: BEST Academy parking, setup access, school calendar</div></div>
+</div></div></div>
+<div id="tab-sponsors_cs" class="tab-panel"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">Past Sponsors &amp; Partners — Community Service <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div><div style="font-size:12px;color:var(--light);margin-bottom:14px;line-height:1.6;">Every company or sponsor that has supported this committee. Institutional memory that prevents a new Chair from starting at zero.</div><div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Upload Needed</div><div class="upload-banner-title">Full Corporate Service History Per Event</div><div class="upload-banner-note">We still need this for an update. Add every company that has served alongside E100 at community events — Together Tailgate, MLK Day, NVW, Toy Drive, Backpack Drive — with year and contact.</div></div></div><div class="sponsor-table-wrap"><table class="sponsor-table"><thead><tr><th>Company / Sponsor</th><th>Year(s)</th><th>Amount / Level</th><th>Frequency</th><th>Contact</th><th>Notes</th></tr></thead><tbody><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px;font-style:italic;">We still need this for an update — add historical sponsor data here</td></tr></tbody></table></div></div>
+<div id="tab-checklist_cs" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin:0 0 6px;">Pre-Event Checklist<span style="flex:1;height:1px;background:rgba(255,255,255,0.06);"></span></div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Use for: Together Tailgate · MLK Day · Toy Drive · Backpack Drive · Hawks Sandwich Packing · NVW · Street Clean-Up.</div>
+<div style="font-size:12px;color:var(--light);margin-bottom:14px;line-height:1.7;">Check off each item as your team completes it. <strong style="color:var(--white);">Monday.com is always Item 1.</strong></div><div class="cl2-pwrap"><span class="cl2-plabel">Completion</span><div class="cl2-ptrack"><div class="cl2-pfill" id="pf-cs"></div></div><span class="cl2-pcount" id="pc-cs">0/0</span><button class="cl2-rbtn" onclick="cl2R('cs')">Reset</button></div>
+<div class="cl2-sec"><div class="cl2-shdr">🟨 Item 1 — Monday.com Project Plan</div><div class="mmini"><div class="mmini-lbl">Build the board first — assign workstream leads and deadlines before anything else moves</div><div class="ws-grid"><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Supplies & Procurement</div><div class="ws-sub">What's needed · who orders · partner contributions</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Venue & Logistics</div><div class="ws-sub">Location · setup · parking · load-in</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Comms — Internal</div><div class="ws-sub">Member mobilization · sign-up link</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Comms — External</div><div class="ws-sub">Corporate partner invite · community org coordination</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Volunteer Coordination</div><div class="ws-sub">Sign-up · check-in · day-of roles · hour tracking</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Partner Registry</div><div class="ws-sub">Corporate volunteers · community orgs · new partner flagging</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Check-In</div><div class="ws-sub">Member sign-in · corporate volunteer sign-in</div></div></div><div class="ws-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="ws-cb"></div><div><div class="ws-nm">Stakeholder Registry</div><div class="ws-sub">Corporate partners confirmed · community org contacts</div></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Planning & Approval</div><div class="cl2-grid"><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Budget discussed with Treasurer or Board Liaison<div class=cl2-note>Budgets are fluid — confirm what E100 buys vs. what partners contribute.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required First</span><span class="cl2-tag ct-time">4–6 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Venue confirmed<div class=cl2-note>Together Tailgate = BEST Academy (always before Thanksgiving). MLK Day = City Hall. Toy Drive and others — confirm annually.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-time">4–6 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Corporate partner intro confirmed through Partnerships Chair<div class=cl2-note>Gas South (Yasmine Vaughn) · Chase (Lynette Jackson) · Hawks (Alexis Roe). Do not cold-contact without Partnerships intro.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-own">Partnerships Chair</span><span class="cl2-tag ct-time">4–6 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Community org coordination confirmed<div class=cl2-note>Restoring One's Hope (Kinnis/Brittney) · Meals on Wheels · Tru Foundation (Toy Drive). Role · timing · logistics confirmed.</div><div class=cl2-tags><span class="cl2-tag ct-own">Partner Relations Chair</span><span class="cl2-tag ct-time">3–4 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Supplies ordered and confirmed<div class=cl2-note>Together Tailgate: food · turkeys · hygiene kits · clothing · gift cards. Toy Drive: toys sorted. Backpack Drive: backpacks.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-time">2–3 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">KPIs defined — what to measure<div class=cl2-note>Volunteer hours · community members served · items donated · corporate volunteers.</div><div class=cl2-tags><span class="cl2-tag ct-data">Data Chair</span><span class="cl2-tag ct-time">2 Wks Out</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Volunteers</div><div class="cl2-grid"><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Internal E100 volunteer sign-up open and tracked<div class=cl2-note>Sign-up link live · minimum count confirmed · day-of roles pre-assigned.</div><div class=cl2-tags><span class="cl2-tag ct-own">Volunteer Coord. Chair</span><span class="cl2-tag ct-time">3 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">External corporate volunteers confirmed<div class=cl2-note>Headcount confirmed · briefed on logistics · know what to wear/bring/do.</div><div class=cl2-tags><span class="cl2-tag ct-own">Partner Relations Chair</span><span class="cl2-tag ct-time">1–2 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Day-of volunteer roles assigned<div class=cl2-note>Every volunteer has a specific role before the event starts.</div><div class=cl2-tags><span class="cl2-tag ct-own">Volunteer Coord. Chair</span><span class="cl2-tag ct-time">1 Week Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Check-in process confirmed for members and external volunteers<div class=cl2-note>Sign-in sheet · Monday.com form · or digital. Separate process for each group.</div><div class=cl2-tags><span class="cl2-tag ct-own">Volunteer Coord. Chair</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Graphics, Comms & Media</div><div class="cl2-grid"><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Graphics created<div class=cl2-note>Event flyer or graphic for pre-event member push and social post.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span><span class="cl2-tag ct-time">2–3 Wks Out</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Social media alignment with Comms Chair<div class=cl2-note>Pre-event volunteer ask post + post-event recap plan agreed. CS content is E100's strongest — plan it well.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Photographer confirmed<div class=cl2-note>Donald Gibson or available E100 member. CS photos are top partner acquisition content.</div><div class=cl2-tags><span class="cl2-tag ct-if">If Available</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Food confirmed (if applicable)<div class=cl2-note>Together Tailgate includes food for the community. Confirm source · quantity · distribution.</div><div class=cl2-tags><span class="cl2-tag ct-if">If Applicable</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Post-Event</div><div class="cl2-grid"><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Volunteer hours submitted to Data within 48hrs<div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-data">Data Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Content submitted to Comms within 48hrs of photo delivery<div class=cl2-note>Curated photos · draft caption · tags · context notes.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Post-event recap documented in Monday.com<div class=cl2-note>Attendance · what worked · what didn't. Filed for next Chair.</div><div class=cl2-tags><span class="cl2-tag ct-own">Event Chair</span><span class="cl2-tag ct-time">Within 1 Week</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">New corporate partner flagged to Partnerships within 48hrs<div class=cl2-note>Company name · who was there · engagement level. This is Partner On-Ramp Step 4.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-own">Partnerships Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="cs" onclick="cl2T(this,'cs')"><div class="cl2-box"></div><div class="cl2-lbl">Attendee and volunteer emails sent to Newsletter Chair<div class=cl2-note>→ Newsletter + Social Blast lists.</div><div class=cl2-tags><span class="cl2-tag ct-own">Newsletter Chair</span><span class="cl2-tag ct-time">Within 1 Week</span></div></div></div></div></div>
+</div><script>
+if(!window._cl2init){
+  window._cl2init=true;
+  window.cl2T=function(el,t){el.classList.toggle('done');cl2P(t);};
+  window.cl2R=function(t){
+    document.querySelectorAll('.cl2-row[data-tid="'+t+'"],.ws-row[data-tid="'+t+'"]').forEach(function(e){e.classList.remove('done');});
+    cl2P(t);
+  };
+  window.cl2P=function(t){
+    var all=document.querySelectorAll('.cl2-row[data-tid="'+t+'"],.ws-row[data-tid="'+t+'"]');
+    var done=document.querySelectorAll('.cl2-row.done[data-tid="'+t+'"],.ws-row.done[data-tid="'+t+'"]');
+    var pct=all.length?Math.round(done.length/all.length*100):0;
+    var f=document.getElementById('pf-'+t),c=document.getElementById('pc-'+t);
+    if(f)f.style.width=pct+'%';
+    if(c)c.textContent=done.length+'/'+all.length;
+  };
+}
+cl2P('cs');</script></div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleEv(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.event-card').forEach(c=>{c.classList.remove('open');const b=c.querySelector('.toggle-btn');if(b)b.textContent='Details →';});
+  if(!wasOpen){card.classList.add('open');const b=card.querySelector('.toggle-btn');if(b)b.textContent='Collapse ↑';setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),50);}
+}
+</script>
+</body>
+</html>

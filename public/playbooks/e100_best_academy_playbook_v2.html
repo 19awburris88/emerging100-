@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — B.E.S.T. Academy Playbook v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#07090f; --bg2:#0d1120; --bg3:#111827;
+  --gold:#C9A84C; --gdim:rgba(201,168,76,0.12); --gmid:rgba(201,168,76,0.25);
+  --white:#ede8dd; --muted:#6b7280; --light:#9ca3af;
+  --ac:#4a9eff; --acb:rgba(74,158,255,0.10); --acp:rgba(74,158,255,0.25);
+  --r-r:#ef4444; --r-rb:rgba(239,68,68,0.12); --r-rp:rgba(239,68,68,0.28);
+  --r-a:#f59e0b; --r-ab:rgba(245,158,11,0.12); --r-ap:rgba(245,158,11,0.28);
+  --r-c:#4a9eff; --r-cb:rgba(74,158,255,0.12); --r-cp:rgba(74,158,255,0.28);
+  --r-i:#a855f7; --r-ib:rgba(168,85,247,0.12); --r-ip:rgba(168,85,247,0.28);
+  --green:#10b981; --greenb:rgba(16,185,129,0.12); --greenp:rgba(16,185,129,0.28);
+  --red:#ef4444; --redb:rgba(239,68,68,0.12); --redp:rgba(239,68,68,0.28);
+  --amber:#f59e0b; --amberb:rgba(245,158,11,0.12); --amberp:rgba(245,158,11,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 0% 0%,rgba(201,168,76,0.055) 0%,transparent 60%),
+             radial-gradient(ellipse 40% 50% at 100% 100%,rgba(74,158,255,0.04) 0%,transparent 60%);}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px 100px;position:relative;z-index:1;}
+
+/* NAV TABS */
+.tab-nav{
+  display:flex;gap:2px;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px;padding:4px;margin-bottom:36px;flex-wrap:wrap;
+  position:sticky;top:12px;z-index:100;
+}
+.tab-btn{
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  padding:8px 14px;border-radius:7px;transition:all .2s;white-space:nowrap;
+}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.tab-btn.active{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+
+.tab-panel{display:none;} .tab-panel.active{display:block;}
+
+/* HEADER */
+header{padding:56px 0 36px;}
+.breadcrumb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);
+  text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.breadcrumb span{color:var(--gold);}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,84px);letter-spacing:3px;line-height:.88;color:var(--white);}
+h1 em{color:var(--gold);font-style:normal;}
+.header-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.mpill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;}
+.mpill.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.mpill.blue{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.bar{width:40px;height:2px;background:var(--gold);margin:22px 0;}
+
+/* SECTION HEADS */
+.sec{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:14px;margin:40px 0 18px;}
+.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
+/* CALLOUTS */
+.callout{border-radius:10px;padding:16px 20px;font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;}
+.callout.gold{background:rgba(201,168,76,0.07);border:1px solid var(--gmid);}
+.callout.gold strong{color:var(--gold);}
+.callout.blue{background:var(--acb);border:1px solid var(--acp);}
+.callout.blue strong{color:var(--ac);}
+.callout.red{background:var(--redb);border:1px solid var(--redp);}
+.callout.red strong{color:var(--red);}
+.callout.green{background:var(--greenb);border:1px solid var(--greenp);}
+.callout.green strong{color:var(--green);}
+.callout.amber{background:var(--amberb);border:1px solid var(--amberp);}
+.callout.amber strong{color:var(--amber);}
+
+/* GRIDS */
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:12px;}
+.ov-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.ov-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ov-val{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;}
+.ov-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* RACI */
+.raci-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+thead tr{background:rgba(201,168,76,0.08);}
+th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.r{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap;display:inline-block;}
+.rR{background:var(--r-rb);color:var(--r-r);border:1px solid var(--r-rp);}
+.rA{background:var(--r-ab);color:var(--r-a);border:1px solid var(--r-ap);}
+.rC{background:var(--r-cb);color:var(--r-c);border:1px solid var(--r-cp);}
+.rI{background:var(--r-ib);color:var(--r-i);border:1px solid var(--r-ip);}
+.raci-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.rl{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.07);}
+.tl-item{position:relative;margin-bottom:26px;}
+.tl-dot{position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--ac);}
+.tl-item.key .tl-dot{background:var(--gold);border-color:var(--gold);}
+.tl-item.plan .tl-dot{border-color:var(--amber);}
+.tl-item.special .tl-dot{border-color:var(--green);}
+.tl-month{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:4px;}
+.tl-item.key .tl-month{color:var(--gold);}
+.tl-item.plan .tl-month{color:var(--amber);}
+.tl-item.special .tl-month{color:var(--green);}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:4px;}
+.tl-desc{font-size:12px;color:var(--light);line-height:1.6;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.tl-tag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:4px;color:var(--muted);}
+.tl-flag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;}
+.tl-flag.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tl-flag.green{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.tl-flag.amber{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+
+/* CHECKLIST */
+.cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cl-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.cl-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.cl-item{display:flex;align-items:flex-start;gap:9px;padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);line-height:1.5;}
+.cl-item:last-child{border-bottom:none;}
+.checkbox{width:14px;height:14px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);flex-shrink:0;margin-top:1px;}
+.cl-item.owner{color:var(--ac);}
+.cl-item.warn{color:var(--amber);}
+.owner .checkbox{border-color:var(--ac);}
+.warn .checkbox{border-color:var(--amber);}
+
+/* PARTNER REGISTRY */
+.partner-grid{display:grid;gap:10px;}
+.partner-row{
+  background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;
+  padding:16px 20px;display:grid;grid-template-columns:180px 1fr auto;gap:16px;align-items:start;
+}
+.p-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:var(--white);margin-bottom:3px;}
+.p-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;}
+.p-type.must{color:var(--green);}
+.p-type.past{color:var(--muted);}
+.p-type.open{color:var(--amber);}
+.p-detail{font-size:12px;color:var(--light);line-height:1.6;}
+.p-topic{font-size:11px;color:var(--muted);margin-top:4px;}
+.p-badge{font-family:'DM Mono',monospace;font-size:8px;padding:3px 9px;border-radius:20px;white-space:nowrap;align-self:flex-start;}
+.p-badge.confirmed{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.p-badge.pipeline{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.p-badge.past{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.07);}
+.p-badge.open{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+
+/* SESSION TOPIC MAP */
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+.topic-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 16px;}
+.topic-month{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.topic-name{font-size:13px;color:var(--white);font-weight:500;margin-bottom:4px;}
+.topic-partner{font-size:11px;color:var(--muted);}
+.topic-flag{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;margin-top:6px;display:inline-block;}
+.topic-flag.fixed{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.topic-flag.flexible{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.07);}
+.topic-flag.tbd{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.topic-flag.special{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+
+/* BUDGET */
+.budget-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.bud-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.bud-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.bud-amount{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--white);line-height:1;margin-bottom:4px;}
+.bud-amount em{font-style:normal;color:var(--gold);}
+.bud-note{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* TOOLS */
+.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.tool-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;
+  padding:14px 16px;display:flex;align-items:flex-start;gap:10px;}
+.tool-icon{font-size:18px;flex-shrink:0;}
+.tool-name{font-size:12px;color:var(--white);font-weight:500;margin-bottom:2px;}
+.tool-use{font-size:11px;color:var(--muted);}
+
+/* STAKEHOLDERS */
+.sh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.sh-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.sh-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:7px;}
+.sh-int .sh-type{color:var(--ac);}
+.sh-ext .sh-type{color:var(--gold);}
+.sh-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:2px;}
+.sh-role{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.sh-detail{font-size:12px;color:var(--light);line-height:1.6;}
+.sh-raci{margin-top:8px;}
+
+/* MKT */
+.mkt-grid{display:grid;gap:10px;}
+.mkt-row{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:start;
+  background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.mkt-when{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.mkt-what{font-size:12px;color:var(--light);line-height:1.6;}
+
+/* TAKEAWAYS */
+.tko-grid{display:grid;gap:8px;}
+.tko-item{
+  background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;
+  padding:14px 18px;display:flex;align-items:flex-start;gap:12px;
+}
+.tko-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);flex-shrink:0;min-width:24px;}
+.tko-text{font-size:12px;color:var(--light);line-height:1.6;}
+.tko-text strong{color:var(--white);}
+.tko-owner{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:4px;}
+
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+.met-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.met-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.met-l{font-size:12px;color:var(--light);line-height:1.5;}
+.met-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px;letter-spacing:1px;}
+
+@media(max-width:640px){
+  .cl-grid,.sh-grid,.ov-grid,.budget-grid,.metrics-grid,.topic-grid{grid-template-columns:1fr;}
+  .mkt-row,.partner-row{grid-template-columns:1fr;}
+  .tab-btn{font-size:8px;padding:6px 10px;}
+}
+
+/* NEW CHAIR ADDITIONS */
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;
+  padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-section{margin-bottom:28px;}
+.contact-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.contact-type::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.sponsor-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:14px;}
+.sponsor-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sponsor-table thead tr{background:rgba(201,168,76,0.08);}
+.sponsor-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+.sponsor-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);
+  color:var(--light);vertical-align:top;line-height:1.5;}
+.sponsor-table tr:last-child td{border-bottom:none;}
+.sponsor-table tr:hover td{background:rgba(255,255,255,0.02);}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;
+  padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;
+  padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-section{margin-bottom:28px;}
+.contact-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.contact-type::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.sponsor-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:14px;}
+.sponsor-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sponsor-table thead tr{background:rgba(201,168,76,0.08);}
+.sponsor-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+.sponsor-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+.sponsor-table tr:last-child td{border-bottom:none;}
+.sponsor-table tr:hover td{background:rgba(255,255,255,0.02);}
+.freq-pill{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+
+.cl2-pwrap{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.cl2-plabel{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.cl2-ptrack{flex:1;min-width:80px;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
+.cl2-pfill{height:100%;border-radius:3px;background:var(--gold);transition:width .4s ease;}
+.cl2-pcount{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);white-space:nowrap;}
+.cl2-rbtn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;}
+.cl2-rbtn:hover{color:var(--white);}
+.cl2-sec{margin-bottom:20px;}
+.cl2-shdr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.cl2-shdr::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.cl2-grid{display:grid;gap:6px;}
+.cl2-row{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:11px 14px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;transition:background .18s;}
+.cl2-row:hover{background:var(--bg3);}
+.cl2-row.done{background:rgba(16,185,129,0.04);border-color:rgba(16,185,129,0.2);}
+.cl2-row.done .cl2-lbl{color:var(--muted);text-decoration:line-through;}
+.cl2-row.done .cl2-box{background:var(--green);border-color:var(--green);}
+.cl2-row.done .cl2-box::after{opacity:1;}
+.cl2-box{width:17px;height:17px;border-radius:4px;border:2px solid rgba(255,255,255,0.18);flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.cl2-box::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;opacity:0;transition:opacity .18s;}
+.cl2-lbl{font-size:12px;color:var(--white);font-weight:500;line-height:1.5;}
+.cl2-note{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.cl2-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.cl2-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;}
+.ct-req{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.ct-own{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.ct-time{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.ct-if{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.07);}
+.ct-data{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+.mmini{background:var(--bg2);border:1px solid var(--gmid);border-radius:10px;padding:16px 18px;margin-bottom:10px;}
+.mmini-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:7px;}
+.ws-row{background:var(--bg3);border:1px solid rgba(255,255,255,0.06);border-radius:7px;padding:9px 11px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;transition:background .18s;}
+.ws-row:hover{background:rgba(255,255,255,0.04);}
+.ws-row.done{border-color:rgba(201,168,76,0.3);}
+.ws-row.done .ws-nm{color:var(--muted);text-decoration:line-through;}
+.ws-row.done .ws-cb{background:var(--gold);border-color:var(--gold);}
+.ws-row.done .ws-cb::after{opacity:1;}
+.ws-cb{width:14px;height:14px;border-radius:3px;border:2px solid rgba(255,255,255,0.14);flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.ws-cb::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:700;opacity:0;}
+.ws-nm{font-size:11px;color:var(--white);font-weight:500;}
+.ws-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="breadcrumb">The Playbook <span>›</span> External Impact <span>›</span> EXT-01</div>
+  <h1>B.E.S.T.<br><em>Academy</em></h1>
+  <div class="header-meta">
+    <span class="mpill gold">Year-Round Program</span>
+    <span class="mpill blue">3rd Friday Monthly</span>
+    <span class="mpill blue">Seniors (every session) + Juniors (select sessions)</span>
+    <span class="mpill blue">Planning: June–July</span>
+    <span class="mpill blue">v2.0</span>
+  </div>
+  <div class="bar"></div>
+  <p style="font-size:13px;color:var(--light);max-width:580px;line-height:1.7;">
+    E100's flagship school partnership. Monthly character and leadership development sessions, 1-on-1 mentoring, corporate exposure, and a Rites of Passage ceremony. <strong style="color:var(--white)">North Star: tell a cohesive story of leadership across the full year.</strong>
+  </p>
+</header>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('leadership')">Leadership</button>
+  <button class="tab-btn" onclick="showTab('stakeholders')">Stakeholders</button>
+  <button class="tab-btn" onclick="showTab('raci')">RACI</button>
+  <button class="tab-btn" onclick="showTab('calendar')">Calendar</button>
+  <button class="tab-btn" onclick="showTab('sessions')">Sessions</button>
+  <button class="tab-btn" onclick="showTab('partners')">Partners</button>
+  <button class="tab-btn" onclick="showTab('budget')">Budget</button>
+  <button class="tab-btn" onclick="showTab('checklist')">Checklist</button>
+  
+  <button class="tab-btn" onclick="showTab('contacts')">Contacts</button>
+  <button class="tab-btn" onclick="showTab('pastsponsors')">Past Sponsors</button>
+  <button class="tab-btn" onclick="showTab('marketing')">Marketing</button>
+  <button class="tab-btn" onclick="showTab('checklist_best')">✅ Checklist</button>
+  <button class="tab-btn" onclick="showTab('nchair_best')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('contacts_best')">Contacts</button>
+  <button class="tab-btn" onclick="showTab('sponsors_best')">Past Sponsors</button>
+  <button class="tab-btn" onclick="showTab('takeaways')">⚑ To Finalize</button>
+</div>
+
+
+<!-- ══════════════ OVERVIEW ══════════════ -->
+<div id="tab-overview" class="tab-panel active">
+  
+<div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;margin-bottom:16px;">
+  <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">2026–2027 Leadership</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Chairs</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Mikal Driver · Demetrius Odom · Carlton Coleman</div>
+      
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Advisors</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Destorian Cash</div>
+    </div>
+    <div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Exec Board Liaison</div>
+      <div style="font-size:13px;color:var(--gold);font-weight:600;">Daniel Farr & Julius Thomas</div>
+    </div>
+  </div>
+</div>
+<div class="sec">Program Overview</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Session Cadence</div><div class="ov-val">3rd Friday, Monthly</div><div class="ov-sub">Excluding December</div></div>
+    <div class="ov-box"><div class="ov-label">Session Length</div><div class="ov-val">2 Hours</div><div class="ov-sub">Leadership & Character Dev format</div></div>
+    <div class="ov-box"><div class="ov-label">Location</div><div class="ov-val">B.E.S.T. Academy Library</div><div class="ov-sub">On-campus, APS</div></div>
+    <div class="ov-box"><div class="ov-label">Planning Kickoff</div><div class="ov-val">June – July</div><div class="ov-sub">All partners & chairs confirmed by July 31</div></div>
+    <div class="ov-box"><div class="ov-label">Audience</div><div class="ov-val">Senior + Junior Cohorts</div><div class="ov-sub">Seniors: core. Juniors: newly inducted via Rites</div></div>
+    <div class="ov-box"><div class="ov-label">Annual Signature Moment</div><div class="ov-val">Rites of Passage</div><div class="ov-sub">May · Ceremony replaces final session</div></div>
+    <div class="ov-box"><div class="ov-label">Total Sessions / Year</div><div class="ov-val">8 Sessions</div><div class="ov-sub">Aug–Apr (no Dec, May = Rites)</div></div>
+    <div class="ov-box"><div class="ov-label">Food Budget</div><div class="ov-val">$1,000–$1,500 / session</div><div class="ov-sub">E100 owns. In-kind/sponsorship welcome</div></div>
+  </div>
+
+  <div class="sec">Goals & Success Metrics</div>
+  <div class="metrics-grid">
+    <div class="met-box"><div class="met-n">8</div><div class="met-l">Sessions per year with confirmed facilitator</div><div class="met-sub">Planning Standard</div></div>
+    <div class="met-box"><div class="met-n">July 31</div><div class="met-l">Deadline to confirm ALL partners & session chairs</div><div class="met-sub">Hard Deadline</div></div>
+    <div class="met-box"><div class="met-n">1st Fri</div><div class="met-l">Food, photo & video confirmed by 1st Friday of each month</div><div class="met-sub">Monthly Standard</div></div>
+    <div class="met-box"><div class="met-n">48hr</div><div class="met-l">Content (photo, video, caption) to Comms after each session</div><div class="met-sub">Comms Standard</div></div>
+    <div class="met-box"><div class="met-n">Pre+Post</div><div class="met-l">Student surveys for both cohorts — measure growth</div><div class="met-sub">Impact Measurement</div></div>
+    <div class="met-box"><div class="met-n">1 Arc</div><div class="met-l">Cohesive leadership narrative across all 8 sessions</div><div class="met-sub">Content Standard</div></div>
+  </div>
+
+  <div class="sec">Institutional Knowledge</div>
+  <div class="callout gold"><strong>North Star:</strong> Each session must connect to a cohesive annual leadership arc — not feel like standalone events. The Chair owns the narrative. The Facilitator chair ensures partner topics ladder into it.</div>
+  <div class="callout gold"><strong>The Tie is the Symbol:</strong> The Rites of Passage "passing of the dress tie" is the emotional core of the entire program. Document it every year. Photograph it. This is the moment that resonates with donors, families, and the community.</div>
+  <div class="callout blue"><strong>Mikal Driver is a bridge:</strong> Dual role as E100 member AND B.E.S.T. Academy employee. He is the most valuable internal connector to the school. Protect and leverage this relationship — he is Consulted on all school-facing decisions.</div>
+  <div class="callout blue"><strong>Pre-Survey is mandatory:</strong> BEST and C100 are the two programs that require pre/post student surveys. This gives the org measurable impact data for funders and helps the content team meet students where they are.</div>
+  <div class="callout amber"><strong>Food is not optional:</strong> Every session requires food — catered or sponsored. It signals respect to the students. Operations chair maintains the preferred vendor list and an active food sponsor pipeline.</div>
+</div>
+
+
+<!-- ══════════════ LEADERSHIP ══════════════ -->
+<div id="tab-leadership" class="tab-panel">
+  <div class="sec">Leadership Structure</div>
+  <div class="sec">Chair Swim Lanes</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;">
+    <div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 1</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Curriculum & Content</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Develops session topics, facilitator guides, and the annual content arc. Ensures each session connects to the leadership narrative. Builds and distributes pre/post student surveys.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 2</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Operations & Logistics</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Food coordination, photo/video booking, member sign-up and background checks, attendance tracking, monthly logistics confirmed by 1st Friday of each month.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 3</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Partner & Facilitator Management</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Sources, books, and briefs all external partners and speakers. Confirms all by July 31. Manages Gas South, Delta, and all other corporate partner relationships for BEST.</div>
+    </div>
+  </div>
+  <div class="callout gold"><strong>1 Chair, 3 Chairs.</strong> The Chair owns the program end-to-end and reports to the Exec Board. Sub-chairs each own a distinct function and report to the Chair. Members plug in under chairs per session.</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+    <div style="grid-column:1/-1;background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair — Programs Director</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:8px;">Owns BEST end-to-end · Reports to Exec Board</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.7;">Sets the annual curriculum arc and leadership narrative theme. Manages all three chairs. Primary relationship with school administration. Ensures every session is happening on time, on topic, and on purpose. Reports program health to Exec Board. Sends all partner thank-you emails. Owns July 31 partner confirmation deadline.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:8px;">Chair — Curriculum &amp; Content</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">Owns the curriculum & narrative</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Develops session topics, facilitator guides, and the annual content calendar. Ensures each session connects to the leadership narrative. Writes post captions for Comms. Builds and distributes the pre/post student survey. Works with Facilitator chair to align external partner content into the arc.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:8px;">Chair — Operations &amp; Logistics</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">Owns logistics & execution</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Food coordination (vendor, in-kind, sponsor). Books photo/video through Donald Gibson. Manages member sign-up links and background checks (run by Parliamentarian — Exec Board). Runs attendance tracking. Confirms all logistics by 1st Friday of each month. Day-of setup and run.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:8px;">Chair — Partner &amp; Facilitator Management</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">Owns all external partners & speakers</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Sources, books, and briefs all external facilitators — corporate partners, guest speakers, and clinical experts (e.g. Shanae Benito). Confirms all partners by July 31 email. Offers prep calls to new partners. Coordinates topic alignment with the Content chair so partners fit the leadership arc.</div>
+    </div>
+  </div>
+
+  <div class="callout red"><strong>Key bottleneck to solve:</strong> Facilitator chair must lock all partner topics before school starts — not the week of a session. July 31 is the hard deadline. This is what allows the Content chair to build a real leadership arc instead of reactive, one-off sessions.</div>
+</div>
+
+
+<!-- ══════════════ STAKEHOLDERS ══════════════ -->
+<div id="tab-stakeholders" class="tab-panel">
+  <div class="sec">Stakeholder Map</div>
+  <div class="sh-grid">
+    <div class="sh-card sh-int">
+      <div class="sh-type">Internal — E100 Leadership</div>
+      <div class="sh-name">Programs Chair</div>
+      <div class="sh-role">BEST Academy Director</div>
+      <div class="sh-detail">Owns the program. Primary Exec Board accountability point. Manages all chairs. Sends partner thank-you emails.</div>
+      <div class="sh-raci"><span class="r rA">Accountable</span></div>
+    </div>
+    <div class="sh-card sh-int">
+      <div class="sh-type">Internal — Dual Role (E100 + School)</div>
+      <div class="sh-name">Mikal Driver</div>
+      <div class="sh-role">E100 Member & B.E.S.T. Academy Employee</div>
+      <div class="sh-detail">The most valuable bridge between E100 and the school. Consulted on all school-facing decisions. Day-to-day culture carrier between both orgs.</div>
+      <div class="sh-raci"><span class="r rC">Consulted</span></div>
+    </div>
+    <div class="sh-card sh-int">
+      <div class="sh-type">Internal — Media</div>
+      <div class="sh-name">Donald Gibson</div>
+      <div class="sh-role">E100 Member · Photo & Video POC</div>
+      <div class="sh-detail">Primary contact for all photo and video needs. Handles in-house capture or sources external media. Operations chair books him for every session by the 1st Friday of each month.</div>
+      <div class="sh-raci"><span class="r rR">Responsible (Media)</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — School Operations</div>
+      <div class="sh-name">Ray Singer</div>
+      <div class="sh-role">Program Manager, B.E.S.T. Academy</div>
+      <div class="sh-detail">Primary operational contact at the school. Coordinates scheduling, library access, and school-side logistics. Must be notified of every session plan.</div>
+      <div class="sh-raci"><span class="r rR">Responsible (School Side)</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — School Leadership</div>
+      <div class="sh-name">Principal Williams</div>
+      <div class="sh-role">Principal, B.E.S.T. Academy</div>
+      <div class="sh-detail">Does not need day-to-day updates. Informed at program start, major milestones, and Rites of Passage. RACI: Informed only.</div>
+      <div class="sh-raci"><span class="r rI">Informed</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Clinical Facilitator</div>
+      <div class="sh-name">Shanae Benito</div>
+      <div class="sh-role">Clinical Physician · Mental Health Session</div>
+      <div class="sh-detail">Leads the Mental Health session (May = Mental Health Awareness Month). Open to switching to Kaiser Permanente. Facilitator chair manages relationship and session brief.</div>
+      <div class="sh-raci"><span class="r rC">Consulted / Partner</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Must-Include Partner</div>
+      <div class="sh-name">Gas South</div>
+      <div class="sh-role">Career & Learning Development · Fall Session</div>
+      <div class="sh-detail">Required every Fall. Confirmed by July 31 email. No prep call required but should be offered. Chair sends thank-you after session.</div>
+      <div class="sh-raci"><span class="r rC">Partner</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Must-Include Partner</div>
+      <div class="sh-name">Delta Air Lines</div>
+      <div class="sh-role">Session or Field Trip · Fall or Spring</div>
+      <div class="sh-detail">Required every year. Can be a session or a field trip depending on availability. Confirmed by July 31. No prep call required.</div>
+      <div class="sh-raci"><span class="r rC">Partner</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Students</div>
+      <div class="sh-name">Senior & Junior Cohorts</div>
+      <div class="sh-role">Primary Program Audience</div>
+      <div class="sh-detail">Seniors: core program participants. Juniors: inducted via Rites of Passage, now in their own track. Pre-survey administered at first session, post-survey at Rites.</div>
+      <div class="sh-raci"><span class="r rI">Program Audience</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Mentors</div>
+      <div class="sh-name">E100 Member Mentors</div>
+      <div class="sh-role">1-on-1 Mentors · Recruited via Sign-Up</div>
+      <div class="sh-detail">Members sign up via link. All require background checks (run by Parliamentarian — Exec Board) before pairing. Operations chair manages sign-up, background check, and assignment process.</div>
+      <div class="sh-raci"><span class="r rR">Responsible (Mentee)</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ RACI ══════════════ -->
+<div id="tab-raci" class="tab-panel">
+  <div class="sec">RACI Matrix</div>
+  <div class="raci-legend">
+    <div class="rl"><span class="r rR">R</span> Responsible — does the work</div>
+    <div class="rl"><span class="r rA">A</span> Accountable — owns the outcome</div>
+    <div class="rl"><span class="r rC">C</span> Consulted — input required</div>
+    <div class="rl"><span class="r rI">I</span> Informed — kept in the loop</div>
+  </div>
+  <div class="raci-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width:190px">Activity</th>
+        <th>Exec Board</th>
+        <th>Chair</th>
+        <th>SC: Content</th>
+        <th>SC: Ops</th>
+        <th>SC: Facilitator</th>
+        <th>Mikal Driver</th>
+        <th>Ray Singer</th>
+        <th>Principal Williams</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Annual curriculum arc & session plan</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td><span class="r rI">I</span></td><td><span class="r rI">I</span></td></tr>
+      <tr><td><strong>Partner confirmation (by July 31)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Session scheduling (monthly)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td></tr>
+      <tr><td><strong>Session content & facilitator guides</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Food coordination (by 1st Friday/mo)</strong></td><td>—</td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td>—</td><td><span class="r rI">I</span></td><td>—</td></tr>
+      <tr><td><strong>Photo & video booking (Donald Gibson)</strong></td><td>—</td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Member sign-up & background checks (run by Parliamentarian — Exec Board)</strong></td><td>—</td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rC">C</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Student pre/post survey</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td><span class="r rI">I</span></td></tr>
+      <tr><td><strong>Post caption → Comms (48hr after session)</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Partner thank-you email (after session)</strong></td><td>—</td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Back-to-School Rally (August)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td></tr>
+      <tr><td><strong>Rites of Passage planning & execution</strong></td><td><span class="r rC">C</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td></tr>
+      <tr><td><strong>Reporting to Exec Board</strong></td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<!-- ══════════════ CALENDAR ══════════════ -->
+<div id="tab-calendar" class="tab-panel">
+  <div class="sec">Annual Planning Calendar</div>
+  <div class="timeline">
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">June – July · Planning Season</div>
+      <div class="tl-title">Annual Planning Kickoff</div>
+      <div class="tl-desc">Chair convenes chairs. Set the full-year curriculum arc and leadership narrative theme. Facilitator chair begins partner outreach. Content chair drafts the session topic calendar. Operations chair preps mentor sign-up link.</div>
+      <div class="tl-tags"><span class="tl-flag amber">Hard Deadline: July 31 — ALL partners confirmed by email</span></div>
+    </div>
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">July · Pre-Launch</div>
+      <div class="tl-title">Mentor Recruitment & Background Checks</div>
+      <div class="tl-desc">Open member sign-up link. Collect mentor applications. Run all background checks (run by Parliamentarian — Exec Board). Complete 1-on-1 pairings before first session. Prep pre-survey for student distribution in August.</div>
+      <div class="tl-tags"><span class="tl-tag">Sign-Up Link</span><span class="tl-tag">Background Checks</span><span class="tl-tag">Mentor Pairings</span><span class="tl-tag">Pre-Survey Prep</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">August · Week 1 of School</div>
+      <div class="tl-title">Back-to-School Rally + Session 1</div>
+      <div class="tl-desc">E100 shows up big on day one. Rally energy + first Leadership & Character Development session. Distribute and collect student pre-survey. Introduce mentors to mentees. Set the tone for the full year.</div>
+      <div class="tl-tags"><span class="tl-flag gold">Signature Moment</span><span class="tl-tag">Pre-Survey</span><span class="tl-tag">Mentor Intros</span><span class="tl-tag">Gas South — Fall session begins here or Sept</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">September · Session 2</div>
+      <div class="tl-title">Fall Core Sessions Begin</div>
+      <div class="tl-desc">Regular 3rd Friday rhythm. Gas South confirmed for Fall. Delta confirmed for Fall or Spring. Topics per the annual content calendar. All logistics confirmed by 1st Friday of month.</div>
+      <div class="tl-tags"><span class="tl-flag green">Gas South — Fall</span><span class="tl-tag">Photo + Video</span><span class="tl-tag">Food</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">October · Session 3</div>
+      <div class="tl-title">Monthly Session</div>
+      <div class="tl-desc">Continuing the curriculum arc. Partner or member-led. All logistics confirmed by 1st Friday. Photo, video, food, and caption locked.</div>
+      <div class="tl-tags"><span class="tl-tag">3rd Friday</span><span class="tl-tag">Partner TBD</span></div>
+    </div>
+    <div class="tl-item special">
+      <div class="tl-dot"></div>
+      <div class="tl-month">November · Session 4</div>
+      <div class="tl-title">Monthly Session</div>
+      <div class="tl-desc">Continuing the curriculum arc. Good window for College Readiness or Interview Prep topics heading into college application season.</div>
+      <div class="tl-tags"><span class="tl-flag green">Suggested: College Readiness or Interview Prep</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">December · Break</div>
+      <div class="tl-title">No Session — Mid-Year Debrief</div>
+      <div class="tl-desc">No 3rd Friday session. Chair-led debrief: what's working, what's not. Partner relationship follow-ups. Confirm Spring schedule and any open sessions.</div>
+      <div class="tl-tags"><span class="tl-tag">No Session</span><span class="tl-tag">Mid-Year Debrief</span><span class="tl-tag">Spring Confirmation</span></div>
+    </div>
+    <div class="tl-item special">
+      <div class="tl-dot"></div>
+      <div class="tl-month">January · Session 5</div>
+      <div class="tl-title">National Mentorship Month — Featured Session</div>
+      <div class="tl-desc">January is National Mentorship Month. Plan a strong, intentional session that highlights the mentor-mentee relationship. Celebrate pairings. Consider a member spotlight or panel.</div>
+      <div class="tl-tags"><span class="tl-flag green">National Mentorship Month</span><span class="tl-tag">Mentor Spotlight</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">February · Session 6</div>
+      <div class="tl-title">Monthly Session</div>
+      <div class="tl-desc">Continuing arc. Financial Wellness is a strong fit here (Black History Month + financial empowerment). Regions Bank, Bank of America, or similar partner.</div>
+      <div class="tl-tags"><span class="tl-flag green">Suggested: Financial Wellness</span><span class="tl-tag">Regions / BofA</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">March · Session 7</div>
+      <div class="tl-title">Monthly Session</div>
+      <div class="tl-desc">Continuing arc. Delta field trip or session fits here if not used in Fall. Decision Making or Leadership Development topic fits well as Rites approaches.</div>
+      <div class="tl-tags"><span class="tl-tag">Delta — if Spring</span><span class="tl-tag">Decision Making</span></div>
+    </div>
+    <div class="tl-item special">
+      <div class="tl-dot"></div>
+      <div class="tl-month">April · Session 8</div>
+      <div class="tl-title">Mental Health Awareness Session</div>
+      <div class="tl-desc">May is Mental Health Awareness Month — hold this session in April to set up the Rites of Passage in May. Shanae Benito (clinical physician) or Kaiser Permanente. Final regular session of the year.</div>
+      <div class="tl-tags"><span class="tl-flag green">Mental Health Month Tie-In</span><span class="tl-tag">Shanae Benito / Kaiser</span><span class="tl-tag">Final Session</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">May · Signature Ceremony</div>
+      <div class="tl-title">Rites of Passage</div>
+      <div class="tl-desc">NOT a regular session. The annual graduation ceremony. Seniors pass their dress tie to a junior — symbolic induction into the program. 8-week program graduation. Families invited. Aligns with Gala season. This is the emotional and programmatic peak of the BEST year.</div>
+      <div class="tl-tags"><span class="tl-flag gold">Rites of Passage Ceremony</span><span class="tl-tag">Passing of the Tie</span><span class="tl-tag">Families Invited</span><span class="tl-tag">Post-Survey</span></div>
+    </div>
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">May – June · Wrap</div>
+      <div class="tl-title">Year-End Debrief + Next Year Planning</div>
+      <div class="tl-desc">Sub-chair debrief. Document what worked. Capture partner feedback. Update vendor and caterer lists. Planning cycle restarts in June.</div>
+      <div class="tl-tags"><span class="tl-tag">Debrief</span><span class="tl-tag">Playbook Update</span><span class="tl-tag">Next Year Prep</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ SESSIONS ══════════════ -->
+<div id="tab-sessions" class="tab-panel">
+  <div class="sec">Session Topic Calendar</div>
+  <div class="callout gold"><strong>Leadership Arc Principle:</strong> Topics are not random — they build on each other to tell a story of leadership and character development across the full year. The Content chair owns the arc. Partner topics must fit into it.</div>
+
+  <div class="topic-grid">
+    <div class="topic-box">
+      <div class="topic-month">August · Session 1</div>
+      <div class="topic-name">Back-to-School Rally + Program Intro</div>
+      <div class="topic-partner">E100 Members led</div>
+      <div class="topic-flag special">Pre-Survey Day</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">September · Session 2</div>
+      <div class="topic-name">Career Development / Learning Dev</div>
+      <div class="topic-partner">Gas South</div>
+      <div class="topic-flag fixed">Must · Fall</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">October · Session 3</div>
+      <div class="topic-name">TBD — Partner or Member Led</div>
+      <div class="topic-partner">Target · McDonald's · or Member</div>
+      <div class="topic-flag tbd">To Confirm w/ Chairs</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">November · Session 4</div>
+      <div class="topic-name">College Readiness / Interview Prep</div>
+      <div class="topic-partner">Microsoft · Atlanta Hawks · or Member</div>
+      <div class="topic-flag flexible">Flexible</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">December</div>
+      <div class="topic-name">No Session</div>
+      <div class="topic-partner">—</div>
+      <div class="topic-flag flexible">Break</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">January · Session 5</div>
+      <div class="topic-name">Mentorship & Leadership Development</div>
+      <div class="topic-partner">Member-led / Mentor Panel</div>
+      <div class="topic-flag fixed">Natl Mentorship Month</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">February · Session 6</div>
+      <div class="topic-name">Financial Wellness / Literacy</div>
+      <div class="topic-partner">Regions · Bank of America · Equifax</div>
+      <div class="topic-flag flexible">Flexible Partner</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">March · Session 7</div>
+      <div class="topic-name">Decision Making / Leadership Dev</div>
+      <div class="topic-partner">Delta (if Spring) · or Member</div>
+      <div class="topic-flag flexible">Delta: Fall or Spring</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">April · Session 8</div>
+      <div class="topic-name">Mental Health & Wellness</div>
+      <div class="topic-partner">Shanae Benito · or Kaiser Permanente</div>
+      <div class="topic-flag fixed">Mental Health Month Tie-In</div>
+    </div>
+    <div class="topic-box">
+      <div class="topic-month">May · Ceremony</div>
+      <div class="topic-name">Rites of Passage</div>
+      <div class="topic-partner">All of E100 + Families</div>
+      <div class="topic-flag fixed">Not a Session</div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:36px">Additional Session Topics (Available)</div>
+  <div class="callout blue"><strong>These topics are in the toolkit</strong> — to be assigned to open sessions each year by the Content chair in coordination with Chairs. Final assignment confirmed with BEST Chairs before July 31.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;">
+    <span class="mpill blue">College Fair / Admissions Panel</span>
+    <span class="mpill blue">Collegiate Tour — Georgia State University</span>
+    <span class="mpill blue">Collegiate Tour — Morehouse College</span>
+    <span class="mpill blue">Interview Prep</span>
+    <span class="mpill blue">Decision Making</span>
+    <span class="mpill blue">Leadership Development</span>
+    <span class="mpill blue">Career Exploration</span>
+    <span class="mpill gold">+ More TBD from BEST Chairs</span>
+  </div>
+</div>
+
+
+<!-- ══════════════ PARTNERS ══════════════ -->
+<div id="tab-partners" class="tab-panel">
+  <div class="sec">Partner & Facilitator Registry</div>
+  <div class="callout gold"><strong>Partner Confirmation Rule:</strong> ALL session partners and chairs confirmed by <strong>July 31 via email</strong>. Prep call offered to new partners — not required for established partners (Gas South, Delta). Chair sends thank-you email after every session.</div>
+
+  <div class="sec" style="margin-top:28px">Must-Include Every Year</div>
+  <div class="partner-grid">
+    <div class="partner-row">
+      <div><div class="p-type must">● Must Include · Fall</div><div class="p-name">Gas South</div><div class="p-topic">Career Development · Learning Development</div></div>
+      <div class="p-detail">Required every Fall. No prep call needed. Confirm by July 31 email. Operations chair confirms logistics. Chair sends thank-you post-session. Established partner — strong relationship.</div>
+      <div><span class="p-badge confirmed">Confirmed Annual</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type must">● Must Include · Fall or Spring</div><div class="p-name">Delta Air Lines</div><div class="p-topic">Session or Field Trip</div></div>
+      <div class="p-detail">Required every year. Flexible on timing — Fall or Spring session, or a field trip. Confirm by July 31. No prep call needed. Also a Gala scholarship sponsor — relationship spans both departments.</div>
+      <div><span class="p-badge confirmed">Confirmed Annual</span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:28px">Active / Established Partners</div>
+  <div class="partner-grid">
+    <div class="partner-row">
+      <div><div class="p-type past">● Clinical · Mental Health</div><div class="p-name">Shanae Benito</div><div class="p-topic">Mental Health Session · April</div></div>
+      <div class="p-detail">Clinical physician. Leads Mental Health session timed to Mental Health Awareness Month. Offer prep call. Open to switching to Kaiser Permanente — evaluate annually.</div>
+      <div><span class="p-badge pipeline">Active · Review Annually</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type past">● Financial Wellness</div><div class="p-name">Regions Bank</div><div class="p-topic">Financial Literacy</div></div>
+      <div class="p-detail">Past partner for Financial Wellness sessions. Open to switching to Bank of America or others. Evaluate each year based on availability and content fit.</div>
+      <div><span class="p-badge past">Past · Re-confirm</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type past">● Career Development</div><div class="p-name">Microsoft</div><div class="p-topic">Career Development · Tech & AI Exposure</div></div>
+      <div class="p-detail">Past partner for career development and technology sessions. Strong fit for November or spring. Also a Gala sponsor — relationship spans departments.</div>
+      <div><span class="p-badge past">Past · Re-confirm</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type past">● Career Development</div><div class="p-name">Atlanta Hawks</div><div class="p-topic">Career Development</div></div>
+      <div class="p-detail">Past partner. Strong aspirational brand for the students. Re-confirm interest each year. Content chair to define topic fit in curriculum arc.</div>
+      <div><span class="p-badge past">Past · Re-confirm</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type past">● Financial Literacy</div><div class="p-name">Equifax</div><div class="p-topic">Financial Literacy</div></div>
+      <div class="p-detail">Past partner for financial literacy sessions. Re-confirm interest. Good alternative or complement to Regions for financial wellness track.</div>
+      <div><span class="p-badge past">Past · Re-confirm</span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:28px">Open / Flexible Partners</div>
+  <div class="partner-grid">
+    <div class="partner-row">
+      <div><div class="p-type open">● Open Topic</div><div class="p-name">Target</div><div class="p-topic">Topic: Their choice</div></div>
+      <div class="p-detail">Flexible — partner chooses their session topic. Facilitator chair to confirm topic and align with content arc. Offer prep call as new/open partner.</div>
+      <div><span class="p-badge open">Flexible</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type open">● Open Topic</div><div class="p-name">McDonald's</div><div class="p-topic">Topic: Their choice</div></div>
+      <div class="p-detail">Flexible — partner chooses their session topic. Facilitator chair to confirm topic and align with content arc. Offer prep call as new/open partner.</div>
+      <div><span class="p-badge open">Flexible</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type open">● Financial · Alternative</div><div class="p-name">Kaiser Permanente</div><div class="p-topic">Mental Health (alternative to Shanae Benito)</div></div>
+      <div class="p-detail">Potential replacement or alternative for the Mental Health session. Evaluate annually against Shanae Benito. Strong institutional partner.</div>
+      <div><span class="p-badge open">Pipeline</span></div>
+    </div>
+    <div class="partner-row">
+      <div><div class="p-type open">● Financial · Alternative</div><div class="p-name">Bank of America</div><div class="p-topic">Financial Wellness (alternative to Regions)</div></div>
+      <div class="p-detail">Potential alternative to Regions Bank for Financial Wellness sessions. Evaluate annually based on availability and content fit.</div>
+      <div><span class="p-badge open">Pipeline</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ BUDGET ══════════════ -->
+<div id="tab-budget" class="tab-panel">
+  <div class="sec">Budget Overview</div>
+  <div class="callout gold"><strong>Budget is provided by the Treasurer on a per-session basis.</strong> Any amount beyond the approved session budget requires Treasurer/Exec Board approval. E100 owns all food costs — in-kind and sponsorship welcomed but not assumed.</div>
+
+  <div class="budget-grid">
+    <div class="bud-box">
+      <div class="bud-label">Food Budget / Session</div>
+      <div class="bud-amount">$<em>150</em>–<em>250</em></div>
+      <div class="bud-note">E100 places all orders. In-kind or sponsored food reduces this. Preferred: catered. Backup: arranged by Ops chair.</div>
+    </div>
+    <div class="bud-box">
+      <div class="bud-label">Food Budget / Year (8 sessions)</div>
+      <div class="bud-amount">$<em>1,500</em></div>
+      <div class="bud-note">Target ceiling. Sponsor or in-kind food brings this down. Annual total should not exceed $2,000 without Exec Board approval.</div>
+    </div>
+    <div class="bud-box">
+      <div class="bud-label">Photo & Video</div>
+      <div class="bud-amount">TBD</div>
+      <div class="bud-note">Booked through Donald Gibson (in-house or outsourced). Budget line confirmed with Treasurer. Covered per session.</div>
+    </div>
+    <div class="bud-box">
+      <div class="bud-label">Background Checks</div>
+      <div class="bud-amount">TBD</div>
+      <div class="bud-note">Per mentor, per year. Ops chair tracks count and submits to Treasurer for reimbursement or pre-approval.</div>
+    </div>
+    <div class="bud-box">
+      <div class="bud-label">Rites of Passage</div>
+      <div class="bud-amount">Separate</div>
+      <div class="bud-note">Ceremony has its own budget line. Includes ceremony setup, food, and any symbolic materials (ties, programs). Confirm with Treasurer in March.</div>
+    </div>
+    <div class="bud-box">
+      <div class="bud-label">Approval Process</div>
+      <div class="bud-amount">Treasurer</div>
+      <div class="bud-note">Per-session budget provided monthly. Anything above approved amount requires Treasurer + Exec Board sign-off before spending.</div>
+    </div>
+  </div>
+
+  <div class="sec">Preferred Food Vendors</div>
+  <div class="callout amber"><strong>Note:</strong> This list is a starting point. Full caterer list to be transferred from BEST Chairs — this is a confirmed open item.</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;">
+    <div class="ov-box"><div class="ov-label">Preferred · In-Kind</div><div class="ov-val">Knockout Wingz</div><div class="ov-sub">In-kind partner. Confirm availability per session.</div></div>
+    <div class="ov-box"><div class="ov-label">Preferred · Catered</div><div class="ov-val">Gustos (Westside location)</div><div class="ov-sub">Catering option. Contact TBD — transfer from Chairs.</div></div>
+    <div class="ov-box" style="border-style:dashed;opacity:0.6;"><div class="ov-label">TBD</div><div class="ov-val">Additional Caterers</div><div class="ov-sub">To be provided by BEST Chairs — open item.</div></div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CHECKLIST ══════════════ -->
+<div id="tab-checklist" class="tab-panel">
+  <div class="sec">Monthly Session Checklist</div>
+  <div class="callout gold"><strong>Every session, every month — no exceptions.</strong> Owned by the Operations chair. If any item is missing by its deadline, the session is not ready. Chair is notified immediately.</div>
+  <div class="cl-grid">
+    <div class="cl-box">
+      <div class="cl-title">4 Weeks Before — Facilitator Chair</div>
+      <div class="cl-item warn"><div class="checkbox"></div>Confirm facilitator (partner or member-led)</div>
+      <div class="cl-item warn"><div class="checkbox"></div>Lock session topic — aligned to curriculum arc</div>
+      <div class="cl-item"><div class="checkbox"></div>Send session brief to facilitator</div>
+      <div class="cl-item"><div class="checkbox"></div>Offer prep call to new partners (not required for established)</div>
+      <div class="cl-item"><div class="checkbox"></div>Notify Ray Singer of session date & plan</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">1st Friday of Month — Ops Chair</div>
+      <div class="cl-item warn"><div class="checkbox"></div>Food confirmed (vendor, in-kind, or sponsored)</div>
+      <div class="cl-item warn"><div class="checkbox"></div>Photo & video booked (Donald Gibson — in-house or external)</div>
+      <div class="cl-item"><div class="checkbox"></div>Library space confirmed with Ray Singer / school</div>
+      <div class="cl-item"><div class="checkbox"></div>Member attendance reminder sent</div>
+      <div class="cl-item"><div class="checkbox"></div>Attendance sign-in sheet prepped</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">1 Week Before — All Chairs Check</div>
+      <div class="cl-item"><div class="checkbox"></div>Facilitator has reviewed session guide</div>
+      <div class="cl-item"><div class="checkbox"></div>Food vendor confirmed and on schedule</div>
+      <div class="cl-item"><div class="checkbox"></div>Photographer / videographer confirmed</div>
+      <div class="cl-item"><div class="checkbox"></div>Final member reminder sent</div>
+      <div class="cl-item"><div class="checkbox"></div>All logistics green — Chair informed</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">Day Of Session — Ops Chair</div>
+      <div class="cl-item"><div class="checkbox"></div>Arrive early — library setup complete</div>
+      <div class="cl-item"><div class="checkbox"></div>Food arrives on time</div>
+      <div class="cl-item"><div class="checkbox"></div>Photographer + videographer on site</div>
+      <div class="cl-item"><div class="checkbox"></div>Attendance taken (students + members)</div>
+      <div class="cl-item"><div class="checkbox"></div>Facilitator runs 2-hour session</div>
+      <div class="cl-item"><div class="checkbox"></div>Min. 10 usable photos + video captured</div>
+    </div>
+    <div class="cl-box" style="grid-column:1/-1">
+      <div class="cl-title">Within 48 Hours After Session — Content + Ops</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;">
+        <div>
+          <div class="cl-item owner"><div class="checkbox"></div>Photos + video delivered to Comms team</div>
+          <div class="cl-item owner"><div class="checkbox"></div>Post caption written and sent to Comms</div>
+          <div class="cl-item"><div class="checkbox"></div>Attendance data logged (Data dept)</div>
+        </div>
+        <div>
+          <div class="cl-item"><div class="checkbox"></div>Partner thank-you email sent by Chair</div>
+          <div class="cl-item"><div class="checkbox"></div>Food sponsor thanked (if applicable)</div>
+          <div class="cl-item"><div class="checkbox"></div>Chair debrief note: what worked / what to fix</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ MARKETING ══════════════ -->
+<div id="tab-marketing" class="tab-panel">
+  <div class="sec">Marketing & Communications Strategy</div>
+  <div class="callout gold"><strong>Two audiences. One content stream.</strong> Internal: mobilize E100 members and show accountability. External: community, partners, and donors — show impact. The BEST Content chair writes it. Comms posts it.</div>
+  <div class="mkt-grid">
+    <div class="mkt-row">
+      <div class="mkt-when">Start of Year · August</div>
+      <div class="mkt-what"><strong>Program Launch Post:</strong> Announce the new BEST Academy year. Back-to-school rally photo. Tag B.E.S.T. Academy. Celebrate the partnership and the students. Sets the public tone for the year.</div>
+    </div>
+    <div class="mkt-row">
+      <div class="mkt-when">Every Session · 48hr After</div>
+      <div class="mkt-what"><strong>Session Recap:</strong> 1–2 images + short caption connecting the session to the annual leadership arc. Written by Content chair, posted by Comms. Tag partner if applicable. Delivered within 48 hours — no exceptions.</div>
+    </div>
+    <div class="mkt-row">
+      <div class="mkt-when">Partner Sessions</div>
+      <div class="mkt-what"><strong>Partner Feature:</strong> Dedicated post spotlighting the corporate partner. Tag their company handle. Show the access students get. This is gratitude and partner stewardship — they see their brand associated with impact.</div>
+    </div>
+    <div class="mkt-row">
+      <div class="mkt-when">January</div>
+      <div class="mkt-what"><strong>National Mentorship Month:</strong> Feature the 1-on-1 mentor-mentee relationships. Member spotlight. Show the human side of E100's commitment to the students.</div>
+    </div>
+    <div class="mkt-row">
+      <div class="mkt-when">April / May</div>
+      <div class="mkt-what"><strong>Mental Health Awareness:</strong> Tie the Mental Health session content to May awareness. Normalize the conversation. Position E100 as an org that cares about the whole student.</div>
+    </div>
+    <div class="mkt-row">
+      <div class="mkt-when">May · Rites of Passage</div>
+      <div class="mkt-what"><strong>Signature Content Moment:</strong> The most important content of the year. Photo + video of the tie-passing ceremony. Student reflections if possible. This is the piece that moves donors, families, and the broader community. Give it full creative effort.</div>
+    </div>
+    <div class="mkt-row">
+      <div class="mkt-when">End of Year</div>
+      <div class="mkt-what"><strong>Annual Impact Wrap:</strong> Sessions held. Students served. Mentors deployed. Milestones hit. Feeds the annual report. Data to the Data department. This is what funders see.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ TAKEAWAYS ══════════════ -->
+<div id="tab-takeaways" class="tab-panel">
+  <div class="sec">⚑ Open Items — To Finalize with BEST Chairs</div>
+  <div class="callout amber"><strong>These items are confirmed open.</strong> They require input from the BEST Chairs before the playbook is finalized. Each item below has a clear owner.</div>
+  <div class="tko-grid">
+    <div class="tko-item">
+      <div class="tko-num">01</div>
+      <div>
+        <div class="tko-text"><strong>Complete Session Topic Calendar</strong> — Confirm which topic lands in which month for the full year. October and other open slots need assignment. Needs to ladder into a cohesive leadership arc.</div>
+        <div class="tko-owner">Owner: Content Chair + BEST Chairs</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">02</div>
+      <div>
+        <div class="tko-text"><strong>Full Caterer / Food Vendor List</strong> — Knockout Wingz and Gustos (Westside location) are confirmed starting points. BEST Chairs to provide full list of past and preferred caterers with contact info and any existing in-kind relationships.</div>
+        <div class="tko-owner">Owner: Operations Chair + BEST Chairs</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">03</div>
+      <div>
+        <div class="tko-text"><strong>Donald Gibson Rate & Availability</strong> — Confirm whether Donald is volunteer or paid per session. Get his standard rate if applicable. Confirm availability for all 8 sessions in planning period (June–July).</div>
+        <div class="tko-owner">Owner: Operations Chair</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">04</div>
+      <div>
+        <div class="tko-text"><strong>Background Check Tool / Vendor</strong> — Confirm which service is used for mentor background checks (run by Parliamentarian — Exec Board). Get cost per check. Add to budget line for Treasurer approval before mentor recruitment opens.</div>
+        <div class="tko-owner">Owner: Operations Chair</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">05</div>
+      <div>
+        <div class="tko-text"><strong>Pre/Post Survey Questions</strong> — Survey instrument needs to be built or confirmed. What are we measuring? Leadership confidence, career awareness, mentorship satisfaction? Needs to align with what we report to funders.</div>
+        <div class="tko-owner">Owner: Content Chair + Data Department</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">06</div>
+      <div>
+        <div class="tko-text"><strong>Partner Re-Confirmation List</strong> — Regions Bank, Microsoft, Atlanta Hawks, Equifax, Target, McDonald's all need outreach before July 31. Confirm who is in for this year, what session they'll take, and what topic.</div>
+        <div class="tko-owner">Owner: Facilitator Chair</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">07</div>
+      <div>
+        <div class="tko-text"><strong>Shanae Benito vs. Kaiser Permanente Decision</strong> — Evaluate annually. Who is leading the Mental Health session this year? Make the call before July 31 so the Facilitator chair can confirm and send the session brief.</div>
+        <div class="tko-owner">Owner: Chair + Facilitator Chair</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">08</div>
+      <div>
+        <div class="tko-text"><strong>Rites of Passage Budget Line</strong> — Separate budget from monthly sessions. Confirm amount with Treasurer in March. Covers ceremony setup, symbolic ties/materials, food, and photography.</div>
+        <div class="tko-owner">Owner: Chair + Treasurer</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">09</div>
+      <div>
+        <div class="tko-text"><strong>Additional Session Topics from BEST Chairs</strong> — Chairs may have additional topic ideas beyond what's captured here. Collect before July 31 and integrate into the annual arc.</div>
+        <div class="tko-owner">Owner: Content Chair + BEST Chairs</div>
+      </div>
+    </div>
+    <div class="tko-item">
+      <div class="tko-num">10</div>
+      <div>
+        <div class="tko-text"><strong>Delta Air Lines — Fall or Spring Decision</strong> — Confirm timing for Delta session or field trip each year during planning kickoff. Coordinate with Delta contact before July 31.</div>
+        <div class="tko-owner">Owner: Facilitator Chair</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">
+  <strong style="color:var(--gold)">Emerging 100 of Atlanta — The Playbook</strong><br>
+  B.E.S.T. Academy · EXT-01 · v2.0 · 11 Sections · Living Document
+</div>
+
+
+<div id="tab-contacts" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 20px;display:flex;align-items:center;gap:12px;">Key Contacts — Internal &amp; External <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+
+<div class="contact-section">
+<div class="contact-type">Internal — E100</div>
+<div class="contact-grid">
+<div class="contact-card"><div class="cc-role">Board Liaison · BEST</div><div class="cc-who">Exec Board Liaison</div><div class="cc-how">Your first call when you need budget approval, have a school conflict, or need Exec Board support. Meets with you monthly minimum.</div><div class="cc-map">→ → Go to them for: budget, school escalations, member compliance, anything above your authority</div></div><div class="contact-card"><div class="cc-role">E100 Member + BEST Staff</div><div class="cc-who">Mikal Driver</div><div class="cc-how">Dual role — E100 member AND BEST Academy employee. Most valuable internal bridge to the school. Consulted on all school-facing decisions.</div><div class="cc-map">→ → Go to him for: school culture, student dynamics, staff relationships, navigating the building</div></div><div class="contact-card"><div class="cc-role">Photographer · E100 Member</div><div class="cc-who">Donald Gibson</div><div class="cc-how">Primary photo and video POC for all BEST sessions. Book by 1st Friday of each month.</div><div class="cc-map">→ → Go to him for: all session photography and video needs</div></div><div class="contact-card"><div class="cc-role">Budget &amp; Payments</div><div class="cc-who">Treasurer</div><div class="cc-how">Manages session food budget ($1,000–$1,500/session). All purchases go through Treasurer for reimbursement or pre-approval.</div><div class="cc-map">→ → Go to them for: all financial transactions, receipt submission, budget questions</div></div><div class="contact-card"><div class="cc-role">Surveys &amp; Tracking</div><div class="cc-who">Data Chair</div><div class="cc-how">Owns the pre/post student surveys and volunteer hour aggregation. Submit volunteer hours to Data within 48hrs of each session.</div><div class="cc-map">→ → Go to them for: survey setup, survey results, volunteer hour submission</div></div><div class="contact-card"><div class="cc-role">Content &amp; Posting</div><div class="cc-who">Comms Chair</div><div class="cc-how">Receives your content within 48hrs of each session. Needs: curated photos, draft caption, tags, context notes.</div><div class="cc-map">→ → Go to them for: posting questions, caption feedback, brand guidance</div></div>
+</div>
+</div>
+
+<div class="contact-section">
+<div class="contact-type">External — School</div>
+<div class="contact-grid">
+<div class="contact-card"><div class="cc-role">Program Manager · BEST Academy</div><div class="cc-who">Ray Singer</div><div class="cc-how">Primary operational contact at the school. Coordinates scheduling, library access, and school-side logistics. Must be notified of every session plan.</div><div class="cc-map">→ → Go to him for: room access, session scheduling, school calendar conflicts</div></div><div class="contact-card"><div class="cc-role">Principal · BEST Academy</div><div class="cc-who">Principal Williams</div><div class="cc-how">Informed only — not involved in day-to-day session planning. Notify at program start, major milestones, and Rites of Passage.</div><div class="cc-map">→ → Inform only: do not involve in planning decisions</div></div>
+</div>
+</div>
+
+<div class="contact-section">
+<div class="contact-type">External — Partners &amp; Vendors</div>
+<div class="contact-grid">
+<div class="contact-card"><div class="cc-role">Must-Include Partner · Fall</div><div class="cc-who">Gas South</div><div class="cc-how">Required every Fall. Confirmed by July 31 email. No prep call needed — established partner.</div><div class="cc-map">→ → Facilitator Chair owns: confirm by July 31, send thank-you after session</div></div><div class="contact-card"><div class="cc-role">Must-Include Partner · Fall or Spring</div><div class="cc-who">Delta Air Lines</div><div class="cc-how">Required every year — session or field trip. Flexible on timing.</div><div class="cc-map">→ → Facilitator Chair owns: confirm by July 31, coordinate format (session vs. field trip)</div></div><div class="contact-card"><div class="cc-role">Clinical Physician · Mental Health</div><div class="cc-who">Shanae Benito</div><div class="cc-how">Leads Mental Health session in April. Offer prep call. Open to switching to Kaiser Permanente — evaluate annually.</div><div class="cc-map">→ → Facilitator Chair owns: book by July 31, send prep materials</div></div><div class="contact-card"><div class="cc-role">Food Vendor · Westside</div><div class="cc-who">Gustos</div><div class="cc-how">Food vendor for sessions. No specific contact — Westside location. Operations Chair manages ordering.</div><div class="cc-map">→ → Operations Chair owns: ordering, pickup, day-of food logistics</div></div><div class="contact-card"><div class="cc-role">Food Vendor</div><div class="cc-who">Knockout Wingz</div><div class="cc-how">Secondary food vendor option for sessions.</div><div class="cc-map">→ → Operations Chair owns: ordering and logistics</div></div>
+</div>
+</div>
+</div>
+<div id="tab-pastsponsors" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">Past Corporate Partners — BEST Academy Sessions <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div style="font-size:12px;color:var(--light);margin-bottom:14px;line-height:1.6;">Every company that has facilitated a BEST Academy session. This is the institutional memory that prevents a new Chair from starting from zero. If a company has done it before, they're warm — reach back out.</div>
+<div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Upload Needed</div><div class="upload-banner-title">Past Session Partner History</div><div class="upload-banner-note">We still need this for an update. Add company name, session topic, year, and contact for every past BEST Academy corporate partner session.</div></div></div>
+<div class="sponsor-table-wrap"><table class="sponsor-table"><thead><tr>
+<th>Company</th><th>Session Topic</th><th>Year(s)</th><th>Frequency</th><th>Contact</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Gas South</strong></td><td>Career &amp; Learning Development</td><td>Multiple</td><td><span class="freq-pill">Annual · Must Include</span></td><td>TBD — confirm with Partnerships</td><td>Required every Fall. Established partner.</td></tr>
+<tr><td><strong>Delta Air Lines</strong></td><td>Session or Field Trip</td><td>Multiple</td><td><span class="freq-pill">Annual · Must Include</span></td><td>Melvia Jones</td><td>Required every year — Fall or Spring. Flexible format.</td></tr>
+<tr><td><strong>Microsoft</strong></td><td>Career Development · Tech &amp; AI</td><td>TBD</td><td>Past partner</td><td>TBD</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Atlanta Hawks</strong></td><td>Career Development</td><td>TBD</td><td>Past partner</td><td>Alexis Roe</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Regions Bank</strong></td><td>Financial Wellness</td><td>TBD</td><td>Past partner</td><td>TBD</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Equifax</strong></td><td>Financial Literacy</td><td>TBD</td><td>Past partner</td><td>TBD</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Shanae Benito</strong></td><td>Mental Health &amp; Wellness</td><td>TBD</td><td>Annual · April</td><td>TBD</td><td>Clinical facilitator</td></tr>
+<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:14px;font-style:italic;">We still need this for an update — add all remaining past session partners with years and contacts</td></tr>
+</tbody></table></div>
+</div>
+<div id="tab-nchair_best" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">New Chair Questions — What Would Block You <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Every question a brand new BEST Academy Chair would need answered. <span style="color:var(--red);">Red = planning blocker.</span> <span style="color:var(--amber);">Amber = go ask your board liaison.</span> <span style="color:var(--ac);">Blue = good to know.</span></div>
+<div class="nq-grid"><div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What is the annual leadership theme/arc this year?</strong> Who decides it — the Chair, the Exec Board, or does it carry over from last year? I cannot build a session calendar without locking this first.</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What sessions are already booked vs. what do I need to book?</strong> Gas South and Delta are must-includes — but are they actually confirmed? Who do I contact at each company and by when?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>How do I physically get into the school?</strong> Who do I call first — Ray Singer? What is the security and access protocol for getting E100 members onto the BEST Academy campus?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>How do I recruit mentors and where is the sign-up link?</strong> What platform generates it — Monday.com, Google Form? Who sends it out to members and when does it open?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Who handles background checks and how long does it take?</strong> The Parliamentarian runs them — but what is the submission process? What information do I need from each mentor candidate and what is the turnaround?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>How do I pay for food?</strong> Budget is $1,000–$1,500 per session. Do I get a committee card? Do I submit receipts to the Treasurer? What requires pre-approval before I order?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What did we do last year?</strong> What were the 8 session topics, which partners came, what worked and what didn't? I need the previous year's full recap before I can plan this year's arc.</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>Who is my board liaison — Daniel Farr or Julius Thomas — and what do they expect from me?</strong> Both are listed. Which one is my primary point of contact and how often do we connect?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>What is my actual budget and how do I access it?</strong> Does the Treasurer release funds per session or is there a running account? What requires pre-approval vs. post-reimbursement?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>What does Rites of Passage actually look like?</strong> Who plans the venue, the ceremony, who speaks? How many families attend? Is this Chair-owned or does Exec Board drive it?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>What is the attendance expectation for E100 brothers at sessions?</strong> Is there a minimum? What happens if we're short on members for a given session?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>How do I book Donald Gibson?</strong> Is there a standing annual agreement or do I re-confirm each month by the 1st Friday? What is his rate and who handles payment?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What does the pre-survey look like?</strong> Is there a saved template in Monday.com or Google Forms? When exactly do I send it — first session in August?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What is the dress code and expectation for E100 brothers at sessions?</strong> Is there a standard (business casual, professional) that I need to communicate to members before each session?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>Are collegiate tours to Georgia State or Morehouse confirmed for this year?</strong> Who coordinates campus access and is there a budget for transportation?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>Who are Mikal Driver's specific contacts at the school beyond Ray Singer?</strong> As an E100 member AND BEST staff, he's the bridge — how do I activate that relationship without overstepping?</div></div>
+</div></div><div id="tab-contacts_best" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 20px;display:flex;align-items:center;gap:12px;">Key Contacts — Internal &amp; External <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div class="contact-section"><div class="contact-type">Internal — E100</div><div class="contact-grid"><div class="contact-card"><div class="cc-role">Exec Board Liaisons</div><div class="cc-who">Daniel Farr &amp; Julius Thomas</div><div class="cc-how">Both listed as liaisons. Determine which is your primary point of contact at the start of the year. Meet monthly minimum.</div><div class="cc-map">→ Go to them for: budget, school escalations, member compliance, anything above your authority</div></div>
+<div class="contact-card"><div class="cc-role">E100 Member + BEST Staff · Chair</div><div class="cc-who">Mikal Driver</div><div class="cc-how">Dual role — E100 member AND BEST Academy employee. One of the 3 BEST Chairs for 2026-27. Most valuable bridge to the school.</div><div class="cc-map">→ Go to him for: school culture, student dynamics, staff relationships, day-to-day building navigation</div></div>
+<div class="contact-card"><div class="cc-role">BEST Chair</div><div class="cc-who">Demetrius Odom</div><div class="cc-how">One of the 3 BEST Chairs for 2026-27.</div><div class="cc-map">→ Coordinate on: session assignments, swim lane coverage, planning</div></div>
+<div class="contact-card"><div class="cc-role">BEST Chair</div><div class="cc-who">Carlton Coleman</div><div class="cc-how">One of the 3 BEST Chairs for 2026-27.</div><div class="cc-map">→ Coordinate on: session assignments, swim lane coverage, planning</div></div>
+<div class="contact-card"><div class="cc-role">Advisor</div><div class="cc-who">Destorian Cash</div><div class="cc-how">BEST Academy advisor for 2026-27.</div><div class="cc-map">→ Go to them for: advisory guidance, escalations, institutional knowledge</div></div>
+<div class="contact-card"><div class="cc-role">Photographer · E100 Member</div><div class="cc-who">Donald Gibson</div><div class="cc-how">Primary photo and video POC for all BEST sessions. Book by 1st Friday of each month.</div><div class="cc-map">→ Go to him for: all session photography and video needs. Re-confirm each month.</div></div>
+<div class="contact-card"><div class="cc-role">Budget &amp; Payments</div><div class="cc-who">Treasurer</div><div class="cc-how">Manages session food budget ($1,000–$1,500/session). All purchases go through Treasurer.</div><div class="cc-map">→ Go to them for: all financial transactions, receipt submission, budget questions, pre-approval</div></div>
+<div class="contact-card"><div class="cc-role">Surveys &amp; Tracking</div><div class="cc-who">Data Chair (Louis Smith / Vincent Culley)</div><div class="cc-how">Owns pre/post student surveys and volunteer hour aggregation. Submit hours within 48hrs of each session.</div><div class="cc-map">→ Go to them for: survey setup, survey results, volunteer hour submission</div></div>
+<div class="contact-card"><div class="cc-role">Content &amp; Posting</div><div class="cc-who">Comms Chair</div><div class="cc-how">Receives your content within 48hrs of each session. Needs curated photos, draft caption, tags, context notes.</div><div class="cc-map">→ Go to them for: posting questions, caption feedback, brand guidance</div></div>
+</div></div><div class="contact-section"><div class="contact-type">External — School</div><div class="contact-grid"><div class="contact-card"><div class="cc-role">Program Manager · BEST Academy</div><div class="cc-who">Ray Singer</div><div class="cc-how">Primary operational school contact. Coordinates scheduling, library access, and school-side logistics. Must be notified of every session plan.</div><div class="cc-map">→ Go to him for: room access, session scheduling, school calendar conflicts</div></div>
+<div class="contact-card"><div class="cc-role">Principal · BEST Academy</div><div class="cc-who">Principal Williams</div><div class="cc-how">Informed only — not involved in day-to-day planning. Notify at program start, major milestones, and Rites of Passage.</div><div class="cc-map">→ Inform only: do not involve in planning decisions</div></div>
+</div></div><div class="contact-section"><div class="contact-type">External — Partners &amp; Vendors</div><div class="contact-grid"><div class="contact-card"><div class="cc-role">Must-Include · Fall · Yasmine Vaughn (via Partnerships)</div><div class="cc-who">Gas South</div><div class="cc-how">Required every Fall. Go through Partnerships Chair for the warm intro to Gas South contact.</div><div class="cc-map">→ Go through Partnerships Chair first. Confirm by July 31. Send thank-you after session.</div></div>
+<div class="contact-card"><div class="cc-role">Must-Include · Fall or Spring · Melvia Jones</div><div class="cc-who">Delta Air Lines</div><div class="cc-how">Required every year — session or field trip. Go through Partnerships Chair.</div><div class="cc-map">→ Go through Partnerships Chair first. Confirm by July 31. Coordinate format (session vs. field trip).</div></div>
+<div class="contact-card"><div class="cc-role">Clinical Physician · Mental Health Session</div><div class="cc-who">Shanae Benito</div><div class="cc-how">Leads April mental health session. Offer prep call. Evaluate vs. Kaiser Permanente annually.</div><div class="cc-map">→ Facilitator Chair owns: book by July 31, send prep materials before session</div></div>
+<div class="contact-card"><div class="cc-role">Food Vendor · Westside Location</div><div class="cc-who">Gustos</div><div class="cc-how">Session food vendor. No specific contact — Westside location. Operations Chair manages ordering.</div><div class="cc-map">→ Operations Chair owns: ordering, pickup, day-of food logistics</div></div>
+<div class="contact-card"><div class="cc-role">Food Vendor</div><div class="cc-who">Knockout Wingz</div><div class="cc-how">Secondary food vendor option for sessions.</div><div class="cc-map">→ Operations Chair owns: ordering and logistics</div></div>
+</div></div></div><div id="tab-sponsors_best" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">Past Corporate Partners — BEST Sessions <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div style="font-size:12px;color:var(--light);margin-bottom:14px;line-height:1.6;">Every company that has facilitated a BEST Academy session. Institutional memory. A company that has done it once is warm — reach back out before doing cold outreach.</div>
+<div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Upload Needed</div><div class="upload-banner-title">Full Session Partner History</div><div class="upload-banner-note">We still need this for an update. Add every company: session topic, year(s), contact name, frequency.</div></div></div>
+<div class="sponsor-table-wrap"><table class="sponsor-table"><thead><tr>
+<th>Company</th><th>Session Topic</th><th>Year(s)</th><th>Frequency</th><th>Contact</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td><strong>Gas South</strong></td><td>Career &amp; Learning Development</td><td>Multiple</td><td><span class="freq-pill">Annual · Must Include</span></td><td>Yasmine Vaughn (via Partnerships)</td><td>Required every Fall. Confirmed by July 31.</td></tr>
+<tr><td><strong>Delta Air Lines</strong></td><td>Session or Field Trip</td><td>Multiple</td><td><span class="freq-pill">Annual · Must Include</span></td><td>Melvia Jones (via Partnerships)</td><td>Required every year. Fall or Spring. Flexible format.</td></tr>
+<tr><td><strong>Microsoft</strong></td><td>Career Development · Tech</td><td>TBD</td><td>Past partner</td><td>TBD</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Atlanta Hawks</strong></td><td>Career Development</td><td>TBD</td><td>Past partner</td><td>Alexis Roe</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Regions Bank</strong></td><td>Financial Wellness</td><td>TBD</td><td>Past partner</td><td>TBD</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Equifax</strong></td><td>Financial Literacy</td><td>TBD</td><td>Past partner</td><td>TBD</td><td>Re-confirm annually</td></tr>
+<tr><td><strong>Shanae Benito</strong></td><td>Mental Health &amp; Wellness</td><td>Multiple</td><td>Annual · April</td><td>TBD</td><td>Clinical facilitator. Evaluate vs. Kaiser annually.</td></tr>
+<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:14px;font-style:italic;">We still need this for an update — add all remaining past session partners</td></tr>
+</tbody></table></div></div><div id="tab-checklist_best" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin:0 0 6px;">Pre-Session Checklist<span style="flex:1;height:1px;background:rgba(255,255,255,0.06);"></span></div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Use for every BEST Academy session (3rd Friday · Aug–Apr) and Rites of Passage ceremony.</div>
+<div style="font-size:12px;color:var(--light);margin-bottom:14px;line-height:1.7;">Check off each item as your team completes it. <strong style="color:var(--white);">Monday.com is always Item 1.</strong></div><div class="cl2-pwrap"><span class="cl2-plabel">Completion</span><div class="cl2-ptrack"><div class="cl2-pfill" id="pf-best"></div></div><span class="cl2-pcount" id="pc-best">0/0</span><button class="cl2-rbtn" onclick="cl2R('best')">Reset</button></div>
+<div class="cl2-sec"><div class="cl2-shdr">🟨 Item 1 — Monday.com Project Plan</div><div class="mmini"><div class="mmini-lbl">Build the board first — assign workstream leads and deadlines before anything else moves</div><div class="ws-grid"><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Curriculum & Content</div><div class="ws-sub">Session topic · facilitator brief · arc alignment</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Facilitator / Partner</div><div class="ws-sub">Confirmed · briefed · prep call scheduled</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Venue & Access</div><div class="ws-sub">School access · library · setup · parking</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Food & Beverage</div><div class="ws-sub">Vendor · order · $1K–$1.5K budget</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Media</div><div class="ws-sub">Donald Gibson · photo + video booking</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Comms — Internal</div><div class="ws-sub">Member sign-up · attendance · dress code reminder</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Check-In</div><div class="ws-sub">Member sign-in · student attendance · background checks done</div></div></div><div class="ws-row" data-tid="best" onclick="cl2T(this,'best')"><div class="ws-cb"></div><div><div class="ws-nm">Survey / Data</div><div class="ws-sub">Pre/post survey · volunteer hours</div></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Planning & Approval</div><div class="cl2-grid"><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Session topic fits the annual leadership arc<div class=cl2-note>Content Chair confirms topic aligns with the year's narrative before anything else.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required First</span><span class="cl2-tag ct-own">Curriculum Chair</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Budget confirmed with Treasurer<div class=cl2-note>$1,000–$1,500 per session for food. Confirm spend process.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-own">Treasurer</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Partner/facilitator confirmed and briefed<div class=cl2-note>All sessions: confirmed by July 31 hard deadline. Prep call offered to all partners.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-time">By July 31 / 2 Wks Out</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Gas South confirmed for Fall session<div class=cl2-note>Required every Fall. No prep call needed — established partner.</div><div class=cl2-tags><span class="cl2-tag ct-req">Fall: Required</span><span class="cl2-tag ct-time">By July 31</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Delta confirmed for session or field trip<div class=cl2-note>Required every year — Fall or Spring. Format flexible.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-time">By July 31</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Background checks cleared for all mentors<div class=cl2-note>Parliamentarian (Exec Board) runs them. All mentors cleared before being paired with students.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-own">Parliamentarian</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Logistics — By 1st Friday of Month</div><div class="cl2-grid"><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Food ordered and confirmed<div class=cl2-note>Gustos (Westside) or Knockout Wingz. Order confirmed by 1st Friday of the month.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required by 1st Friday</span><span class="cl2-tag ct-own">Operations Chair</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Donald Gibson booked for photography/video<div class=cl2-note>Book by 1st Friday of the month.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required by 1st Friday</span><span class="cl2-tag ct-own">Operations Chair</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">School access confirmed with Ray Singer<div class=cl2-note>Room access · library setup · arrival protocol for E100 members.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-own">Operations Chair</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Member sign-up link live — attendance tracked<div class=cl2-note>Confirm who is coming and in what role.</div><div class=cl2-tags><span class="cl2-tag ct-own">Operations Chair</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Dress code / member expectations communicated<div class=cl2-note>Professional or business casual standard communicated to all members before the session.</div><div class=cl2-tags><span class="cl2-tag ct-own">Operations Chair</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Pre-Survey (August Session Only)</div><div class="cl2-grid"><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">BEST pre-survey distributed to students<div class=cl2-note>Baseline survey administered at first session in August. Data Chair manages.</div><div class=cl2-tags><span class="cl2-tag ct-req">August Only — Required</span><span class="cl2-tag ct-data">Data Chair</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Post-Event</div><div class="cl2-grid"><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Volunteer hours submitted to Data within 48hrs<div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-data">Data Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Content submitted to Comms within 48hrs of photo delivery<div class=cl2-note>Curated photos · draft caption · tags · context notes.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Post-event recap documented in Monday.com<div class=cl2-note>Attendance · what worked · what didn't. Filed for next Chair.</div><div class=cl2-tags><span class="cl2-tag ct-own">Event Chair</span><span class="cl2-tag ct-time">Within 1 Week</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Partner thank-you email sent<div class=cl2-note>Chair sends thank-you to every corporate partner within 48hrs of their session. Non-negotiable.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Content submitted to Comms within 48hrs of Donald Gibson delivery<div class=cl2-note>Student content requires sensitivity review before submission.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="best" onclick="cl2T(this,'best')"><div class="cl2-box"></div><div class="cl2-lbl">Post-survey distributed at Rites of Passage (May only)<div class=cl2-note>End-of-year post-survey. Data Chair manages.</div><div class=cl2-tags><span class="cl2-tag ct-data">Data Chair</span><span class="cl2-tag ct-if">May — Rites of Passage</span></div></div></div></div></div>
+</div><script>
+if(!window._cl2init){
+  window._cl2init=true;
+  window.cl2T=function(el,t){el.classList.toggle('done');cl2P(t);};
+  window.cl2R=function(t){
+    document.querySelectorAll('.cl2-row[data-tid="'+t+'"],.ws-row[data-tid="'+t+'"]').forEach(function(e){e.classList.remove('done');});
+    cl2P(t);
+  };
+  window.cl2P=function(t){
+    var all=document.querySelectorAll('.cl2-row[data-tid="'+t+'"],.ws-row[data-tid="'+t+'"]');
+    var done=document.querySelectorAll('.cl2-row.done[data-tid="'+t+'"],.ws-row.done[data-tid="'+t+'"]');
+    var pct=all.length?Math.round(done.length/all.length*100):0;
+    var f=document.getElementById('pf-'+t),c=document.getElementById('pc-'+t);
+    if(f)f.style.width=pct+'%';
+    if(c)c.textContent=done.length+'/'+all.length;
+  };
+}
+cl2P('best');</script></div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>

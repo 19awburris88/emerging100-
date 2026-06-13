@@ -1,0 +1,204 @@
+import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import leadershipImg from '../assets/leadership.jpg'
+import './Home.css'
+
+const committees = [
+  { label: 'B.E.S.T. Academy',               path: '/committees/best-academy',             icon: '🎓', desc: 'Mentoring & tutoring for youth development' },
+  { label: 'Collegiate 100',                  path: '/committees/collegiate-100',            icon: '🏛️', desc: 'Supporting college-aged members' },
+  { label: 'Communication',                   path: '/committees/communication',             icon: '📣', desc: 'Brand voice, media & messaging' },
+  { label: 'Community Service',               path: '/committees/community-service',         icon: '🤝', desc: 'Volunteerism & neighborhood engagement' },
+  { label: 'Corporate Roundtable',            path: '/committees/corporate-roundtable',      icon: '💼', desc: 'Professional development & corporate access' },
+  { label: 'Data',                            path: '/committees/data',                      icon: '📊', desc: 'Analytics, metrics & reporting' },
+  { label: 'Emerging Development',            path: '/committees/emerging-development',      icon: '🌱', desc: 'Member growth & leadership pipelines' },
+  { label: 'Awards & Scholarship Gala',       path: '/committees/emerging-leaders-gala',    icon: '🏆', desc: 'Annual scholarship & recognition event' },
+  { label: 'Finance',                         path: '/committees/finance',                   icon: '💰', desc: 'Budget oversight & financial stewardship' },
+  { label: 'Health & Wellness',               path: '/committees/health-wellness',           icon: '💪', desc: 'Physical and mental wellness initiatives' },
+  { label: 'Newsletter',                      path: '/committees/newsletter',                icon: '📰', desc: 'Member communications & storytelling' },
+  { label: 'Operation Community Uplift',      path: '/committees/operation-community-uplift',icon: '⬆️', desc: 'Large-scale community impact programs' },
+  { label: 'Partnerships',                    path: '/committees/partnerships',              icon: '🔗', desc: 'Org relationships & external alliances' },
+  { label: 'Process & Governance',            path: '/committees/process-governance',        icon: '⚖️', desc: 'Bylaws, procedures & org compliance' },
+  { label: 'Social Fundraising',              path: '/committees/social-fundraising',        icon: '🎉', desc: 'Events, fundraising & member engagement' },
+]
+
+const pillars = [
+  { title: 'Mentorship', desc: 'Connecting Black youth with professional role models who invest in their success.' },
+  { title: 'Community',  desc: 'Serving Atlanta with purpose — from education to economic empowerment.' },
+  { title: 'Leadership', desc: 'Developing the next generation of Black male leaders in every sector.' },
+  { title: 'Excellence', desc: 'Holding ourselves to the highest standard — in service, character, and impact.' },
+]
+
+export default function Home() {
+  const [query, setQuery]     = useState('')
+  const [count200, setCount200] = useState(0)
+  const [count15,  setCount15]  = useState(0)
+  const statsRef  = useRef(null)
+  const firedRef  = useRef(false)
+
+  useEffect(() => {
+    const el = statsRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !firedRef.current) {
+          firedRef.current = true
+          obs.disconnect()
+          const dur = 1400
+          let t0 = null
+          const step = (ts) => {
+            if (!t0) t0 = ts
+            const p = Math.min((ts - t0) / dur, 1)
+            const e = 1 - Math.pow(1 - p, 3)
+            setCount200(Math.round(e * 200))
+            setCount15(Math.round(e * 15))
+            if (p < 1) requestAnimationFrame(step)
+          }
+          requestAnimationFrame(step)
+        }
+      },
+      { threshold: 0.4 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  const filtered = committees.filter(c =>
+    !query ||
+    c.label.toLowerCase().includes(query.toLowerCase()) ||
+    c.desc.toLowerCase().includes(query.toLowerCase())
+  )
+
+  return (
+    <main>
+      {/* Hero */}
+      <section
+        className="home-hero"
+        style={{ backgroundImage: `url(${leadershipImg})` }}
+      >
+        <div className="home-hero-content">
+          <p className="eyebrow">Emerging 100 ATL — Internal Playbook</p>
+          <h1>Greatness<br />Starts Here.</h1>
+          <p className="hero-sub">
+            The official committee playbook for Emerging 100 Atlanta — the premier young professionals
+            auxiliary of the 100 Black Men of Atlanta, Inc.
+          </p>
+          <div className="hero-actions">
+            <Link to="/committees/best-academy" className="btn btn-gold">Explore Committees</Link>
+            <Link to="/about" className="btn btn-outline-white">About E100 ATL</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Bar */}
+      <div className="stats-bar" ref={statsRef}>
+        <div className="container stats-inner">
+          <div className="stat">
+            <span className="stat-num">{count200}+</span>
+            <span className="stat-label">Active Members</span>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat">
+            <span className="stat-num">{count15}</span>
+            <span className="stat-label">Committees</span>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat">
+            <span className="stat-num">25–35</span>
+            <span className="stat-label">Member Age Range</span>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat">
+            <span className="stat-num">ATL</span>
+            <span className="stat-label">Based in Atlanta, GA</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Pillars */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <p className="tag">Our Foundation</p>
+            <h2 className="section-title">Built on Four Pillars</h2>
+            <p className="section-sub">Every committee aligns to these core principles.</p>
+          </div>
+          <div className="grid-4">
+            {pillars.map(p => (
+              <div key={p.title} className="pillar-card card">
+                <div className="pillar-bar" />
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <hr className="divider" />
+
+      {/* Committees Grid */}
+      <section className="section">
+        <div className="container">
+          <div className="committee-section-header">
+            <div>
+              <p className="tag">The Playbook</p>
+              <h2 className="section-title">All Committees</h2>
+              <p className="section-sub">Select a committee to view its mission, chairs, responsibilities, and resources.</p>
+            </div>
+            <div className="committee-search-wrap">
+              <input
+                className="committee-search"
+                type="search"
+                placeholder="Search committees…"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                aria-label="Search committees"
+              />
+              {query && (
+                <span className="committee-count">
+                  {filtered.length} of {committees.length} committees
+                </span>
+              )}
+            </div>
+          </div>
+
+          {filtered.length > 0 ? (
+            <div className="committee-grid">
+              {filtered.map((c, i) => (
+                <Link
+                  to={c.path}
+                  key={c.path}
+                  className="committee-card"
+                  style={{ '--i': i }}
+                >
+                  <span className="committee-icon">{c.icon}</span>
+                  <div>
+                    <h3>{c.label}</h3>
+                    <p>{c.desc}</p>
+                  </div>
+                  <span className="committee-arrow">→</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="committee-no-results">
+              <p>No committees match "<strong>{query}</strong>".</p>
+              <button onClick={() => setQuery('')}>Clear search</button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Mission CTA */}
+      <section className="mission-cta">
+        <div className="container mission-cta-inner">
+          <div>
+            <p className="tag">Our Purpose</p>
+            <h2>When we pour into our members,<br />they are better equipped to pour into their communities.</h2>
+          </div>
+          <Link to="/about" className="btn btn-gold">Learn Our Story</Link>
+        </div>
+      </section>
+    </main>
+  )
+}

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — New Chair Questions Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--bg2:#0d1120;--bg3:#111827;
+  --gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);
+  --white:#ede8dd;--muted:#6b7280;--light:#9ca3af;
+  --ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);
+  --green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);
+  --amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);
+  --red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,0.05) 0%,transparent 60%);}
+
+/* STICKY NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(7,9,15,0.95);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-inner{max-width:980px;margin:0 auto;padding:0 22px;height:52px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:3px;color:var(--gold);}
+.nav-actions{display:flex;gap:8px;align-items:center;}
+.nav-stat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);}
+.nav-stat span{color:var(--gold);}
+.btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 14px;border-radius:6px;cursor:pointer;border:none;transition:all .18s;}
+.btn-gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.btn-gold:hover{background:rgba(201,168,76,0.2);}
+.btn-ghost{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.08);}
+.btn-ghost:hover{color:var(--white);}
+
+/* PROGRESS OVERVIEW */
+.progress-overview{position:fixed;top:52px;left:0;right:0;z-index:199;
+  background:rgba(7,9,15,0.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 22px;}
+.po-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:16px;}
+.po-track{flex:1;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
+.po-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--amber));border-radius:2px;transition:width .5s ease;}
+.po-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.po-count{font-family:'DM Mono',monospace;font-size:10px;color:var(--white);white-space:nowrap;min-width:70px;text-align:right;}
+
+/* WRAP */
+.wrap{max-width:980px;margin:0 auto;padding:110px 22px 80px;position:relative;z-index:1;}
+
+/* HEADER */
+.hdr-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.hdr-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,80px);letter-spacing:3px;line-height:.9;color:var(--white);margin-bottom:16px;}
+.hdr-title em{color:var(--gold);font-style:normal;}
+.hdr-sub{font-size:13px;color:var(--light);line-height:1.7;max-width:600px;margin-bottom:28px;}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;}
+.leg-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--light);}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+
+/* COMMITTEE SECTION */
+.comm-section{margin-bottom:36px;border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;}
+.comm-header{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(201,168,76,0.04);border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;
+  user-select:none;}
+.comm-header:hover{background:rgba(201,168,76,0.07);}
+.comm-meta{display:flex;align-items:center;gap:14px;}
+.comm-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--white);}
+.comm-count{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);padding:3px 10px;background:rgba(255,255,255,0.04);border-radius:4px;}
+.comm-answered{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);}
+.comm-chevron{color:var(--muted);transition:transform .2s;font-size:14px;}
+.comm-body{padding:4px 0 12px;}
+
+/* QUESTION ITEM */
+.q-item{padding:14px 22px;border-bottom:1px solid rgba(255,255,255,0.04);transition:background .15s;}
+.q-item:last-child{border-bottom:none;}
+.q-item:hover{background:rgba(255,255,255,0.02);}
+.q-item.answered{background:rgba(16,185,129,0.03);}
+.q-top{display:flex;align-items:flex-start;gap:12px;}
+.q-num{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);min-width:24px;margin-top:2px;}
+.q-content{flex:1;}
+.q-badges{display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap;}
+.q-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;}
+.qb-block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.qb-board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.qb-info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.q-text{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;margin-bottom:4px;}
+.q-context{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:10px;}
+
+/* ANSWER AREA */
+.q-answer-wrap{margin-top:8px;}
+.q-answer-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+.q-answer-label.has-answer{color:var(--green);}
+.q-answer{width:100%;background:var(--bg2);border:1px solid rgba(255,255,255,0.08);border-radius:8px;
+  color:var(--white);font-family:'Instrument Sans',sans-serif;font-size:12px;
+  padding:10px 14px;resize:vertical;min-height:52px;line-height:1.5;
+  transition:border-color .18s;outline:none;}
+.q-answer:focus{border-color:var(--gold);}
+.q-answer.filled{border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.03);}
+.q-answer::placeholder{color:var(--muted);}
+.q-answered-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);padding:2px 8px;background:var(--greenb);border:1px solid var(--greenp);border-radius:4px;}
+
+/* JUMP TO */
+.jump-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.jump-btn{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 12px;border-radius:6px;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);
+  color:var(--muted);cursor:pointer;transition:all .18s;}
+.jump-btn:hover{color:var(--gold);border-color:var(--gmid);}
+
+/* EXPORT */
+#export-area{display:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">E100 · New Chair Q&amp;A Bank</div>
+    <div class="nav-actions">
+      <span class="nav-stat"><span id="nav-answered">0</span> / <span id="nav-total">0</span> answered</span>
+      <button class="btn btn-ghost" onclick="exportAnswers()">Export Answers</button>
+      <button class="btn btn-gold" onclick="clearAll()">Clear All</button>
+    </div>
+  </div>
+</nav>
+
+<div class="progress-overview">
+  <div class="po-inner">
+    <span class="po-label">Overall Progress</span>
+    <div class="po-track"><div class="po-fill" id="overall-fill" style="width:0%"></div></div>
+    <span class="po-count" id="overall-count">0 / 0 answered</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hdr-eyebrow">The Emerging Way · Institutional Knowledge</div>
+  <div class="hdr-title">New Chair<br><em>Questions Bank</em></div>
+  <p class="hdr-sub">141 questions across all 16 committees — every question a brand new Chair would need answered before they could plan. Fill in what you know now. Skip what you don't. Every answer gets written back into the playbook.</p>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--red);"></div> Planning blocker — cannot move forward without this answer</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--amber);"></div> Board liaison question — escalate to Daniel Farr, Julius Thomas, Carl McCray, or Tony Price</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--ac);"></div> Good to know — important context, not a blocker</div>
+  </div>
+
+  <div class="jump-grid" id="jump-grid"></div>
+
+  <div id="questions-container"></div>
+
+</div>
+
+<script>
+// ════════════════════════════════════════
+// ALL 141 QUESTIONS — DATA
+// ════════════════════════════════════════
+const COMMITTEES = [
+  {
+    id: 'best', name: 'B.E.S.T. Academy',
+    chairs: 'Mikal Driver · Demetrius Odom · Carlton Coleman',
+    liaison: 'Daniel Farr & Julius Thomas',
+    questions: [
+      {cat:'block', q:'What is the annual leadership theme/arc this year?', ctx:'Who decides it — the Chair, the Exec Board, or does it carry over from last year? I cannot build a session calendar without locking this first.'},
+      {cat:'block', q:'Which sessions are already booked vs. what do I still need to book?', ctx:'Gas South and Delta are must-includes — but are they actually confirmed for this year? Who do I contact at each company and by when?'},
+      {cat:'block', q:'How do I physically get into the school?', ctx:'Who do I call first — Ray Singer? What is the security and access protocol for getting E100 members onto the BEST Academy campus?'},
+      {cat:'block', q:'How do I recruit mentors and where is the sign-up link?', ctx:'What platform generates it — Monday.com, Google Form? Who sends it out to members and when does it open?'},
+      {cat:'block', q:'Who handles background checks and how long does it take?', ctx:'The Parliamentarian runs them — but what is the submission process? What information do I need from each mentor and what is the turnaround?'},
+      {cat:'block', q:'How do I pay for food — card, receipts, pre-approval?', ctx:'Budget is $1,000–$1,500 per session. Do I get a committee card? Do I submit receipts to the Treasurer? What requires pre-approval?'},
+      {cat:'block', q:'What did we do last year?', ctx:'What were the 8 session topics, which partners came, what worked and what didn\'t? I need the previous year\'s full recap before I can plan this year.'},
+      {cat:'board', q:'Daniel Farr or Julius Thomas — who is my primary board liaison?', ctx:'Both are listed. Which one is my first call and how often do we meet?'},
+      {cat:'board', q:'What is my actual budget and how do I access it?', ctx:'Does the Treasurer release funds per session or is there a running account? What requires pre-approval vs. post-reimbursement?'},
+      {cat:'board', q:'What does Rites of Passage actually look like?', ctx:'Who plans it — the Chair, the Exec Board, or shared? Who attends, what does the ceremony involve, how many families?'},
+      {cat:'board', q:'What is the member attendance expectation at sessions?', ctx:'Is there a minimum number of E100 brothers required per session? What happens if we fall short?'},
+      {cat:'info', q:'How do I book Donald Gibson — standing agreement or monthly re-confirm?', ctx:'What is his rate and who handles payment? What is the 1st Friday deadline?'},
+      {cat:'info', q:'What does the pre-survey look like and where does it live?', ctx:'Is there a saved template in Monday.com or Google Forms? When do I send it — first session in August?'},
+      {cat:'info', q:'What is the dress code and expectation for E100 brothers at sessions?', ctx:'Is there a standard (business casual, professional) I need to communicate to all members before each session?'},
+      {cat:'info', q:'Who are Mikal Driver\'s specific contacts at the school beyond Ray Singer?', ctx:'As both an E100 member and BEST staff, he\'s the bridge. How do I activate that relationship without overstepping?'},
+      {cat:'info', q:'Are collegiate tours to Georgia State or Morehouse confirmed for this year?', ctx:'Who coordinates campus access and is there a budget for transportation?'},
+    ]
+  },
+  {
+    id: 'c100', name: 'Collegiate 100',
+    chairs: 'Donte Wilder · Nile Oates · Dylan Merriweather · Desmond Hazel · Ian Barrett',
+    liaison: 'Daniel Farr & Julius Thomas',
+    questions: [
+      {cat:'block', q:'Which swim lane am I responsible for?', ctx:'Campus Liaisons & Programming, Workforce Dev & Career Fair, or RISE Program? I cannot plan anything until I know my lane.'},
+      {cat:'block', q:'Who are the current C100 student leaders at each of the 5 campuses?', ctx:'Who is the chapter president or VP at each school? Without these contacts I cannot coordinate anything.'},
+      {cat:'block', q:'What events are locked vs. what do I plan from scratch?', ctx:'Career Fair at Delta HQ is confirmed annually — but when exactly? What else is on the calendar and what is TBD for 2026-27?'},
+      {cat:'block', q:'Who reaches out to Career Fair companies — C100 Chair or Partnerships?', ctx:'Do I contact companies directly or does Partnerships handle outreach? What is the company list from last year?'},
+      {cat:'block', q:'Is there a RISE Program curriculum document?', ctx:'Who facilitates — E100 members, external facilitators, or Gas South? I cannot run an 8-month intensive without a framework.'},
+      {cat:'block', q:'What is the C100 budget and how do I access it?', ctx:'C100 spans 5 campuses with multiple events. What is the annual budget and how do I submit expenses?'},
+      {cat:'board', q:'Daniel Farr or Julius Thomas — who is the primary liaison?', ctx:'Both are listed. Who is my first call and how often do we connect?'},
+      {cat:'board', q:'National Mentorship Month — what is the format this year?', ctx:'Top Golf is not confirmed. What is the plan, budget, and target audience — C100 students or E100 members?'},
+      {cat:'board', q:'Mental health event — what is the direction for 2026-27?', ctx:'A RISE-themed cohort for young men was discussed. Who decides the format and who facilitates?'},
+      {cat:'board', q:'C100-to-E100 pipeline — what does my role look like?', ctx:'When I identify graduating seniors, what do I do — flag to ED Chair directly, or is there a formal process?'},
+      {cat:'info', q:'What are the semester start and end dates for all 5 campuses?', ctx:'Spring breaks and homecoming dates affect scheduling. I need the full academic calendar for each school.'},
+      {cat:'info', q:'What is NSN and who is the contact for the September event?', ctx:'National Sales Network — who is the point of contact for the September workforce dev event focused on sales students?'},
+      {cat:'info', q:'What happened at each campus last year?', ctx:'Events, attendance, what worked, what didn\'t. Per-campus recap before I plan anything.'},
+      {cat:'info', q:'How do campus inductions work — what does E100\'s support role look like?', ctx:'E100 supports but doesn\'t run them — what does my support role look like in practice?'},
+    ]
+  },
+  {
+    id: 'comms', name: 'Communications',
+    chairs: 'Darryl Humphrey · Don Gibson · Ashton Edmunds',
+    liaison: 'Daniel Farr & Carl McCray',
+    questions: [
+      {cat:'block', q:'Which swim lane am I in — Instagram & Content, LinkedIn & Brand, or Assets & Campaigns?', ctx:'Three Chairs own three distinct functions. I need to know my lane before I touch anything.'},
+      {cat:'block', q:'Where do Chairs currently submit content — text, drive, email?', ctx:'Without a clear intake channel nothing gets posted on time. What is the current submission process and to whom?'},
+      {cat:'block', q:'Who do I text for post approval and what is the process?', ctx:'President and VP must approve every post. What is their preferred channel and what is the 24-hour window rule?'},
+      {cat:'block', q:'Are any posts currently scheduled?', ctx:'I need to know what is in the queue before I can start planning new content.'},
+      {cat:'block', q:'What events are coming up in the next 60 days that need content?', ctx:'The posting calendar is driven by the program calendar. What is happening and what campaigns need to start now?'},
+      {cat:'block', q:'Where are the brand assets stored?', ctx:'Logo files, color palette, fonts, approved templates — where does a new Chair find these right now?'},
+      {cat:'board', q:'Is any content scheduling tool currently being used?', ctx:'Later, Buffer, Meta Business Suite, or manual posting? If none, should I set one up?'},
+      {cat:'board', q:'What is the photographer and videographer SLA?', ctx:'How many days after an event should Donald Gibson deliver content? This needs to be formalized so I can build my posting schedule.'},
+      {cat:'board', q:'Who coordinates with Eddision Smith on Social Fundraiser assets?', ctx:'Assets Chair manages this — but what does the briefing process look like and in what format are files delivered?'},
+      {cat:'board', q:'What are the rules around posting student content?', ctx:'Minor consent, photo review, member sensitivity — who enforces this and what happens if it goes wrong?'},
+      {cat:'info', q:'What are E100\'s current Instagram and LinkedIn follower counts?', ctx:'Baseline metrics I need before I can set goals or measure growth.'},
+      {cat:'info', q:'What posts performed best historically?', ctx:'Before I create anything new I want to see what has resonated — top posts by engagement, what content type wins.'},
+      {cat:'info', q:'What are the core hashtags and are there event-specific ones?', ctx:'These should be consistent across every post. Who maintains the hashtag list?'},
+      {cat:'info', q:'What is the caption formula?', ctx:'Hook → Story → Gratitude → Mission → Hashtags. Is there a template or example post I can use as reference?'},
+      {cat:'info', q:'What is the escalation path when a post goes wrong?', ctx:'Wrong photo, sensitive content, member complaint — who do I call and who makes the final decision to delete or correct?'},
+    ]
+  },
+  {
+    id: 'cs', name: 'Community Service',
+    chairs: 'Will Mobley · Josh Powell · Henry Ducre',
+    liaison: 'Dr. Tony Price',
+    questions: [
+      {cat:'block', q:'What is the budget per event and how do I access it?', ctx:'Community service budgets are fluid. What does E100 buy vs. what do partners contribute? Who approves spend?'},
+      {cat:'block', q:'How do I order supplies for Together Tailgate?', ctx:'Who places the order for food, turkeys, hygiene kits, clothing? Which partners contribute vs. what does E100 purchase?'},
+      {cat:'block', q:'For each partner — do I reach out directly or does Partnerships introduce me?', ctx:'Chase (Lynette Jackson) · Hawks (Alexis Roe) · Gas South (Yasmine Vaughn). What is the protocol for each?'},
+      {cat:'block', q:'Who at BEST Academy is the contact for Together Tailgate logistics?', ctx:'The event is on their campus — who coordinates parking, setup, and school-side access?'},
+      {cat:'block', q:'What happened at each event last year?', ctx:'Attendance, how many community members served, what was donated. I need the full recap before I can plan this year.'},
+      {cat:'board', q:'How do I formally flag a new corporate partner to Partnerships?', ctx:'Text the Partnerships Chair? Update Monday.com? What is the actual handoff process after an event?'},
+      {cat:'board', q:'What is the volunteer sign-in process day-of?', ctx:'Sign-in sheet, Monday.com form, or digital? Who collects and submits hours to Data within 48hrs?'},
+      {cat:'board', q:'What does National Volunteer Week commitment look like this year?', ctx:'Multiple events across one week — which orgs, which days, and what does E100 contribute to each?'},
+      {cat:'info', q:'Restoring One\'s Hope — Kinnis or Brittney, and is the relationship warm?', ctx:'Which person do I call and does the relationship need to be re-established or is it ongoing?'},
+      {cat:'info', q:'What does the Partner On-Ramp look like in practice — the full 6 steps?', ctx:'I understand the concept — but what does the actual handoff to Partnerships look like at Step 4?'},
+      {cat:'info', q:'Is there a volunteer recruitment process or does it just go to all members?', ctx:'How do members sign up for specific events and how do I track who is actually coming?'},
+    ]
+  },
+  {
+    id: 'cr', name: 'Corporate Roundtable',
+    chairs: 'Tyler Royal · Bobby Kannady · Darren Maynard',
+    liaison: 'Julius Thomas',
+    questions: [
+      {cat:'block', q:'Which GBM venues are locked and which do I need to book?', ctx:'Gas South + Delta are locked. What about August, September, October, January, February, March, April? I need to start booking immediately.'},
+      {cat:'block', q:'Who do I call at each company to book a GBM?', ctx:'There is a contact at Gas South, Delta, and each past venue. Where is that list? Without contacts I cannot make a single call.'},
+      {cat:'block', q:'What is the lead time for corporate venue booking?', ctx:'6–8 weeks is standard but some venues (federal agencies, law firms) require longer. What are the specific requirements?'},
+      {cat:'block', q:'What is the GBM format — how long, what\'s on the agenda, what does the venue need to provide?', ctx:'I need to know this before I can brief a host company.'},
+      {cat:'board', q:'What executive access events are planned for this year?', ctx:'The plan is to expand leadership conversations. Who are the targets and who makes the outreach to secure them?'},
+      {cat:'board', q:'How do I coordinate the intel handoff to Partnerships after each GBM?', ctx:'I flag host companies — but what does that look like in practice? Text, Monday.com, or a debrief call?'},
+      {cat:'board', q:'The February CR event is TBD — what is the direction?', ctx:'Is it an executive access event, a special GBM, or something else?'},
+      {cat:'info', q:'What happened at each GBM venue last year?', ctx:'Which had logistics challenges? Which companies expressed interest in deeper partnership after hosting?'},
+      {cat:'info', q:'What does a member briefing before an executive access event look like?', ctx:'Who are members meeting, what is appropriate to discuss, what are the professional expectations?'},
+    ]
+  },
+  {
+    id: 'data', name: 'Data & Systems',
+    chairs: 'Louis Smith · Vincent Culley',
+    liaison: 'Carl McCray',
+    questions: [
+      {cat:'block', q:'What is actually in Monday.com right now?', ctx:'Which boards exist, which are empty, which are being used, which are abandoned? I cannot build on something I haven\'t audited.'},
+      {cat:'block', q:'Who has admin access to Monday.com and how do I get credentials?', ctx:'Without admin access I cannot build boards, manage automations, or invite users.'},
+      {cat:'block', q:'Who has admin access to the website (Maven)?', ctx:'Ashley Neely manages it — but is there a Data Chair login? What is the process for website updates?'},
+      {cat:'block', q:'What surveys are currently active or scheduled?', ctx:'BEST pre-survey goes out in August — is it built? Is it ready or do I build it from scratch?'},
+      {cat:'block', q:'Which departments are submitting data and which are not?', ctx:'I need to know the compliance baseline before I can fix it. Who is submitting hours within 48hrs and who is not?'},
+      {cat:'block', q:'What is my first priority — what is most broken right now?', ctx:'Monday.com build-out, survey standardization, website, or something else? I need to triage before I build anything.'},
+      {cat:'board', q:'What is the current Monday.com subscription tier and limits?', ctx:'Free tier — how many boards, automations, and users before we need to upgrade?'},
+      {cat:'board', q:'Does the annual impact report exist and where is the most recent one?', ctx:'This is the most important output Data produces. I need to see the most recent version before I understand what I\'m maintaining.'},
+      {cat:'board', q:'What is the volunteer hour total from last year?', ctx:'This feeds the annual report and grant applications. Where was it tracked and is it accurate?'},
+      {cat:'board', q:'What automations are currently live?', ctx:'Before I build new ones I need to know what exists so I don\'t duplicate or conflict with anything.'},
+      {cat:'board', q:'How do I get time with 14 Chairs to build their Monday.com boards at the start of the year?', ctx:'Every Chair needs to be trained on their board. What is the plan for getting that done in month one?'},
+      {cat:'info', q:'What survey tool is the standard — Monday.com or Google Forms?', ctx:'Both are currently in use. Which one do we standardize on and who decides?'},
+      {cat:'info', q:'What does the BEST Academy pre-survey currently look like?', ctx:'Is there a saved template somewhere or do I rebuild it each year?'},
+      {cat:'info', q:'What impact numbers does E100 claim publicly and how do I validate them?', ctx:'96% · 90.9% · $745K+ · 1,900+ hours — where does each number come from?'},
+      {cat:'info', q:'How does the website update process work with Ashley Neely?', ctx:'Do I submit a request, or do I have my own Maven login? What is the typical turnaround for updates?'},
+    ]
+  },
+  {
+    id: 'ed', name: 'Emerging Development',
+    chairs: 'Will Fleming · Bayo Adegbite · Iyke Iwotor · Emmanuel Mgbemena',
+    liaison: 'Carl McCray',
+    questions: [
+      {cat:'block', q:'What events are confirmed for this year vs. TBD?', ctx:'New Member Meetup and Super Bowl Party are recurring — but what is the plan for BBQ and the November slot?'},
+      {cat:'block', q:'Where is the active/dues-paying member list and who maintains it?', ctx:'Active = dues-paying. Without this list I cannot invite the right people to ED events.'},
+      {cat:'block', q:'When exactly is the New Member Meetup relative to induction?', ctx:'It always happens right after the new class — but when does induction happen and who tells me the date?'},
+      {cat:'block', q:'What is my budget per event?', ctx:'Venue, food, entertainment vary significantly. What am I working with per event and how do I access it?'},
+      {cat:'board', q:'Is the BBQ happening this year — who makes the final call and when?', ctx:'Currently in planning — but I need a decision before I can commit to a venue.'},
+      {cat:'board', q:'What does "lean into the Super Bowl Party more" mean?', ctx:'Bigger venue, more programming, corporate tie-in, or something else? What does success look like?'},
+      {cat:'board', q:'C100-to-E100 pipeline — what does ED Chair\'s role look like?', ctx:'Do I plan a specific event to welcome graduating seniors or do I just follow up when C100 Chair flags them?'},
+      {cat:'info', q:'What did last year\'s New Member Meetup look like?', ctx:'Tessarae Hotel was the venue — format, attendance, what feedback did we get?'},
+      {cat:'info', q:'What is the Men\'s Mental Health event format and who facilitates?', ctx:'It\'s internal for members — who is the facilitator, what is the clinical component, how does it differ from H&W?'},
+      {cat:'info', q:'Brotherhood Thanksgiving — is it happening this year and what would it involve?', ctx:'It has been floated as an idea — is it confirmed and what is the format?'},
+    ]
+  },
+  {
+    id: 'finance', name: 'Finance',
+    chairs: 'Austin Byers-King',
+    liaison: 'Brandon Whatley',
+    questions: [
+      {cat:'block', q:'What does Finance actually own?', ctx:'This is the first question. Nothing else can be answered until the scope is defined. Brandon Whatley is the liaison — first conversation must define this.'},
+      {cat:'block', q:'What is my relationship to the Treasurer?', ctx:'The Treasurer is Exec Board and holds financial authority. Where does Exec Board financial responsibility end and this committee begin?'},
+      {cat:'block', q:'Does Finance own dues collection or does P&G own compliance on dues?', ctx:'This must be decided before either committee can function cleanly.'},
+      {cat:'block', q:'Do I manage the reimbursement process for Chairs?', ctx:'Every Chair submits receipts. Is that Finance or does each Chair go directly to the Treasurer?'},
+      {cat:'board', q:'What financial reports do I produce and who receives them?', ctx:'Monthly P&L? Quarterly budget vs. actual? Annual summary? Who is the audience — Exec Board or all Chairs?'},
+      {cat:'board', q:'What tools does Finance use?', ctx:'QuickBooks, spreadsheets, Monday.com, or something else? What does a new Chair inherit?'},
+      {cat:'board', q:'What is my relationship to Ticket Falcon payouts?', ctx:'Social Fundraisers and Gala revenue comes through Ticket Falcon. Does Finance track this or does Treasurer handle it directly?'},
+      {cat:'info', q:'Was Finance an active committee before 2026-27?', ctx:'Finance appears on this year\'s placement sheet — what is the history and what is new?'},
+    ]
+  },
+  {
+    id: 'gala', name: 'Emerging Leaders Gala',
+    chairs: 'Cory Harris · Dr. Michael Curtis Jr. · Shakeel Johnson · Andre Henry',
+    liaison: 'Daniel Farr & Julius Thomas',
+    questions: [
+      {cat:'block', q:'What is my swim lane — Event Production, Scholars, or Sponsors & Tables?', ctx:'Three Chairs own three distinct functions. Which one am I and what does my first week look like?'},
+      {cat:'block', q:'What vendor contracts are already in place from last year?', ctx:'Affairs to Remember, EAV, Legendary, Above The Line Media — are any on retainer or do I re-negotiate each year?'},
+      {cat:'block', q:'What sponsor tables have already been sold?', ctx:'If I own Sponsors & Tables, I need to know what is already committed before I make any outreach calls.'},
+      {cat:'block', q:'When does Partnerships hand off to me?', ctx:'Partnerships closes deals — Gala executes. Where exactly is the handoff and what information do I receive?'},
+      {cat:'block', q:'How does Ticket Falcon work for the Gala?', ctx:'Who sets it up, what are the section and ticket tiers, who manages comps, and who receives the payout?'},
+      {cat:'block', q:'Where is the scholarship application process right now?', ctx:'Are applications open? Has the selection committee been formed? I need to know where we are in the scholar cycle immediately.'},
+      {cat:'board', q:'Who is the emcee this year and how are they selected?', ctx:'Changes annually. Does Exec Board choose or does the Gala Chair recommend? What is the timeline?'},
+      {cat:'board', q:'Who is the keynote speaker and how is that sourced?', ctx:'Senator Ossoff was 2026 — who is the 2027 target? Who owns the relationship and makes the ask?'},
+      {cat:'board', q:'What is the total budget?', ctx:'2026 spend was ~$233K. What is approved for 2027 and what requires additional Exec Board sign-off?'},
+      {cat:'board', q:'How are scholar families coordinated night-of?', ctx:'Who briefs families, where do they sit, who is their point of contact during the event?'},
+      {cat:'info', q:'Where is the run of show template from last year?', ctx:'I should start with the 2026 run of show and modify, not build from scratch.'},
+      {cat:'info', q:'How does the program booklet process work with Prima?', ctx:'Who submits sponsor ads, scholar bios, and the run of show layout? What is the deadline?'},
+      {cat:'info', q:'What is the post-Gala thank-you process?', ctx:'President sends thank-yous ~1 week after. Do I draft them? Who compiles all contact information?'},
+    ]
+  },
+  {
+    id: 'hw', name: 'Health & Wellness',
+    chairs: 'Dr. Michael Birdson · Quinton Bennett · Omari Hughes',
+    liaison: 'Dr. Tony Price',
+    questions: [
+      {cat:'block', q:'Which pillar am I responsible for — Mental, Financial, or Physical?', ctx:'I need to know my swim lane before I can plan a single event.'},
+      {cat:'block', q:'What is my budget for the year?', ctx:'Laughing Matters alone runs ~$10,000. How is the budget allocated across all 3 pillars and who controls it?'},
+      {cat:'block', q:'Who books the comedians for Laughing Matters?', ctx:'Is there an existing relationship with a booker or agency? What is the lead time needed?'},
+      {cat:'block', q:'Are dates confirmed for each pillar event?', ctx:'Financial Health in Feb · Physical Fitness in April · Mental Health in June or October — are these locked or do I set them?'},
+      {cat:'board', q:'Who coordinates with ED on Men\'s Mental Health to avoid overlap?', ctx:'ED has a Men\'s Mental Health event too. Who decides which committee owns what each year?'},
+      {cat:'board', q:'Do H&W events sell tickets or are they free and open to the public?', ctx:'Confirm with Exec Board before any ticketing goes live.'},
+      {cat:'board', q:'What resources do we distribute and where do they come from?', ctx:'Mental health links, brochures, hotlines — who compiles these and how do we source partner organizations?'},
+      {cat:'board', q:'Brotherhood Brunch — which Chair owns it and what is the format?', ctx:'How does it differ from the mental wellness pillar event and what is the budget?'},
+      {cat:'info', q:'What did each pillar event look like last year?', ctx:'Laughing Matters 2 was at The Gathering Spot — format, attendance, budget? What worked and what didn\'t?'},
+      {cat:'info', q:'Who are the mental health professionals we\'ve worked with before?', ctx:'Shanae Benito — is she available for H&W events too or just BEST Academy? Who manages that relationship?'},
+      {cat:'info', q:'Is Laughing Matters an annual event or as-needed?', ctx:'Was it annual and how often has it happened? What is the expectation going forward?'},
+    ]
+  },
+  {
+    id: 'newsletter', name: 'Newsletter',
+    chairs: 'Jordan Frank (Supporting Brooks Baptiste & Ashton Edmunds)',
+    liaison: 'Daniel Farr & Dr. Tony Price',
+    questions: [
+      {cat:'block', q:'What platform is the Newsletter sent through?', ctx:'Mailchimp, Constant Contact, HubSpot? Who has admin credentials and how do I get access?'},
+      {cat:'block', q:'Where is the current subscriber list — size, platform, and how to access it?', ctx:'Also — what is the Social Blast list and is it in the same platform?'},
+      {cat:'block', q:'Where does the current newsletter template live?', ctx:'Is there an existing design in the platform? If an annual refresh is happening, when does it start and who leads it?'},
+      {cat:'block', q:'How do Chairs submit content and what is the monthly deadline?', ctx:'What is the deadline before the 30th/31st send date? Who enforces it if Chairs don\'t submit?'},
+      {cat:'block', q:'How are drafts sent to Daniel Farr and Dr. Tony Price for approval?', ctx:'Email, shared Google Doc, text? What is a reasonable turnaround for feedback?'},
+      {cat:'block', q:'Who assigns the Exec Board monthly greeter and what is the deadline for them to submit?', ctx:'If the President doesn\'t submit their August greeting in time, the issue cannot go out on August 31.'},
+      {cat:'board', q:'Does E100 have a YouTube channel?', ctx:'Videos must be uploaded to YouTube or linked to Instagram. If no channel exists, who creates it and who has access?'},
+      {cat:'board', q:'Who selects Member of the Month?', ctx:'Editorial decision by Newsletter Chair, nomination process, or Exec Board? What lead time is needed for the photo and write-up?'},
+      {cat:'board', q:'How does the annual design refresh work?', ctx:'Who designs the new look — Newsletter Chair, Eddision Smith, or an in-house member? Timeline and who approves before August?'},
+      {cat:'board', q:'What does "support" from Brooks Baptiste and Ashton Edmunds look like in practice?', ctx:'They are also Comms Chairs — do they co-write, supply content, design, or something else?'},
+      {cat:'info', q:'Can content be pulled directly from Instagram and LinkedIn?', ctx:'Most captions and photos can come from there — is there a protocol with the Comms Chair for repurposing content?'},
+      {cat:'info', q:'Where are past Newsletter issues archived?', ctx:'I need to see the last 12 months before I build this year\'s.'},
+      {cat:'info', q:'What are the open and click-through rates from last year?', ctx:'What is the baseline — how many people are actually reading and engaging?'},
+    ]
+  },
+  {
+    id: 'ocu', name: 'Operation Community Uplift',
+    chairs: 'Marvel Joseph · Reggie White',
+    liaison: 'Julius Thomas',
+    questions: [
+      {cat:'block', q:'What elections are happening in Atlanta this year?', ctx:'Local (mayoral, city council, school board), state, or federal? This determines my entire activation level for the year.'},
+      {cat:'block', q:'What is my activation level — full, targeted, or civic education only?', ctx:'Full = major election year. Targeted = local election year. Civic ed = off-cycle. Who determines this and when?'},
+      {cat:'block', q:'Are community partners already in place or do I need to establish them?', ctx:'ACLU, Urban League, Equity in Education, The Gathering Spot — do we have existing contacts at each or do I start fresh?'},
+      {cat:'board', q:'What did Votelanta look like — can I see a recap?', ctx:'Before planning any voter engagement event, I need to understand what has been done before and what worked.'},
+      {cat:'board', q:'Is there a budget for OCU events?', ctx:'Street Clean-Up supplies, voter engagement event logistics, community forum costs — what is the annual budget?'},
+      {cat:'board', q:'How do I recruit corporate volunteers for Street Clean-Up — directly or through Partnerships?', ctx:'The goal is to bring companies to beautify Atlanta neighborhoods — what is the correct outreach protocol?'},
+      {cat:'board', q:'Who definitively owns the Housing/Equity Bootcamp — OCU or H&W?', ctx:'It is flagged as H&W in the playbook but OCU has civic overlap. I need to know if this is my deliverable.'},
+      {cat:'info', q:'What is the non-partisan standard in practice?', ctx:'If someone asks E100 to endorse a candidate at a town hall, what do I say? Is there a script or policy?'},
+      {cat:'info', q:'What are the Georgia voter registration deadlines this year?', ctx:'These set my planning timeline for registration drives. Where do I find the current deadlines?'},
+    ]
+  },
+  {
+    id: 'pf', name: 'Partnerships & Fundraising',
+    chairs: 'Quavious Hazzard · Avion Cainion · Joshua John Frank · Dre Simpson',
+    liaison: 'Daniel Farr & Brandon Whatley',
+    questions: [
+      {cat:'block', q:'Who are the current active partners and what is their commitment status?', ctx:'Which companies have signed for this year, which are in negotiation, and which are up for renewal? Without this I cannot make a single outreach call.'},
+      {cat:'block', q:'Who do I NOT contact because the President or Exec Board owns that relationship?', ctx:'Delta in-kind and Blank Foundation are held at President level. If I call the wrong person I could damage the relationship.'},
+      {cat:'block', q:'Where is the current sponsorship deck and is it approved?', ctx:'I cannot send anything to a prospect without the current, approved deck.'},
+      {cat:'block', q:'Which partners are up for renewal right now?', ctx:'The renewal cycle is 6mo → 3mo → 6wk. Which companies are in each phase and what is the next step for each?'},
+      {cat:'block', q:'What is in Monday.com and what is not?', ctx:'The CRM is the source of truth — but how complete is it? Who updates it and am I responsible for keeping it current?'},
+      {cat:'board', q:'What is the revenue goal for this year?', ctx:'Is there a specific fundraising target I am accountable to and how often do I report progress?'},
+      {cat:'board', q:'What grants are open or upcoming right now?', ctx:'The grant pipeline is supposed to be proactive — where is the current list of opportunities and past applications?'},
+      {cat:'board', q:'Who has Community Service flagged as a warm lead recently?', ctx:'CS is the best partner on-ramp — but only if the intel gets to me. What is the current handoff process?'},
+      {cat:'board', q:'Partner Appreciation is in July — what is the planning timeline?', ctx:'Who owns the event logistics vs. the invite list vs. the impact presentation for this event?'},
+      {cat:'info', q:'What are the formal sponsorship tiers and pricing?', ctx:'I know the Gala tiers — but what is the full-year pricing for non-Gala sponsors?'},
+      {cat:'info', q:'Who is the Fiverr design contact for the sponsorship deck?', ctx:'Name, rate, turnaround time, and how do I brief them on updates?'},
+      {cat:'info', q:'Must-hit companies — what is the status of Target, Blank Foundation, Gas South, Delta, Bank of America?', ctx:'What is each relationship\'s current status and who owns each one?'},
+    ]
+  },
+  {
+    id: 'pg', name: 'Process & Governance',
+    chairs: 'Terrance Pryor · Bobby Daniels (Supporting Archie Wilson)',
+    liaison: 'Carl McCray',
+    questions: [
+      {cat:'block', q:'Where are the bylaws — who has the current version?', ctx:'They exist and need an update. Where do I find them and what format are they in?'},
+      {cat:'block', q:'What is the elections timeline this year — exact dates?', ctx:'Nominations, debates, voting window — what are the dates and what is my role in running each phase?'},
+      {cat:'block', q:'What contracts need to be reviewed right now?', ctx:'Are there active vendor agreements, sponsorship agreements, or MOUs in a queue waiting for P&G review?'},
+      {cat:'block', q:'Who are the authorized signatories and is there a document partners have on file?', ctx:'President and Treasurer are listed — but is there a signature card or formal document?'},
+      {cat:'board', q:'What compliance issues exist from last year that are unresolved?', ctx:'Attendance, conduct, or dues issues — what is the status and what is my role in resolution?'},
+      {cat:'board', q:'Is P&G taking over compliance tracking — has a decision been made?', ctx:'This was flagged as a possibility. If yes, what does that mean for my workload?'},
+      {cat:'board', q:'Does a formal conduct policy exist?', ctx:'If not, who decides we need one and who drafts it — P&G or Exec Board?'},
+      {cat:'board', q:'Where are brand assets stored right now?', ctx:'Logo files, color palette, fonts — where does a new Chair find these today?'},
+      {cat:'info', q:'What are the Exec Board eligibility requirements?', ctx:'Tenure, dues, attendance, committee participation — what exactly qualifies someone to run?'},
+      {cat:'info', q:'What is the relationship between P&G and the Parliamentarian beyond background checks?', ctx:'Does P&G escalate to them or coordinate with them on other compliance matters?'},
+      {cat:'info', q:'Where are meeting minutes stored and how far back does the archive go?', ctx:'Who takes them, where are they stored, and who has access?'},
+    ]
+  },
+  {
+    id: 'sf', name: 'Social Fundraising',
+    chairs: 'Jordan Watson · Avery Johnson · Remington Rolé · Brandon Smith',
+    liaison: 'Daniel Farr & Brandon Whatley',
+    questions: [
+      {cat:'block', q:'Are dates confirmed for all 3 events this year?', ctx:'C&C in March, Park 100 on Labor Day weekend, Holiday Soirée 2nd week of December — are these locked or do I set them?'},
+      {cat:'block', q:'Are venues booked — C&C venue specifically?', ctx:'Park Tavern is free per standing agreement. Coca-Cola Roxy for Holiday — confirmed? C&C venue needs to be locked now.'},
+      {cat:'block', q:'What sponsors are already committed for this year?', ctx:'I cannot plan sponsor activations or recognition without knowing who is already in. What has Partnerships closed?'},
+      {cat:'block', q:'Has Eddision Smith been briefed on themes?', ctx:'The theme must be locked before briefing Penthouse Creative. Without the theme nothing moves — no assets, no campaign.'},
+      {cat:'block', q:'Are DJs and hosts booked for each event?', ctx:'2 DJs and 2 hosts per event for Park 100 and Holiday. These book up fast. If not locked, I start today.'},
+      {cat:'block', q:'How does Ticket Falcon work for each event?', ctx:'Who sets it up, what are the section and ticket tiers, who manages comps, and who receives the payout?'},
+      {cat:'block', q:'Which liquor sponsors are returning — Tito\'s, Patrón, Bacardi, Viarae, Mercer & Prince?', ctx:'Are these confirmed or do I re-pitch them each year? Who owns those relationships?'},
+      {cat:'board', q:'What did each event net last year?', ctx:'Ticket revenue + sponsor revenue − expenses = net. I need this to understand what success looks like.'},
+      {cat:'board', q:'Is the Halloween Social happening this year?', ctx:'It\'s bi-yearly and low-lift — is this a year we run it? If yes, who owns it and what is the format?'},
+      {cat:'board', q:'What is my budget per event?', ctx:'Production costs vary significantly across C&C, Park 100, and Holiday Soirée. What am I working with?'},
+      {cat:'board', q:'When does the 6–7 week social media campaign start for each event?', ctx:'I need to coordinate with Comms on the campaign calendar. When do I hand off the first asset?'},
+      {cat:'board', q:'Which companies have bought full sections before and would return?', ctx:'Section buyers are the highest-value single transactions. Who are they and who owns those relationships?'},
+      {cat:'info', q:'What did each event look like last year — format, attendance, what worked?', ctx:'Before I plan anything I need last year\'s full recap per event.'},
+      {cat:'info', q:'What are the Park Tavern standing agreement terms?', ctx:'Venue is free — but what are the F&B minimums, capacity, sound system, and load-in rules?'},
+      {cat:'info', q:'What are the 12 marketing assets and when does each go out?', ctx:'Save the Date through Countdown — what is the exact timeline and who approves before Comms posts?'},
+      {cat:'info', q:'How does the Gala cross-sell work for Social sponsors?', ctx:'Social sponsors should be converted to Gala table buyers — what is the process and who does it?'},
+    ]
+  }
+];
+
+// ════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════
+function loadAnswers() {
+  try { return JSON.parse(localStorage.getItem('e100_qa') || '{}'); } catch(e) { return {}; }
+}
+function saveAnswer(key, val) {
+  const d = loadAnswers(); d[key] = val;
+  localStorage.setItem('e100_qa', JSON.stringify(d));
+}
+function deleteAnswer(key) {
+  const d = loadAnswers(); delete d[key]; localStorage.setItem('e100_qa', JSON.stringify(d));
+}
+
+function catClass(cat) {
+  return cat === 'block' ? 'qb-block' : cat === 'board' ? 'qb-board' : 'qb-info';
+}
+function catLabel(cat) {
+  return cat === 'block' ? '🔴 Planning Blocker' : cat === 'board' ? '📋 Board Liaison' : 'ℹ️ Good to Know';
+}
+
+function updateProgress() {
+  const answers = loadAnswers();
+  let total = 0, answered = 0;
+  COMMITTEES.forEach(comm => {
+    comm.questions.forEach((q, qi) => {
+      total++;
+      const key = comm.id + '_' + qi;
+      if (answers[key] && answers[key].trim()) answered++;
+    });
+  });
+  document.getElementById('nav-answered').textContent = answered;
+  document.getElementById('nav-total').textContent = total;
+  document.getElementById('overall-fill').style.width = (total ? Math.round(answered/total*100) : 0) + '%';
+  document.getElementById('overall-count').textContent = answered + ' / ' + total + ' answered';
+
+  // Update per-committee counts
+  COMMITTEES.forEach(comm => {
+    let commTotal = comm.questions.length, commAnswered = 0;
+    comm.questions.forEach((q, qi) => {
+      if (answers[comm.id + '_' + qi]?.trim()) commAnswered++;
+    });
+    const el = document.getElementById('comm-answered-' + comm.id);
+    if (el) {
+      el.textContent = commAnswered > 0 ? commAnswered + ' / ' + commTotal + ' answered' : '';
+    }
+  });
+}
+
+function render() {
+  const answers = loadAnswers();
+  const container = document.getElementById('questions-container');
+  const jumpGrid = document.getElementById('jump-grid');
+
+  // Jump buttons
+  COMMITTEES.forEach(comm => {
+    const btn = document.createElement('button');
+    btn.className = 'jump-btn';
+    btn.textContent = comm.name;
+    btn.onclick = () => document.getElementById('comm-' + comm.id).scrollIntoView({behavior:'smooth'});
+    jumpGrid.appendChild(btn);
+  });
+
+  // Sections
+  COMMITTEES.forEach(comm => {
+    const section = document.createElement('div');
+    section.className = 'comm-section';
+    section.id = 'comm-' + comm.id;
+
+    let bodyHTML = '';
+    comm.questions.forEach((q, qi) => {
+      const key = comm.id + '_' + qi;
+      const savedAnswer = answers[key] || '';
+      const hasAnswer = savedAnswer.trim().length > 0;
+
+      bodyHTML += `
+        <div class="q-item ${hasAnswer ? 'answered' : ''}" id="qi-${key}">
+          <div class="q-top">
+            <span class="q-num">${(qi+1).toString().padStart(2,'0')}</span>
+            <div class="q-content">
+              <div class="q-badges">
+                <span class="q-badge ${catClass(q.cat)}">${catLabel(q.cat)}</span>
+                ${hasAnswer ? '<span class="q-answered-badge">✓ Answered</span>' : ''}
+              </div>
+              <div class="q-text">${q.q}</div>
+              ${q.ctx ? `<div class="q-context">${q.ctx}</div>` : ''}
+              <div class="q-answer-wrap">
+                <div class="q-answer-label ${hasAnswer ? 'has-answer' : ''}">
+                  ${hasAnswer ? '✓ Answer recorded' : 'Your answer'}
+                </div>
+                <textarea
+                  class="q-answer ${hasAnswer ? 'filled' : ''}"
+                  data-key="${key}"
+                  placeholder="Type your answer here..."
+                  rows="2"
+                >${savedAnswer}</textarea>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+
+    section.innerHTML = `
+      <div class="comm-header" onclick="toggleComm('body-${comm.id}', this)">
+        <div class="comm-meta">
+          <div class="comm-name">${comm.name}</div>
+          <div class="comm-count">${comm.questions.length} Questions</div>
+          <div class="comm-answered" id="comm-answered-${comm.id}"></div>
+        </div>
+        <span class="comm-chevron">▼</span>
+      </div>
+      <div class="comm-body" id="body-${comm.id}">
+        <div style="padding:10px 22px 6px;font-size:11px;color:var(--muted);line-height:1.5;">
+          <strong style="color:var(--light);">Chairs:</strong> ${comm.chairs} &nbsp;·&nbsp;
+          <strong style="color:var(--light);">Liaison:</strong> ${comm.liaison}
+        </div>
+        ${bodyHTML}
+      </div>`;
+
+    container.appendChild(section);
+  });
+
+  // Attach textarea listeners
+  document.querySelectorAll('.q-answer').forEach(ta => {
+    ta.addEventListener('input', function() {
+      const key = this.dataset.key;
+      const val = this.value;
+      if (val.trim()) {
+        saveAnswer(key, val);
+        this.classList.add('filled');
+        const item = document.getElementById('qi-' + key);
+        if (item) item.classList.add('answered');
+        const labelEl = this.parentElement.querySelector('.q-answer-label');
+        if (labelEl) { labelEl.textContent = '✓ Answer recorded'; labelEl.classList.add('has-answer'); }
+        // Add answered badge if not present
+        const badges = item.querySelector('.q-badges');
+        if (badges && !badges.querySelector('.q-answered-badge')) {
+          const badge = document.createElement('span');
+          badge.className = 'q-answered-badge';
+          badge.textContent = '✓ Answered';
+          badges.appendChild(badge);
+        }
+      } else {
+        deleteAnswer(key);
+        this.classList.remove('filled');
+        const item = document.getElementById('qi-' + key);
+        if (item) item.classList.remove('answered');
+        const labelEl = this.parentElement.querySelector('.q-answer-label');
+        if (labelEl) { labelEl.textContent = 'Your answer'; labelEl.classList.remove('has-answer'); }
+        const badge = item?.querySelector('.q-answered-badge');
+        if (badge) badge.remove();
+      }
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+}
+
+function toggleComm(bodyId, header) {
+  const body = document.getElementById(bodyId);
+  const chevron = header.querySelector('.comm-chevron');
+  const isHidden = body.style.display === 'none';
+  body.style.display = isHidden ? 'block' : 'none';
+  chevron.textContent = isHidden ? '▼' : '▶';
+}
+
+function clearAll() {
+  if (!confirm('Clear all answers? This cannot be undone.')) return;
+  localStorage.removeItem('e100_qa');
+  location.reload();
+}
+
+function exportAnswers() {
+  const answers = loadAnswers();
+  let txt = 'EMERGING 100 OF ATLANTA — NEW CHAIR QUESTIONS & ANSWERS\n';
+  txt += 'Exported: ' + new Date().toLocaleDateString() + '\n';
+  txt += '='.repeat(60) + '\n\n';
+
+  COMMITTEES.forEach(comm => {
+    let hasAnswers = comm.questions.some((q, qi) => answers[comm.id + '_' + qi]?.trim());
+    if (!hasAnswers) return;
+
+    txt += comm.name.toUpperCase() + '\n';
+    txt += 'Chairs: ' + comm.chairs + '\n';
+    txt += 'Liaison: ' + comm.liaison + '\n';
+    txt += '-'.repeat(40) + '\n\n';
+
+    comm.questions.forEach((q, qi) => {
+      const key = comm.id + '_' + qi;
+      const answer = answers[key]?.trim();
+      if (!answer) return;
+      txt += `Q${(qi+1).toString().padStart(2,'0')} [${q.cat.toUpperCase()}]: ${q.q}\n`;
+      txt += `ANSWER: ${answer}\n\n`;
+    });
+    txt += '\n';
+  });
+
+  const blob = new Blob([txt], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'e100_new_chair_answers_' + new Date().toISOString().slice(0,10) + '.txt';
+  a.click();
+}
+
+// Init
+render();
+</script>
+</body>
+</html>

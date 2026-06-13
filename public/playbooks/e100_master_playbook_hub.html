@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Emerging Way — E100 Atlanta Master Playbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--bg2:#0d1120;--bg3:#111827;
+  --gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);
+  --white:#ede8dd;--muted:#6b7280;--light:#9ca3af;
+  --ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);
+  --green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);
+  --amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);
+  --red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,168,76,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 0% 100%,rgba(74,158,255,0.04) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 100% 50%,rgba(16,185,129,0.03) 0%,transparent 60%);}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px 120px;position:relative;z-index:1;}
+
+/* NAV */
+.sticky-nav{position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(7,9,15,0.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);padding:0 24px;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--gold);}
+.nav-links{display:flex;gap:4px;}
+.nav-link{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:6px;transition:all .18s;cursor:pointer;}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,0.05);}
+.section-anchor{padding-top:80px;margin-top:-52px;}
+
+/* HERO */
+.hero{padding:80px 0 60px;text-align:center;position:relative;padding-top:120px;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:6px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:16px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--gmid);}
+.hero-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,14vw,140px);
+  letter-spacing:6px;line-height:.85;color:var(--white);margin-bottom:8px;}
+.hero-logo span{color:var(--gold);}
+.hero-sub{font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,4vw,36px);
+  letter-spacing:8px;color:var(--muted);margin-bottom:32px;text-transform:uppercase;}
+.hero-desc{font-size:14px;color:var(--light);line-height:1.8;max-width:580px;margin:0 auto 40px;}
+.hero-desc strong{color:var(--white);}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:32px;margin-bottom:48px;}
+.hstat{text-align:center;}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--gold);line-height:1;}
+.hstat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+.hero-bar{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto;}
+
+/* NORTH STAR */
+.northstar{background:linear-gradient(135deg,rgba(201,168,76,0.09) 0%,rgba(201,168,76,0.03) 100%);
+  border:1px solid var(--gmid);border-radius:16px;padding:36px 40px;margin:48px 0;text-align:center;}
+.ns-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.ns-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,3.5vw,30px);letter-spacing:2px;color:var(--white);line-height:1.3;margin-bottom:16px;}
+.ns-sub{font-size:13px;color:var(--light);line-height:1.7;max-width:680px;margin:0 auto;}
+
+/* PIPELINE */
+.pipeline-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;margin:48px 0;align-items:center;}
+.pipe-box{background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:24px;text-align:center;}
+.pipe-icon{font-size:36px;margin-bottom:10px;}
+.pipe-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--gold);margin-bottom:6px;}
+.pipe-desc{font-size:11px;color:var(--light);line-height:1.5;}
+.pipe-arrow{font-size:28px;color:var(--gmid);text-align:center;padding:0 12px;}
+
+/* SECTION HEADERS */
+.pillar-header{display:flex;align-items:center;gap:16px;margin:56px 0 20px;}
+.ph-icon{font-size:28px;}
+.ph-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;margin-bottom:4px;}
+.ph-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--white);}
+.ph-bar{flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.ph-count{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* DEPT CARDS */
+.dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.dept-card{background:var(--bg2);border-radius:12px;padding:22px 24px;transition:all .25s;
+  position:relative;overflow:hidden;text-decoration:none;display:block;border:1px solid rgba(255,255,255,0.06);}
+.dept-card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.12);background:var(--bg3);}
+.dept-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s;border-radius:12px;}
+.dept-card:hover::before{opacity:1;}
+.p-external .dept-card::before{background:radial-gradient(circle at 0% 0%,rgba(201,168,76,0.06),transparent 60%);}
+.p-internal .dept-card::before{background:radial-gradient(circle at 0% 0%,rgba(74,158,255,0.06),transparent 60%);}
+.p-ops .dept-card::before{background:radial-gradient(circle at 0% 0%,rgba(16,185,129,0.06),transparent 60%);}
+.p-support .dept-card::before{background:radial-gradient(circle at 0% 0%,rgba(245,158,11,0.06),transparent 60%);}
+.dept-card-inner{position:relative;z-index:1;}
+.dc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.dc-id{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.dc-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;color:var(--white);line-height:1;}
+.dc-icon{font-size:28px;flex-shrink:0;}
+.dc-desc{font-size:12px;color:var(--light);line-height:1.6;margin-bottom:14px;}
+.dc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.dc-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 8px;border-radius:20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:var(--muted);}
+.dc-link{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;transition:gap .18s;}
+.p-external .dc-link{color:var(--gold);}
+.p-internal .dc-link{color:var(--ac);}
+.p-ops .dc-link{color:var(--green);}
+.p-support .dc-link{color:var(--amber);}
+.dept-card:hover .dc-link{gap:10px;}
+.p-external .dept-card{border-left:3px solid var(--gold);}
+.p-internal .dept-card{border-left:3px solid var(--ac);}
+.p-ops .dept-card{border-left:3px solid var(--green);}
+.p-support .dept-card{border-left:3px solid var(--amber);}
+
+/* ORG STRUCTURE */
+.org-flow{display:grid;gap:12px;max-width:700px;margin:0 auto 40px;}
+.org-level{background:var(--bg2);border-radius:10px;padding:14px 20px;text-align:center;}
+.org-level.exec{border:2px solid var(--gold);background:rgba(201,168,76,0.06);}
+.org-level.chairs{border:1px solid rgba(255,255,255,0.12);}
+.org-level.members{border:1px solid rgba(255,255,255,0.04);opacity:0.6;}
+.ol-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;margin-bottom:3px;}
+.org-level.exec .ol-title{color:var(--gold);}
+.org-level.chairs .ol-title{color:var(--white);}
+.org-level.members .ol-title{color:var(--muted);}
+.ol-sub{font-size:11px;color:var(--muted);}
+.org-arrow{text-align:center;color:var(--muted);font-size:18px;line-height:1;}
+
+/* CADENCE */
+.cadence-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:40px;}
+.cad-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.cad-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.cad-val{font-size:13px;color:var(--white);font-weight:500;margin-bottom:3px;}
+.cad-detail{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* PRINCIPLES */
+.principles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.principle-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px 22px;}
+.p-quote{font-size:13px;color:var(--white);font-style:italic;line-height:1.6;margin-bottom:8px;}
+.p-attr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+
+/* CONTACTS */
+.contacts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.cc-name{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.cc-detail{font-size:11px;color:var(--muted);line-height:1.5;}
+.contacts-subhdr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin:24px 0 12px;display:flex;align-items:center;gap:12px;}
+.contacts-subhdr::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:32px;}
+.tool-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;
+  padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s;}
+.tool-card:hover{border-color:var(--gmid);}
+.tool-icon{font-size:22px;margin-bottom:10px;}
+.tool-name{font-size:14px;color:var(--white);font-weight:600;margin-bottom:4px;}
+.tool-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* OPEN ITEMS */
+.open-items{background:var(--amberb);border:1px solid var(--amberp);border-radius:12px;padding:22px 26px;margin-top:40px;}
+.oi-hdr{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--amber);margin-bottom:10px;}
+.oi-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:12px;}
+.oi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;font-size:12px;color:var(--light);line-height:1.6;}
+
+/* FOOTER */
+.footer{text-align:center;padding:48px 0 24px;border-top:1px solid rgba(255,255,255,0.05);margin-top:60px;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px;color:var(--gold);margin-bottom:8px;}
+.footer-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+
+@media(max-width:768px){
+  .pipeline-row{grid-template-columns:1fr;gap:8px;}
+  .pipe-arrow{transform:rotate(90deg);}
+  .dept-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hero-stats{gap:20px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">E100 ATL · The Playbook</div>
+    <div class="nav-links">
+      <a class="nav-link" onclick="scrollTo('mission')">Mission</a>
+      <a class="nav-link" onclick="scrollTo('structure')">Structure</a>
+      <a class="nav-link" onclick="scrollTo('external')">External</a>
+      <a class="nav-link" onclick="scrollTo('internal')">Internal</a>
+      <a class="nav-link" onclick="scrollTo('ops')">Operations</a>
+      <a class="nav-link" onclick="scrollTo('support')">Support</a>
+      <a class="nav-link" onclick="scrollTo('cadence')">Cadence</a>
+      <a class="nav-link" onclick="scrollTo('principles')">Principles</a>
+      <a class="nav-link" onclick="scrollTo('contacts')">Contacts</a>
+      <a class="nav-link" onclick="scrollTo('tools')">Tools</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">The Emerging Way</div>
+  <div class="hero-logo">E<span>1</span>00</div>
+  <div class="hero-sub">Atlanta</div>
+  <p class="hero-desc">The complete organizational playbook for the <strong>Emerging 100 of Atlanta</strong> — the young professionals' arm of 100 Black Men of Atlanta. 16 departments. One mission. Built to survive every leadership transition and strengthen with every passing year.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">16</div><div class="hstat-l">Committees</div></div>
+    <div class="hstat"><div class="hstat-n">$745K+</div><div class="hstat-l">Scholarships Since 2014</div></div>
+    <div class="hstat"><div class="hstat-n">78</div><div class="hstat-l">Students Funded</div></div>
+    <div class="hstat"><div class="hstat-n">96%</div><div class="hstat-l">Students Attending College</div></div>
+    <div class="hstat"><div class="hstat-n">1,900+</div><div class="hstat-l">Volunteer Hours / Year</div></div>
+    <div class="hstat"><div class="hstat-n">3,700+</div><div class="hstat-l">Annual Social Attendees</div></div>
+    <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">C100 Campuses</div></div>
+    <div class="hstat"><div class="hstat-n">90.9%</div><div class="hstat-l">Students Career-Ready</div></div>
+  </div>
+  <div class="hero-bar"></div>
+</div>
+
+<!-- NORTH STAR -->
+<div class="section-anchor" id="mission"></div>
+<div class="northstar">
+  <div class="ns-label">The Mission</div>
+  <div class="ns-text">"The Emerging 100 of Atlanta serves as role models in the community,<br>helping grow the next leadership ecosystem."</div>
+  <div class="ns-sub">Every program, every event, every dollar raised, every hour volunteered exists in service of this mission. The classroom to the college campus to the corporation — that is the pipeline E100 builds, funds, and walks alongside.</div>
+</div>
+
+<!-- PIPELINE -->
+<div class="pipeline-row">
+  <div class="pipe-box">
+    <div class="pipe-icon">🏫</div>
+    <div class="pipe-name">Classroom</div>
+    <div class="pipe-desc">B.E.S.T. Academy — high school young men developing grit, identity, leadership, and accountability. Every 3rd Friday.</div>
+  </div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-box">
+    <div class="pipe-icon">🎓</div>
+    <div class="pipe-name">College Campus</div>
+    <div class="pipe-desc">Collegiate 100 — five Atlanta campuses. Career-ready, self-led servant leaders. The scholars E100 invests in.</div>
+  </div>
+  <div class="pipe-arrow">→</div>
+  <div class="pipe-box">
+    <div class="pipe-icon">🏢</div>
+    <div class="pipe-name">Corporation</div>
+    <div class="pipe-desc">They enter the workforce. They mentor others. They become the leaders companies want to hire. The investment compounds.</div>
+  </div>
+</div>
+
+<!-- ORG STRUCTURE -->
+<div class="section-anchor" id="structure"></div>
+<div style="text-align:center;margin-bottom:28px;">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Organizational Structure</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--white);">The Corporate Lens</div>
+  <div style="font-size:12px;color:var(--light);margin-top:6px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6;">E100 operates like a company. The Exec Board is the C-Suite. Chairs are Directors. Members are the Team.</div>
+</div>
+<div class="org-flow">
+  <div class="org-level exec">
+    <div class="ol-title">Executive Board</div>
+    <div class="ol-sub">President · VP · Treasurer · Secretary · Parliamentarian · C-Suite equivalent · Reports to 100 Black Men of Atlanta</div>
+  </div>
+  <div class="org-arrow">↓</div>
+  <div class="org-level chairs">
+    <div class="ol-title">Chairs (16 Committees)</div>
+    <div class="ol-sub">Director-level · Own their committee end-to-end · Report to Exec Board Liaison</div>
+  </div>
+  <div class="org-arrow">↓</div>
+  <div class="org-level members">
+    <div class="ol-title">Members</div>
+    <div class="ol-sub">The Team · Ages 25–35 · Young professionals · The heart of E100</div>
+  </div>
+</div>
+
+<!-- PILLAR 1 — EXTERNAL IMPACT -->
+<div class="section-anchor" id="external"></div>
+<div class="pillar-header p-external">
+  <div class="ph-icon">🌍</div>
+  <div>
+    <div class="ph-label" style="color:var(--gold);">Pillar 1</div>
+    <div class="ph-name">External Impact</div>
+  </div>
+  <div class="ph-bar"></div>
+  <div class="ph-count">6 Committees</div>
+</div>
+<div class="dept-grid p-external">
+
+  <a class="dept-card" href="e100_best_academy_playbook_v2.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">EXT-01 · Youth Programs</div><div class="dc-name">B.E.S.T. Academy</div></div><div class="dc-icon">🏫</div></div>
+      <p class="dc-desc">Monthly character development sessions for high school young men. The classroom in the pipeline. Every 3rd Friday, August through April. Corporate partner facilitated sessions each month.</p>
+      <div class="dc-tags"><span class="dc-tag">3rd Friday Monthly</span><span class="dc-tag">Aug–Apr</span><span class="dc-tag">Corporate Partners</span><span class="dc-tag">Rites of Passage</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Mikal Driver · Demetrius Odom · Carlton Coleman · Liaison: Daniel Farr & Julius Thomas</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_c100_playbook_v2.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">EXT-02 · College Programs</div><div class="dc-name">Collegiate 100</div></div><div class="dc-icon">🎓</div></div>
+      <p class="dc-desc">Five Atlanta campuses. Career-ready, self-led servant leaders. The college campus in the pipeline. RISE program, Career Fair at Delta HQ, Top Golf mentorship, and more.</p>
+      <div class="dc-tags"><span class="dc-tag">5 Campuses</span><span class="dc-tag">Career Fair · Fall</span><span class="dc-tag">RISE Program</span><span class="dc-tag">C100 → E100 Pipeline</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Donte Wilder · Nile Oates · Dylan Merriweather · Desmond Hazel · Ian Barrett · Liaison: Daniel Farr & Julius Thomas</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_community_service_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">EXT-03 · Community</div><div class="dc-name">Community Service</div></div><div class="dc-icon">🤝</div></div>
+      <p class="dc-desc">E100's greatest partner acquisition tool. Together Tailgate, Toy Drive, MLK Day of Service, Chase Backpack Drive, Hawks Sandwich Packing. Serving alongside companies converts strangers to sponsors.</p>
+      <div class="dc-tags"><span class="dc-tag">Together Tailgate · Nov</span><span class="dc-tag">Toy Drive · Dec</span><span class="dc-tag">MLK Day · Jan</span><span class="dc-tag">Partner On-Ramp</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Will Mobley · Josh Powell · Henry Ducre · Liaison: Dr. Tony Price</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_health_wellness_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">EXT-04 · Community Wellness</div><div class="dc-name">Health & Wellness</div></div><div class="dc-icon">💚</div></div>
+      <p class="dc-desc">Mental, financial, and physical wellness events open to Atlanta. Laughing Matters, Brotherhood Brunch, and equity bootcamps. We cannot fix anyone — we ensure access.</p>
+      <div class="dc-tags"><span class="dc-tag">Mental Wellness</span><span class="dc-tag">Financial Wellness</span><span class="dc-tag">Physical Wellness</span><span class="dc-tag">Public Events</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Dr. Michael Birdson · Quinton Bennett · Omari Hughes · Liaison: Dr. Tony Price</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_ocu_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">EXT-05 · Civic Engagement</div><div class="dc-name">Operation Community Uplift</div></div><div class="dc-icon">🗳️</div></div>
+      <p class="dc-desc">E100's civic responsibility arm. Voter engagement activities that vary by election cycle — never partisan, always present. December Street Clean-Up is the annual staple.</p>
+      <div class="dc-tags"><span class="dc-tag">Non-Partisan Always</span><span class="dc-tag">Election-Dependent</span><span class="dc-tag">Street Clean-Up · Dec</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Marvel Joseph · Reggie White · Liaison: Julius Thomas</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_gala_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">EXT-06 · Flagship Event</div><div class="dc-name">Emerging Leaders Gala</div></div><div class="dc-icon">🏆</div></div>
+      <p class="dc-desc">The Super Bowl. Always May. Delta Flight Museum. $110K+ in scholarships in 2026. 400+ guests. Partnerships raises the money — Gala runs the event. 14th Annual in 2027.</p>
+      <div class="dc-tags"><span class="dc-tag">Always May</span><span class="dc-tag">Delta Flight Museum</span><span class="dc-tag">$110K+ Scholarships</span><span class="dc-tag">400+ Guests</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Cory Harris · Dr. Michael Curtis Jr. · Shakeel Johnson · Andre Henry · Liaison: Daniel Farr & Julius Thomas</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- PILLAR 2 — INTERNAL DEVELOPMENT -->
+<div class="section-anchor" id="internal"></div>
+<div class="pillar-header p-internal">
+  <div class="ph-icon">🏛️</div>
+  <div>
+    <div class="ph-label" style="color:var(--ac);">Pillar 2</div>
+    <div class="ph-name">Internal Development</div>
+  </div>
+  <div class="ph-bar"></div>
+  <div class="ph-count">3 Committees</div>
+</div>
+<div class="dept-grid p-internal">
+
+  <a class="dept-card" href="e100_emerging_development_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">INT-01 · Member Engagement</div><div class="dc-name">Emerging Development</div></div><div class="dc-icon">🤜</div></div>
+      <p class="dc-desc">Plans the fun things. Brotherhood, investment, and the C100-to-E100 pipeline. New Member Meetup, BBQ, Men's Mental Health, Super Bowl Party. You cannot pour from an empty cup.</p>
+      <div class="dc-tags"><span class="dc-tag">New Member Meetup</span><span class="dc-tag">Annual BBQ</span><span class="dc-tag">Brotherhood</span><span class="dc-tag">C100 Pipeline</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Will Fleming · Bayo Adegbite · Iyke Iwotor · Emmanuel Mgbemena · Liaison: Carl McCray</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_corporate_roundtable_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">INT-02 · Corporate Access</div><div class="dc-name">Corporate Roundtable</div></div><div class="dc-icon">🏢</div></div>
+      <p class="dc-desc">Secures all GBM corporate locations (3rd Tuesday monthly) and creates executive access moments for members. Federal Reserve, VISA, Delta HQ, Deloitte, and more. Every space is a door.</p>
+      <div class="dc-tags"><span class="dc-tag">GBM Hosting</span><span class="dc-tag">Executive Access</span><span class="dc-tag">Partner Pipeline</span><span class="dc-tag">14+ Venues</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Tyler Royal · Bobby Kannady · Darren Maynard · Liaison: Julius Thomas</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_process_governance_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">INT-03 · The Rulebook</div><div class="dc-name">Process & Governance</div></div><div class="dc-icon">⚖️</div></div>
+      <p class="dc-desc">Elections cycle, brand guidelines, rule enforcement, contracts, and signing authority. The institutional backbone that survives every transition.</p>
+      <div class="dc-tags"><span class="dc-tag">Elections Cycle</span><span class="dc-tag">Brand Guidelines</span><span class="dc-tag">Rule Enforcement</span><span class="dc-tag">Contracts</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Terrance Pryor · Bobby Daniels (Supporting Archie Wilson) · Liaison: Carl McCray</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- PILLAR 3 — OPERATIONAL EXCELLENCE -->
+<div class="section-anchor" id="ops"></div>
+<div class="pillar-header p-ops">
+  <div class="ph-icon">⚙️</div>
+  <div>
+    <div class="ph-label" style="color:var(--green);">Pillar 3</div>
+    <div class="ph-name">Operational Excellence</div>
+  </div>
+  <div class="ph-bar"></div>
+  <div class="ph-count">4 Committees</div>
+</div>
+<div class="dept-grid p-ops">
+
+  <a class="dept-card" href="e100_partnerships_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">OPS-01 · Revenue Engine</div><div class="dc-name">Partnerships & Fundraising</div></div><div class="dc-icon">💼</div></div>
+      <p class="dc-desc">The blood that flows throughout the E100 body. The Big 4 (Delta, Gas South, Target, Blank Foundation), grant strategy, Partner Appreciation in July. Partnerships raises the money.</p>
+      <div class="dc-tags"><span class="dc-tag">The Big 4</span><span class="dc-tag">Grant Pipeline</span><span class="dc-tag">Partner Appreciation · July</span><span class="dc-tag">Lifeblood</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Quavious Hazzard · Avion Cainion · Joshua John Frank · Dre Simpson · Liaison: Daniel Farr & Brandon Whatley</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_social_fundraising_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">OPS-02 · Social Events</div><div class="dc-name">Social Fundraising</div></div><div class="dc-icon">🎉</div></div>
+      <p class="dc-desc">Three signature events. Party with a purpose. Cocktails & Conversations (March), Park 100 at Park Tavern (Labor Day), Holiday Soirée at Coca-Cola Roxy (2nd week of December). 3,700+ attendees annually.</p>
+      <div class="dc-tags"><span class="dc-tag">C&C · March</span><span class="dc-tag">Park 100 · Labor Day</span><span class="dc-tag">Holiday Soirée · Dec</span><span class="dc-tag">Platinum $30K</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Jordan Watson · Avery Johnson · Remington Rolé · Brandon Smith · Liaison: Daniel Farr & Brandon Whatley</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_communications_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">OPS-03 · Brand & Story</div><div class="dc-name">Communications</div></div><div class="dc-icon">📱</div></div>
+      <p class="dc-desc">Instagram + LinkedIn. Receives content, tells the story. Caption formula: Hook → Story → Gratitude → Mission → Hashtags. Approval required on all posts. Content flows as a story.</p>
+      <div class="dc-tags"><span class="dc-tag">Instagram + LinkedIn</span><span class="dc-tag">Approval Required</span><span class="dc-tag">48hr Standard</span><span class="dc-tag">Story-First</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Darryl Humphrey · Don Gibson · Ashton Edmunds · Liaison: Daniel Farr & Carl McCray</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_data_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">OPS-04 · Infrastructure</div><div class="dc-name">Data & Systems</div></div><div class="dc-icon">📊</div></div>
+      <p class="dc-desc">Surveys, impact outputs, Monday.com administration, website, dashboards, and automations. Every number E100 claims publicly — 96%, 90.9%, $745K+ — this committee produces. Data is the proof.</p>
+      <div class="dc-tags"><span class="dc-tag">Pre/Post Surveys</span><span class="dc-tag">Monday.com Admin</span><span class="dc-tag">Annual Impact Report</span><span class="dc-tag">Website</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Louis Smith · Vincent Culley · Liaison: Carl McCray</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- SUPPORT FUNCTIONS -->
+<div class="section-anchor" id="support"></div>
+<div class="pillar-header p-support">
+  <div class="ph-icon">🔧</div>
+  <div>
+    <div class="ph-label" style="color:var(--amber);">Support Functions</div>
+    <div class="ph-name">Finance & Newsletter</div>
+  </div>
+  <div class="ph-bar"></div>
+  <div class="ph-count">3 Committees</div>
+</div>
+<div class="dept-grid p-support">
+
+  <a class="dept-card" href="e100_finance_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">SUP-01 · Financial Operations</div><div class="dc-name">Finance</div></div><div class="dc-icon">💰</div></div>
+      <p class="dc-desc">Financial operations committee supporting the Treasurer and Exec Board. Scope is being defined for the 2026-27 year. Austin Byers-King is the Chair — coordinate with Brandon Whatley on scope.</p>
+      <div class="dc-tags"><span class="dc-tag">Scope TBD</span><span class="dc-tag">Financial Operations</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Austin Byers-King · Liaison: Brandon Whatley</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_newsletter_playbook_v1.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">SUP-02 · Corporate Voice</div><div class="dc-name">Newsletter</div></div><div class="dc-icon">📰</div></div>
+      <p class="dc-desc">The corporate voice of E100. Monthly — August through May. Sent on the 30th or 31st. Exec Board greeter rotates monthly. Culmination of the entire org's activities. Multiple drafts required before send.</p>
+      <div class="dc-tags"><span class="dc-tag">Monthly · Aug–May</span><span class="dc-tag">30th or 31st</span><span class="dc-tag">Corporate Voice</span><span class="dc-tag">Two Lists</span></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px;">Jordan Frank · Supporting: Brooks Baptiste & Ashton Edmunds · Liaison: Daniel Farr & Dr. Tony Price</div>
+      <div class="dc-link">Open Playbook →</div>
+    </div>
+  </a>
+
+  <a class="dept-card" href="e100_department_map_v3.html">
+    <div class="dept-card-inner">
+      <div class="dc-top"><div><div class="dc-id">SUP-00 · Architecture</div><div class="dc-name">Org Architecture</div></div><div class="dc-icon">🗺️</div></div>
+      <p class="dc-desc">The full committee map. All 16 committees across 3 pillars + support functions. Leadership structure, committee roster, and how information flows through the org. The blueprint.</p>
+      <div class="dc-tags"><span class="dc-tag">3 Pillars</span><span class="dc-tag">16 Committees</span><span class="dc-tag">Org Chart</span><span class="dc-tag">Full Roster</span></div>
+      <div class="dc-link">Open Map →</div>
+    </div>
+  </a>
+
+</div>
+
+<!-- CADENCE -->
+<div class="section-anchor" id="cadence"></div>
+<div style="text-align:center;margin:56px 0 24px;">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Meeting Cadence</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--white);">How the Org Runs</div>
+</div>
+<div class="cadence-grid">
+  <div class="cad-box"><div class="cad-label">General Body Meeting</div><div class="cad-val">3rd Tuesday Monthly</div><div class="cad-detail">Except May, June, July, December. Rotating corporate locations. All members expected. CR owns venue. P&G owns agenda.</div></div>
+  <div class="cad-box"><div class="cad-label">BEST Academy Sessions</div><div class="cad-val">3rd Friday Monthly</div><div class="cad-detail">Except May, June, July, December. Or if a corporate partner engagement justifies a schedule change.</div></div>
+  <div class="cad-box"><div class="cad-label">Newsletter Send Date</div><div class="cad-val">30th or 31st Monthly</div><div class="cad-detail">August through May. If 30th/31st falls on a weekend, send the Friday before. 10 issues per year.</div></div>
+  <div class="cad-box"><div class="cad-label">Membership Cycle</div><div class="cad-val">June–September</div><div class="cad-detail">Info (June) → Applications (July) → Interviews (July–Aug) → Decisions (Aug) → Orientation (Sept) → Induction (Sept).</div></div>
+  <div class="cad-box"><div class="cad-label">Chair & Advisor Training</div><div class="cad-val">June · Annual</div><div class="cad-detail">New Chairs trained before program year starts. Sat 6/27 · CODA Tech Square. Where the Playbook matters most.</div></div>
+  <div class="cad-box"><div class="cad-label">Partner Appreciation</div><div class="cad-val">July · Annual</div><div class="cad-detail">All current partners + prospects. Fox Theatre. The stewardship event that retains the relationships that fund everything.</div></div>
+</div>
+
+<!-- PRINCIPLES -->
+<div class="section-anchor" id="principles"></div>
+<div style="text-align:center;margin:56px 0 24px;">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Institutional Knowledge</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--white);">The Principles That Drive Us</div>
+  <div style="font-size:12px;color:var(--light);margin-top:6px;">What makes E100 work — written down for the first time.</div>
+</div>
+<div class="principles-grid">
+  <div class="principle-card"><div class="p-quote">"Partnerships is the blood that flows throughout the Emerging 100 of Atlanta body."</div><div class="p-attr">Partnerships & Fundraising</div></div>
+  <div class="principle-card"><div class="p-quote">"We cannot fix anyone — but we can ensure they have access."</div><div class="p-attr">Health & Wellness</div></div>
+  <div class="principle-card"><div class="p-quote">"You cannot pour from an empty cup."</div><div class="p-attr">Emerging Development</div></div>
+  <div class="principle-card"><div class="p-quote">"White glove service. You must have grit. You must be a storyteller. The kids and the work tell the story."</div><div class="p-attr">Partnerships — What Makes Money Move</div></div>
+  <div class="principle-card"><div class="p-quote">"Community service is E100's greatest partner acquisition tool. Serving alongside a company is the first entrance into the E100 house."</div><div class="p-attr">Community Service</div></div>
+  <div class="principle-card"><div class="p-quote">"Comms must flow as a story. Content flows as a story. Keep the children front and center."</div><div class="p-attr">Communications</div></div>
+  <div class="principle-card"><div class="p-quote">"The measure of success is whether each leadership transition strengthens rather than resets the organization."</div><div class="p-attr">The Emerging Way</div></div>
+  <div class="principle-card"><div class="p-quote">"The beauty is we can go to lots of various spaces. Each space is a relationship and a door."</div><div class="p-attr">Corporate Roundtable</div></div>
+  <div class="principle-card"><div class="p-quote">"Non-partisan. Always. OCU shows up for Atlanta as a citizen — not just as a program."</div><div class="p-attr">Operation Community Uplift</div></div>
+</div>
+
+<!-- KEY CONTACTS -->
+<div class="section-anchor" id="contacts"></div>
+<div style="text-align:center;margin:56px 0 24px;">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Key Contacts</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--white);">Partners, Vendors & Venues</div>
+  <div style="font-size:12px;color:var(--light);margin-top:6px;">The external relationships that make E100's programs run — documented so they survive every transition.</div>
+</div>
+
+<div class="contacts-subhdr">📸 Photography + Video</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">Primary Photographer · All Programs</div><div class="cc-name">Donald Gibson</div><div class="cc-detail">Primary photo POC across all E100 events — BEST, C100, CS, Gala, Social Fundraisers. Book by 1st Friday for BEST sessions.</div></div>
+  <div class="contact-card"><div class="cc-role">Photographer 2 · Gala</div><div class="cc-name">TooShay Productions</div><div class="cc-detail">Second photographer for the Gala. Full event coverage. 2026: $1,000.</div></div>
+  <div class="contact-card"><div class="cc-role">Videographer · Gala</div><div class="cc-name">Above The Line Media (Darryl)</div><div class="cc-detail">Primary Gala videographer. Scholar moments, keynote, sponsor presentations. 2026: $4,000.</div></div>
+</div>
+
+<div class="contacts-subhdr">🎨 Graphics + Design</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">Social Graphics · All Events</div><div class="cc-name">Eddision Smith · Penthouse Creative</div><div class="cc-detail">All 12 marketing assets per Social Fundraiser + Gala graphics. Theme must be locked before briefing. Board manages relationship.</div></div>
+  <div class="contact-card"><div class="cc-role">BEST Academy School Contact</div><div class="cc-name">Ray Singer</div><div class="cc-detail">Program Manager at BEST Academy. All session scheduling, room access, and school-side logistics flow through Ray.</div></div>
+</div>
+
+<div class="contacts-subhdr">📍 Key Venues</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">Gala Venue · In-Kind</div><div class="cc-name">Delta Flight Museum</div><div class="cc-detail">Annual Gala venue. In-kind — $0 facility cost. E100's most valuable non-cash asset. Relationship held by President.</div></div>
+  <div class="contact-card"><div class="cc-role">Holiday Soirée Venue</div><div class="cc-name">Coca-Cola Roxy</div><div class="cc-detail">Holiday Soirée & Benefit. 2nd week of December annually. 1,500+ capacity. 2025-26 was 2nd year at this venue.</div></div>
+  <div class="contact-card"><div class="cc-role">Park 100 Venue · Permanent</div><div class="cc-name">Park Tavern</div><div class="cc-detail">Park 100 is always at Park Tavern. Free per standing agreement. Labor Day Weekend annually.</div></div>
+  <div class="contact-card"><div class="cc-role">Partner Appreciation Venue</div><div class="cc-name">Fox Theatre</div><div class="cc-detail">Annual Partner Appreciation event venue. July. All current partners + prospects in one iconic Atlanta room.</div></div>
+  <div class="contact-card"><div class="cc-role">Mental Health + Wellness Events</div><div class="cc-name">The Gathering Spot</div><div class="cc-detail">Used for Men's Health Brunch and Laughing Matters. Atlanta wellness and community space.</div></div>
+</div>
+
+<div class="contacts-subhdr">🍽️ Catering, Bar + Production</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">Catering + Décor + Florals · Gala</div><div class="cc-name">Affairs to Remember</div><div class="cc-detail">Full catering, linen, florals, tablescape. Largest single Gala vendor. 2026: $62K. Build 15% contingency. Watch overage.</div></div>
+  <div class="contact-card"><div class="cc-role">Bar + Spirits · Gala</div><div class="cc-name">Legendary</div><div class="cc-detail">Spirits and bartending for Gala cocktail hour and reception. 2026: $25,285.</div></div>
+  <div class="contact-card"><div class="cc-role">Additional Décor · Gala</div><div class="cc-name">A-Team Events</div><div class="cc-detail">Additional Gala décor and floral work. 2026: $7,695.</div></div>
+  <div class="contact-card"><div class="cc-role">AV + Teleprompter · Gala</div><div class="cc-name">EAV</div><div class="cc-detail">Full AV production + teleprompter for Gala. Scripts loaded before event night. 2026: $8,943.</div></div>
+  <div class="contact-card"><div class="cc-role">BEST Sessions · Food</div><div class="cc-name">Gustos (Westside)</div><div class="cc-detail">Primary food vendor for BEST Academy sessions. Order confirmed by 1st Friday each month. Budget $1,000–$1,500/session.</div></div>
+</div>
+
+<div class="contacts-subhdr">🎵 Entertainment + Event Staff</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">DJ · Gala</div><div class="cc-name">DJ Tay</div><div class="cc-detail">Gala DJ for cocktail hour + reception. 2026: $1,075. Social Fundraisers: 2 DJs per event — confirm annually.</div></div>
+  <div class="contact-card"><div class="cc-role">Check-In Staff · Gala</div><div class="cc-name">Coat Chix</div><div class="cc-detail">4 staff managing guest check-in at Gala. 2026: $850. First impression of the night.</div></div>
+  <div class="contact-card"><div class="cc-role">Photo Booth · Gala</div><div class="cc-name">PicMe</div><div class="cc-detail">Branded photo booth for Gala cocktail hour. 2026: $650. Guest keepsake and social content moment.</div></div>
+</div>
+
+<div class="contacts-subhdr">🎟️ Ticketing + Printing</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">Ticketing · All Events</div><div class="cc-name">Ticket Falcon</div><div class="cc-detail">Ticketing platform for all Social Fundraisers and Gala. Managed by Treasurer. Full setup process to be documented.</div></div>
+  <div class="contact-card"><div class="cc-role">Program Booklets · Gala</div><div class="cc-name">Prima</div><div class="cc-detail">Prints Gala program booklets — sponsor ads, scholar bios, run of show. 2026: $2,411. Submit early.</div></div>
+  <div class="contact-card"><div class="cc-role">Ceremonial Checks · Gala</div><div class="cc-name">FedEx</div><div class="cc-detail">Large ceremonial scholarship checks for on-stage presentation. 2026: $1,175. Print early — needed for rehearsal.</div></div>
+  <div class="contact-card"><div class="cc-role">Member Awards · Gala</div><div class="cc-name">Benchmark</div><div class="cc-detail">All Gala member awards — Emerging Leader, Trailblazer, and internal E100 awards. 2026: $3,004.</div></div>
+  <div class="contact-card"><div class="cc-role">Step & Repeat · Gala</div><div class="cc-name">StickerBanners</div><div class="cc-detail">Branded step & repeat for Gala. 2026: $645. Must arrive before event day.</div></div>
+</div>
+
+<div class="contacts-subhdr">🤝 Anchor Corporate Partners</div>
+<div class="contacts-grid">
+  <div class="contact-card"><div class="cc-role">Big 4 · Anchor Partner</div><div class="cc-name">Delta Air Lines</div><div class="cc-detail">Multi-program. Career Fair, BEST, Gala, CS, NVW. C100 Career Fair contact: Melvia Jones. Flight Museum in-kind held by President.</div></div>
+  <div class="contact-card"><div class="cc-role">Big 4 · Most Embedded Partner</div><div class="cc-name">Gas South</div><div class="cc-detail">Most touchpoints of any partner — BEST, RISE, Backpack Drive, Tailgate, NVW, Gala. Contact: Yasmine Vaughn (via Partnerships).</div></div>
+  <div class="contact-card"><div class="cc-role">Big 4 · Anchor Partner</div><div class="cc-name">Target</div><div class="cc-detail">Community Service + Gala + C100 partner. Growing multi-program relationship.</div></div>
+  <div class="contact-card"><div class="cc-role">Big 4 · Foundation Partner</div><div class="cc-name">Arthur M. Blank Foundation</div><div class="cc-detail">Primary foundation grant. $30K Gala sponsor. President-level relationship — do not contact without President.</div></div>
+  <div class="contact-card"><div class="cc-role">CS · Chase Bank</div><div class="cc-name">Lynette Jackson</div><div class="cc-detail">Chase Bank. July back-to-school backpack drive. Contact through Partnerships Chair first.</div></div>
+  <div class="contact-card"><div class="cc-role">CS · Atlanta Hawks</div><div class="cc-name">Alexis Roe</div><div class="cc-detail">Atlanta Hawks. Annual sandwich packing + C100 workforce dev panel. Contact through Partnerships Chair first.</div></div>
+  <div class="contact-card"><div class="cc-role">CS · Community Org</div><div class="cc-name">Kinnis Leonard · Meals on Wheels</div><div class="cc-detail">Together Tailgate and community service org partner.</div></div>
+  <div class="contact-card"><div class="cc-role">Toy Drive · Distribution</div><div class="cc-name">Tru Foundation</div><div class="cc-detail">December Toy Drive distribution partner. Contact TBD — confirm with Community Service Chair.</div></div>
+</div>
+
+<!-- TOOLS & RESOURCES -->
+<div class="section-anchor" id="tools"></div>
+<div style="text-align:center;margin:56px 0 24px;">
+  <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Tools & Resources</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--white);">Supporting Documents</div>
+  <div style="font-size:12px;color:var(--light);margin-top:6px;">Supporting documents that live outside the 16 committee playbooks.</div>
+</div>
+<div class="tools-grid">
+  <a class="tool-card" href="e100_event_checklists.html">
+    <div class="tool-icon">✅</div>
+    <div class="tool-name">Pre-Event Checklists</div>
+    <div class="tool-desc">All 4 event type checklists — Large-Scale Ticketed · Community Service · Program/Session · Member Experience. Also lives inside each committee playbook.</div>
+  </a>
+  <a class="tool-card" href="e100_141_questions.html">
+    <div class="tool-icon">❓</div>
+    <div class="tool-name">141 New Chair Questions</div>
+    <div class="tool-desc">Every question a brand new Chair would need answered before they could plan. All 16 committees. Printable and shareable.</div>
+  </a>
+  <a class="tool-card" href="e100_new_chair_questions.html">
+    <div class="tool-icon">💬</div>
+    <div class="tool-name">New Chair Q&A — Interactive</div>
+    <div class="tool-desc">Same 141 questions but interactive. Type your answers directly. Progress saves automatically. Export to text file when done.</div>
+  </a>
+  <a class="tool-card" href="e100_calendar_2026_2027.html">
+    <div class="tool-icon">📅</div>
+    <div class="tool-name">2026–2027 Program Calendar</div>
+    <div class="tool-desc">Full program year calendar — all events, deadlines, and key dates from August 2026 through June 2027.</div>
+  </a>
+  <a class="tool-card" href="e100_sweep_analysis.html">
+    <div class="tool-icon">🔍</div>
+    <div class="tool-name">Organizational Sweep Analysis</div>
+    <div class="tool-desc">Senior-level analysis of E100's current state — gaps, strengths, and priorities for the 2026-27 year.</div>
+  </a>
+  <a class="tool-card" href="e100_notion_setup_guide.html">
+    <div class="tool-icon">📋</div>
+    <div class="tool-name">Notion Setup Guide</div>
+    <div class="tool-desc">Step-by-step guide for setting up the Emerging Way in Notion as a living digital workspace for the full org.</div>
+  </a>
+</div>
+
+<!-- OPEN ITEMS -->
+<div class="open-items">
+  <div class="oi-hdr">📎 Open Items Across the Playbook</div>
+  <div class="oi-title">These sections are marked "We still need this for an update" throughout the playbooks. Every amber banner is a gap waiting to be filled.</div>
+  <div class="oi-grid">
+    <div>· Gala scholarship sponsor history (year · amount · contact)</div>
+    <div>· Gala table sponsor history (level · years · consecutive · contact)</div>
+    <div>· Social Fundraising section buyer history (company · event · year)</div>
+    <div>· C100 Career Fair company list (Excel or PDF)</div>
+    <div>· Current Partnerships sponsorship deck</div>
+    <div>· Grant history & past applications</div>
+    <div>· E100 bylaws — current version</div>
+    <div>· Newsletter platform · list size · past issues archive</div>
+    <div>· Finance committee scope definition</div>
+    <div>· Annual impact report — most recent version</div>
+    <div>· 2025-26 volunteer hour total (confirmed)</div>
+    <div>· 141 new chair questions — <a href="e100_new_chair_questions.html" style="color:var(--gold);">answer here</a></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">Emerging 100 · Atlanta</div>
+  <div class="footer-sub" style="margin-bottom:8px;">The Emerging Way · Master Playbook · 16 Committees · 2026–2027 · Living Document</div>
+  <div class="footer-sub">Classroom → College Campus → Corporation · Built to survive every transition · Strengthened by every year</div>
+</div>
+
+</div>
+
+<script>
+function scrollTo(id){
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

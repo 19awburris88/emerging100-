@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — Pre-Event Checklists</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--bg2:#0d1120;--bg3:#111827;
+  --gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);
+  --white:#ede8dd;--muted:#6b7280;--light:#9ca3af;
+  --ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);
+  --green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);
+  --amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);
+  --red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);
+  --purple:#a855f7;--purpleb:rgba(168,85,247,0.10);--purplep:rgba(168,85,247,0.25);
+  --pink:#ec4899;--pinkb:rgba(236,72,153,0.12);--pinkp:rgba(236,72,153,0.28);
+  --teal:#14b8a6;--tealb:rgba(20,184,166,0.12);--tealp:rgba(20,184,166,0.28);
+
+  /* Event type accent colors */
+  --social:#ec4899;
+  --community:#10b981;
+  --program:#4a9eff;
+  --member:#f59e0b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,0.05) 0%,transparent 60%);}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px 100px;position:relative;z-index:1;}
+
+/* NAV */
+.sticky-nav{position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(7,9,15,0.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.06);padding:0 24px;}
+.nav-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:12px;}
+.nav-brand{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--gold);white-space:nowrap;}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+.nav-btn{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);padding:5px 10px;border-radius:6px;cursor:pointer;border:none;background:none;transition:all .18s;}
+.nav-btn:hover{color:var(--white);background:rgba(255,255,255,0.05);}
+.nav-btn.social{color:var(--social);}
+.nav-btn.community{color:var(--community);}
+.nav-btn.program{color:var(--program);}
+.nav-btn.member{color:var(--member);}
+
+/* HEADER */
+header{padding:90px 0 40px;text-align:center;}
+.hdr-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.hdr-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,90px);letter-spacing:4px;line-height:.88;color:var(--white);margin-bottom:16px;}
+.hdr-title span{color:var(--gold);}
+.hdr-sub{font-size:13px;color:var(--light);line-height:1.7;max-width:580px;margin:0 auto 28px;}
+.type-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:8px;}
+.type-pill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 16px;border-radius:20px;cursor:pointer;border:none;transition:all .2s;}
+.tp-social{background:rgba(236,72,153,0.12);color:var(--social);border:1px solid rgba(236,72,153,0.3);}
+.tp-community{background:rgba(16,185,129,0.12);color:var(--community);border:1px solid rgba(16,185,129,0.3);}
+.tp-program{background:rgba(74,158,255,0.10);color:var(--program);border:1px solid rgba(74,158,255,0.25);}
+.tp-member{background:rgba(245,158,11,0.12);color:var(--member);border:1px solid rgba(245,158,11,0.28);}
+.type-pill:hover{transform:translateY(-1px);filter:brightness(1.2);}
+
+/* SECTION ANCHORS */
+.section-anchor{padding-top:72px;margin-top:-52px;}
+
+/* EVENT TYPE HEADER */
+.event-type-header{margin:48px 0 28px;}
+.eth-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:4px;text-transform:uppercase;
+  padding:4px 14px;border-radius:20px;display:inline-block;margin-bottom:12px;}
+.eth-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,60px);letter-spacing:3px;color:var(--white);margin-bottom:8px;}
+.eth-desc{font-size:12px;color:var(--light);line-height:1.7;max-width:620px;}
+.eth-committees{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.eth-comm{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:3px 10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:4px;color:var(--muted);}
+
+/* social colors */
+.social-theme .eth-badge{background:rgba(236,72,153,0.12);color:var(--social);border:1px solid rgba(236,72,153,0.3);}
+.social-theme .eth-title{color:var(--social);}
+.community-theme .eth-badge{background:rgba(16,185,129,0.12);color:var(--community);border:1px solid rgba(16,185,129,0.3);}
+.community-theme .eth-title{color:var(--community);}
+.program-theme .eth-badge{background:rgba(74,158,255,0.10);color:var(--program);border:1px solid rgba(74,158,255,0.25);}
+.program-theme .eth-title{color:var(--program);}
+.member-theme .eth-badge{background:rgba(245,158,11,0.12);color:var(--member);border:1px solid rgba(245,158,11,0.28);}
+.member-theme .eth-title{color:var(--member);}
+
+/* PROGRESS BAR */
+.progress-bar-wrap{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;
+  padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:16px;}
+.progress-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;}
+.progress-track{flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;transition:width .4s ease;}
+.progress-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);white-space:nowrap;min-width:50px;text-align:right;}
+.social-theme .progress-fill{background:var(--social);}
+.community-theme .progress-fill{background:var(--community);}
+.program-theme .progress-fill{background:var(--program);}
+.member-theme .progress-fill{background:var(--member);}
+
+/* CHECKLIST SECTIONS */
+.cl-section{margin-bottom:24px;}
+.cl-section-header{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.cl-section-header::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
+/* CHECKLIST ITEMS */
+.cl-items{display:grid;gap:6px;}
+.cl-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;
+  padding:12px 16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;
+  transition:background .18s, border-color .18s;position:relative;overflow:hidden;}
+.cl-item:hover{background:var(--bg3);}
+.cl-item.checked{background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);}
+.cl-item.checked .cl-text{color:var(--muted);text-decoration:line-through;}
+.cl-item.checked .cl-checkbox{background:var(--green);border-color:var(--green);}
+.cl-item.checked .cl-checkbox::after{opacity:1;}
+.cl-item.na{opacity:0.4;}
+
+/* theme colored checked state */
+.social-theme .cl-item.checked{background:rgba(236,72,153,0.05);border-color:rgba(236,72,153,0.2);}
+.social-theme .cl-item.checked .cl-checkbox{background:var(--social);border-color:var(--social);}
+.community-theme .cl-item.checked{background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);}
+.community-theme .cl-item.checked .cl-checkbox{background:var(--community);border-color:var(--community);}
+.program-theme .cl-item.checked{background:rgba(74,158,255,0.05);border-color:rgba(74,158,255,0.2);}
+.program-theme .cl-item.checked .cl-checkbox{background:var(--program);border-color:var(--program);}
+.member-theme .cl-item.checked{background:rgba(245,158,11,0.05);border-color:rgba(245,158,11,0.2);}
+.member-theme .cl-item.checked .cl-checkbox{background:var(--member);border-color:var(--member);}
+
+.cl-checkbox{width:18px;height:18px;border-radius:4px;border:2px solid rgba(255,255,255,0.2);
+  flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.cl-checkbox::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:11px;color:var(--white);font-weight:700;opacity:0;transition:opacity .18s;}
+.cl-content{flex:1;}
+.cl-text{font-size:13px;color:var(--white);line-height:1.5;font-weight:500;}
+.cl-detail{font-size:11px;color:var(--muted);line-height:1.5;margin-top:3px;}
+.cl-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.cl-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 7px;border-radius:4px;}
+.badge-owner{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.badge-timing{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.badge-required{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.badge-if{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.08);}
+.badge-data{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+
+/* MONDAY WORKSTREAM */
+.monday-block{background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;
+  padding:22px 24px;margin-bottom:12px;}
+.monday-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.monday-icon{font-size:24px;}
+.monday-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--gold);}
+.monday-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.monday-streams{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.stream-item{background:var(--bg3);border:1px solid rgba(255,255,255,0.06);border-radius:8px;
+  padding:12px 14px;display:flex;align-items:flex-start;gap:10px;cursor:pointer;transition:background .18s;}
+.stream-item:hover{background:rgba(255,255,255,0.04);}
+.stream-item.checked{border-color:rgba(201,168,76,0.3);}
+.stream-item.checked .stream-name{color:var(--muted);text-decoration:line-through;}
+.stream-item.checked .stream-cb{background:var(--gold);border-color:var(--gold);}
+.stream-item.checked .stream-cb::after{opacity:1;}
+.stream-cb{width:16px;height:16px;border-radius:3px;border:2px solid rgba(255,255,255,0.15);
+  flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.stream-cb::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:10px;color:var(--white);font-weight:700;opacity:0;transition:opacity .18s;}
+.stream-name{font-size:12px;color:var(--white);font-weight:500;line-height:1.4;}
+.stream-detail{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;}
+
+/* EMAIL BLOCK */
+.email-block{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;margin-bottom:10px;}
+.email-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.email-timeline{display:grid;gap:8px;}
+.email-row{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--light);cursor:pointer;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.email-row:last-child{border-bottom:none;}
+.email-cb{width:14px;height:14px;border-radius:3px;border:2px solid rgba(255,255,255,0.15);flex-shrink:0;position:relative;transition:all .18s;}
+.email-row.checked .email-cb{background:var(--green);border-color:var(--green);}
+.email-row.checked .email-cb::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--white);font-weight:700;}
+.email-row.checked span{color:var(--muted);text-decoration:line-through;}
+.email-when{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);min-width:90px;}
+
+/* RESET BTN */
+.reset-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--muted);
+  padding:6px 14px;border-radius:6px;cursor:pointer;transition:all .18s;}
+.reset-btn:hover{color:var(--white);background:rgba(255,255,255,0.08);}
+
+/* DIVIDER */
+.type-divider{height:1px;background:rgba(255,255,255,0.05);margin:48px 0;}
+
+@media(max-width:640px){
+  .monday-streams{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">E100 · Event Checklists</div>
+    <div class="nav-links">
+      <button class="nav-btn social" onclick="document.getElementById('social').scrollIntoView({behavior:'smooth'})">Large-Scale Ticketed</button>
+      <button class="nav-btn community" onclick="document.getElementById('community').scrollIntoView({behavior:'smooth'})">Community Service</button>
+      <button class="nav-btn program" onclick="document.getElementById('program').scrollIntoView({behavior:'smooth'})">Program / Session</button>
+      <button class="nav-btn member" onclick="document.getElementById('member').scrollIntoView({behavior:'smooth'})">Member Experience</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+<header>
+  <div class="hdr-eyebrow">Emerging 100 of Atlanta</div>
+  <div class="hdr-title">Pre-Event<br><span>Checklists</span></div>
+  <p class="hdr-sub">Four checklists covering every event type E100 runs. Check items off as your team completes them. Progress saves in your browser during the session. Start every event with Monday.com — it's always item one.</p>
+  <div class="type-pills">
+    <button class="type-pill tp-social" onclick="document.getElementById('social').scrollIntoView({behavior:'smooth'})">🎉 Large-Scale Ticketed</button>
+    <button class="type-pill tp-community" onclick="document.getElementById('community').scrollIntoView({behavior:'smooth'})">🤝 Community Service</button>
+    <button class="type-pill tp-program" onclick="document.getElementById('program').scrollIntoView({behavior:'smooth'})">📚 Program / Session</button>
+    <button class="type-pill tp-member" onclick="document.getElementById('member').scrollIntoView({behavior:'smooth'})">🏢 Member Experience</button>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════════
+     CHECKLIST 1 — LARGE-SCALE TICKETED EVENT
+     Social Fundraisers + Gala
+════════════════════════════════════════════════════════ -->
+<div class="section-anchor" id="social"></div>
+<div class="social-theme">
+
+<div class="event-type-header">
+  <div class="eth-badge">Checklist 01</div>
+  <div class="eth-title">Large-Scale Ticketed Event</div>
+  <p class="eth-desc">For Social Fundraisers (Cocktails & Conversations, Park 100, Holiday Soirée, Halloween Social) and the Gala. Highest-stakes, highest-complexity events. Start this checklist 8–10 weeks out.</p>
+  <div class="eth-committees">
+    <span class="eth-comm">Social Fundraising</span>
+    <span class="eth-comm">Gala</span>
+  </div>
+</div>
+
+<div class="progress-bar-wrap" id="social-progress-wrap">
+  <div class="progress-label">Completion</div>
+  <div class="progress-track"><div class="progress-fill" id="social-fill" style="width:0%"></div></div>
+  <div class="progress-count" id="social-count">0 / 0</div>
+  <button class="reset-btn" onclick="resetSection('social')">Reset</button>
+</div>
+
+<!-- MONDAY WORKSTREAM -->
+<div class="cl-section">
+  <div class="cl-section-header">🟨 Step 1 — Monday.com Project Plan</div>
+  <div class="monday-block">
+    <div class="monday-header">
+      <div class="monday-icon">📋</div>
+      <div><div class="monday-title">Build the Monday.com Board First</div><div class="monday-sub">Everything else flows from here. Create the event board, assign workstream leads, set deadlines before any other item is touched.</div></div>
+    </div>
+    <div class="monday-streams" id="social-streams">
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Entertainment</div><div class="stream-detail">Music · DJ · Hosts · Performers</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Food & Beverage</div><div class="stream-detail">Catering · Bar · Liquor sponsors · Staffing</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Venue & Contract</div><div class="stream-detail">Contract signed · Logistics confirmed · Load-in</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Comms — Internal</div><div class="stream-detail">Member invite · Save the date · RSVP tracking</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Comms — External</div><div class="stream-detail">12-asset campaign · Email blasts · Social schedule</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Sign-Up / Ticketing</div><div class="stream-detail">Ticket Falcon setup · Pricing tiers · Comp policy</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Check-In Process</div><div class="stream-detail">Member check-in · Guest check-in · List management</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Gifts & Takeaways</div><div class="stream-detail">Sponsor gifts · VIP packages · Partner recognition</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'social')"><div class="stream-cb"></div><div><div class="stream-name">Stakeholder Registry</div><div class="stream-detail">Sponsors · VIPs · Media · Partners confirmed</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANNING & APPROVAL -->
+<div class="cl-section">
+  <div class="cl-section-header">Planning & Approval</div>
+  <div class="cl-items" id="social-items">
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Budget discussed and approved</div><div class="cl-detail">Review event budget with Treasurer or Board Liaison before any spend is committed. Get approval in writing.</div><div class="cl-badges"><span class="badge-required">Required First</span><span class="badge-owner">Treasurer / Board Liaison</span><span class="badge-timing">8–10 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Ticket pricing aligned with Exec Board</div><div class="cl-detail">GA, VIP, member pricing, table pricing — all tiers confirmed with board before Ticket Falcon goes live.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-owner">Treasurer + Board Liaison</span><span class="badge-timing">8 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Ticket Falcon event created and tested</div><div class="cl-detail">Event set up on Ticket Falcon with correct pricing tiers, event date, description, and comp ticket allocations. Test purchase completed.</div><div class="cl-badges"><span class="badge-owner">Treasurer</span><span class="badge-timing">6–7 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Sponsorship alignment with Partnerships</div><div class="cl-detail">Confirm which sponsors are committed for this event. Get confirmed sponsor list, tier, logo, and what each sponsor is owed in activation.</div><div class="cl-badges"><span class="badge-owner">Partnerships Chair</span><span class="badge-timing">6–8 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Venue confirmed and contract signed</div><div class="cl-detail">Park Tavern (Park 100 — free per agreement) · Coca-Cola Roxy (Holiday Soirée) · TBD (C&C) · Delta Flight Museum (Gala — in-kind). Contract reviewed by P&G before signing.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-owner">P&G Review · President Signs</span><span class="badge-timing">8–10 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">KPIs and metrics defined</div><div class="cl-detail">What does success look like? Ticket sales target, sponsorship target, attendance count, social media reach. Set before the event, measure after.</div><div class="cl-badges"><span class="badge-data">Data Chair</span><span class="badge-timing">6 Weeks Out</span></div></div></div>
+  </div>
+</div>
+
+<!-- CREATIVE & COMMS -->
+<div class="cl-section">
+  <div class="cl-section-header">Creative, Graphics & Comms</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Theme locked</div><div class="cl-detail">The theme must be confirmed before briefing Eddision Smith (Penthouse Creative). Nothing moves without the theme.</div><div class="cl-badges"><span class="badge-required">Required First</span><span class="badge-timing">7–8 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Eddision Smith briefed — all 12 graphics assets ordered</div><div class="cl-detail">Save the Date · Theme Reveal · Style Guide · Hosts/DJ · Liquor Sponsor individual · Corporate Sponsor individual · Collective Liquor · Collective Corporate · Countdown graphics · KBYG · Video Board assets (Park 100) · Activation/Entertainment graphics</div><div class="cl-badges"><span class="badge-owner">Assets Chair · Comms</span><span class="badge-timing">6–7 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Social media campaign aligned with Comms</div><div class="cl-detail">6–7 week campaign calendar agreed with Comms Chair. Posting schedule confirmed. Asset delivery dates locked. Approval process for each post confirmed.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span><span class="badge-timing">6–7 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Captions drafted for all social posts</div><div class="cl-detail">Caption formula applied to each post: Hook → Story → Gratitude → Mission → Hashtags. Submitted to Comms Chair with each asset.</div><div class="cl-badges"><span class="badge-owner">Event Chair · Comms Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">External comms strategy confirmed</div><div class="cl-detail">Partner email, sponsor outreach, and community blast strategy defined. Who gets what communication and when.</div><div class="cl-badges"><span class="badge-owner">Partnerships · Newsletter Chair</span><span class="badge-timing">6 Weeks Out</span></div></div></div>
+  </div>
+</div>
+
+<!-- EMAIL BLASTS -->
+<div class="cl-section">
+  <div class="cl-section-header">Email Blasts — Timeline</div>
+  <div class="email-block">
+    <div class="email-title">Social Fundraiser Email Blast Schedule</div>
+    <div class="email-timeline">
+      <div class="email-row" onclick="toggleEmail(this)"><div class="email-cb"></div><span class="email-when">8 Weeks Out</span><span>Save the Date blast — Newsletter list + Social Blast list</span></div>
+      <div class="email-row" onclick="toggleEmail(this)"><div class="email-cb"></div><span class="email-when">6 Weeks Out</span><span>Tickets On Sale blast — Social Blast list priority</span></div>
+      <div class="email-row" onclick="toggleEmail(this)"><div class="email-cb"></div><span class="email-when">4 Weeks Out</span><span>Sponsor feature blast — partners and stakeholders</span></div>
+      <div class="email-row" onclick="toggleEmail(this)"><div class="email-cb"></div><span class="email-when">2 Weeks Out</span><span>Final push blast — urgency, tickets selling fast</span></div>
+      <div class="email-row" onclick="toggleEmail(this)"><div class="email-cb"></div><span class="email-when">3 Days Out</span><span>Know Before You Go (KBYG) — all ticket holders</span></div>
+      <div class="email-row" onclick="toggleEmail(this)"><div class="email-cb"></div><span class="email-when">Post-Event</span><span>Recap blast + thank you — all lists within 1 week</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ENTERTAINMENT & PRODUCTION -->
+<div class="cl-section">
+  <div class="cl-section-header">Entertainment & Production</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">DJs confirmed and contracted (2 DJs per event)</div><div class="cl-detail">Both DJs confirmed, contracted, technical riders received, load-in time and sound check scheduled.</div><div class="cl-badges"><span class="badge-owner">Entertainment Chair</span><span class="badge-timing">6 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Hosts confirmed (Park 100 + Holiday Soirée)</div><div class="cl-detail">2 hosts confirmed, contracted, briefed on run of show. Script or talking points delivered 1 week before event.</div><div class="cl-badges"><span class="badge-owner">Entertainment Chair</span><span class="badge-if">Park 100 + Holiday Only</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Liquor sponsor activations confirmed</div><div class="cl-detail">Tito's · Patrón · Bacardi · Viarae · Mercer & Prince and others — what each sponsor is providing, how their brand is activated at the event, who manages them night-of.</div><div class="cl-badges"><span class="badge-owner">Sponsorships Chair · Partnerships</span><span class="badge-timing">4 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Liquor tickets process confirmed</div><div class="cl-detail">How are liquor tickets distributed? VIP packages, sponsor allocations, ticket holders — process defined before event night.</div><div class="cl-badges"><span class="badge-owner">Sponsorships Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Décor confirmed (Gala + Social)</div><div class="cl-detail">Gala: Affairs to Remember (catering/décor/florals) · A-Team Events (additional décor). Social: venue-specific décor requirements confirmed with venue contact.</div><div class="cl-badges"><span class="badge-owner">Event Production Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Food confirmed (if applicable)</div><div class="cl-detail">Catering or food vendor confirmed, menu locked, service style confirmed, dietary accommodations considered.</div><div class="cl-badges"><span class="badge-if">If Applicable</span><span class="badge-owner">Event Production Chair</span></div></div></div>
+  </div>
+</div>
+
+<!-- MEDIA -->
+<div class="cl-section">
+  <div class="cl-section-header">Photography, Video & Media</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Photographer confirmed</div><div class="cl-detail">Donald Gibson (primary) + TooShay Productions (Gala second photographer). Booked, rate confirmed, event brief sent, delivery timeline agreed.</div><div class="cl-badges"><span class="badge-owner">Event Production Chair</span><span class="badge-timing">4–6 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Videographer confirmed</div><div class="cl-detail">Above The Line Media (Darryl) for Gala. Social Fundraiser videographer TBD. Brief sent, deliverable format and timeline agreed.</div><div class="cl-badges"><span class="badge-owner">Event Production Chair</span><span class="badge-if">If Applicable</span></div></div></div>
+  </div>
+</div>
+
+<!-- POST EVENT -->
+<div class="cl-section">
+  <div class="cl-section-header">Post-Event</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Post-event recap assigned</div><div class="cl-detail">Who is responsible for the post-event recap — attendance numbers, revenue, what worked, what didn't? Assign before the event so it happens within 48 hours after.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-timing">Assign Pre-Event</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Volunteer hours submitted to Data within 48hrs</div><div class="cl-detail">All E100 member volunteer hours at the event submitted to Data Chair within 48 hours of event end.</div><div class="cl-badges"><span class="badge-data">Data Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Content submitted to Comms within 48hrs of photo delivery</div><div class="cl-detail">Curated photos, draft caption, tags, context notes — submitted to Comms Chair within 48hrs of receiving photographer content.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span><span class="badge-timing">Within 48hrs of delivery</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Attendee list exported and sent to Newsletter Chair</div><div class="cl-detail">Full attendee email list exported from Ticket Falcon and sent to Newsletter Chair to add to Newsletter + Social Blast lists.</div><div class="cl-badges"><span class="badge-owner">Newsletter Chair</span><span class="badge-timing">Within 1 Week</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Sponsor impact report data collected</div><div class="cl-detail">Attendance numbers, social media reach, campaign data — collected and sent to Data Chair for sponsor impact reports.</div><div class="cl-badges"><span class="badge-data">Data Chair · Partnerships</span><span class="badge-timing">Within 1 Week</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'social')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Warm Gala cross-sell leads flagged to Partnerships</div><div class="cl-detail">Any Social Fundraiser sponsor who should be pitched a Gala table flagged to Partnerships Chair immediately after event.</div><div class="cl-badges"><span class="badge-owner">Partnerships Chair</span></div></div></div>
+  </div>
+</div>
+</div><!-- end social-theme -->
+
+<div class="type-divider"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     CHECKLIST 2 — COMMUNITY SERVICE EVENT
+════════════════════════════════════════════════════════ -->
+<div class="section-anchor" id="community"></div>
+<div class="community-theme">
+
+<div class="event-type-header">
+  <div class="eth-badge">Checklist 02</div>
+  <div class="eth-title">Community Service Event</div>
+  <p class="eth-desc">Together Tailgate · MLK Day of Service · Toy Drive · Chase Backpack Drive · Hawks Sandwich Packing · National Volunteer Week events. Volunteer-driven, supply-focused, partner-facing.</p>
+  <div class="eth-committees">
+    <span class="eth-comm">Community Service</span>
+    <span class="eth-comm">OCU (Street Clean-Up)</span>
+    <span class="eth-comm">Health & Wellness (Community)</span>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">Completion</div>
+  <div class="progress-track"><div class="progress-fill" id="community-fill" style="width:0%"></div></div>
+  <div class="progress-count" id="community-count">0 / 0</div>
+  <button class="reset-btn" onclick="resetSection('community')">Reset</button>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">🟨 Step 1 — Monday.com Project Plan</div>
+  <div class="monday-block">
+    <div class="monday-header">
+      <div class="monday-icon">📋</div>
+      <div><div class="monday-title">Build the Monday.com Board First</div><div class="monday-sub">Create the event board, assign workstream leads before anything else is touched.</div></div>
+    </div>
+    <div class="monday-streams">
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Supplies & Procurement</div><div class="stream-detail">What's needed · Who orders · Budget · Partner contributions</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Venue & Logistics</div><div class="stream-detail">Location · Setup · Parking · Load-in time</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Comms — Internal</div><div class="stream-detail">Member mobilization · Sign-up link · RSVP tracking</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Comms — External</div><div class="stream-detail">Corporate partner invite · Community org coordination</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Volunteer Coordination</div><div class="stream-detail">Sign-up · Check-in · Hour tracking · Day-of roles</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Partner Registry</div><div class="stream-detail">Corporate volunteers · Community orgs · New partner flagging</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Check-In Process</div><div class="stream-detail">Member sign-in · Corporate volunteer sign-in · Community sign-in</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'community')"><div class="stream-cb"></div><div><div class="stream-name">Stakeholder Registry</div><div class="stream-detail">Corporate partners confirmed · Community org contacts</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Planning & Logistics</div>
+  <div class="cl-items" id="community-items">
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Budget discussed with Treasurer or Board Liaison</div><div class="cl-detail">Community service budgets are fluid — built with partner support. Confirm what E100 is responsible for vs. what partners are contributing before ordering anything.</div><div class="cl-badges"><span class="badge-required">Required First</span><span class="badge-owner">Treasurer / Board Liaison</span><span class="badge-timing">4–6 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Venue confirmed</div><div class="cl-detail">Together Tailgate = BEST Academy (always). MLK Day = City Hall. Toy Drive = confirm annually. Street Clean-Up = confirm location with OCU Chair.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-timing">4–6 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Supplies ordered and confirmed</div><div class="cl-detail">Together Tailgate: food, turkeys, hygiene kits, clothing, gift cards. Toy Drive: toys collected and sorted. Backpack Drive: backpacks and supplies. Confirm what partners are contributing vs. what E100 purchases.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-timing">2–3 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Corporate partner intro confirmed through Partnerships</div><div class="cl-detail">All corporate partner contacts go through Partnerships Chair first — Gas South (Yasmine Vaughn), Chase (Lynette Jackson), Hawks (Alexis Roe). Do not cold-contact without Partnerships intro.</div><div class="cl-badges"><span class="badge-owner">Partnerships Chair</span><span class="badge-timing">4–6 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Community org coordination confirmed</div><div class="cl-detail">Restoring One's Hope (Kinnis Leonard or Brittney) · Meals on Wheels · Tru Foundation (Toy Drive). Confirm role, timing, and logistics with each org.</div><div class="cl-badges"><span class="badge-owner">Partner Relations Chair</span><span class="badge-timing">3–4 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">KPIs defined — what to measure</div><div class="cl-detail">Volunteer hours · Number of community members served · Items donated or distributed · Number of corporate volunteers. Set targets before the event.</div><div class="cl-badges"><span class="badge-data">Data Chair</span><span class="badge-timing">2 Weeks Out</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Volunteers & Members</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Internal volunteer sign-up open and tracked</div><div class="cl-detail">E100 member sign-up link live. Minimum volunteer count confirmed. Who is showing up and in what role — setup, serving, check-in, photography.</div><div class="cl-badges"><span class="badge-owner">Volunteer Coord. Chair</span><span class="badge-timing">3 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">External corporate volunteers confirmed</div><div class="cl-detail">Corporate volunteers signed up, confirmed headcount, briefed on what to wear, what to bring, where to go, what they'll be doing.</div><div class="cl-badges"><span class="badge-owner">Partner Relations Chair</span><span class="badge-timing">1–2 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Day-of volunteer roles assigned</div><div class="cl-detail">Every volunteer has a specific role before the event starts. No one shows up not knowing what they're doing.</div><div class="cl-badges"><span class="badge-owner">Volunteer Coord. Chair</span><span class="badge-timing">1 Week Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Check-in process confirmed — members and external</div><div class="cl-detail">How are volunteers checked in day-of? Sign-in sheet, Monday.com form, or digital? Separate process for E100 members vs. corporate volunteers.</div><div class="cl-badges"><span class="badge-owner">Volunteer Coord. Chair</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Graphics, Comms & Media</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Graphics confirmed</div><div class="cl-detail">Event graphic or flyer created. Social media graphics for pre-event push and post-event recap. Community service events are strong Comms moments — prepare accordingly.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span><span class="badge-timing">2–3 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Social media alignment with Comms</div><div class="cl-detail">Pre-event post (volunteer ask or partner feature) and post-event recap plan agreed with Comms Chair. Community service content is some of E100's strongest — plan for it.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Photographer confirmed</div><div class="cl-detail">Donald Gibson or available E100 member. Community service photos are the most powerful partner acquisition content — document it well.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-if">If Available</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Food confirmed (if applicable)</div><div class="cl-detail">Together Tailgate includes food for the community. Confirm catering source, quantity, and distribution process.</div><div class="cl-badges"><span class="badge-if">If Applicable</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Post-Event</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Volunteer hours submitted to Data within 48hrs</div><div class="cl-detail">All E100 member and corporate volunteer hours submitted to Data Chair within 48 hours. This feeds the annual impact report and grant applications.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-data">Data Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">New corporate partner flagged to Partnerships within 48hrs</div><div class="cl-detail">Every new company that served alongside E100 flagged to Partnerships Chair — company name, who was there, engagement level. This is the Partner On-Ramp Step 4.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-owner">Partnerships Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Content submitted to Comms within 48hrs of photo delivery</div><div class="cl-detail">Curated photos (5–10 best), draft caption, tags, community org name, number of people served. Submitted within 48hrs of Donald Gibson delivering content.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Post-event recap documented</div><div class="cl-detail">Attendance, hours, items distributed, partners served alongside, what worked, what needs to improve. Filed in Monday.com for the next Chair to inherit.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-timing">Within 1 Week</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'community')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Corporate volunteer attendee list sent to Newsletter Chair</div><div class="cl-detail">All corporate volunteer email addresses sent to Newsletter Chair to add to both the Newsletter and Social Blast lists.</div><div class="cl-badges"><span class="badge-owner">Newsletter Chair</span><span class="badge-timing">Within 1 Week</span></div></div></div>
+  </div>
+</div>
+</div><!-- end community-theme -->
+
+<div class="type-divider"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     CHECKLIST 3 — PROGRAM / SESSION EVENT
+════════════════════════════════════════════════════════ -->
+<div class="section-anchor" id="program"></div>
+<div class="program-theme">
+
+<div class="event-type-header">
+  <div class="eth-badge">Checklist 03</div>
+  <div class="eth-title">Program / Session Event</div>
+  <p class="eth-desc">BEST Academy sessions · Rites of Passage · C100 events (Career Fair, RISE, ASO, NSN) · H&W events (Laughing Matters, Financial Health, Physical Fitness, Brotherhood Brunch) · OCU civic events · Partner Appreciation.</p>
+  <div class="eth-committees">
+    <span class="eth-comm">BEST Academy</span>
+    <span class="eth-comm">Collegiate 100</span>
+    <span class="eth-comm">Health & Wellness</span>
+    <span class="eth-comm">OCU</span>
+    <span class="eth-comm">Partnerships</span>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">Completion</div>
+  <div class="progress-track"><div class="progress-fill" id="program-fill" style="width:0%"></div></div>
+  <div class="progress-count" id="program-count">0 / 0</div>
+  <button class="reset-btn" onclick="resetSection('program')">Reset</button>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">🟨 Step 1 — Monday.com Project Plan</div>
+  <div class="monday-block">
+    <div class="monday-header">
+      <div class="monday-icon">📋</div>
+      <div><div class="monday-title">Build the Monday.com Board First</div><div class="monday-sub">Assign workstream leads and set key deadlines before anything else moves.</div></div>
+    </div>
+    <div class="monday-streams">
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Content & Curriculum</div><div class="stream-detail">Session topic · Facilitator brief · Run of show</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Facilitator / Speaker</div><div class="stream-detail">Confirmed · Briefed · Prep call scheduled</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Venue & Logistics</div><div class="stream-detail">Room confirmed · Setup · AV · Parking</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Food & Beverage</div><div class="stream-detail">Vendor · Order · Budget · Day-of logistics</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Comms — Internal</div><div class="stream-detail">Member communication · Sign-up · Reminders</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Comms — External</div><div class="stream-detail">Community promotion · Partner communication</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Sign-Up Method</div><div class="stream-detail">How do attendees register? Link · Form · Ticket</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Check-In Process</div><div class="stream-detail">Attendee sign-in · Member tracking · Survey distribution</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'program')"><div class="stream-cb"></div><div><div class="stream-name">Stakeholder Registry</div><div class="stream-detail">Facilitators · Partners · VIP guests confirmed</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Planning & Approval</div>
+  <div class="cl-items" id="program-items">
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Budget discussed with Treasurer or Board Liaison</div><div class="cl-detail">BEST sessions: $1,000–$1,500 food budget. H&W Laughing Matters: ~$10,000. All other program events: confirm budget before any spend.</div><div class="cl-badges"><span class="badge-required">Required First</span><span class="badge-owner">Treasurer / Board Liaison</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Sponsorship alignment with Partnerships (if applicable)</div><div class="cl-detail">BEST sessions have corporate partner facilitators. Career Fair has company participants. H&W may have financial partners. Confirm with Partnerships before contacting any company directly.</div><div class="cl-badges"><span class="badge-owner">Partnerships Chair</span><span class="badge-if">If Applicable</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Venue confirmed</div><div class="cl-detail">BEST sessions: BEST Academy Library (Ray Singer). Career Fair: Delta HQ (Melvia Jones via Partnerships). H&W: The Gathering Spot or TBD. OCU: community venue.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-timing">3–4 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Tickets aligned with Exec Board (if ticketed)</div><div class="cl-detail">H&W events may be free and open to public. Career Fair is invitation-based. Confirm with Exec Board before any ticketing goes live.</div><div class="cl-badges"><span class="badge-if">If Ticketed</span><span class="badge-owner">Board Liaison</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">KPIs and metrics defined</div><div class="cl-detail">What does success look like for this program event? Attendance, survey results, student engagement, resources distributed. Set targets before event, measure after.</div><div class="cl-badges"><span class="badge-data">Data Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Survey aligned with Data (if applicable)</div><div class="cl-detail">BEST pre/post surveys required for every year. C100 pre/post surveys required. H&W post-event surveys optional. Confirm format and distribution plan with Data Chair.</div><div class="cl-badges"><span class="badge-data">Data Chair</span><span class="badge-if">BEST + C100 Required</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Content & Facilitation</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Facilitator / speaker confirmed and briefed</div><div class="cl-detail">BEST: corporate partner facilitator confirmed by July 31, prep call offered. H&W: comedian booked (Laughing Matters), clinical facilitator or financial expert confirmed. Career Fair: companies confirmed and briefed.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-timing">2–4 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Session topic fits the annual arc</div><div class="cl-detail">BEST: session topic aligns with the annual leadership narrative. Content Chair confirms topic before session. Partner topics ladder into the arc — not standalone.</div><div class="cl-badges"><span class="badge-owner">Curriculum Chair</span><span class="badge-if">BEST Academy</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Run of show documented</div><div class="cl-detail">Timing for every segment of the program. Who speaks when, transitions, AV cues. Shared with all relevant parties before the event.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-timing">1 Week Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Resources prepared and printed (if applicable)</div><div class="cl-detail">H&W events: mental health links, brochures, hotlines, financial org resources, health screening info. Collected and printed or digitally prepared before event.</div><div class="cl-badges"><span class="badge-if">H&W Events</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Host confirmed (if applicable)</div><div class="cl-detail">Larger program events (Career Fair, RISE Intensive, Laughing Matters, Partner Appreciation) may require a host to manage the room and transitions.</div><div class="cl-badges"><span class="badge-if">If Applicable</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Logistics, Food & Media</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Food confirmed (BEST sessions required)</div><div class="cl-detail">BEST Academy: food is non-optional. Every session requires food — Gustos (Westside) or Knockout Wingz. Order confirmed by 1st Friday of the month. Budget: $1,000–$1,500/session.</div><div class="cl-badges"><span class="badge-required">BEST: Required</span><span class="badge-owner">Operations Chair</span><span class="badge-timing">By 1st Friday of Month</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Photographer confirmed (by 1st Friday for BEST)</div><div class="cl-detail">Donald Gibson booked for every BEST session. For other program events, confirm if photography is needed. Book by 1st Friday of the month for BEST.</div><div class="cl-badges"><span class="badge-owner">Operations Chair</span><span class="badge-timing">By 1st Friday (BEST)</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Video confirmed (if applicable)</div><div class="cl-detail">Rites of Passage · Career Fair · RISE Intensive · Partner Appreciation — video is worth capturing. Confirm need and vendor.</div><div class="cl-badges"><span class="badge-if">If Applicable</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Graphics and flyer created</div><div class="cl-detail">Program event graphic or flyer for member communication and social media. Simpler than Social Fundraiser campaigns but still needed.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Social media alignment with Comms</div><div class="cl-detail">Pre-event awareness post and post-event recap planned with Comms Chair. BEST sessions and H&W events are strong content moments.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Background checks completed (BEST mentors)</div><div class="cl-detail">All E100 member mentors must have cleared background checks before being paired with students. Parliamentarian (Exec Board) runs them. Allow enough lead time.</div><div class="cl-badges"><span class="badge-required">BEST: Required</span><span class="badge-owner">Parliamentarian</span><span class="badge-if">BEST Academy Only</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Post-Event</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Volunteer hours submitted to Data within 48hrs</div><div class="cl-detail">All E100 member hours at the event submitted to Data Chair within 48 hours.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-data">Data Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Content submitted to Comms within 48hrs of photo delivery</div><div class="cl-detail">Curated photos, draft caption, tags, context notes. BEST sessions must include student content with sensitivity review.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Partner thank-you sent (BEST sessions)</div><div class="cl-detail">Chair sends thank-you email to every corporate partner facilitator within 48hrs of their session. This is non-negotiable for maintaining the relationship.</div><div class="cl-badges"><span class="badge-required">BEST: Required</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Survey distributed (if applicable)</div><div class="cl-detail">BEST post-survey at Rites of Passage. C100 post-survey at end of program year. H&W post-event survey if used. Data Chair manages distribution.</div><div class="cl-badges"><span class="badge-data">Data Chair</span><span class="badge-if">BEST + C100 Required</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'program')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Post-event recap documented</div><div class="cl-detail">Attendance, topic, what worked, facilitator feedback. Filed in Monday.com for next Chair to inherit.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-timing">Within 1 Week</span></div></div></div>
+  </div>
+</div>
+</div><!-- end program-theme -->
+
+<div class="type-divider"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     CHECKLIST 4 — MEMBER EXPERIENCE EVENT
+════════════════════════════════════════════════════════ -->
+<div class="section-anchor" id="member"></div>
+<div class="member-theme">
+
+<div class="event-type-header">
+  <div class="eth-badge">Checklist 04</div>
+  <div class="eth-title">Member Experience Event</div>
+  <p class="eth-desc">New Member Meetup · Annual BBQ · Super Bowl Party · Hawks Basketball Game · GBMs at corporate venues · CR Executive Access events. Internally focused — members are the audience.</p>
+  <div class="eth-committees">
+    <span class="eth-comm">Emerging Development</span>
+    <span class="eth-comm">Corporate Roundtable</span>
+    <span class="eth-comm">Process & Governance (GBMs)</span>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-label">Completion</div>
+  <div class="progress-track"><div class="progress-fill" id="member-fill" style="width:0%"></div></div>
+  <div class="progress-count" id="member-count">0 / 0</div>
+  <button class="reset-btn" onclick="resetSection('member')">Reset</button>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">🟨 Step 1 — Monday.com Project Plan</div>
+  <div class="monday-block">
+    <div class="monday-header">
+      <div class="monday-icon">📋</div>
+      <div><div class="monday-title">Build the Monday.com Board First</div><div class="monday-sub">Even for smaller member events — a board keeps things from falling through the cracks.</div></div>
+    </div>
+    <div class="monday-streams">
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Entertainment</div><div class="stream-detail">Music · DJ (if needed) · Special programming</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Food & Beverage</div><div class="stream-detail">Catering · Bar · Budget · Vendor</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Venue & Logistics</div><div class="stream-detail">Location · Capacity · Parking · Setup</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Comms — Internal</div><div class="stream-detail">Member invite · Reminder · RSVP tracking</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Sign-Up Method</div><div class="stream-detail">How members register or confirm attendance</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Check-In Process</div><div class="stream-detail">Member sign-in · Hour tracking</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Gifts & Takeaways</div><div class="stream-detail">Member gifts · New member welcome items</div></div></div>
+      <div class="stream-item" onclick="toggleStream(this,'member')"><div class="stream-cb"></div><div><div class="stream-name">Stakeholder Registry</div><div class="stream-detail">Corporate host contact (GBMs) · VIP guests</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Planning & Approval</div>
+  <div class="cl-items" id="member-items">
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Budget discussed with Treasurer or Board Liaison</div><div class="cl-detail">Member experience events vary — New Member Meetup (Tessarae Hotel) is higher cost than a GBM. Confirm budget before booking anything.</div><div class="cl-badges"><span class="badge-required">Required First</span><span class="badge-owner">Treasurer / Board Liaison</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Venue confirmed and logistics locked</div><div class="cl-detail">GBMs: Corporate Roundtable Chair owns venue (Gas South + Delta locked; remaining to be booked). ED events: Tessarae Hotel (New Member Meetup), Park Tavern (Super Bowl). Confirm capacity, parking, AV, building access.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-timing">4–6 Weeks Out (GBMs: 8 Weeks)</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Member briefing prepared (Executive Access events)</div><div class="cl-detail">Before any executive access event — who members are meeting, company background, appropriate topics, professional expectations. Distributed 1 week before event.</div><div class="cl-badges"><span class="badge-owner">CR Chair</span><span class="badge-if">Executive Access Events</span><span class="badge-timing">1 Week Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Active member list confirmed</div><div class="cl-detail">Active = dues-paying. Who is invited? Confirm active member list with Finance/Treasurer before sending invitations to member-only events.</div><div class="cl-badges"><span class="badge-owner">Finance / Treasurer</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Host confirmed (if applicable)</div><div class="cl-detail">Larger ED events or executive access events may benefit from a host to manage flow and transitions.</div><div class="cl-badges"><span class="badge-if">If Applicable</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Logistics & Experience</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Food confirmed</div><div class="cl-detail">New Member Meetup, BBQ, Super Bowl Party — food is part of the experience. Catering vendor confirmed, menu locked, quantity appropriate for expected attendance.</div><div class="cl-badges"><span class="badge-if">If Applicable</span><span class="badge-owner">ED Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">DJ confirmed (if applicable)</div><div class="cl-detail">Super Bowl Party and BBQ may include DJ. Confirm need, book, and brief on format.</div><div class="cl-badges"><span class="badge-if">If Applicable</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Member sign-up method confirmed</div><div class="cl-detail">How are members confirming attendance? RSVP link, Google Form, text confirmation? Headcount needed for venue and catering planning.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-timing">2–3 Weeks Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Check-in process confirmed</div><div class="cl-detail">How are members checked in and logged? GBMs: sign-in sheet or Monday.com form. Member events: attendance tracking for compliance purposes.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Corporate host flagged to Partnerships after GBM</div><div class="cl-detail">After every GBM at a corporate venue — flag the host company to Partnerships Chair with contact name and engagement notes. This is the pipeline from venue host to sponsor.</div><div class="cl-badges"><span class="badge-required">GBMs: Required</span><span class="badge-owner">Partnerships Chair</span><span class="badge-timing">Within 48hrs of GBM</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Graphics & Comms</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Graphics confirmed (if applicable)</div><div class="cl-detail">New Member Meetup, Super Bowl Party, and BBQ may have a flyer or graphic for member communication. Simpler than public events but still needed for internal engagement.</div><div class="cl-badges"><span class="badge-if">If Applicable</span><span class="badge-owner">Comms Chair</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Member notification sent with all logistics</div><div class="cl-detail">All members notified with: event date, venue address, parking info, building access instructions, dress code (if applicable), arrival time. GBMs: notify 1 week in advance minimum.</div><div class="cl-badges"><span class="badge-required">Required</span><span class="badge-timing">1 Week Out</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Photographer confirmed (if applicable)</div><div class="cl-detail">New Member Meetup, Rites of Passage, milestone events worth documenting. Check member photo consent for internal events.</div><div class="cl-badges"><span class="badge-if">If Applicable</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Social media alignment with Comms</div><div class="cl-detail">Internal events are not always posted publicly — confirm with Comms Chair which events get social media coverage and what privacy considerations apply.</div><div class="cl-badges"><span class="badge-owner">Comms Chair</span></div></div></div>
+  </div>
+</div>
+
+<div class="cl-section">
+  <div class="cl-section-header">Post-Event</div>
+  <div class="cl-items">
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Member hours submitted to Data within 48hrs</div><div class="cl-detail">GBM attendance and member event participation tracked and submitted to Data Chair for compliance and engagement monitoring.</div><div class="cl-badges"><span class="badge-data">Data Chair</span><span class="badge-timing">Within 48hrs</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">Post-event recap documented</div><div class="cl-detail">Attendance count, what worked, what didn't, member feedback. Filed in Monday.com for the next Chair to inherit.</div><div class="cl-badges"><span class="badge-owner">Event Chair</span><span class="badge-timing">Within 1 Week</span></div></div></div>
+    <div class="cl-item" onclick="toggleItem(this,'member')"><div class="cl-checkbox"></div><div class="cl-content"><div class="cl-text">New member attendee emails sent to Newsletter Chair</div><div class="cl-detail">Particularly for New Member Meetup — all new member email addresses added to Newsletter and Social Blast lists.</div><div class="cl-badges"><span class="badge-owner">Newsletter Chair</span><span class="badge-if">New Member Meetup</span></div></div></div>
+  </div>
+</div>
+</div><!-- end member-theme -->
+
+<div style="text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">
+  <strong style="color:var(--gold)">Emerging 100 of Atlanta — The Emerging Way</strong><br>
+  Pre-Event Checklists · 4 Event Types · All Committees · Living Document
+</div>
+
+</div><!-- end wrap -->
+
+<script>
+// ── Track per-section counts ──
+const sections = ['social','community','program','member'];
+
+function getItems(section) {
+  const all = [];
+  // regular checklist items
+  document.querySelectorAll(`#${section}-items .cl-item, .${section}-theme .cl-item`).forEach(el => {
+    if(!all.includes(el)) all.push(el);
+  });
+  // stream items
+  document.querySelectorAll(`.${section}-theme .stream-item`).forEach(el => {
+    if(!all.includes(el)) all.push(el);
+  });
+  return all;
+}
+
+function updateProgress(section) {
+  const items = document.querySelectorAll(`.${section}-theme .cl-item, .${section}-theme .stream-item`);
+  const checked = document.querySelectorAll(`.${section}-theme .cl-item.checked, .${section}-theme .stream-item.checked`);
+  const total = items.length;
+  const done = checked.length;
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  const fill = document.getElementById(`${section}-fill`);
+  const count = document.getElementById(`${section}-count`);
+  if(fill) fill.style.width = pct + '%';
+  if(count) count.textContent = `${done} / ${total}`;
+}
+
+function toggleItem(el, section) {
+  el.classList.toggle('checked');
+  updateProgress(section);
+}
+
+function toggleStream(el, section) {
+  el.classList.toggle('checked');
+  updateProgress(section);
+}
+
+function toggleEmail(el) {
+  el.classList.toggle('checked');
+}
+
+function resetSection(section) {
+  document.querySelectorAll(`.${section}-theme .cl-item, .${section}-theme .stream-item`).forEach(el => {
+    el.classList.remove('checked');
+  });
+  document.querySelectorAll(`.${section}-theme .email-row`).forEach(el => {
+    el.classList.remove('checked');
+  });
+  updateProgress(section);
+}
+
+// Init progress bars
+sections.forEach(s => updateProgress(s));
+</script>
+</body>
+</html>

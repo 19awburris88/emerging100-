@@ -1,0 +1,289 @@
+/* Sticky tab nav */
+.cp-tab-nav {
+  position: sticky;
+  top: 96px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 90;
+}
+
+.cp-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  gap: 16px;
+}
+
+.cp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+
+.cp-breadcrumb a {
+  color: var(--gray-600);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.cp-breadcrumb a:hover { color: var(--gold); }
+
+.cp-bc-sep { color: var(--gray-300); font-size: 0.85rem; }
+
+.cp-tab-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cp-tab-list {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.cp-playbook-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  transition: background 0.15s, opacity 0.15s;
+}
+.cp-playbook-btn:hover { background: var(--gold); color: var(--white); }
+
+.cp-tab {
+  padding: 14px 15px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.cp-tab:hover { color: var(--navy); }
+.cp-tab--active { color: var(--navy); border-bottom-color: var(--gold); }
+
+/* Scroll offset accounts for navbar (96px) + tab nav (~52px) + buffer */
+[id^="cp-"] { scroll-margin-top: 164px; }
+
+.cp-body {
+  padding: 56px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.cp-hero-icon { margin-right: 8px; }
+
+.cp-section { }
+
+.cp-section-title {
+  font-size: 1.65rem;
+  color: var(--navy);
+  margin-bottom: 24px;
+  margin-top: 8px;
+  letter-spacing: -0.025em;
+}
+
+.cp-overview {
+  font-size: 1.1rem;
+  color: var(--gray-600);
+  line-height: 1.85;
+  max-width: 760px;
+  border-left: 3px solid var(--gold);
+  padding-left: 22px;
+  margin-top: 4px;
+}
+
+/* Two column layout */
+.cp-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.cp-card { height: 100%; }
+
+/* Chairs */
+.cp-chairs { display: flex; flex-direction: column; gap: 16px; }
+
+.cp-chair {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cp-chair-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cp-chair-name {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+
+.cp-chair-role {
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Goals */
+.cp-goals {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cp-goals li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.93rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+.cp-check {
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Responsibilities */
+.cp-resp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.cp-resp-card {
+  position: relative;
+  padding-top: 36px;
+}
+
+.cp-resp-num {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: 'Playfair Display', serif;
+  color: var(--gray-100);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.cp-resp-card p {
+  font-size: 0.92rem;
+  color: var(--gray-600);
+  line-height: 1.68;
+}
+
+/* Resources */
+.cp-resources { background: var(--white); }
+
+.cp-resource-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+.cp-resource-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+  color: var(--navy);
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.cp-resource-link:hover { background: rgba(201, 151, 58, 0.08); border-color: var(--gold); }
+
+.cp-resource-icon { font-size: 1rem; flex-shrink: 0; }
+.cp-resource-arrow { margin-left: auto; color: var(--gray-400); font-size: 0.85rem; flex-shrink: 0; }
+
+.cp-resource-featured {
+  background: rgba(27, 43, 75, 0.04);
+  border-color: var(--navy);
+  padding: 14px 16px;
+}
+.cp-resource-featured:hover { background: rgba(201, 151, 58, 0.1); border-color: var(--gold); }
+
+.cp-resource-featured-label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.cp-resource-featured-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.cp-resources-empty {
+  background: var(--gray-50);
+  border-radius: 6px;
+  border: 1px dashed var(--gray-200);
+  padding: 32px;
+  text-align: center;
+}
+
+.cp-resources-empty p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.cp-resources-hint {
+  font-size: 0.82rem !important;
+  color: var(--gray-400) !important;
+  margin-top: 6px !important;
+}
+
+@media (max-width: 768px) {
+  .cp-tab-nav { top: 72px; }
+  .cp-tabs { flex-direction: column; align-items: flex-start; padding: 8px 0; gap: 0; min-height: auto; }
+  .cp-breadcrumb { padding: 6px 0 4px; }
+  .cp-tab-nav-right { width: 100%; flex-direction: column; align-items: flex-start; gap: 0; }
+  .cp-tab-list { overflow-x: auto; width: 100%; padding-bottom: 2px; }
+  .cp-tab { padding: 10px 13px; font-size: 0.8rem; }
+  .cp-playbook-btn { margin: 4px 0 8px; }
+  [id^="cp-"] { scroll-margin-top: 220px; }
+}

@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — Collegiate 100 Playbook v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#07090f;--bg2:#0d1120;--bg3:#111827;
+  --gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);
+  --white:#ede8dd;--muted:#6b7280;--light:#9ca3af;
+  --ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);
+  --purple:#a855f7;--purpleb:rgba(168,85,247,0.10);--purplep:rgba(168,85,247,0.25);
+  --green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);
+  --amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);
+  --red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);
+  --pink:#ec4899;--pinkb:rgba(236,72,153,0.12);--pinkp:rgba(236,72,153,0.28);
+  --teal:#14b8a6;--tealb:rgba(20,184,166,0.12);--tealp:rgba(20,184,166,0.28);
+  --r-r:#ef4444;--r-rb:rgba(239,68,68,0.12);--r-rp:rgba(239,68,68,0.28);
+  --r-a:#f59e0b;--r-ab:rgba(245,158,11,0.12);--r-ap:rgba(245,158,11,0.28);
+  --r-c:#4a9eff;--r-cb:rgba(74,158,255,0.12);--r-cp:rgba(74,158,255,0.28);
+  --r-i:#a855f7;--r-ib:rgba(168,85,247,0.12);--r-ip:rgba(168,85,247,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 0% 0%,rgba(201,168,76,0.055) 0%,transparent 60%),
+             radial-gradient(ellipse 40% 50% at 100% 100%,rgba(168,85,247,0.04) 0%,transparent 60%);}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px 100px;position:relative;z-index:1;}
+
+.tab-nav{display:flex;gap:2px;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px;padding:4px;margin-bottom:36px;flex-wrap:wrap;
+  position:sticky;top:12px;z-index:100;}
+.tab-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  background:none;border:none;color:var(--muted);cursor:pointer;padding:8px 14px;border-radius:7px;transition:all .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.tab-btn.active{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+
+header{padding:56px 0 36px;}
+.breadcrumb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.breadcrumb span{color:var(--gold);}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,84px);letter-spacing:3px;line-height:.88;color:var(--white);}
+h1 em{color:var(--gold);font-style:normal;}
+.header-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.mpill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.mpill.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.mpill.blue{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.mpill.purple{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+.mpill.pink{background:var(--pinkb);color:var(--pink);border:1px solid var(--pinkp);}
+.bar{width:40px;height:2px;background:var(--gold);margin:22px 0;}
+
+.sec{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:14px;margin:40px 0 18px;}
+.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+
+.callout{border-radius:10px;padding:16px 20px;font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;}
+.callout.gold{background:rgba(201,168,76,0.07);border:1px solid var(--gmid);}
+.callout.gold strong{color:var(--gold);}
+.callout.blue{background:var(--acb);border:1px solid var(--acp);}
+.callout.blue strong{color:var(--ac);}
+.callout.purple{background:var(--purpleb);border:1px solid var(--purplep);}
+.callout.purple strong{color:var(--purple);}
+.callout.pink{background:var(--pinkb);border:1px solid var(--pinkp);}
+.callout.pink strong{color:var(--pink);}
+.callout.amber{background:var(--amberb);border:1px solid var(--amberp);}
+.callout.amber strong{color:var(--amber);}
+.callout.green{background:var(--greenb);border:1px solid var(--greenp);}
+.callout.green strong{color:var(--green);}
+
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:12px;}
+.ov-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.ov-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ov-val{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;}
+.ov-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.met-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.met-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.met-l{font-size:12px;color:var(--light);line-height:1.5;}
+.met-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:4px;}
+
+/* INITIATIVE CARDS */
+.init-grid{display:grid;gap:14px;}
+.init-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:24px 26px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;}
+.init-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;transform:scaleY(0);transform-origin:top;transition:transform .25s ease;}
+.init-card.rise::after{background:var(--pink);}
+.init-card.career::after{background:var(--ac);}
+.init-card.workforce::after{background:var(--green);}
+.init-card.cookout::after{background:var(--amber);}
+.init-card.mental::after{background:var(--teal);}
+.init-card.mentorship::after{background:var(--purple);}
+.init-card.financial::after{background:var(--gold);}
+.init-card.resume::after{background:var(--red);}
+.init-card:hover,.init-card.open{background:var(--bg3);}
+.init-card:hover::after,.init-card.open::after{transform:scaleY(1);}
+.init-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;}
+.init-id{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px;}
+.init-card.rise .init-id{color:var(--pink);}
+.init-card.career .init-id{color:var(--ac);}
+.init-card.workforce .init-id{color:var(--green);}
+.init-card.cookout .init-id{color:var(--amber);}
+.init-card.mental .init-id{color:var(--teal);}
+.init-card.mentorship .init-id{color:var(--purple);}
+.init-card.financial .init-id{color:var(--gold);}
+.init-card.resume .init-id{color:var(--red);}
+.init-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;color:var(--white);}
+.init-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px;flex-shrink:0;margin-top:2px;}
+.init-card.rise .init-badge{background:var(--pinkb);color:var(--pink);border:1px solid var(--pinkp);}
+.init-card.career .init-badge{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.init-card.workforce .init-badge{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.init-card.cookout .init-badge{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.init-card.mental .init-badge{background:var(--tealb);color:var(--teal);border:1px solid var(--tealp);}
+.init-card.mentorship .init-badge{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+.init-card.financial .init-badge{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.init-card.resume .init-badge{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.init-desc{font-size:12px;color:var(--light);line-height:1.6;margin-bottom:14px;}
+.toggle-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;transition:gap .18s;}
+.init-card.rise .toggle-btn{color:var(--pink);}
+.init-card.career .toggle-btn{color:var(--ac);}
+.init-card.workforce .toggle-btn{color:var(--green);}
+.init-card.cookout .toggle-btn{color:var(--amber);}
+.init-card.mental .toggle-btn{color:var(--teal);}
+.init-card.mentorship .toggle-btn{color:var(--purple);}
+.init-card.financial .toggle-btn{color:var(--gold);}
+.init-card.resume .toggle-btn{color:var(--red);}
+.toggle-btn:hover{gap:10px;}
+.init-detail{display:none;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.05);}
+.init-card.open .init-detail{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.dl-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
+.init-card.rise .dl-label{color:var(--pink);}
+.init-card.career .dl-label{color:var(--ac);}
+.init-card.workforce .dl-label{color:var(--green);}
+.init-card.cookout .dl-label{color:var(--amber);}
+.init-card.mental .dl-label{color:var(--teal);}
+.init-card.mentorship .dl-label{color:var(--purple);}
+.init-card.financial .dl-label{color:var(--gold);}
+.init-card.resume .dl-label{color:var(--red);}
+ul.di{list-style:none;}
+ul.di li{font-size:12px;color:var(--light);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+ul.di li:last-child{border-bottom:none;}
+ul.di li::before{content:'›';flex-shrink:0;margin-top:1px;}
+.init-card.rise ul.di li::before{color:var(--pink);}
+.init-card.career ul.di li::before{color:var(--ac);}
+.init-card.workforce ul.di li::before{color:var(--green);}
+.init-card.cookout ul.di li::before{color:var(--amber);}
+.init-card.mental ul.di li::before{color:var(--teal);}
+.init-card.mentorship ul.di li::before{color:var(--purple);}
+.init-card.financial ul.di li::before{color:var(--gold);}
+.init-card.resume ul.di li::before{color:var(--red);}
+
+/* PANELS STATUS TAGS */
+.panel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.panel-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.panel-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:4px;}
+.panel-detail{font-size:12px;color:var(--light);line-height:1.6;margin-bottom:8px;}
+.status{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border-radius:20px;display:inline-block;}
+.status.active{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.status.needed{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+
+/* RACI */
+.raci-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+thead tr{background:rgba(201,168,76,0.08);}
+th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.r{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap;display:inline-block;}
+.rR{background:var(--r-rb);color:var(--r-r);border:1px solid var(--r-rp);}
+.rA{background:var(--r-ab);color:var(--r-a);border:1px solid var(--r-ap);}
+.rC{background:var(--r-cb);color:var(--r-c);border:1px solid var(--r-cp);}
+.rI{background:var(--r-ib);color:var(--r-i);border:1px solid var(--r-ip);}
+.raci-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.rl{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.07);}
+.tl-item{position:relative;margin-bottom:26px;}
+.tl-dot{position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--ac);}
+.tl-item.key .tl-dot{background:var(--gold);border-color:var(--gold);}
+.tl-item.plan .tl-dot{border-color:var(--amber);}
+.tl-item.special .tl-dot{border-color:var(--green);}
+.tl-item.rise .tl-dot{border-color:var(--pink);}
+.tl-item.purple .tl-dot{border-color:var(--purple);}
+.tl-month{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:4px;}
+.tl-item.key .tl-month{color:var(--gold);}
+.tl-item.plan .tl-month{color:var(--amber);}
+.tl-item.special .tl-month{color:var(--green);}
+.tl-item.rise .tl-month{color:var(--pink);}
+.tl-item.purple .tl-month{color:var(--purple);}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:4px;}
+.tl-desc{font-size:12px;color:var(--light);line-height:1.6;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.tl-tag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:4px;color:var(--muted);}
+.tl-flag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;}
+.tl-flag.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tl-flag.green{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.tl-flag.amber{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.tl-flag.pink{background:var(--pinkb);color:var(--pink);border:1px solid var(--pinkp);}
+.tl-flag.blue{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.tl-flag.purple{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+.tl-flag.teal{background:var(--tealb);color:var(--teal);border:1px solid var(--tealp);}
+
+/* CHECKLIST */
+.cl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cl-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.cl-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.cl-item{display:flex;align-items:flex-start;gap:9px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);line-height:1.5;}
+.cl-item:last-child{border-bottom:none;}
+.checkbox{width:14px;height:14px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);flex-shrink:0;margin-top:1px;}
+
+/* STAKEHOLDERS */
+.sh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+.sh-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.sh-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:7px;}
+.sh-int .sh-type{color:var(--ac);}
+.sh-ext .sh-type{color:var(--gold);}
+.sh-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--white);margin-bottom:2px;}
+.sh-role{font-size:11px;color:var(--muted);margin-bottom:8px;}
+.sh-detail{font-size:12px;color:var(--light);line-height:1.6;}
+.sh-raci{margin-top:8px;}
+
+/* MKT */
+.mkt-grid{display:grid;gap:10px;}
+.mkt-row{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:start;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.mkt-when{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.mkt-what{font-size:12px;color:var(--light);line-height:1.6;}
+
+/* TAKEAWAYS */
+.tko-grid{display:grid;gap:8px;}
+.tko-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.tko-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);flex-shrink:0;min-width:24px;}
+.tko-text{font-size:12px;color:var(--light);line-height:1.6;}
+.tko-text strong{color:var(--white);}
+.tko-owner{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:4px;}
+
+/* DIFF */
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.diff-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px 22px;}
+
+/* CAMPUS */
+.campus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.campus-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden;}
+.campus-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);}
+.campus-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1.5px;color:var(--white);margin-bottom:3px;}
+.campus-type{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:10px;}
+.campus-detail{font-size:12px;color:var(--light);line-height:1.6;}
+.campus-contact{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05);}
+.campus-contact-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.campus-contact-val{font-size:12px;color:var(--white);}
+
+@media(max-width:640px){
+  .cl-grid,.sh-grid,.ov-grid,.metrics-grid,.diff-grid,.campus-grid{grid-template-columns:1fr;}
+  .mkt-row{grid-template-columns:1fr;}
+  .init-card.open .init-detail{grid-template-columns:1fr;}
+}
+
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-section{margin-bottom:28px;}
+.contact-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.contact-type::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.sponsor-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:14px;}
+.sponsor-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sponsor-table thead tr{background:rgba(201,168,76,0.08);}
+.sponsor-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+.sponsor-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+.sponsor-table tr:last-child td{border-bottom:none;}
+.sponsor-table tr:hover td{background:rgba(255,255,255,0.02);}
+.freq-pill{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+
+.cl2-pwrap{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px 18px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.cl2-plabel{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.cl2-ptrack{flex:1;min-width:80px;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
+.cl2-pfill{height:100%;border-radius:3px;background:var(--gold);transition:width .4s ease;}
+.cl2-pcount{font-family:'DM Mono',monospace;font-size:11px;color:var(--white);white-space:nowrap;}
+.cl2-rbtn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;}
+.cl2-rbtn:hover{color:var(--white);}
+.cl2-sec{margin-bottom:20px;}
+.cl2-shdr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.cl2-shdr::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.cl2-grid{display:grid;gap:6px;}
+.cl2-row{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:11px 14px;display:flex;align-items:flex-start;gap:11px;cursor:pointer;transition:background .18s;}
+.cl2-row:hover{background:var(--bg3);}
+.cl2-row.done{background:rgba(16,185,129,0.04);border-color:rgba(16,185,129,0.2);}
+.cl2-row.done .cl2-lbl{color:var(--muted);text-decoration:line-through;}
+.cl2-row.done .cl2-box{background:var(--green);border-color:var(--green);}
+.cl2-row.done .cl2-box::after{opacity:1;}
+.cl2-box{width:17px;height:17px;border-radius:4px;border:2px solid rgba(255,255,255,0.18);flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.cl2-box::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700;opacity:0;transition:opacity .18s;}
+.cl2-lbl{font-size:12px;color:var(--white);font-weight:500;line-height:1.5;}
+.cl2-note{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.cl2-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.cl2-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px;}
+.ct-req{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.ct-own{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.ct-time{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.ct-if{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid rgba(255,255,255,0.07);}
+.ct-data{background:var(--purpleb);color:var(--purple);border:1px solid var(--purplep);}
+.mmini{background:var(--bg2);border:1px solid var(--gmid);border-radius:10px;padding:16px 18px;margin-bottom:10px;}
+.mmini-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.ws-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:7px;}
+.ws-row{background:var(--bg3);border:1px solid rgba(255,255,255,0.06);border-radius:7px;padding:9px 11px;display:flex;align-items:flex-start;gap:8px;cursor:pointer;transition:background .18s;}
+.ws-row:hover{background:rgba(255,255,255,0.04);}
+.ws-row.done{border-color:rgba(201,168,76,0.3);}
+.ws-row.done .ws-nm{color:var(--muted);text-decoration:line-through;}
+.ws-row.done .ws-cb{background:var(--gold);border-color:var(--gold);}
+.ws-row.done .ws-cb::after{opacity:1;}
+.ws-cb{width:14px;height:14px;border-radius:3px;border:2px solid rgba(255,255,255,0.14);flex-shrink:0;margin-top:1px;position:relative;transition:all .18s;}
+.ws-cb::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:700;opacity:0;}
+.ws-nm{font-size:11px;color:var(--white);font-weight:500;}
+.ws-sub{font-size:10px;color:var(--muted);margin-top:1px;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="breadcrumb">The Playbook <span>›</span> External Impact <span>›</span> EXT-02</div>
+  <h1>Collegiate<br><em>100</em></h1>
+  <div class="header-meta">
+    <span class="mpill gold">Year-Round Program</span>
+    <span class="mpill blue">5 Campuses</span>
+    <span class="mpill blue">Off-Campus Events</span>
+    <span class="mpill purple">8 Initiatives</span>
+    <span class="mpill pink">RISE: 8-Month Program</span>
+    <span class="mpill blue">v2.0</span>
+  </div>
+  <div class="bar"></div>
+  <p style="font-size:13px;color:var(--light);max-width:620px;line-height:1.7;">
+    A structured leadership development experience across five Atlanta campuses. E100 builds the next generation of servant leaders — career-ready, self-led, and committed to mentoring others. <strong style="color:var(--white)">North Star: build leaders who go back and serve their communities.</strong>
+  </p>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('diff')">BEST vs C100</button>
+  <button class="tab-btn" onclick="showTab('campuses')">Campuses</button>
+  <button class="tab-btn" onclick="showTab('leadership')">Leadership</button>
+  <button class="tab-btn" onclick="showTab('initiatives')">All Initiatives</button>
+  <button class="tab-btn" onclick="showTab('panels')">WFD Panels</button>
+  <button class="tab-btn" onclick="showTab('stakeholders')">Stakeholders</button>
+  <button class="tab-btn" onclick="showTab('raci')">RACI</button>
+  <button class="tab-btn" onclick="showTab('calendar')">Calendar</button>
+  <button class="tab-btn" onclick="showTab('checklist')">Checklist</button>
+  <button class="tab-btn" onclick="showTab('marketing')">Marketing</button>
+  <button class="tab-btn" onclick="showTab('impact')">Impact Data</button>
+  <button class="tab-btn" onclick="showTab('takeaways')">⚑ To Finalize</button>
+  <button class="tab-btn" onclick="showTab('checklist_c100')">✅ Checklist</button>
+  <button class="tab-btn" onclick="showTab('nchair_c100b')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('newchair_c100')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('contacts_c100')">Contacts</button>
+  <button class="tab-btn" onclick="showTab('pastsponsors_c100')">Past Sponsors</button>
+</div>
+
+
+<!-- ══════ OVERVIEW ══════ -->
+<div id="tab-overview" class="tab-panel active">
+  
+<div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;margin-bottom:16px;">
+  <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">2026–2027 Leadership</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Chairs</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Donte Wilder · Nile Oates · Dylan Merriweather · Desmond Hazel · Ian Barrett</div>
+      
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Advisors</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Fortune Onwuzuruike · Rickey Townsend · Chris Moon</div>
+    </div>
+    <div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Exec Board Liaison</div>
+      <div style="font-size:13px;color:var(--gold);font-weight:600;">Daniel Farr & Julius Thomas</div>
+    </div>
+  </div>
+</div>
+<div class="sec">Program Overview</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Active Campuses</div><div class="ov-val">5 Chapters</div><div class="ov-sub">Clark Atlanta · Georgia State · Morehouse · Oglethorpe · Spelman</div></div>
+    <div class="ov-box"><div class="ov-label">Format</div><div class="ov-val">Off-Campus Events</div><div class="ov-sub">E100 does NOT go to campuses. Students come to E100-hosted events.</div></div>
+    <div class="ov-box"><div class="ov-label">Campus Presence</div><div class="ov-val">1 Member / Campus</div><div class="ov-sub">Works with Chapter President & VP to push info to roster</div></div>
+    <div class="ov-box"><div class="ov-label">Planning Kickoff</div><div class="ov-val">June – July</div><div class="ov-sub">Full year initiatives confirmed before fall semester</div></div>
+    <div class="ov-box"><div class="ov-label">RISE Program</div><div class="ov-val">8-Month Program</div><div class="ov-sub">All women · Application required · Gas South sponsors graduation (March)</div></div>
+    <div class="ov-box"><div class="ov-label">Career Fair</div>
+<div style="background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:18px;flex-shrink:0;">📎</div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;">Upload Needed</div>
+    <div style="font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;">Career Fair — Company List (Excel / PDF)</div>
+    <div style="font-size:12px;color:var(--light);">We still need this for an update. Drop the Excel or PDF link and we will build out the full company list, format details, and attendance count.</div>
+  </div>
+</div><div class="ov-val">Always Fall</div><div class="ov-sub">Contact: Melvia Jones, Delta Air Lines</div></div>
+    <div class="ov-box"><div class="ov-label">Scholarships</div><div class="ov-val">Gala Only</div><div class="ov-sub">Scholars recognized at Gala — not managed by C100 dept</div></div>
+    <div class="ov-box"><div class="ov-label">Closing Event</div><div class="ov-val">EOY BBQ</div><div class="ov-sub">Last week of April · BEST Academy · Rodney Scott catering</div></div>
+  </div>
+
+  <div class="sec">Goals & Success Metrics (2025–26)</div>
+  <div class="metrics-grid">
+    <div class="met-box"><div class="met-n">90.9%</div><div class="met-l">Say they are career ready</div></div>
+    <div class="met-box"><div class="met-n">91.9%</div><div class="met-l">Motivated to work harder toward goals</div></div>
+    <div class="met-box"><div class="met-n">95.2%</div><div class="met-l">Felt a sense of belonging & support</div></div>
+    <div class="met-box"><div class="met-n">92.9%</div><div class="met-l">Built meaningful relationships</div></div>
+    <div class="met-box"><div class="met-n">88.9%</div><div class="met-l">Leadership skills increased</div></div>
+    <div class="met-box"><div class="met-n">89%</div><div class="met-l">Committed to mentoring others</div></div>
+  </div>
+
+  <div class="sec">Institutional Knowledge</div>
+  <div class="callout gold"><strong>North Star:</strong> Build leaders who go back and serve. C100 students don't just develop themselves — they graduate committed to mentoring the next generation. BEST → C100 → Professional → Mentor. This is the cycle.</div>
+  <div class="callout pink"><strong>RISE is a flagship, not a footnote:</strong> RISE is an 8-month leadership development program, application-based, all women. Gas South sponsors the graduation in March. It runs on its own arc — not a sub-event of C100's general programming. Treat it accordingly.</div>
+  <div class="callout blue"><strong>Communication flows through chapter leadership:</strong> E100 doesn't go to campuses. Info gets to students through the Chapter President & VP via the assigned E100 campus liaison. A weak liaison = a dark campus.</div>
+  <div class="callout purple"><strong>Career Fair is always Fall:</strong> Melvia Jones at Delta Air Lines is the key contact. Book early. All 5 campuses mobilized through their liaisons.</div>
+</div>
+
+
+<!-- ══════ BEST VS C100 ══════ -->
+<div id="tab-diff" class="tab-panel">
+  <div class="sec">BEST Academy vs. Collegiate 100 — The Difference</div>
+  <div class="callout gold"><strong>Same pipeline, different stages.</strong> BEST grows boys into men. C100 grows college students into servant leaders who mentor others. The tone, content, and relationships must reflect where students are in their journey.</div>
+  <div class="diff-grid">
+    <div class="diff-box">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:var(--ac);margin-bottom:14px;">B.E.S.T. Academy</div>
+      <ul class="di" style="list-style:none;">
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--ac);flex-shrink:0;">›</span>High school — grades 6–12</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--ac);flex-shrink:0;">›</span>Focus: GRIT, Identity, Confidence, Leadership, Accountability</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--ac);flex-shrink:0;">›</span>E100 goes TO the school — on-campus, in the library</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--ac);flex-shrink:0;">›</span>Monthly sessions, 3rd Friday — highly structured</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--ac);flex-shrink:0;">›</span>Culminates in Rites of Passage — ceremonial, symbolic</li>
+        <li style="display:flex;gap:8px;padding:6px 0;font-size:12px;color:var(--light);"><span style="color:var(--ac);flex-shrink:0;">›</span>Adult mentors guiding youth — character development tone</li>
+      </ul>
+    </div>
+    <div class="diff-box">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;color:var(--purple);margin-bottom:14px;">Collegiate 100</div>
+      <ul class="di" style="list-style:none;">
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--purple);flex-shrink:0;">›</span>College students — 5 Atlanta campuses</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--purple);flex-shrink:0;">›</span>Focus: Career readiness, self-leadership, EQ, servant leadership</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--purple);flex-shrink:0;">›</span>Students come TO E100 events — off-campus</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--purple);flex-shrink:0;">›</span>8 distinct initiatives across the year — event-driven</li>
+        <li style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:var(--light);"><span style="color:var(--purple);flex-shrink:0;">›</span>Culminates in EOY BBQ — celebratory, relational</li>
+        <li style="display:flex;gap:8px;padding:6px 0;font-size:12px;color:var(--light);"><span style="color:var(--purple);flex-shrink:0;">›</span>Peer-to-professional mentorship — aspirational, not directive</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout blue"><strong>The pipeline:</strong> BEST student → graduates → enters college → joins C100 → career-ready leader → graduates → becomes E100 member or community mentor. Every stage feeds the next.</div>
+</div>
+
+
+<!-- ══════ CAMPUSES ══════ -->
+<div id="tab-campuses" class="tab-panel">
+  <div class="sec">Active Chapters — 5 Campuses</div>
+  <div class="callout blue"><strong>Communication model:</strong> 1 dedicated E100 member per campus. They work with the Chapter President & VP to push event info to the full roster. If the liaison relationship is weak, that campus is dark. Campus Relations chair monitors all 5.</div>
+  <div class="campus-grid">
+    <div class="campus-card">
+      <div class="campus-name">Clark Atlanta University</div>
+      <div class="campus-type">HBCU · Added 2025–2026 · New Chapter</div>
+      <div class="campus-detail">Newest addition to C100. Year 2 relationship — needs extra attention. Strong professional network and legacy in Black leadership development.</div>
+      <div class="campus-contact"><div class="campus-contact-label">E100 Liaison</div><div class="campus-contact-val">TBD — confirm with C100 Chairs</div></div>
+    </div>
+    <div class="campus-card">
+      <div class="campus-name">Morehouse College</div>
+      <div class="campus-type">HBCU · All-Male · Core Chapter</div>
+      <div class="campus-detail">All-male HBCU — natural alignment with E100's mission. Core original chapter. Highest career alignment with E100 members.</div>
+      <div class="campus-contact"><div class="campus-contact-label">E100 Liaison</div><div class="campus-contact-val">TBD — confirm with C100 Chairs</div></div>
+    </div>
+    <div class="campus-card">
+      <div class="campus-name">Spelman College</div>
+      <div class="campus-type">HBCU · All-Female · RISE Anchor Campus</div>
+      <div class="campus-detail">All-female HBCU. Primary anchor for The RISE Leadership Experience. Strong chapter culture and women's leadership development emphasis.</div>
+      <div class="campus-contact"><div class="campus-contact-label">E100 Liaison</div><div class="campus-contact-val">TBD — confirm with C100 Chairs</div></div>
+    </div>
+    <div class="campus-card">
+      <div class="campus-name">Georgia State University</div>
+      <div class="campus-type">Public University · Largest Roster</div>
+      <div class="campus-detail">Largest and most diverse campus. Broad reach across majors. Strong career-focused population. High Career Fair attendance potential.</div>
+      <div class="campus-contact"><div class="campus-contact-label">E100 Liaison</div><div class="campus-contact-val">TBD — confirm with C100 Chairs</div></div>
+    </div>
+    <div class="campus-card">
+      <div class="campus-name">Oglethorpe University</div>
+      <div class="campus-type">Private Liberal Arts · Smaller Chapter</div>
+      <div class="campus-detail">Smaller campus. Relationship with chapter president is especially critical — smaller roster means the liaison must be highly engaged to drive attendance.</div>
+      <div class="campus-contact"><div class="campus-contact-label">E100 Liaison</div><div class="campus-contact-val">TBD — confirm with C100 Chairs</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ LEADERSHIP ══════ -->
+<div id="tab-leadership" class="tab-panel">
+  <div class="sec">Leadership Structure</div>
+  <div class="sec">Chair Swim Lanes</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;">
+    <div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 1</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Campus Liaisons & Programming</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Owns the E100 liaison relationship at each of the 5 campuses. Manages campus induction support, welcome back events, and general campus programming. Point of contact with each campus Chapter President and VP.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 2</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Workforce Development & Career Fair</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Owns the annual Career Fair at Delta HQ. Manages all Workforce Development panels (Finance, Tech, Sales, and new tracks being built). Coordinates with NSN for the September sales workforce development event.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 3</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">RISE Program</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Owns the full RISE program — 8-month women's leadership experience. Manages the October intensive, January teambuilding, and April graduation. Coordinates Gas South sponsorship of RISE graduation.</div>
+    </div>
+  </div>
+  <div class="callout gold"><strong>1 Chair, 2 Chairs, 5 Campus Liaisons.</strong> RISE is part of programming — not a separate committee. The Scholar Development chair owns RISE programming alongside all other C100 initiatives.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div style="grid-column:1/-1;background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair — C100 Director</div>
+      <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:8px;">Owns C100 end-to-end · Reports to Exec Board</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.7;">Sets the annual program arc. Manages both chairs and all 5 campus liaisons. Owns the Career Fair relationship with Melvia Jones at Delta. Ensures all 8 initiatives are planned and executed. Reports to Exec Board. Confirms Rodney Scott booking and Gas South RISE graduation partnership.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:8px;">Chair — Campus Relations</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">Owns the 5 chapter relationships</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Manages 5 campus liaisons. Ensures each has active relationship with their Chapter President & VP. Monitors information flow to chapter rosters. Tracks engagement and attendance across events. Escalates disconnected campuses to Chair immediately.</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;">Chair — Scholar Development & Programming</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">Owns all programming including RISE</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Designs and executes all C100 programming — RISE (8-month women's program), Workforce Dev panels, Resume/LinkedIn workshops, Mental Health / Wellness event (format varies annually — has been part of RISE for women, Brotherhood Brunch for men; 2026-27: exploring Rise-themed cohort for young men), Career Fair logistics, Financial Literacy. Pre/post surveys. Partners with Data dept on impact reporting. RISE is part of this portfolio, not a separate committee.</div>
+    </div>
+    <div style="grid-column:1/-1;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px 22px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Campus Liaisons — 5 Members (1 Per Campus)</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;margin-bottom:6px;">The communication bridge to each chapter</div>
+      <div style="font-size:12px;color:var(--light);line-height:1.6;">Each liaison connects with their Chapter President & VP, pushes event info to roster, tracks engagement, and reports back to Campus Relations chair. Most critical accountability point in C100 — a disconnected liaison means a disconnected campus.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ ALL INITIATIVES ══════ -->
+<div id="tab-initiatives" class="tab-panel">
+  <div class="sec">All C100 Initiatives — Full List</div>
+  <div class="callout gold"><strong>C100 is event-driven.</strong> Unlike BEST's monthly cadence, C100 revolves around 8 distinct initiatives across the year. Each is its own mini-project with its own planning timeline, budget, and stakeholders.</div>
+
+  <div class="init-grid">
+
+    <!-- RISE -->
+    <div class="init-card rise" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-01 · Flagship Program</div><div class="init-name">The RISE Leadership Experience</div></div>
+        <span class="init-badge">8-Month Program</span>
+      </div>
+      <p class="init-desc">An 8-month women's leadership development program. Application-based — students apply to participate. Runs its own arc from fall through graduation in March. Gas South sponsors the graduation. Past speakers involved. This is a flagship initiative that deserves its own full planning treatment.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Program Structure</div>
+          <ul class="di">
+            <li>Application-based — women apply to be selected</li>
+            <li>8 months of structured programming</li>
+            <li>Leadership identity, confidence, voice development</li>
+            <li>EQ & emotional resilience for women leaders</li>
+            <li>Community service leadership component</li>
+            <li>Cross-campus (all 5 campuses eligible)</li>
+            <li>Past speakers involved — build speaker pipeline</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Key Milestones</div>
+          <ul class="di">
+            <li>Fall — Applications open & cohort selected</li>
+            <li>Monthly programming sessions (format TBD with Chairs)</li>
+            <li>March — RISE Graduation · Sponsored by Gas South</li>
+            <li>Pre/post survey — measure confidence, leadership identity</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Partners Needed</div>
+          <ul class="di">
+            <li>Gas South — Graduation sponsor (confirmed)</li>
+            <li>Past speakers — identify and re-engage</li>
+            <li>Women-focused corporate partners TBD</li>
+            <li>Open item: confirm full RISE partner roster with Chairs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAREER FAIR -->
+    <div class="init-card career" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-02 · Annual · Always Fall</div><div class="init-name">Annual Career Fair</div></div>
+        <span class="init-badge">Career Readiness</span>
+      </div>
+      <p class="init-desc">The signature annual career event. Always held in Fall. Connects students from all 5 campuses with top Atlanta employers. Melvia Jones at Delta Air Lines is the key corporate contact. Mock interviews, resume workshops, industry panels, networking.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Event Details</div>
+          <ul class="di">
+            <li>Timing: Always Fall — confirm date by July</li>
+            <li>Key Contact: Melvia Jones, Delta Air Lines</li>
+            <li>Off-campus venue — confirm annually</li>
+            <li>Employer recruitment begins 8–10 weeks out</li>
+            <li>All 5 campuses mobilized via liaisons</li>
+            <li>Mock interviews, resume workshops, panels</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Planning Checklist</div>
+          <ul class="di">
+            <li>Confirm date & venue — July deadline</li>
+            <li>Contact Melvia Jones at Delta early</li>
+            <li>Recruit employers — 8–10 weeks out</li>
+            <li>Push RSVP to all 5 campuses via liaisons</li>
+            <li>Book Donald Gibson for photo/video</li>
+            <li>Post-event career readiness survey</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Target Outcome</div>
+          <ul class="di"><li>90.9% career ready benchmark (current)</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORKFORCE DEV PANELS -->
+    <div class="init-card workforce" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-03 · Program Series</div><div class="init-name">Workforce Development Panels</div></div>
+        <span class="init-badge">Industry Immersion</span>
+      </div>
+      <p class="init-desc">Industry-specific panels giving students real access to professionals in their fields. Finance, Tech, and Sales are in place. Healthcare, Engineering, and Law panels need to be instituted. Each panel is its own event with its own partners.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Panel Tracks</div>
+          <ul class="di">
+            <li>✅ Finance — in place</li>
+            <li>✅ Tech / Innovation — in place</li>
+            <li>✅ Sales & Entrepreneurship — in place</li>
+            <li>⚑ Healthcare (non-clinical) — needs to be instituted</li>
+            <li>⚑ Engineering — needs to be instituted</li>
+            <li>⚑ Law — needs to be instituted</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Format Per Panel</div>
+          <ul class="di">
+            <li>Off-campus venue or corporate host site</li>
+            <li>3–5 industry professionals per panel</li>
+            <li>Moderated Q&A + networking after</li>
+            <li>All 5 campuses invited — liaisons push RSVP</li>
+            <li>Photo, video, post caption — 48hr standard</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Open Items</div>
+          <ul class="di">
+            <li>Identify Healthcare, Engineering, Law panelists</li>
+            <li>Corporate partners for new tracks needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUME & LINKEDIN -->
+    <div class="init-card resume" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-04 · Workshop Series</div><div class="init-name">Resume Writing & LinkedIn Building</div></div>
+        <span class="init-badge">Career Prep</span>
+      </div>
+      <p class="init-desc">Hands-on workshops for students to build polished resumes and optimized LinkedIn profiles. Connects education directly to career action. Can be hosted by a corporate partner or led by E100 members with relevant expertise.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Workshop Components</div>
+          <ul class="di">
+            <li>Resume critique & rebuild sessions</li>
+            <li>LinkedIn profile optimization</li>
+            <li>Professional headshot guidance / tips</li>
+            <li>Networking strategy on LinkedIn</li>
+            <li>Personal brand building basics</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Format Options</div>
+          <ul class="di">
+            <li>E100 member-led (members with HR, recruiting background)</li>
+            <li>Corporate partner-hosted (HR/Talent teams)</li>
+            <li>Can pair with Career Fair pre-event</li>
+            <li>All 5 campuses — students bring laptops</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Open Items</div>
+          <ul class="di">
+            <li>Confirm facilitator (member or corporate partner)</li>
+            <li>Confirm date — suggest tying to Career Fair season</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENTORSHIP TOP GOLF -->
+    <div class="init-card mentorship" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-05 · January · National Mentorship Month</div><div class="init-name">Mentorship Event at Top Golf</div></div>
+        <span class="init-badge">National Mentorship Month</span>
+      </div>
+      <p class="init-desc">The January signature event celebrating National Mentorship Month. Held at Top Golf. Connects E100 members directly with C100 students in a relaxed, social environment that builds real relationships — not just programming.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Event Details</div>
+          <ul class="di">
+            <li>Month: January — National Mentorship Month</li>
+            <li>Venue: Top Golf Atlanta</li>
+            <li>Format: Social + mentorship matching</li>
+            <li>Audience: E100 members + all C100 students</li>
+            <li>All 5 campuses mobilized via liaisons</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Why This Works</div>
+          <ul class="di">
+            <li>Informal setting breaks down the mentee/mentor barrier</li>
+            <li>Students see E100 members as people, not just presenters</li>
+            <li>Top Golf is aspirational — students remember it</li>
+            <li>Strong social content moment for Comms</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Planning Notes</div>
+          <ul class="di">
+            <li>Book Top Golf early — popular venue</li>
+            <li>Budget: confirm with Treasurer</li>
+            <li>Sponsorship opportunity for this event</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENTAL HEALTH -->
+    <div class="init-card mental" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-06 · Annual Event</div><div class="init-name">Mental Health Event</div></div>
+        <span class="init-badge">Wellness</span>
+      </div>
+      <p class="init-desc">An annual mental health roundtable or event for C100 students. College students face unique mental health challenges — E100 creates a safe, structured space to address stress, resilience, and emotional wellness. NAACP Health Equity partnership noted as potential collaborator.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Event Focus</div>
+          <ul class="di">
+            <li>Stress resilience & coping strategies</li>
+            <li>Mental wellness for college students</li>
+            <li>Emotional intelligence & self-awareness</li>
+            <li>Safe space discussion format</li>
+            <li>Clinical or licensed professional facilitator</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Potential Partners</div>
+          <ul class="di">
+            <li>NAACP Center for Health Equity (noted partnership)</li>
+            <li>Kaiser Permanente (also BEST option)</li>
+            <li>Campus counseling / wellness departments</li>
+            <li>Clinical professionals in E100 network</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Open Items</div>
+          <ul class="di">
+            <li>Confirm date and format with C100 Chairs</li>
+            <li>Confirm facilitator / clinical partner</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINANCIAL LITERACY -->
+    <div class="init-card financial" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-07 · Workshop</div><div class="init-name">Financial Literacy Seminar</div></div>
+        <span class="init-badge">Financial Wellness</span>
+      </div>
+      <p class="init-desc">Financial literacy and wealth-building basics for college students. Budgeting, saving, debt management, investing foundations. Partners from financial services industry — Regions, Equifax, Bank of America, or others.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Topics</div>
+          <ul class="di">
+            <li>Budgeting & saving foundations</li>
+            <li>Student debt strategy</li>
+            <li>Credit building & credit scores</li>
+            <li>Investment basics for young professionals</li>
+            <li>Wealth-building mindset</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Potential Partners</div>
+          <ul class="di">
+            <li>Regions Bank (past partner)</li>
+            <li>Equifax (past partner)</li>
+            <li>Bank of America (open option)</li>
+            <li>E100 members in finance</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Open Items</div>
+          <ul class="di">
+            <li>Confirm partner for this year</li>
+            <li>Confirm date — suggest spring semester</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EOY BBQ -->
+    <div class="init-card cookout" onclick="toggleInit(this)">
+      <div class="init-top">
+        <div><div class="init-id">C100-08 · Annual Closing · April</div><div class="init-name">End-of-Year BBQ</div></div>
+        <span class="init-badge">Signature Close</span>
+      </div>
+      <p class="init-desc">The emotional close of the C100 year. Last week of April at BEST Academy. Catered by Rodney Scott. Honors graduating seniors and outgoing chapter presidents before they leave. Post-survey distributed here. Celebratory, relational, reflective — students leave feeling seen.</p>
+      <button class="toggle-btn">Details →</button>
+      <div class="init-detail">
+        <div>
+          <div class="dl-label">Event Details</div>
+          <ul class="di">
+            <li>Date: Last week of April (annually)</li>
+            <li>Location: B.E.S.T. Academy</li>
+            <li>Caterer: Rodney Scott — book early</li>
+            <li>Audience: All C100 students + E100 members</li>
+            <li>Purpose: Honor seniors & outgoing presidents</li>
+            <li>Post-survey distributed at this event</li>
+          </ul>
+        </div>
+        <div>
+          <div class="dl-label">Why This Matters</div>
+          <ul class="di">
+            <li>Seniors leaving need to feel seen and celebrated</li>
+            <li>Sets the tone for alumni engagement going forward</li>
+            <li>Rodney Scott catering = the event feels earned</li>
+            <li>Best content moment for student testimonials</li>
+          </ul>
+          <div class="dl-label" style="margin-top:14px;">Planning Notes</div>
+          <ul class="di">
+            <li>Book Rodney Scott in August — not April</li>
+            <li>Coordinate BEST Academy space with Ray Singer</li>
+            <li>All 5 campus liaisons own getting their chapter there</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ══════ WFD PANELS ══════ -->
+<div id="tab-panels" class="tab-panel">
+  <div class="sec">Workforce Development — Panel Status</div>
+  <div class="callout gold"><strong>Finance, Tech, and Sales are in place. Healthcare, Engineering, and Law need to be instituted.</strong> Each panel is its own event with its own partner pipeline. The Scholar Development chair owns building out the missing tracks.</div>
+  <div class="panel-grid">
+    <div class="panel-card">
+      <div class="panel-name">Finance</div>
+      <div class="panel-detail">Banking, investment, financial services professionals. Connects students to wealth management, corporate finance, and FinTech careers.</div>
+      <span class="status active">✓ In Place</span>
+    </div>
+    <div class="panel-card">
+      <div class="panel-name">Technology</div>
+      <div class="panel-detail">Tech, AI, software engineering, product management. Microsoft is a natural partner here. One of the strongest draws for C100 students.</div>
+      <span class="status active">✓ In Place</span>
+    </div>
+    <div class="panel-card">
+      <div class="panel-name">Sales & Entrepreneurship</div>
+      <div class="panel-detail">Sales, business development, entrepreneurship. Strong E100 member pool for this track. Highly applicable across all industries.</div>
+      <span class="status active">✓ In Place</span>
+    </div>
+    <div class="panel-card">
+      <div class="panel-name">Healthcare</div>
+      <div class="panel-detail">Non-clinical healthcare — healthcare administration, public health, health policy, hospital management. Growing field with strong career pathways for HBCU students.</div>
+      <span class="status needed">⚑ Needs to be Instituted</span>
+    </div>
+    <div class="panel-card">
+      <div class="panel-name">Engineering</div>
+      <div class="panel-detail">Civil, mechanical, software, and other engineering disciplines. Strong pipeline from Morehouse and Georgia State. Partner with Atlanta engineering firms.</div>
+      <span class="status needed">⚑ Needs to be Instituted</span>
+    </div>
+    <div class="panel-card">
+      <div class="panel-name">Law</div>
+      <div class="panel-detail">Corporate law, public interest law, legal careers broadly. E100 has members in law — strong internal facilitator pool. High interest among C100 students.</div>
+      <span class="status needed">⚑ Needs to be Instituted</span>
+    </div>
+  </div>
+  <div class="callout amber" style="margin-top:16px;"><strong>To institution new panels:</strong> Scholar Development chair identifies 3–5 panelists per track, secures a corporate host or off-campus venue, confirms date, and briefs the Campus Relations chair to mobilize all 5 campuses. Each panel follows the standard event checklist.</div>
+</div>
+
+
+<!-- ══════ STAKEHOLDERS ══════ -->
+<div id="tab-stakeholders" class="tab-panel">
+  <div class="sec">Stakeholder Map</div>
+  <div class="sh-grid">
+    <div class="sh-card sh-int">
+      <div class="sh-type">Internal — E100 Leadership</div>
+      <div class="sh-name">C100 Chair</div>
+      <div class="sh-role">C100 Director</div>
+      <div class="sh-detail">Owns full C100 program end-to-end. Manages both chairs and all 5 campus liaisons. Reports to Exec Board. Owns Career Fair relationship with Melvia Jones.</div>
+      <div class="sh-raci"><span class="r rA">Accountable</span></div>
+    </div>
+    <div class="sh-card sh-int">
+      <div class="sh-type">Internal — 5 Members</div>
+      <div class="sh-name">Campus Liaisons (×5)</div>
+      <div class="sh-role">1 Per Campus — Communication Bridge</div>
+      <div class="sh-detail">Most critical link in C100 communication. Works with Chapter President & VP. Pushes all event info to roster. If a liaison goes dark, their campus goes dark.</div>
+      <div class="sh-raci"><span class="r rR">Responsible (Campus)</span></div>
+    </div>
+    <div class="sh-card sh-int">
+      <div class="sh-type">Internal — Media</div>
+      <div class="sh-name">Donald Gibson</div>
+      <div class="sh-role">E100 Member · Photo & Video POC</div>
+      <div class="sh-detail">Books photo and video for all major C100 events. In-house or outsourced. 48hr content delivery standard. Book for every major initiative during planning season.</div>
+      <div class="sh-raci"><span class="r rR">Responsible (Media)</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Career Fair Key Contact</div>
+      <div class="sh-name">Melvia Jones</div>
+      <div class="sh-role">Delta Air Lines · Career Fair Partner</div>
+      <div class="sh-detail">Primary corporate contact for the Annual Career Fair. Delta is a key partner across both BEST and C100. Reach out early in planning season — Career Fair is always Fall.</div>
+      <div class="sh-raci"><span class="r rC">Consulted · Partner</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — RISE Sponsor</div>
+      <div class="sh-name">Gas South</div>
+      <div class="sh-role">RISE Graduation Sponsor · March</div>
+      <div class="sh-detail">Sponsors the RISE graduation ceremony in March. Also a BEST Academy must-include partner. Relationship spans both programs. Confirm RISE graduation details with Gas South early.</div>
+      <div class="sh-raci"><span class="r rC">Partner · Sponsor</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Chapter Presidents (×5)</div>
+      <div class="sh-name">5 Chapter Presidents</div>
+      <div class="sh-role">1 Per Campus · Student Mobilizers</div>
+      <div class="sh-detail">Primary student-side point of contact at each campus. Work with E100 campus liaison to distribute information. They are the campus mobilizers — their engagement determines attendance.</div>
+      <div class="sh-raci"><span class="r rC">Consulted</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Caterer</div>
+      <div class="sh-name">Rodney Scott</div>
+      <div class="sh-role">EOY BBQ Caterer · Book in August</div>
+      <div class="sh-detail">Signature caterer for the End-of-Year BBQ. High demand — must be booked in August, not April. Catering choice is part of what makes the event feel earned and special.</div>
+      <div class="sh-raci"><span class="r rC">Vendor</span></div>
+    </div>
+    <div class="sh-card sh-ext">
+      <div class="sh-type">External — Venue (EOY BBQ)</div>
+      <div class="sh-name">Ray Singer / BEST Academy</div>
+      <div class="sh-role">Venue for EOY BBQ</div>
+      <div class="sh-detail">EOY BBQ is held at BEST Academy. Coordinate space with Ray Singer. Book at the same time as Rodney Scott — August.</div>
+      <div class="sh-raci"><span class="r rC">Consulted</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ RACI ══════ -->
+<div id="tab-raci" class="tab-panel">
+  <div class="sec">RACI Matrix</div>
+  <div class="raci-legend">
+    <div class="rl"><span class="r rR">R</span> Responsible — does the work</div>
+    <div class="rl"><span class="r rA">A</span> Accountable — owns the outcome</div>
+    <div class="rl"><span class="r rC">C</span> Consulted — input required</div>
+    <div class="rl"><span class="r rI">I</span> Informed — kept in the loop</div>
+  </div>
+  <div class="raci-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="min-width:190px">Activity</th>
+        <th>Exec Board</th>
+        <th>C100 Chair</th>
+        <th>SC: Campus Relations</th>
+        <th>SC: Scholar Dev</th>
+        <th>Campus Liaisons</th>
+        <th>Chapter Presidents</th>
+        <th>Melvia Jones (Delta)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Annual program planning</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rI">I</span></td><td>—</td></tr>
+      <tr><td><strong>Campus liaison assignment (5)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rI">I</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Chapter president relationship</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td></tr>
+      <tr><td><strong>Event info to chapter rosters</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td></tr>
+      <tr><td><strong>RISE 8-month program planning</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>Gas South RISE graduation</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>Career Fair — Fall</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td></tr>
+      <tr><td><strong>Workforce Dev panels (all 6)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>Resume / LinkedIn workshops</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>Mentorship @ Top Golf (Jan)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td></tr>
+      <tr><td><strong>Mental Health / Wellness event (format varies annually — has been part of RISE for women, Brotherhood Brunch for men; 2026-27: exploring Rise-themed cohort for young men)</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>Financial Literacy seminar</strong></td><td>—</td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>EOY BBQ planning & execution</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td></tr>
+      <tr><td><strong>Pre/post student surveys</strong></td><td><span class="r rI">I</span></td><td><span class="r rA">A</span></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td><span class="r rR">R</span></td><td>—</td></tr>
+      <tr><td><strong>Photo, video, 48hr content delivery</strong></td><td>—</td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Reporting to Exec Board</strong></td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<!-- ══════ CALENDAR ══════ -->
+<div id="tab-calendar" class="tab-panel">
+  <div class="sec">Annual Planning Calendar</div>
+  <div class="timeline">
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">June – July · Planning</div>
+      <div class="tl-title">Annual Planning Kickoff</div>
+      <div class="tl-desc">Assign all 5 campus liaisons. Confirm Career Fair date and contact Melvia Jones at Delta. Set RISE application timeline. Identify Healthcare, Engineering, Law panelists. Pre-survey prep. Book Rodney Scott for April.</div>
+      <div class="tl-tags"><span class="tl-flag amber">Book Rodney Scott NOW — not in April</span><span class="tl-tag">Contact Melvia Jones</span><span class="tl-tag">Assign Liaisons</span></div>
+    </div>
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">August · Pre-Launch</div>
+      <div class="tl-title">Liaison Outreach + RISE Applications Open</div>
+      <div class="tl-desc">Each campus liaison connects with their Chapter President & VP before school starts. RISE applications open — promote to all 5 campuses. Book Donald Gibson for fall events. Career Fair employer recruitment begins.</div>
+      <div class="tl-tags"><span class="tl-tag">RISE Applications Open</span><span class="tl-tag">Liaison-to-President Connect</span><span class="tl-tag">Career Fair Employer Outreach</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">September – October · Fall</div>
+      <div class="tl-title">Pre-Survey + Year Kickoff + Career Fair</div>
+      <div class="tl-desc">Pre-survey distributed through liaisons. Career Fair always in Fall — Melvia Jones at Delta is key contact. RISE cohort selected and first sessions begin. Workforce Dev panels begin.</div>
+      <div class="tl-tags"><span class="tl-flag blue">Career Fair — Always Fall</span><span class="tl-flag green">Pre-Survey Distribution</span><span class="tl-flag pink">RISE Begins</span></div>
+    </div>
+    <div class="tl-item special">
+      <div class="tl-dot"></div>
+      <div class="tl-month">Fall / Winter · Ongoing</div>
+      <div class="tl-title">Workforce Dev Panels + Resume & LinkedIn Workshops</div>
+      <div class="tl-desc">Industry panels throughout the year — Finance, Tech, Sales (active), Healthcare, Engineering, Law (to institute). Resume & LinkedIn workshop — suggest pairing with Career Fair season. All 5 campuses mobilized via liaisons.</div>
+      <div class="tl-tags"><span class="tl-tag">6 Panel Tracks</span><span class="tl-tag">Resume / LinkedIn Workshop</span><span class="tl-tag">Off-Campus Events</span></div>
+    </div>
+    <div class="tl-item purple">
+      <div class="tl-dot"></div>
+      <div class="tl-month">January · National Mentorship Month</div>
+      <div class="tl-title">Mentorship Event at Top Golf</div>
+      <div class="tl-desc">Signature January event celebrating National Mentorship Month. Top Golf Atlanta. E100 members + all C100 students. Informal setting builds real mentor-mentee relationships. Book Top Golf early.</div>
+      <div class="tl-tags"><span class="tl-flag purple">National Mentorship Month</span><span class="tl-tag">Top Golf</span><span class="tl-tag">All 5 Campuses</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">Winter / Spring · TBD</div>
+      <div class="tl-title">Mental Health Event + Financial Literacy Seminar</div>
+      <div class="tl-desc">Mental health roundtable — NAACP Health Equity and/or clinical partner. Financial literacy seminar — Regions, Equifax, or BofA. Dates flexible but confirm by July planning deadline.</div>
+      <div class="tl-tags"><span class="tl-flag teal">Mental Health</span><span class="tl-flag gold">Financial Literacy</span></div>
+    </div>
+    <div class="tl-item rise">
+      <div class="tl-dot"></div>
+      <div class="tl-month">March · RISE Graduation</div>
+      <div class="tl-title">RISE Leadership Experience Graduation</div>
+      <div class="tl-desc">Culmination of the 8-month RISE program. Gas South sponsors the graduation ceremony. Celebrate the RISE cohort. Families and E100 members invited. Strong content and media moment. RISE is the equivalent of BEST's Rites of Passage — treat it with the same reverence.</div>
+      <div class="tl-tags"><span class="tl-flag pink">RISE Graduation</span><span class="tl-flag green">Gas South Sponsor</span><span class="tl-tag">Photo + Video</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">April · Last Week</div>
+      <div class="tl-title">End-of-Year BBQ</div>
+      <div class="tl-desc">The emotional close of C100. BEST Academy. Rodney Scott catering. All 5 campuses. Honors seniors and outgoing presidents. Post-survey distributed here. Celebratory and relational — students leave feeling seen and celebrated.</div>
+      <div class="tl-tags"><span class="tl-flag gold">EOY BBQ</span><span class="tl-tag">Rodney Scott</span><span class="tl-tag">Post-Survey</span><span class="tl-tag">BEST Academy</span></div>
+    </div>
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">May – June · Wrap</div>
+      <div class="tl-title">Year-End Debrief + Next Year Planning</div>
+      <div class="tl-desc">Sub-chair debrief. Evaluate liaison performance per campus. Document what worked. Capture impact data. Update partner registry. Institute new WFD panels. Planning cycle restarts June.</div>
+      <div class="tl-tags"><span class="tl-tag">Debrief</span><span class="tl-tag">Liaison Review</span><span class="tl-tag">Playbook Update</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ CHECKLIST ══════ -->
+<div id="tab-checklist" class="tab-panel">
+  <div class="sec">Event Checklist — All C100 Initiatives</div>
+  <div class="callout gold"><strong>Every C100 initiative follows this checklist.</strong> RISE has additional steps given its 8-month structure — those are noted separately.</div>
+  <div class="cl-grid">
+    <div class="cl-box">
+      <div class="cl-title">8–10 Weeks Before Event</div>
+      <div class="cl-item"><div class="checkbox"></div>Confirm event date and venue</div>
+      <div class="cl-item"><div class="checkbox"></div>Confirm partners / panelists / speakers</div>
+      <div class="cl-item"><div class="checkbox"></div>Brief sent to all partners with expectations</div>
+      <div class="cl-item"><div class="checkbox"></div>Budget approved by Treasurer</div>
+      <div class="cl-item"><div class="checkbox"></div>All 5 campus liaisons briefed</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">4 Weeks Before Event</div>
+      <div class="cl-item"><div class="checkbox"></div>Chapter Presidents notified — info pushed to rosters</div>
+      <div class="cl-item"><div class="checkbox"></div>RSVP / registration link sent to all campuses</div>
+      <div class="cl-item"><div class="checkbox"></div>Food / catering confirmed</div>
+      <div class="cl-item"><div class="checkbox"></div>Donald Gibson booked for photo & video</div>
+      <div class="cl-item"><div class="checkbox"></div>Run-of-show drafted and approved by Chair</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">1 Week Before Event</div>
+      <div class="cl-item"><div class="checkbox"></div>Final reminder to all 5 campuses via liaisons</div>
+      <div class="cl-item"><div class="checkbox"></div>All logistics confirmed (venue, food, AV, photo/video)</div>
+      <div class="cl-item"><div class="checkbox"></div>Partners confirmed attendance</div>
+      <div class="cl-item"><div class="checkbox"></div>Sign-in sheets and survey (if applicable) ready</div>
+      <div class="cl-item"><div class="checkbox"></div>Chair: all green — confirm with Exec Board</div>
+    </div>
+    <div class="cl-box">
+      <div class="cl-title">Day Of + 48 Hours After</div>
+      <div class="cl-item"><div class="checkbox"></div>Arrive early — setup complete</div>
+      <div class="cl-item"><div class="checkbox"></div>Donald Gibson on site</div>
+      <div class="cl-item"><div class="checkbox"></div>Attendance tracked by campus</div>
+      <div class="cl-item"><div class="checkbox"></div>Survey distributed if applicable</div>
+      <div class="cl-item"><div class="checkbox"></div>Photos + video to Comms within 48hrs</div>
+      <div class="cl-item"><div class="checkbox"></div>Post caption written and sent to Comms</div>
+      <div class="cl-item"><div class="checkbox"></div>Partner thank-you sent by Chair</div>
+      <div class="cl-item"><div class="checkbox"></div>Debrief note logged</div>
+    </div>
+  </div>
+  <div class="callout pink" style="margin-top:16px;"><strong>RISE Additional Steps:</strong> Applications → Selection → Monthly sessions (each follows standard checklist) → Mid-program check-in with cohort → Gas South graduation coordination (8 weeks out) → Graduation ceremony (treat like Rites of Passage in scale and care).</div>
+</div>
+
+
+<!-- ══════ MARKETING ══════ -->
+<div id="tab-marketing" class="tab-panel">
+  <div class="sec">Marketing & Communications Strategy</div>
+  <div class="callout gold"><strong>Two audiences. Every event.</strong> Internal: mobilize E100 members and chapter rosters. External: donors, partners, community — show impact. Scholar Dev chair writes captions. Comms posts. 48hr rule applies to everything.</div>
+  <div class="mkt-grid">
+    <div class="mkt-row"><div class="mkt-when">Year Kickoff · Fall</div><div class="mkt-what"><strong>C100 Program Launch:</strong> Announce the year. Feature all 5 campuses and tag each school. Introduce RISE applications being open. Set the tone publicly and signal to students that E100 is showing up.</div></div>
+    <div class="mkt-row"><div class="mkt-when">RISE Applications</div><div class="mkt-what"><strong>RISE Application Promo:</strong> Generate applications across all 5 campuses. Feature what RISE is, who it's for, what they'll gain. Strong visual identity for RISE as a standalone brand moment.</div></div>
+    <div class="mkt-row"><div class="mkt-when">Career Fair · Fall</div><div class="mkt-what"><strong>Employer Spotlight + Student Spotlight:</strong> Two angles — show employers (partner stewardship) and show students (impact storytelling). Career Fair content is the strongest proof point for corporate partners considering the org.</div></div>
+    <div class="mkt-row"><div class="mkt-when">WFD Panels</div><div class="mkt-what"><strong>Panel Recaps:</strong> Feature each industry panel. Tag the panelists and corporate hosts. Show the access E100 provides to students. Strong content for each of the 6 tracks.</div></div>
+    <div class="mkt-row"><div class="mkt-when">January</div><div class="mkt-what"><strong>National Mentorship Month:</strong> Top Golf event content. Feature E100 member and C100 student connections. Brotherhood/sisterhood in action. Strong engagement content.</div></div>
+    <div class="mkt-row"><div class="mkt-when">March · RISE Graduation</div><div class="mkt-what"><strong>RISE Graduation — Signature Content:</strong> Full production. Feature the RISE graduates. Thank Gas South. Student testimonials. This is C100's equivalent of BEST's Rites of Passage content moment — give it full creative effort.</div></div>
+    <div class="mkt-row"><div class="mkt-when">EOY BBQ · April</div><div class="mkt-what"><strong>Senior & President Celebration:</strong> Feature graduating seniors and outgoing presidents. Student quotes and testimonials. Celebratory, human, community. Best testimonial content of the year — feeds directly into the annual impact report.</div></div>
+    <div class="mkt-row"><div class="mkt-when">End of Year</div><div class="mkt-what"><strong>Annual Impact Wrap:</strong> C100 outcome data — career readiness, self-leadership, belonging stats. Feed into annual report and Data department. This is what funders and partners see.</div></div>
+  </div>
+</div>
+
+
+<!-- ══════ IMPACT ══════ -->
+<div id="tab-impact" class="tab-panel">
+  <div class="sec">2025–2026 Impact Data</div>
+  <div class="callout gold"><strong>These numbers are the proof.</strong> Every initiative builds toward these outcomes. This data feeds the annual report, partner decks, and the Gala. Data dept tracks it — C100 delivers the raw input.</div>
+  <div class="sec">Goal Focus & Career Direction</div>
+  <div class="metrics-grid">
+    <div class="met-box"><div class="met-n">91.9%</div><div class="met-l">Motivated to work harder toward goals</div></div>
+    <div class="met-box"><div class="met-n">88.9%</div><div class="met-l">More focused on their goals</div></div>
+    <div class="met-box"><div class="met-n">90.9%</div><div class="met-l">Actively planning next steps</div></div>
+    <div class="met-box"><div class="met-n">90.9%</div><div class="met-l">Feel career ready</div></div>
+    <div class="met-box"><div class="met-n">88.9%</div><div class="met-l">Have a clearer career path</div></div>
+    <div class="met-box"><div class="met-n">85%</div><div class="met-l">Received career guidance</div></div>
+  </div>
+  <div class="sec">Self-Leadership & Accountability</div>
+  <div class="metrics-grid">
+    <div class="met-box"><div class="met-n">88.9%</div><div class="met-l">More disciplined and self-directed</div></div>
+    <div class="met-box"><div class="met-n">85%</div><div class="met-l">Managing responsibilities independently</div></div>
+    <div class="met-box"><div class="met-n">80%</div><div class="met-l">Hold themselves accountable</div></div>
+    <div class="met-box"><div class="met-n">79.8%</div><div class="met-l">Reflect on their decisions</div></div>
+  </div>
+  <div class="sec">Connection & Leadership Identity</div>
+  <div class="metrics-grid">
+    <div class="met-box"><div class="met-n">95.2%</div><div class="met-l">Felt a sense of belonging & support</div></div>
+    <div class="met-box"><div class="met-n">92.9%</div><div class="met-l">Built meaningful relationships</div></div>
+    <div class="met-box"><div class="met-n">92.9%</div><div class="met-l">Professional network improved</div></div>
+    <div class="met-box"><div class="met-n">88.9%</div><div class="met-l">Leadership skills increased</div></div>
+    <div class="met-box"><div class="met-n">88.9%</div><div class="met-l">Confident in leading others</div></div>
+    <div class="met-box"><div class="met-n">89%</div><div class="met-l">Committed to mentoring others</div></div>
+  </div>
+</div>
+
+
+<!-- ══════ TO FINALIZE ══════ -->
+<div id="tab-takeaways" class="tab-panel">
+  <div class="sec">⚑ Open Items — To Finalize with C100 Chairs</div>
+  <div class="callout amber"><strong>Resolve these before July planning deadline.</strong> Each item has a named owner.</div>
+  <div class="tko-grid">
+    <div class="tko-item"><div class="tko-num">01</div><div><div class="tko-text"><strong>Confirm all 5 Campus Liaisons</strong> — Which E100 member is assigned to each campus? Must be confirmed before fall semester.</div><div class="tko-owner">Owner: Chair — Campus Relations</div></div></div>
+    <div class="tko-item"><div class="tko-num">02</div><div><div class="tko-text"><strong>RISE — Full Annual Arc</strong> — Confirm session topics, monthly programming format, past speakers to re-engage, and any new RISE-specific corporate partners beyond Gas South.</div><div class="tko-owner">Owner: Chair — Scholar Development + C100 Chairs</div></div></div>
+    <div class="tko-item"><div class="tko-num">03</div><div><div class="tko-text"><strong>Healthcare, Engineering & Law Panelists</strong> — Identify 3–5 professionals per track for each new WFD panel. Secure corporate host site or off-campus venue for each.</div><div class="tko-owner">Owner: Chair — Scholar Development</div></div></div>
+    <div class="tko-item"><div class="tko-num">04</div><div><div class="tko-text"><strong>Career Fair Date & Venue</strong> — Confirm Fall date and venue. Contact Melvia Jones at Delta Air Lines in June/July. Employer recruitment begins 8–10 weeks out — lock the date first.</div><div class="tko-owner">Owner: C100 Chair + Melvia Jones (Delta)</div></div></div>
+    <div class="tko-item"><div class="tko-num">05</div><div><div class="tko-text"><strong>Rodney Scott Booking</strong> — Book the EOY BBQ caterer in August, not April. Coordinate BEST Academy space with Ray Singer at the same time.</div><div class="tko-owner">Owner: Chair — Campus Relations</div></div></div>
+    <div class="tko-item"><div class="tko-num">06</div><div><div class="tko-text"><strong>Top Golf Booking — January</strong> — Book Top Golf for the National Mentorship Month event during planning season. Confirm budget with Treasurer. Identify sponsorship opportunity for this event.</div><div class="tko-owner">Owner: C100 Chair</div></div></div>
+    <div class="tko-item"><div class="tko-num">07</div><div><div class="tko-text"><strong>Mental Health Event — Date & Facilitator</strong> — Confirm event format (roundtable? workshop?), clinical facilitator, and date. Evaluate NAACP Health Equity partnership as potential collaborator.</div><div class="tko-owner">Owner: Chair — Scholar Development</div></div></div>
+    <div class="tko-item"><div class="tko-num">08</div><div><div class="tko-text"><strong>Pre/Post Survey Instrument</strong> — Build or confirm the C100 survey (different from BEST — measures career readiness, self-leadership, connection). Coordinate with Data dept.</div><div class="tko-owner">Owner: Chair — Scholar Development + Data Department</div></div></div>
+    <div class="tko-item"><div class="tko-num">09</div><div><div class="tko-text"><strong>Clark Atlanta Year-Two Check</strong> — Confirm chapter health, president contact, and liaison assignment. New chapter needs extra engagement attention in its second year.</div><div class="tko-owner">Owner: C100 Chair + Chair Campus Relations</div></div></div>
+    <div class="tko-item"><div class="tko-num">10</div><div><div class="tko-text"><strong>Gala Scholar Nomination Process</strong> — Confirm handoff between C100 and Gala team for scholar nominations. Who submits student info? What's the deadline? C100 Chair to coordinate with Events Chair.</div><div class="tko-owner">Owner: C100 Chair + Gala Events Chair</div></div></div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">
+  <strong style="color:var(--gold)">Emerging 100 of Atlanta — The Playbook</strong><br>
+  Collegiate 100 · EXT-02 · v2.0 · 13 Sections · 8 Initiatives · Living Document
+</div><div id="tab-newchair_c100" class="tab-panel">
+<div class="mission-space"><div class="mission-space-label">Committee Mission Statement</div><div class="mission-space-text">We still need this for an update — what is the one sentence that defines why C100 exists within E100? What does it mean to be in the Collegiate 100?</div></div>
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">New Chair Questions <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Every question a brand new C100 Chair would need answered before they could plan.</div>
+<div class="nq-grid"><div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Which campuses am I specifically responsible for?</strong> Each Chair owns a swim lane — Campus Liaisons, Career Fair, or RISE. Which one is mine and which campuses fall under my lane?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Who are the current C100 student leaders at each campus?</strong> Who is the chapter president or VP I should call first at each school? Without this I can't coordinate anything.</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What events are locked vs. what do I need to plan from scratch?</strong> Career Fair at Delta HQ is confirmed — but when exactly? What else is on the calendar and what's TBD?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What companies are invited to Career Fair and who reaches out to them?</strong> Do I contact companies directly or does Partnerships handle that? What is the company list from last year?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What is the RISE program?</strong> Is there a curriculum document? Who facilitates — E100 members, external facilitators, or Gas South? I cannot run an 8-month program without a framework.</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What is my budget and how do I access it?</strong> C100 programming spans 5 campuses with multiple events — what is the annual budget and how do I submit expenses?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>Who is my board liaison and what do they expect from me?</strong> What is the reporting cadence — monthly updates, or only after major events?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>National Mentorship Month event — what format?</strong> Top Golf is not confirmed. What is the plan and what budget do I have to work with?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>The mental health event format changes each year — what is the direction for this year?</strong> Is it a Rise-themed cohort for young men? Who decides and who facilitates?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>How does the C100-to-E100 pipeline work?</strong> When graduating C100 seniors are identified, what is my role? Do I flag them to ED or does the process happen automatically?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What are the semester start and end dates for each campus?</strong> Spring breaks and homecoming dates affect event scheduling. I need the academic calendar for all 5 schools.</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What is NSN and who is the contact there?</strong> National Sales Network — who do I call to coordinate the September workforce dev event?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What happened last year at each campus?</strong> What events ran, what was the attendance, what worked and what didn't? I need a per-campus recap.</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>How do campus inductions work?</strong> E100 supports but doesn't run them — what does my support role look like? Who coordinates with each campus president?</div></div>
+</div></div><div id="tab-contacts_c100" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 20px;display:flex;align-items:center;gap:12px;">Key Contacts <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div class="contact-section"><div class="contact-type">Internal — E100</div>
+<div class="contact-grid"><div class="contact-card"><div class="cc-role">Exec Board · C100</div><div class="cc-who">Board Liaison</div><div class="cc-how">Your first call for budget, event approvals, and escalations. Meets with you regularly throughout the year.</div><div class="cc-map">→ Go to them for: budget approval, school conflict resolution, anything above your authority</div></div>
+<div class="contact-card"><div class="cc-role">Current Partner Growth</div><div class="cc-who">Partnerships Chair</div><div class="cc-how">Owns relationships with Delta, Gas South, and Career Fair corporate partners. Coordinate before contacting any E100 sponsor.</div><div class="cc-map">→ Go to them for: who to call at each company, warm intros, sponsor status</div></div>
+<div class="contact-card"><div class="cc-role">C100-to-E100 Pipeline</div><div class="cc-who">ED Chair</div><div class="cc-how">Owns the pipeline from graduating C100 seniors into E100 membership. Flag graduating seniors to ED Chair.</div><div class="cc-map">→ Go to them for: pipeline handoffs, joint events with C100 students</div></div>
+<div class="contact-card"><div class="cc-role">Surveys &amp; Impact</div><div class="cc-who">Data Chair</div><div class="cc-how">Owns pre/post C100 surveys. Submit all event attendance and volunteer hours to Data within 48hrs.</div><div class="cc-map">→ Go to them for: survey setup, survey results, impact reporting</div></div>
+</div></div>
+<div class="contact-section"><div class="contact-type">External — Campus</div>
+<div class="contact-grid"><div class="contact-card"><div class="cc-role">Each of 5 Campuses</div><div class="cc-who">Campus Chapter Presidents</div><div class="cc-how">Primary student contact at each campus. Liaison Chair owns these relationships. Names change annually.</div><div class="cc-map">→ Go to them for: campus scheduling, student mobilization, event logistics on campus</div></div>
+<div class="contact-card"><div class="cc-role">Delta Air Lines · Career Fair</div><div class="cc-who">Melvia Jones</div><div class="cc-how">Primary contact at Delta HQ for the annual C100 Career Fair. Coordinate through Partnerships Chair first.</div><div class="cc-map">→ Go to them for: Career Fair date, Delta HQ logistics, Delta participants</div></div>
+<div class="contact-card"><div class="cc-role">National Sales Network</div><div class="cc-who">NSN Contact</div><div class="cc-how">Contact for the September workforce development event focused on students in sales. Name TBD.</div><div class="cc-map">→ Go to them for: NSN event format, student invites, programming</div></div>
+</div></div></div><div id="tab-pastsponsors_c100" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">Past Sponsors &amp; Partners — Collegiate 100 <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Upload Needed</div><div class="upload-banner-title">C100 Career Fair Company List — Excel/PDF</div><div class="upload-banner-note">We still need this for an update. Drop the Excel or PDF link and we will build out the full historical company list.</div></div></div><div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Upload Needed</div><div class="upload-banner-title">Full C100 Partner History</div><div class="upload-banner-note">We still need this for an update. Add all companies that have sponsored or participated in C100 events with year, amount or level, and contact.</div></div></div><div class="sponsor-table-wrap"><table class="sponsor-table"><thead><tr><th>Company</th><th>Event</th><th>Year(s)</th><th>Amount / Level</th><th>Contact</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Delta Air Lines</strong></td><td>Career Fair — Host Venue</td><td>Multiple</td><td><span class="freq-pill">Annual</span></td><td>Melvia Jones</td><td>Hosts Career Fair at Delta HQ every fall</td></tr><tr><td><strong>Gas South</strong></td><td>RISE Graduation Sponsor</td><td>Multiple</td><td><span class="freq-pill">Annual</span></td><td>Yasmine Vaughn (via Partnerships)</td><td>Sponsors RISE graduation annually</td></tr><tr><td><strong>Bank of America</strong></td><td>Finance Workforce Dev Event</td><td>TBD</td><td>TBD</td><td>TBD</td><td>Finance-major-focused workforce dev event</td></tr><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:20px;font-style:italic;">We still need this for an update — add all remaining C100 past partners</td></tr></tbody></table></div></div>
+<div id="tab-nchair_c100b" class="tab-panel">
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;display:flex;align-items:center;gap:12px;">New Chair Questions — What Would Block You <span style="flex:1;height:1px;background:rgba(255,255,255,0.06);display:block;"></span></div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Every question a brand new C100 Chair would need answered. <span style="color:var(--red);">Red = planning blocker.</span> <span style="color:var(--amber);">Amber = go ask your board liaison.</span> <span style="color:var(--ac);">Blue = good to know.</span></div>
+<div class="nq-grid"><div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Which swim lane am I responsible for?</strong> Campus Liaisons & Programming, Workforce Dev & Career Fair, or RISE Program? I need to know my lane before I can plan a single event.</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>Who are the current C100 student leaders at each campus?</strong> Who is the chapter president or VP at each of the 5 campuses? Without these contacts I cannot coordinate anything at the campus level.</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What events are locked vs. what do I plan from scratch?</strong> Career Fair at Delta HQ is confirmed annually — but when exactly? What else is on the calendar and what's TBD for this year?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What companies are invited to Career Fair and who reaches out to them?</strong> Do I contact companies directly or does Partnerships handle outreach? What is the company list from last year?</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What is the RISE program?</strong> Is there a curriculum document? Who facilitates — E100 members, external facilitators, or corporate partners like Gas South? I cannot run an 8-month program without a framework.</div></div>
+<div class="nq-item"><span class="nq-cat block">🔴 Blocker</span><div class="nq-text"><strong>What is my budget and how do I access it?</strong> C100 spans 5 campuses with multiple events. What is the annual budget and how do I submit expenses — pre-approval or reimbursement?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>Who is my primary board liaison — Daniel Farr or Julius Thomas?</strong> Both are listed. Which one do I call first and how often do we connect?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>National Mentorship Month event — what is the format this year?</strong> Top Golf is not confirmed. What is the plan, budget, and who is the target audience — C100 students or E100 members?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>The mental health event format changes each year — what is the direction for 2026-27?</strong> A RISE-themed cohort for young men was discussed. Who decides the format and who facilitates?</div></div>
+<div class="nq-item"><span class="nq-cat board">📋 Board</span><div class="nq-text"><strong>How does the C100-to-E100 pipeline work from my end?</strong> When I identify graduating seniors worth engaging, what is my role? Do I flag them to ED Chair directly?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What are the semester start and end dates for all 5 campuses?</strong> Spring breaks and homecoming dates affect scheduling across all schools. I need the academic calendar for each campus.</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What is NSN and who is the contact there?</strong> National Sales Network — who is the point of contact for the September workforce dev event focused on sales students?</div></div>
+<div class="nq-item"><span class="nq-cat info">ℹ️ Info</span><div class="nq-text"><strong>What happened at each campus last year?</strong> Events, attendance, what worked, what didn't. Per-campus recap before I plan anything.</div></div>
+</div></div><div id="tab-checklist_c100" class="tab-panel"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin:0 0 6px;">Pre-Event Checklist — Collegiate 100<span style="flex:1;height:1px;background:rgba(255,255,255,0.06);"></span></div><div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Use for: Career Fair · RISE Program · ASO · NSN · National Mentorship Month · EOY Cookout.</div><div style="font-size:12px;color:var(--light);margin-bottom:14px;line-height:1.7;">Check off each item as your team completes it. <strong style="color:var(--white);">Monday.com is always Item 1.</strong></div><div class="cl2-pwrap"><span class="cl2-plabel">Completion</span><div class="cl2-ptrack"><div class="cl2-pfill" id="pf-c100"></div></div><span class="cl2-pcount" id="pc-c100">0/0</span><button class="cl2-rbtn" onclick="cl2R('c100')">Reset</button></div><div class="cl2-sec"><div class="cl2-shdr">🟨 Item 1 — Monday.com Project Plan</div><div class="mmini"><div class="mmini-lbl">Build the board first — assign workstream leads and deadlines before anything else moves</div><div class="ws-grid"><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Career Fair</div><div class="ws-sub">Companies · Delta HQ · briefings</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">RISE Program</div><div class="ws-sub">Curriculum · facilitator · Gas South</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Campus Coordination</div><div class="ws-sub">5 campus liaisons · scheduling</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Entertainment</div><div class="ws-sub">ASO · speakers · experiential</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Food & Beverage</div><div class="ws-sub">EOY Cookout · event catering</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Comms — Internal</div><div class="ws-sub">C100 student invite · E100 member invite</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Sign-Up Method</div><div class="ws-sub">How students register for each event</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Check-In</div><div class="ws-sub">Student attendance · E100 hours</div></div></div><div class="ws-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="ws-cb"></div><div><div class="ws-nm">Stakeholder Registry</div><div class="ws-sub">Campus presidents · company contacts</div></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Planning & Approval</div><div class="cl2-grid"><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Budget confirmed<div class=cl2-note>Confirm per-event budget with Treasurer or Board Liaison.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-own">Treasurer</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Campus liaison contacts confirmed<div class=cl2-note>Who is the chapter president or VP at each of the 5 campuses? Confirm before any event planning.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required First</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Sponsorship alignment with Partnerships<div class=cl2-note>Career Fair companies and RISE Gas South sponsor — confirm through Partnerships before outreach.</div><div class=cl2-tags><span class="cl2-tag ct-own">Partnerships Chair</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">KPIs defined<div class=cl2-note>Attendance · student engagement · career readiness outcomes · survey results.</div><div class=cl2-tags><span class="cl2-tag ct-data">Data Chair</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Survey aligned with Data (C100 pre/post required)<div class=cl2-note>C100 pre-survey goes out at start of year. Post-survey at end. Data Chair manages both.</div><div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-data">Data Chair</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Event-Specific Items</div><div class="cl2-grid"><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Career Fair — company list confirmed and outreach done<div class=cl2-note>Which companies are invited · who contacts them · Melvia Jones (Delta) coordinated through Partnerships.</div><div class=cl2-tags><span class="cl2-tag ct-own">Workforce Dev Chair</span><span class="cl2-tag ct-if">Career Fair</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">RISE — curriculum confirmed and facilitator briefed<div class=cl2-note>Is there a curriculum doc? Gas South sponsors RISE graduation. Facilitator confirmed and briefed.</div><div class=cl2-tags><span class="cl2-tag ct-own">RISE Chair</span><span class="cl2-tag ct-if">RISE Program</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">ASO — Woodruff Arts Center confirmed<div class=cl2-note>Atlanta Symphony Orchestra networking event. Venue and tickets confirmed.</div><div class=cl2-tags><span class="cl2-tag ct-if">ASO Event</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">NSN event — contact confirmed<div class=cl2-note>National Sales Network — confirm the NSN contact for September workforce dev event.</div><div class=cl2-tags><span class="cl2-tag ct-if">NSN Event</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">EOY Cookout — Rodney Scott catering confirmed<div class=cl2-note>End of year cookout catering, venue, and logistics confirmed.</div><div class=cl2-tags><span class="cl2-tag ct-if">EOY Cookout</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Logistics</div><div class="cl2-grid"><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Photographer confirmed<div class=cl2-note>Document Career Fair, RISE, and other key C100 moments.</div><div class=cl2-tags><span class="cl2-tag ct-if">If Applicable</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Graphics and flyer created<div class=cl2-note>Event graphic for C100 student promotion and E100 social media.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Student sign-up method confirmed<div class=cl2-note>How do C100 students register for each event? Link · form · campus coordination.</div><div class=cl2-tags><span class="cl2-tag ct-own">Event Chair</span></div></div></div></div></div><div class="cl2-sec"><div class="cl2-shdr">Post-Event</div><div class="cl2-grid"><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Volunteer hours submitted to Data within 48hrs<div class=cl2-tags><span class="cl2-tag ct-req">Required</span><span class="cl2-tag ct-data">Data Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Content submitted to Comms within 48hrs of photo delivery<div class=cl2-note>Curated photos · draft caption · tags · context notes.</div><div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Post-event recap documented in Monday.com<div class=cl2-note>Attendance · what worked · what didn't. Filed for next Chair.</div><div class=cl2-tags><span class="cl2-tag ct-own">Event Chair</span><span class="cl2-tag ct-time">Within 1 Week</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Content submitted to Comms within 48hrs of photo delivery<div class=cl2-tags><span class="cl2-tag ct-own">Comms Chair</span><span class="cl2-tag ct-time">Within 48hrs</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">C100 post-survey distributed (end of year)<div class=cl2-tags><span class="cl2-tag ct-data">Data Chair</span><span class="cl2-tag ct-if">End of Year</span></div></div></div><div class="cl2-row" data-tid="c100" onclick="cl2T(this,'c100')"><div class="cl2-box"></div><div class="cl2-lbl">Graduating seniors flagged to ED Chair for C100-to-E100 pipeline<div class=cl2-tags><span class="cl2-tag ct-own">ED Chair</span></div></div></div></div></div></div><script>
+if(!window._cl2init){window._cl2init=true;
+window.cl2T=function(el,t){el.classList.toggle('done');cl2P(t);};
+window.cl2R=function(t){document.querySelectorAll('.cl2-row[data-tid="'+t+'"],.ws-row[data-tid="'+t+'"]').forEach(function(e){e.classList.remove('done');});cl2P(t);};
+window.cl2P=function(t){var all=document.querySelectorAll('.cl2-row[data-tid="'+t+'"],.ws-row[data-tid="'+t+'"]');var done=document.querySelectorAll('.cl2-row.done[data-tid="'+t+'"],.ws-row.done[data-tid="'+t+'"]');var pct=all.length?Math.round(done.length/all.length*100):0;var f=document.getElementById('pf-'+t),c=document.getElementById('pc-'+t);if(f)f.style.width=pct+'%';if(c)c.textContent=done.length+'/'+all.length;};}
+cl2P('c100');</script></div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleInit(card){
+  const wasOpen=card.classList.contains('open');
+  document.querySelectorAll('.init-card').forEach(c=>{c.classList.remove('open');const b=c.querySelector('.toggle-btn');if(b)b.textContent='Details →';});
+  if(!wasOpen){card.classList.add('open');const b=card.querySelector('.toggle-btn');if(b)b.textContent='Collapse ↑';setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),50);}
+}
+</script>
+</body>
+</html>

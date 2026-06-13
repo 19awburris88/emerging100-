@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — Finance Playbook v1</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090f;--bg2:#0d1120;--bg3:#111827;--gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);--white:#ede8dd;--muted:#6b7280;--light:#9ca3af;--ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);--green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);--amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);--red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,0.05) 0%,transparent 60%);}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px 100px;position:relative;z-index:1;}
+.tab-nav{display:flex;gap:2px;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:4px;margin-bottom:36px;flex-wrap:wrap;position:sticky;top:12px;z-index:100;}
+.tab-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;color:var(--muted);cursor:pointer;padding:8px 14px;border-radius:7px;transition:all .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.tab-btn.active{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+header{padding:56px 0 36px;}
+.breadcrumb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.breadcrumb span{color:var(--gold);}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,84px);letter-spacing:3px;line-height:.88;color:var(--white);}
+h1 em{color:var(--gold);font-style:normal;}
+.header-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.mpill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.mpill.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.bar{width:40px;height:2px;background:var(--gold);margin:22px 0;}
+.sec{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin:40px 0 18px;}
+.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.callout{border-radius:10px;padding:16px 20px;font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;}
+.callout.amber{background:var(--amberb);border:1px solid var(--amberp);}
+.callout.amber strong{color:var(--amber);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:24px;margin-bottom:20px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px;}
+.person-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:18px 20px;}
+.person-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.person-name{font-size:14px;color:var(--white);font-weight:600;}
+.person-note{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4;}
+
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="breadcrumb">The Playbook <span>›</span> Internal <span>›</span> FIN-01</div>
+  <h1><em>Finance</em></h1>
+  <div class="header-meta">
+    <span class="mpill gold">1 Chair</span>
+    <span class="mpill gold">Exec Board Liaison: Brandon Whatley</span>
+    <span class="mpill gold">v1.0</span>
+  </div>
+  <div class="bar"></div>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('newchair')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('takeaways')">⚑ To Finalize</button>
+  <button class="tab-btn" onclick="showTab('nchair_fin')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('contacts_fin')">Contacts</button>
+  <button class="tab-btn" onclick="showTab('sponsors_fin')">Past Sponsors</button>
+</div>
+
+<div id="tab-overview" class="tab-panel active">
+<div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;margin-bottom:16px;">
+  <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">2026–2027 Leadership</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Chair</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;">Austin Byers-King</div>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Advisors</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;">None listed</div>
+    </div>
+    <div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Exec Board Liaison</div>
+      <div style="font-size:13px;color:var(--gold);font-weight:600;">Brandon Whatley</div>
+    </div>
+  </div>
+</div>
+  <div class="mission-space">
+    <div class="mission-space-label">Committee Mission Statement</div>
+    <div class="mission-space-text">We still need this for an update — what is the one sentence that defines why Finance exists within E100?</div>
+  </div>
+
+  <div class="sec">Leadership — 2026–2027</div>
+  <div class="people-grid">
+    <div class="person-card">
+      <div class="person-role">Chair</div>
+      <div class="person-name">Austin Byers-King</div>
+    </div>
+    <div class="person-card" style="border-color:var(--gmid);">
+      <div class="person-role">Exec Board Liaison</div>
+      <div class="person-name">Brandon Whatley</div>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    <strong>This playbook is intentionally sparse.</strong> Finance is a new committee in the playbook — the full scope of what this committee owns, how it operates, and what its deliverables are needs to be defined in conversation with Austin Byers-King and Brandon Whatley before this section can be built out.
+  </div>
+
+  <div class="sec">What We Know</div>
+  <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:20px 22px;">
+    <div style="font-size:12px;color:var(--light);line-height:1.8;">
+      <strong style="color:var(--white);">1 Chair.</strong> Austin Byers-King.<br>
+      <strong style="color:var(--white);">Exec Board Liaison:</strong> Brandon Whatley.<br>
+      <strong style="color:var(--white);">Everything else</strong> — scope, swim lanes, deliverables, cadence, tools — is still to be defined.
+    </div>
+  </div>
+</div>
+
+<div id="tab-newchair" class="tab-panel">
+  <div class="callout amber"><strong>This playbook needs to be built.</strong> Before a new Finance Chair can be onboarded, the committee's scope must be defined. The questions below are what any new Chair would ask — and right now, most of them don't have answers documented.</div>
+  <div class="sec">Questions a New Finance Chair Would Have</div>
+  <div style="display:grid;gap:8px;">
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">What does Finance own? What are the deliverables and the cadence?</div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">How does Finance relate to the Treasurer? Where does Exec Board financial responsibility end and this committee's begin?</div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">Does Finance own dues tracking or does P&G own compliance on dues?</div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">Does Finance manage the reimbursement process for Chairs who spend out of pocket?</div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">What financial reports, if any, does Finance produce and who receives them?</div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">What tools does Finance use — QuickBooks, spreadsheets, Monday.com?</div>
+    <div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;font-size:12px;color:var(--light);line-height:1.6;">What is the relationship between Finance and Ticket Falcon payouts from Social Fundraisers?</div>
+  </div>
+</div>
+
+<div id="tab-takeaways" class="tab-panel">
+  <div class="sec">⚑ Open Items</div>
+  <div style="display:grid;gap:8px;">
+    <div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Build Needed</div><div class="upload-banner-title">Committee Scope & Swim Lanes</div><div class="upload-banner-note">We still need this for an update. Define what Finance owns, how many chairs, what the swim lanes are, and the reporting cadence.</div></div></div>
+    <div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Build Needed</div><div class="upload-banner-title">Mission Statement</div><div class="upload-banner-note">We still need this for an update.</div></div></div>
+    <div class="upload-banner"><div class="upload-banner-icon">📎</div><div><div class="upload-banner-label">Build Needed</div><div class="upload-banner-title">Full Playbook Content</div><div class="upload-banner-note">We still need this for an update. Once scope is defined, this playbook can be fully built out.</div></div></div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">
+  <strong style="color:var(--gold)">Emerging 100 of Atlanta — The Playbook</strong><br>Finance · FIN-01 · v1.0 · Living Document
+</div>
+</div>
+<script>
+function showTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');event.target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>

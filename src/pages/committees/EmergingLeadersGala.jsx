@@ -1,0 +1,29 @@
+import CommitteePage from '../../components/CommitteePage'
+
+export default function EmergingLeadersGala() {
+  return (
+    <CommitteePage
+      name="Emerging Leaders Awards & Scholarship Gala"
+      icon="🏆"
+      tagline="Celebrating excellence, honoring scholarship, and inspiring the next generation of leaders."
+      overview="The Emerging Leaders Awards & Scholarship Gala committee plans and executes the organization's premier annual event. The Gala recognizes outstanding members, community leaders, and scholarship recipients in a formal, high-profile setting. It is also the organization's largest fundraising event, with proceeds funding scholarships for deserving students pursuing careers in medicine, engineering, law, public service, and beyond."
+      chairs={['Adonis Hill', 'Corenza Morris', 'Jamario Walker', 'Cory Harris']}
+      responsibilities={[
+        'Plan all aspects of the annual Gala including venue, program, entertainment, and logistics.',
+        'Manage Gala sponsorship outreach, packages, and fulfillment in collaboration with Partnerships.',
+        'Oversee scholarship application process: promotion, review, selection, and award disbursement.',
+        'Coordinate award nominations, selection committees, and honoree announcements.',
+        'Manage Gala ticket sales, table reservations, and guest experience.',
+        'Produce post-event impact reports on funds raised and scholarships awarded.',
+      ]}
+      goals={[
+        'Produce a Gala that raises a record amount in scholarship funds for the current term.',
+        'Expand the scholarship program to support students in at least five academic disciplines.',
+        'Grow Gala attendance and corporate table sales by 20% over the previous year.',
+        'Introduce a community impact award category recognizing a non-member leader.',
+        'Create a post-Gala scholarship follow-up program tracking awardee progress.',
+      ]}
+      playbookUrl="/playbooks/e100_gala_playbook_v1.html"
+    />
+  )
+}

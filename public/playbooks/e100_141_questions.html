@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — 141 New Chair Questions</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--bg2:#0d1120;--white:#ede8dd;--muted:#6b7280;--light:#9ca3af;
+  --gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);
+  --ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);
+  --amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);
+  --red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);
+  --green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,0.04) 0%,transparent 60%);}
+.wrap{max-width:860px;margin:0 auto;padding:60px 24px 100px;position:relative;z-index:1;}
+
+/* HEADER */
+.eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,80px);letter-spacing:3px;line-height:.88;color:var(--white);margin-bottom:16px;}
+h1 em{color:var(--gold);font-style:normal;}
+.intro{font-size:13px;color:var(--light);line-height:1.7;max-width:580px;margin-bottom:28px;}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px;padding:16px 20px;
+  background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;}
+.leg{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--light);}
+.leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+
+/* COMMITTEE BLOCK */
+.comm{margin-bottom:48px;}
+.comm-hdr{margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.comm-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.comm-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,40px);letter-spacing:2px;color:var(--white);margin-bottom:6px;}
+.comm-meta{display:flex;flex-wrap:wrap;gap:16px;font-size:11px;color:var(--muted);line-height:1.5;}
+.comm-meta strong{color:var(--light);}
+.comm-q-count{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);border-radius:4px;
+  display:inline-block;margin-top:8px;}
+
+/* QUESTION ROWS */
+.q-list{display:grid;gap:8px;}
+.q-row{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;
+  padding:14px 18px;display:grid;grid-template-columns:32px auto 1fr;gap:12px;align-items:start;}
+.q-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);padding-top:1px;}
+.q-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;white-space:nowrap;margin-top:1px;}
+.cat-block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.cat-board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.cat-info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.q-body{}
+.q-text{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;margin-bottom:3px;}
+.q-ctx{font-size:11px;color:var(--muted);line-height:1.5;}
+
+/* SUMMARY TABLE */
+.summary{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;
+  padding:24px 26px;margin-bottom:40px;}
+.summary-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.summary-row{display:flex;justify-content:space-between;align-items:center;
+  padding:8px 12px;background:var(--bg);border-radius:6px;font-size:12px;color:var(--light);}
+.summary-row strong{color:var(--white);}
+.summary-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);}
+
+@media(max-width:600px){
+  .q-row{grid-template-columns:28px 1fr;}.q-cat{display:none;}
+  .summary-grid{grid-template-columns:1fr;}
+}
+@media print{body{background:#fff;color:#000;} .comm-hdr{border-color:#ddd;} .q-row{border-color:#eee;background:#fafafa;} .q-num,.q-ctx{color:#666;} .q-text{color:#000;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Emerging 100 of Atlanta · The Emerging Way</div>
+<h1>141 New Chair<br><em>Questions</em></h1>
+<p class="intro">Every question a brand new Chair would need answered before they could plan. Go through committee by committee. Answer what you know. Flag what needs a board liaison. Use the interactive version at <strong style="color:var(--white);">e100_new_chair_questions.html</strong> to type answers directly and export them.</p>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:var(--red);"></div><strong style="color:var(--white);">🔴 Blocker</strong> — Cannot plan without this answer</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--amber);"></div><strong style="color:var(--white);">📋 Board</strong> — Escalate to your board liaison</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--ac);"></div><strong style="color:var(--white);">ℹ️ Info</strong> — Important context, not a blocker</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary">
+  <div class="summary-title">Questions by Committee</div>
+  <div class="summary-grid">
+    <div class="summary-row"><span>B.E.S.T. Academy</span><span class="summary-count">16 questions</span></div>
+    <div class="summary-row"><span>Collegiate 100</span><span class="summary-count">14 questions</span></div>
+    <div class="summary-row"><span>Communications</span><span class="summary-count">15 questions</span></div>
+    <div class="summary-row"><span>Community Service</span><span class="summary-count">11 questions</span></div>
+    <div class="summary-row"><span>Corporate Roundtable</span><span class="summary-count">9 questions</span></div>
+    <div class="summary-row"><span>Data &amp; Systems</span><span class="summary-count">15 questions</span></div>
+    <div class="summary-row"><span>Emerging Development</span><span class="summary-count">10 questions</span></div>
+    <div class="summary-row"><span>Finance</span><span class="summary-count">8 questions</span></div>
+    <div class="summary-row"><span>Gala</span><span class="summary-count">13 questions</span></div>
+    <div class="summary-row"><span>Health &amp; Wellness</span><span class="summary-count">11 questions</span></div>
+    <div class="summary-row"><span>Newsletter</span><span class="summary-count">13 questions</span></div>
+    <div class="summary-row"><span>OCU</span><span class="summary-count">9 questions</span></div>
+    <div class="summary-row"><span>Partnerships</span><span class="summary-count">12 questions</span></div>
+    <div class="summary-row"><span>Process &amp; Governance</span><span class="summary-count">11 questions</span></div>
+    <div class="summary-row"><span>Social Fundraising</span><span class="summary-count">16 questions</span></div>
+    <div class="summary-row" style="border:1px solid var(--gmid);"><strong>Total</strong><span class="summary-count" style="color:var(--gold);font-size:14px;">141</span></div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 01 of 16</div>
+    <div class="comm-name">B.E.S.T. Academy</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Mikal Driver · Demetrius Odom · Carlton Coleman</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Julius Thomas</span>
+    </div>
+    <span class="comm-q-count">16 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is the annual leadership theme/arc this year?</div>
+        <div class="q-ctx">Who decides it — the Chair, the Exec Board, or does it carry over from last year? I cannot build a session calendar without locking this first.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which sessions are already booked vs. what do I still need to book?</div>
+        <div class="q-ctx">Gas South and Delta are must-includes — but are they actually confirmed? Who do I contact at each company and by when?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How do I physically get into the school?</div>
+        <div class="q-ctx">Who do I call first — Ray Singer? What is the security and access protocol for getting E100 members onto the BEST Academy campus?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How do I recruit mentors and where is the sign-up link?</div>
+        <div class="q-ctx">What platform generates it — Monday.com, Google Form? Who sends it out and when does it open?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who handles background checks and how long does it take?</div>
+        <div class="q-ctx">The Parliamentarian runs them — but what is the submission process and turnaround?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How do I pay for food — card, receipts, pre-approval?</div>
+        <div class="q-ctx">Budget is $1,000–$1,500 per session. Do I get a card? Do I submit receipts to Treasurer?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What did we do last year?</div>
+        <div class="q-ctx">What were the 8 session topics, which partners came, what worked, what didn't?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Daniel Farr or Julius Thomas — who is my primary board liaison?</div>
+        <div class="q-ctx">Both are listed. Which one is my first call and how often do we meet?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is my actual budget and how do I access it?</div>
+        <div class="q-ctx">Does the Treasurer release funds per session or is there a running account? What requires pre-approval?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What does Rites of Passage actually look like?</div>
+        <div class="q-ctx">Who plans it? Who attends? What does the ceremony involve?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the member attendance expectation at sessions?</div>
+        <div class="q-ctx">Is there a minimum number of E100 brothers required per session?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">How do I book Donald Gibson — standing agreement or monthly re-confirm?</div>
+        <div class="q-ctx">What is his rate and what is the 1st Friday deadline?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What does the pre-survey look like and where does it live?</div>
+        <div class="q-ctx">Is there a saved template? When do I send it — first session?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">14</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the dress code and expectation for E100 brothers at sessions?</div>
+        <div class="q-ctx">Business casual, professional — what is the standard?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">15</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Who are Mikal Driver's specific school contacts beyond Ray Singer?</div>
+        <div class="q-ctx">As E100 member AND BEST staff, how do I activate his bridge role without overstepping?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">16</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Are collegiate tours to Georgia State or Morehouse confirmed this year?</div>
+        <div class="q-ctx">Who coordinates campus access and is there a budget for transportation?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 02 of 16</div>
+    <div class="comm-name">Collegiate 100</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Donte Wilder · Nile Oates · Dylan Merriweather · Desmond Hazel · Ian Barrett</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Julius Thomas</span>
+    </div>
+    <span class="comm-q-count">14 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which swim lane am I responsible for?</div>
+        <div class="q-ctx">Campus Liaisons, Workforce Dev & Career Fair, or RISE Program?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who are the current C100 student leaders at each of the 5 campuses?</div>
+        <div class="q-ctx">Who is the chapter president or VP at each school?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What events are locked vs. what do I plan from scratch?</div>
+        <div class="q-ctx">Career Fair is confirmed annually — but when exactly? What else is TBD?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who reaches out to Career Fair companies — C100 or Partnerships?</div>
+        <div class="q-ctx">Do I contact companies directly or does Partnerships handle outreach?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Is there a RISE Program curriculum document?</div>
+        <div class="q-ctx">Who facilitates — E100 members, external facilitators, or Gas South?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is the C100 budget and how do I access it?</div>
+        <div class="q-ctx">C100 spans 5 campuses with multiple events.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Daniel Farr or Julius Thomas — who is the primary liaison?</div>
+        <div class="q-ctx">Both are listed. Who is my first call?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">National Mentorship Month — what is the format this year?</div>
+        <div class="q-ctx">Top Golf is not confirmed. What is the plan and budget?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Mental health event — what is the direction for 2026-27?</div>
+        <div class="q-ctx">A RISE-themed cohort for young men was discussed. Who decides and who facilitates?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">C100-to-E100 pipeline — what does my role look like?</div>
+        <div class="q-ctx">When I identify graduating seniors, what do I do?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the semester start and end dates for all 5 campuses?</div>
+        <div class="q-ctx">Spring breaks and homecoming dates affect scheduling.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is NSN and who is the contact for the September event?</div>
+        <div class="q-ctx">National Sales Network — who is the point of contact?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What happened at each campus last year?</div>
+        <div class="q-ctx">Events, attendance, what worked, what didn't.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">14</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">How do campus inductions work — what does E100's support role look like?</div>
+        <div class="q-ctx">E100 supports but doesn't run them — what does support look like in practice?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 03 of 16</div>
+    <div class="comm-name">Communications</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Darryl Humphrey · Don Gibson · Ashton Edmunds</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Carl McCray</span>
+    </div>
+    <span class="comm-q-count">15 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which swim lane am I in — Instagram & Content, LinkedIn & Brand, or Assets & Campaigns?</div>
+        <div class="q-ctx">Three Chairs own three distinct functions.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where do Chairs currently submit content — text, drive, email?</div>
+        <div class="q-ctx">Without a clear intake channel nothing gets posted on time.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who do I text for post approval and what is the process?</div>
+        <div class="q-ctx">President and VP must approve every post.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Are any posts currently scheduled?</div>
+        <div class="q-ctx">I need to know what is in the queue before I can plan new content.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What events are coming up in the next 60 days that need content?</div>
+        <div class="q-ctx">The posting calendar is driven by the program calendar.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where are the brand assets stored?</div>
+        <div class="q-ctx">Logo files, color palette, fonts, approved templates.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Is any content scheduling tool currently being used?</div>
+        <div class="q-ctx">Later, Buffer, Meta Business Suite, or manual posting?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the photographer and videographer SLA?</div>
+        <div class="q-ctx">How many days after an event should Donald Gibson deliver content?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who coordinates with Eddision Smith on Social Fundraiser assets?</div>
+        <div class="q-ctx">What does the briefing process look like?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What are the rules around posting student content?</div>
+        <div class="q-ctx">Minor consent, photo review, sensitivity.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are E100's current Instagram and LinkedIn follower counts?</div>
+        <div class="q-ctx">Baseline metrics before I set goals.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What posts performed best historically?</div>
+        <div class="q-ctx">Top posts by engagement — what content type wins?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the core hashtags and are there event-specific ones?</div>
+        <div class="q-ctx">Who maintains the hashtag list?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">14</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the caption formula?</div>
+        <div class="q-ctx">Hook → Story → Gratitude → Mission → Hashtags. Is this documented?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">15</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the escalation path when a post goes wrong?</div>
+        <div class="q-ctx">Wrong photo, sensitive content, member complaint — who decides?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 04 of 16</div>
+    <div class="comm-name">Community Service</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Will Mobley · Josh Powell · Henry Ducre</span>
+      <span><strong>Liaison:</strong> Dr. Tony Price</span>
+    </div>
+    <span class="comm-q-count">11 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is the budget per event and how do I access it?</div>
+        <div class="q-ctx">What does E100 buy vs. what do partners contribute?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How do I order supplies for Together Tailgate?</div>
+        <div class="q-ctx">Who orders food, turkeys, hygiene kits, clothing?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">For each partner — do I reach out directly or does Partnerships introduce me?</div>
+        <div class="q-ctx">Chase (Lynette Jackson) · Hawks (Alexis Roe) · Gas South (Yasmine Vaughn).</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who at BEST Academy is the contact for Together Tailgate logistics?</div>
+        <div class="q-ctx">Parking, setup, and school-side access.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What happened at each event last year?</div>
+        <div class="q-ctx">Attendance, community members served, what was donated.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">How do I formally flag a new corporate partner to Partnerships?</div>
+        <div class="q-ctx">Text, Monday.com update, or debrief call?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the volunteer sign-in process day-of?</div>
+        <div class="q-ctx">Sign-in sheet, Monday.com form, or digital?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What does National Volunteer Week commitment look like this year?</div>
+        <div class="q-ctx">Which orgs, which days, what does E100 contribute?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Restoring One's Hope — Kinnis or Brittney, and is the relationship warm?</div>
+        <div class="q-ctx">Which person do I call?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What does the Partner On-Ramp look like in practice?</div>
+        <div class="q-ctx">What does the actual handoff to Partnerships look like at Step 4?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Is there a volunteer recruitment process or does it just go to all members?</div>
+        <div class="q-ctx">How do members sign up for specific events?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 05 of 16</div>
+    <div class="comm-name">Corporate Roundtable</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Tyler Royal · Bobby Kannady · Darren Maynard</span>
+      <span><strong>Liaison:</strong> Julius Thomas</span>
+    </div>
+    <span class="comm-q-count">9 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which GBM venues are locked and which do I need to book?</div>
+        <div class="q-ctx">Gas South + Delta locked. What about Aug, Sep, Oct, Jan, Feb, Mar, Apr?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who do I call at each company to book a GBM?</div>
+        <div class="q-ctx">Where is the full contact list?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is the lead time for corporate venue booking?</div>
+        <div class="q-ctx">6–8 weeks standard — but what do specific venues require?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is the GBM format — how long, what's on the agenda?</div>
+        <div class="q-ctx">I need this before I can brief a host company.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What executive access events are planned for this year?</div>
+        <div class="q-ctx">Who are the targets and who makes the outreach?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">How do I coordinate the intel handoff to Partnerships after each GBM?</div>
+        <div class="q-ctx">Text, Monday.com, or debrief call?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">The February CR event is TBD — what is the direction?</div>
+        <div class="q-ctx">Executive access, special GBM, or something else?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What happened at each GBM venue last year?</div>
+        <div class="q-ctx">Logistics challenges, companies that want to deepen partnership.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What does a member briefing for an executive access event look like?</div>
+        <div class="q-ctx">Who are members meeting, what is appropriate to discuss?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 06 of 16</div>
+    <div class="comm-name">Data & Systems</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Louis Smith · Vincent Culley</span>
+      <span><strong>Liaison:</strong> Carl McCray</span>
+    </div>
+    <span class="comm-q-count">15 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is actually in Monday.com right now?</div>
+        <div class="q-ctx">Which boards exist, which are empty, which are abandoned?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who has admin access to Monday.com and how do I get credentials?</div>
+        <div class="q-ctx">Without admin access I cannot build boards or manage automations.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who has admin access to the website (Maven)?</div>
+        <div class="q-ctx">Ashley Neely manages it — but is there a Data Chair login?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What surveys are currently active or scheduled?</div>
+        <div class="q-ctx">BEST pre-survey goes out in August — is it built?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which departments are submitting data and which are not?</div>
+        <div class="q-ctx">I need the compliance baseline before I can fix it.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is my first priority — what is most broken right now?</div>
+        <div class="q-ctx">Monday.com, surveys, website, or something else?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the current Monday.com subscription tier and limits?</div>
+        <div class="q-ctx">Free tier — boards, automations, and user limits?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Does the annual impact report exist and where is the most recent one?</div>
+        <div class="q-ctx">Most important output Data produces.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the volunteer hour total from last year?</div>
+        <div class="q-ctx">Feeds annual report and grant applications.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What automations are currently live?</div>
+        <div class="q-ctx">Need to know before I build anything new.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">How do I get time with 14 Chairs to build their Monday.com boards?</div>
+        <div class="q-ctx">What is the plan for onboarding all Chairs in month one?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What survey tool is the standard — Monday.com or Google Forms?</div>
+        <div class="q-ctx">Both are in use. Which do we standardize on?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What does the BEST Academy pre-survey currently look like?</div>
+        <div class="q-ctx">Saved template or do I rebuild each year?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">14</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What impact numbers does E100 claim publicly and how do I validate them?</div>
+        <div class="q-ctx">96% · 90.9% · $745K+ · 1,900+ hours.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">15</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">How does the website update process work with Ashley Neely?</div>
+        <div class="q-ctx">My own login or submit a request?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 07 of 16</div>
+    <div class="comm-name">Emerging Development</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Will Fleming · Bayo Adegbite · Iyke Iwotor · Emmanuel Mgbemena</span>
+      <span><strong>Liaison:</strong> Carl McCray</span>
+    </div>
+    <span class="comm-q-count">10 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What events are confirmed for this year vs. TBD?</div>
+        <div class="q-ctx">New Member Meetup and Super Bowl Party are recurring — what else?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where is the active/dues-paying member list and who maintains it?</div>
+        <div class="q-ctx">Active = dues-paying. Without this I cannot invite the right people.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">When exactly is the New Member Meetup relative to induction?</div>
+        <div class="q-ctx">Who tells me the induction date so I can plan accordingly?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is my budget per event?</div>
+        <div class="q-ctx">Venue, food, entertainment — what am I working with?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Is the BBQ happening this year — who makes the final call?</div>
+        <div class="q-ctx">I need a decision before I can commit to a venue.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What does 'lean into the Super Bowl Party more' mean?</div>
+        <div class="q-ctx">Bigger, different format, corporate tie-in?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">C100-to-E100 pipeline — what does ED Chair's role look like?</div>
+        <div class="q-ctx">Plan an event for graduating seniors or just follow up when flagged?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What did last year's New Member Meetup look like?</div>
+        <div class="q-ctx">Tessarae Hotel — format, attendance, feedback?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the Men's Mental Health event format and who facilitates?</div>
+        <div class="q-ctx">Internal for members — who is the facilitator?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Brotherhood Thanksgiving — is it happening and what would it involve?</div>
+        <div class="q-ctx">Floated as an idea — confirmed or not?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 08 of 16</div>
+    <div class="comm-name">Finance</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Austin Byers-King</span>
+      <span><strong>Liaison:</strong> Brandon Whatley</span>
+    </div>
+    <span class="comm-q-count">8 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What does Finance actually own?</div>
+        <div class="q-ctx">Nothing else can be answered until the scope is defined with Brandon Whatley.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is my relationship to the Treasurer?</div>
+        <div class="q-ctx">Where does Exec Board financial responsibility end and this committee begin?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Does Finance own dues collection or does P&G own compliance on dues?</div>
+        <div class="q-ctx">Must be decided before either committee can function cleanly.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Do I manage the reimbursement process for Chairs?</div>
+        <div class="q-ctx">Every Chair submits receipts — is that Finance or Treasurer?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What financial reports do I produce and who receives them?</div>
+        <div class="q-ctx">Monthly P&L? Quarterly? Annual? Who is the audience?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What tools does Finance use?</div>
+        <div class="q-ctx">QuickBooks, spreadsheets, Monday.com?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is my relationship to Ticket Falcon payouts?</div>
+        <div class="q-ctx">Social Fundraisers and Gala revenue — does Finance track this?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Was Finance an active committee before 2026-27?</div>
+        <div class="q-ctx">What is the history and what is new this year?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 09 of 16</div>
+    <div class="comm-name">Emerging Leaders Gala</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Cory Harris · Dr. Michael Curtis Jr. · Shakeel Johnson · Andre Henry</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Julius Thomas</span>
+    </div>
+    <span class="comm-q-count">13 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is my swim lane — Event Production, Scholars, or Sponsors & Tables?</div>
+        <div class="q-ctx">Three Chairs own three distinct functions.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What vendor contracts are already in place from last year?</div>
+        <div class="q-ctx">Affairs to Remember, EAV, Legendary, Above The Line Media.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What sponsor tables have already been sold?</div>
+        <div class="q-ctx">Need confirmed list before I make any outreach calls.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">When does Partnerships hand off to me?</div>
+        <div class="q-ctx">Partnerships closes deals — Gala executes. Where exactly is the line?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How does Ticket Falcon work for the Gala?</div>
+        <div class="q-ctx">Who sets it up, what are the tiers, who manages comps, who receives payout?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where is the scholarship application process right now?</div>
+        <div class="q-ctx">Applications open? Selection committee formed?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who is the emcee this year and how are they selected?</div>
+        <div class="q-ctx">Changes annually — Exec Board or Gala Chair recommends?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who is the keynote speaker and how is that sourced?</div>
+        <div class="q-ctx">Senator Ossoff in 2026 — who is the 2027 target?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the total budget?</div>
+        <div class="q-ctx">2026 spend was ~$233K. What is approved for 2027?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">How are scholar families coordinated night-of?</div>
+        <div class="q-ctx">Who briefs them, where do they sit, who is their contact?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Where is the run of show template from last year?</div>
+        <div class="q-ctx">Start with 2026 and modify — not from scratch.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">How does the Prima program booklet process work?</div>
+        <div class="q-ctx">Who submits sponsor ads, scholar bios, and layout? What is the deadline?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the post-Gala thank-you process?</div>
+        <div class="q-ctx">President sends within ~1 week — do I draft them?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 10 of 16</div>
+    <div class="comm-name">Health & Wellness</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Dr. Michael Birdson · Quinton Bennett · Omari Hughes</span>
+      <span><strong>Liaison:</strong> Dr. Tony Price</span>
+    </div>
+    <span class="comm-q-count">11 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which pillar am I responsible for — Mental, Financial, or Physical?</div>
+        <div class="q-ctx">I need my swim lane before I can plan a single event.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is my budget for the year?</div>
+        <div class="q-ctx">Laughing Matters alone runs ~$10,000. How is budget allocated?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who books the comedians for Laughing Matters?</div>
+        <div class="q-ctx">Existing relationship with a booker or agency? What lead time?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Are dates confirmed for each pillar event?</div>
+        <div class="q-ctx">Financial Feb · Physical April · Mental June or October.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who coordinates with ED Chair on Men's Mental Health to avoid overlap?</div>
+        <div class="q-ctx">Who decides which committee owns what each year?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Do H&W events sell tickets or are they free?</div>
+        <div class="q-ctx">Confirm with Exec Board before any ticketing goes live.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What resources do we distribute and where do they come from?</div>
+        <div class="q-ctx">Mental health links, brochures, hotlines — who compiles these?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Brotherhood Brunch — which Chair owns it and what is the format?</div>
+        <div class="q-ctx">How does it differ from the mental wellness pillar event?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What did each pillar event look like last year?</div>
+        <div class="q-ctx">Laughing Matters 2 at The Gathering Spot — format, attendance, budget?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Who are the mental health professionals we've worked with before?</div>
+        <div class="q-ctx">Shanae Benito — available for H&W events too?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Is Laughing Matters an annual event or as-needed?</div>
+        <div class="q-ctx">How often has it happened and what is the expectation?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 11 of 16</div>
+    <div class="comm-name">Newsletter</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Jordan Frank (Supporting Brooks Baptiste & Ashton Edmunds)</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Dr. Tony Price</span>
+    </div>
+    <span class="comm-q-count">13 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What platform is the Newsletter sent through?</div>
+        <div class="q-ctx">Mailchimp, Constant Contact, HubSpot? Who has admin credentials?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where is the current subscriber list — size, platform, and how to access?</div>
+        <div class="q-ctx">Also — what is the Social Blast list and is it in the same platform?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where does the current newsletter template live?</div>
+        <div class="q-ctx">Existing design in the platform or building from scratch?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How do Chairs submit content and what is the monthly deadline?</div>
+        <div class="q-ctx">What is the deadline before the 30th/31st send date?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How are drafts sent to Daniel Farr and Dr. Tony Price for approval?</div>
+        <div class="q-ctx">Email, shared Google Doc, text? What is a reasonable turnaround?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who assigns the Exec Board monthly greeter and what is their submission deadline?</div>
+        <div class="q-ctx">If the President doesn't submit their greeting in time, the issue cannot go out.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Does E100 have a YouTube channel?</div>
+        <div class="q-ctx">Videos must be uploaded to YouTube or linked to Instagram.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who selects Member of the Month?</div>
+        <div class="q-ctx">Editorial decision, nomination process, or Exec Board?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">How does the annual design refresh work?</div>
+        <div class="q-ctx">Who designs the new look? Timeline and who approves before August?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What does 'support' from Brooks Baptiste and Ashton Edmunds look like in practice?</div>
+        <div class="q-ctx">They are also Comms Chairs — co-write, supply content, design?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Can content be pulled directly from Instagram and LinkedIn?</div>
+        <div class="q-ctx">Is there a protocol with the Comms Chair for repurposing content?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Where are past Newsletter issues archived?</div>
+        <div class="q-ctx">I need to see the last 12 months before I build this year's.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the open and click-through rates from last year?</div>
+        <div class="q-ctx">What is the baseline engagement?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 12 of 16</div>
+    <div class="comm-name">Operation Community Uplift</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Marvel Joseph · Reggie White</span>
+      <span><strong>Liaison:</strong> Julius Thomas</span>
+    </div>
+    <span class="comm-q-count">9 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What elections are happening in Atlanta this year?</div>
+        <div class="q-ctx">Local, state, or federal? This determines my entire activation level.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is my activation level — full, targeted, or civic education only?</div>
+        <div class="q-ctx">Who determines this and when?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Are community partners already in place or do I need to establish them?</div>
+        <div class="q-ctx">ACLU, Urban League, Equity in Education, The Gathering Spot.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What did Votelanta look like — can I see a recap?</div>
+        <div class="q-ctx">Before planning any voter engagement event.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Is there a budget for OCU events?</div>
+        <div class="q-ctx">Street Clean-Up supplies, civic event logistics, forum costs.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">How do I recruit corporate volunteers for Street Clean-Up?</div>
+        <div class="q-ctx">Directly or through Partnerships?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who definitively owns the Housing/Equity Bootcamp — OCU or H&W?</div>
+        <div class="q-ctx">Need to know if this is my deliverable.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the non-partisan standard in practice?</div>
+        <div class="q-ctx">If asked to endorse a candidate at a town hall, what do I say?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the Georgia voter registration deadlines this year?</div>
+        <div class="q-ctx">These set my planning timeline.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 13 of 16</div>
+    <div class="comm-name">Partnerships & Fundraising</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Quavious Hazzard · Avion Cainion · Joshua John Frank · Dre Simpson</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Brandon Whatley</span>
+    </div>
+    <span class="comm-q-count">12 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who are the current active partners and what is their commitment status?</div>
+        <div class="q-ctx">Which companies have signed, which are in negotiation, which are up for renewal?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who do I NOT contact because the President or Exec Board owns that relationship?</div>
+        <div class="q-ctx">Delta in-kind and Blank Foundation are President-level. Wrong call = damaged relationship.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where is the current sponsorship deck and is it approved?</div>
+        <div class="q-ctx">I cannot send anything to a prospect without the current, approved deck.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which partners are up for renewal right now?</div>
+        <div class="q-ctx">6mo → 3mo → 6wk renewal cycle. What phase is each partner in?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is in Monday.com and what is not?</div>
+        <div class="q-ctx">How complete is the CRM and who keeps it current?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is the revenue goal for this year?</div>
+        <div class="q-ctx">Is there a specific target I am accountable to?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What grants are open or upcoming right now?</div>
+        <div class="q-ctx">Where is the current list of opportunities and past applications?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Who has Community Service flagged as a warm lead recently?</div>
+        <div class="q-ctx">What is the current handoff process?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Partner Appreciation is in July — what is the planning timeline?</div>
+        <div class="q-ctx">Who owns logistics vs. invite list vs. impact presentation?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the formal sponsorship tiers and pricing?</div>
+        <div class="q-ctx">Full-year pricing for non-Gala sponsors?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Who is the Fiverr design contact for the sponsorship deck?</div>
+        <div class="q-ctx">Name, rate, turnaround time.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Must-hit companies — status of Target, Blank Foundation, Gas South, Delta, Bank of America?</div>
+        <div class="q-ctx">Current status and who owns each relationship?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 14 of 16</div>
+    <div class="comm-name">Process & Governance</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Terrance Pryor · Bobby Daniels (Supporting Archie Wilson)</span>
+      <span><strong>Liaison:</strong> Carl McCray</span>
+    </div>
+    <span class="comm-q-count">11 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Where are the bylaws — who has the current version?</div>
+        <div class="q-ctx">They exist and need an update. Where do I find them?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What is the elections timeline this year — exact dates?</div>
+        <div class="q-ctx">Nominations, debates, voting window — what are my responsibilities?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What contracts need to be reviewed right now?</div>
+        <div class="q-ctx">Any vendor or sponsorship agreements in a P&G review queue?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Who are the authorized signatories and is there documentation partners have?</div>
+        <div class="q-ctx">President + Treasurer — is there a formal signature card?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What compliance issues exist from last year that are unresolved?</div>
+        <div class="q-ctx">Attendance, conduct, or dues issues — what is my role?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Is P&G taking over compliance tracking — has a decision been made?</div>
+        <div class="q-ctx">What would that mean for my workload?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Does a formal conduct policy exist?</div>
+        <div class="q-ctx">If not, who decides we need one and who drafts it?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Where are brand assets stored right now?</div>
+        <div class="q-ctx">Logo files, color palette, fonts — where today?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the Exec Board eligibility requirements?</div>
+        <div class="q-ctx">Tenure, dues, attendance, committee participation.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What is the relationship between P&G and the Parliamentarian beyond background checks?</div>
+        <div class="q-ctx">Other compliance coordination?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">Where are meeting minutes stored and how far back does the archive go?</div>
+        <div class="q-ctx">Who takes them, who has access?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comm">
+  <div class="comm-hdr">
+    <div class="comm-num">Committee 15 of 16</div>
+    <div class="comm-name">Social Fundraising</div>
+    <div class="comm-meta">
+      <span><strong>Chairs:</strong> Jordan Watson · Avery Johnson · Remington Rolé · Brandon Smith</span>
+      <span><strong>Liaison:</strong> Daniel Farr & Brandon Whatley</span>
+    </div>
+    <span class="comm-q-count">16 Questions</span>
+  </div>
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-num">01</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Are dates confirmed for all 3 events this year?</div>
+        <div class="q-ctx">C&C in March, Park 100 Labor Day weekend, Holiday Soirée 2nd week of December.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">02</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Are venues booked — C&C venue specifically?</div>
+        <div class="q-ctx">Park Tavern free per agreement. Coca-Cola Roxy confirmed? C&C venue needs locking now.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">03</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">What sponsors are already committed for this year?</div>
+        <div class="q-ctx">Need confirmed list before planning any activations.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">04</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Has Eddision Smith been briefed on themes?</div>
+        <div class="q-ctx">Theme must be locked before briefing Penthouse Creative. Nothing moves without this.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">05</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Are DJs and hosts booked for each event?</div>
+        <div class="q-ctx">2 DJs and 2 hosts for Park 100 and Holiday. These book up fast.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">06</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">How does Ticket Falcon work for each event?</div>
+        <div class="q-ctx">Who sets it up, tiers, comps, payout?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">07</div>
+      <div class="q-cat cat-block">🔴 Blocker</div>
+      <div class="q-body">
+        <div class="q-text">Which liquor sponsors are returning — Tito's, Patrón, Bacardi, Viarae, Mercer & Prince?</div>
+        <div class="q-ctx">Confirmed or re-pitch? Who owns those relationships?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">08</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What did each event net last year?</div>
+        <div class="q-ctx">Ticket + sponsor revenue − expenses = net.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">09</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Is the Halloween Social happening this year?</div>
+        <div class="q-ctx">Bi-yearly and low-lift — is this a year we run it?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">10</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">What is my budget per event?</div>
+        <div class="q-ctx">Costs vary significantly across all 3 events.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">11</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">When does the 6–7 week social media campaign start per event?</div>
+        <div class="q-ctx">When do I hand off the first asset to Comms?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">12</div>
+      <div class="q-cat cat-board">📋 Board</div>
+      <div class="q-body">
+        <div class="q-text">Which companies have bought full sections before and would return?</div>
+        <div class="q-ctx">Highest-value single transactions. Who are they?</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">13</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What did each event look like last year — format, attendance, what worked?</div>
+        <div class="q-ctx">Full recap per event before I plan anything.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">14</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the Park Tavern standing agreement terms?</div>
+        <div class="q-ctx">F&B minimums, capacity, sound system, load-in rules.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">15</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">What are the 12 marketing assets and when does each go out?</div>
+        <div class="q-ctx">Save the Date through Countdown — exact timeline.</div>
+      </div>
+    </div>
+    <div class="q-row">
+      <div class="q-num">16</div>
+      <div class="q-cat cat-info">ℹ️ Info</div>
+      <div class="q-body">
+        <div class="q-text">How does the Gala cross-sell work for Social sponsors?</div>
+        <div class="q-ctx">Social sponsors pitched on Gala tables — what is the process?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding-top:32px;border-top:1px solid rgba(255,255,255,0.05);
+  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">
+  <strong style="color:var(--gold);">Emerging 100 of Atlanta — The Emerging Way</strong><br>
+  141 New Chair Questions · 16 Committees · 2026–2027<br>
+  Use e100_new_chair_questions.html to type and export your answers
+</div>
+</div></body></html>

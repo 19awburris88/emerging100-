@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 — Process & Governance Playbook v1</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090f;--bg2:#0d1120;--bg3:#111827;--gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);--white:#ede8dd;--muted:#6b7280;--light:#9ca3af;--ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);--green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);--amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);--red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);--r-r:#ef4444;--r-rb:rgba(239,68,68,0.12);--r-rp:rgba(239,68,68,0.28);--r-a:#f59e0b;--r-ab:rgba(245,158,11,0.12);--r-ap:rgba(245,158,11,0.28);--r-c:#4a9eff;--r-cb:rgba(74,158,255,0.12);--r-cp:rgba(74,158,255,0.28);--r-i:#a855f7;--r-ib:rgba(168,85,247,0.12);--r-ip:rgba(168,85,247,0.28);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 40% at 0% 0%,rgba(201,168,76,0.07) 0%,transparent 60%);}
+.wrap{max-width:1020px;margin:0 auto;padding:0 22px 100px;position:relative;z-index:1;}
+.tab-nav{display:flex;gap:2px;background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:4px;margin-bottom:36px;flex-wrap:wrap;position:sticky;top:12px;z-index:100;}
+.tab-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;color:var(--muted);cursor:pointer;padding:8px 14px;border-radius:7px;transition:all .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04);}
+.tab-btn.active{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+header{padding:56px 0 36px;}
+.breadcrumb{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.breadcrumb span{color:var(--gold);}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,84px);letter-spacing:3px;line-height:.88;color:var(--white);}
+h1 em{color:var(--gold);font-style:normal;}
+.header-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.mpill{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.mpill.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.mpill.red{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.bar{width:40px;height:2px;background:var(--gold);margin:22px 0;}
+.sec{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin:40px 0 18px;}
+.sec::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.callout{border-radius:10px;padding:16px 20px;font-size:12px;color:var(--light);line-height:1.7;margin-bottom:12px;}
+.callout.gold{background:rgba(201,168,76,0.07);border:1px solid var(--gmid);}
+.callout.gold strong{color:var(--gold);}
+.callout.amber{background:var(--amberb);border:1px solid var(--amberp);}
+.callout.amber strong{color:var(--amber);}
+.callout.red{background:var(--redb);border:1px solid var(--redp);}
+.callout.red strong{color:var(--red);}
+.callout.green{background:var(--greenb);border:1px solid var(--greenp);}
+.callout.green strong{color:var(--green);}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:12px;}
+.ov-box{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 18px;}
+.ov-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ov-val{font-size:13px;color:var(--white);font-weight:500;line-height:1.5;}
+.ov-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.07);}
+.tl-item{position:relative;margin-bottom:22px;}
+.tl-dot{position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--ac);}
+.tl-item.key .tl-dot{background:var(--gold);border-color:var(--gold);}
+.tl-item.plan .tl-dot{border-color:var(--amber);}
+.tl-month{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ac);margin-bottom:3px;}
+.tl-item.key .tl-month{color:var(--gold);}
+.tl-item.plan .tl-month{color:var(--amber);}
+.tl-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:var(--white);margin-bottom:3px;}
+.tl-desc{font-size:12px;color:var(--light);line-height:1.6;}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;}
+.tl-flag{font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:4px;}
+.tl-flag.gold{background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.tl-flag.amber{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.tl-flag.green{background:var(--greenb);color:var(--green);border:1px solid var(--greenp);}
+.raci-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+thead tr{background:rgba(201,168,76,0.08);}
+th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.r{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;white-space:nowrap;display:inline-block;}
+.rR{background:var(--r-rb);color:var(--r-r);border:1px solid var(--r-rp);}
+.rA{background:var(--r-ab);color:var(--r-a);border:1px solid var(--r-ap);}
+.rC{background:var(--r-cb);color:var(--r-c);border:1px solid var(--r-cp);}
+.rI{background:var(--r-ib);color:var(--r-i);border:1px solid var(--r-ip);}
+.raci-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.rl{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);}
+.tko-grid{display:grid;gap:8px;}
+.tko-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.tko-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);flex-shrink:0;min-width:24px;}
+.tko-text{font-size:12px;color:var(--light);line-height:1.6;}
+.tko-text strong{color:var(--white);}
+.tko-owner{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:4px;}
+@media(max-width:640px){.ov-grid{grid-template-columns:1fr;}}
+
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-section{margin-bottom:28px;}
+.contact-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.contact-type::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.sponsor-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:14px;}
+.sponsor-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sponsor-table thead tr{background:rgba(201,168,76,0.08);}
+.sponsor-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.07);white-space:nowrap;}
+.sponsor-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--light);vertical-align:top;line-height:1.5;}
+.sponsor-table tr:last-child td{border-bottom:none;}
+.sponsor-table tr:hover td{background:rgba(255,255,255,0.02);}
+.freq-pill{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;background:var(--gdim);color:var(--gold);border:1px solid var(--gmid);}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+
+.nq-grid{display:grid;gap:8px;}
+.nq-item{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.nq-cat{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;}
+.nq-cat.block{background:var(--redb);color:var(--red);border:1px solid var(--redp);}
+.nq-cat.board{background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);}
+.nq-cat.info{background:var(--acb);color:var(--ac);border:1px solid var(--acp);}
+.nq-text{font-size:12px;color:var(--light);line-height:1.6;}
+.nq-text strong{color:var(--white);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.contact-card{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:14px 16px;}
+.cc-who{font-size:13px;color:var(--white);font-weight:600;margin-bottom:2px;}
+.cc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cc-how{font-size:11px;color:var(--light);line-height:1.5;}
+.cc-map{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);margin-top:5px;}
+.upload-banner{background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;}
+.upload-banner-icon{font-size:18px;flex-shrink:0;}
+.upload-banner-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;}
+.upload-banner-title{font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;}
+.upload-banner-note{font-size:12px;color:var(--light);}
+.mission-space{background:rgba(201,168,76,0.05);border:1px dashed var(--gmid);border-radius:10px;padding:20px 22px;margin-bottom:16px;text-align:center;}
+.mission-space-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.mission-space-text{font-size:13px;color:var(--muted);font-style:italic;}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="breadcrumb">The Playbook <span>›</span> Internal Development <span>›</span> INT-03</div>
+  <h1>Process &amp;<br><em>Governance</em></h1>
+  <div class="header-meta">
+    <span class="mpill gold">Elections Cycle</span>
+    <span class="mpill gold">Brand Guidelines</span>
+    <span class="mpill red">Rule Enforcement</span>
+    <span class="mpill gold">Contracts + Signing</span>
+    <span class="mpill gold">v1.0</span>
+  </div>
+  <div class="bar"></div>
+  <p style="font-size:13px;color:var(--light);max-width:620px;line-height:1.7;">Process & Governance is the rulebook, the referee, and the record keeper. <strong style="color:var(--white)">Elections, brand standards, rule enforcement, contracts, and signing authority.</strong> The org runs on programs — P&G makes sure it runs right.</p>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="showTab('elections')">Elections Cycle</button>
+  <button class="tab-btn" onclick="showTab('brand')">Brand Guidelines</button>
+  <button class="tab-btn" onclick="showTab('rules')">Rule Enforcement</button>
+  <button class="tab-btn" onclick="showTab('contracts')">Contracts & Signing</button>
+  <button class="tab-btn" onclick="showTab('meetings')">Meeting Cadence</button>
+  <button class="tab-btn" onclick="showTab('raci')">RACI</button>
+  <button class="tab-btn" onclick="showTab('takeaways')">⚑ To Finalize</button>
+  <button class="tab-btn" onclick="showTab('nchair_pg')">🆕 New Chair</button>
+  <button class="tab-btn" onclick="showTab('contacts_pg')">Contacts</button>
+  <button class="tab-btn" onclick="showTab('sponsors_pg')">Past Sponsors</button>
+</div>
+
+<div id="tab-overview" class="tab-panel active">
+  
+<div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:22px 24px;margin-bottom:16px;">
+  <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">2026–2027 Leadership</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Chairs</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Terrance Pryor · Bobby Daniels</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px;">Supporting Archie Wilson</div>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Advisors</div>
+      <div style="font-size:13px;color:var(--white);font-weight:500;line-height:1.6;">Corey Purnell</div>
+    </div>
+    <div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Exec Board Liaison</div>
+      <div style="font-size:13px;color:var(--gold);font-weight:600;">Carl McCray</div>
+    </div>
+  </div>
+</div>
+<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin:32px 0 16px;">Chair Swim Lanes<span style="flex:1;height:1px;background:rgba(255,255,255,0.06);"></span></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:20px;"><div style="background:var(--bg2);border:1px solid var(--gmid);border-radius:12px;padding:20px;"><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 1</div><div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Elections & Compliance</div><div style="font-size:12px;color:var(--light);line-height:1.6;">Manages the full Exec Board and Chair elections cycle. Handles ballot management, vote counting, result certification. Owns member compliance tracking — attendance, dues, conduct enforcement.</div></div><div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;"><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 2</div><div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">Brand & Contracts</div><div style="font-size:12px;color:var(--light);line-height:1.6;">Owns E100 brand guidelines — building and enforcing the formal document. Reviews all contracts before signing. Maintains signing authority documentation. Tracks document execution.</div></div><div style="background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;"><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Chair 3</div><div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;">TBD</div><div style="font-size:12px;color:var(--light);line-height:1.6;">Third chair swim lane to be defined at the start of the program year. Archie Wilson (supported by Bobby Daniels) may own a specific function.</div></div></div><div class="sec">Department Overview</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Function 1</div><div class="ov-val">Elections Cycle</div><div class="ov-sub">Exec Board + Chair elections. Announced April, open forum May, seated after.</div></div>
+    <div class="ov-box"><div class="ov-label">Function 2</div><div class="ov-val">Brand Guidelines</div><div class="ov-sub">E100 brand standards — logo usage, colors, tone, how the org presents itself publicly.</div></div>
+    <div class="ov-box"><div class="ov-label">Function 3</div><div class="ov-val">Rule Enforcement</div><div class="ov-sub">Holds members and committees accountable to E100's bylaws and standards of conduct.</div></div>
+    <div class="ov-box"><div class="ov-label">Function 4</div><div class="ov-val">Contracts + Signing</div><div class="ov-sub">Reviews contracts the org needs executed. Assists with items that need to be signed.</div></div>
+    <div class="ov-box"><div class="ov-label">Membership Cycle</div><div class="ov-val">Exec Board Owns</div><div class="ov-sub">Applications, interviews, orientation, induction — fully owned by Exec Board. P&G does not own this.</div></div>
+    <div class="ov-box"><div class="ov-label">Meeting Cadence</div><div class="ov-val">GBM + All Chairs</div><div class="ov-sub">P&G owns meeting structure and agenda. CR owns GBM venue. Both serve the meeting.</div></div>
+  </div>
+  <div class="callout gold"><strong>P&G is the org's institutional backbone.</strong> Programs come and go. Chairs change. Exec Boards turn over. Process & Governance ensures E100's standards, elections, brand, and agreements survive every transition. If it's a rule or a document that governs how E100 operates — P&G owns it.</div>
+</div>
+
+<div id="tab-elections" class="tab-panel">
+  <div class="sec">Elections Cycle</div>
+  <div class="callout gold"><strong>P&G owns the elections process for both Exec Board positions and Chair/Committee selections.</strong> The Exec Board owns the membership induction cycle — P&G owns the leadership elections cycle. These are different processes.</div>
+  <div class="sec">Annual Elections Timeline</div>
+  <div class="timeline">
+    <div class="tl-item plan">
+      <div class="tl-dot"></div>
+      <div class="tl-month">April</div>
+      <div class="tl-title">Executive Board Election Cycle Announced</div>
+      <div class="tl-desc">P&G Chair officially announces the opening of the election cycle. Current Exec Board positions up for election are declared. Eligibility requirements communicated to all members. Chair & Committee selection process also opens in April. Nomination period begins.
+<div style="background:var(--amberb);border:1px solid var(--amberp);border-radius:8px;padding:14px 18px;margin:10px 0;display:flex;align-items:flex-start;gap:12px;">
+  <div style="font-size:18px;flex-shrink:0;">📎</div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;">Upload Needed</div>
+    <div style="font-size:13px;color:var(--white);font-weight:600;margin-bottom:3px;">Exec Board Eligibility Requirements</div>
+    <div style="font-size:12px;color:var(--light);">We still need this for an update. Who can run for Exec Board? Tenure, attendance, and committee participation requirements to be documented here.</div>
+  </div>
+</div></div>
+      <div class="tl-tags"><span class="tl-flag amber">Election Cycle Announced</span><span class="tl-flag amber">Chair & Committee Selections Open</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">May</div>
+      <div class="tl-title">Board Experience & Elections Open Forum</div>
+      <div class="tl-desc">Open forum where current Exec Board members share their experience, what each role entails, and what the expectations are. Candidates can ask questions. Members can assess who's running and for what. P&G facilitates. Exec Board participates.</div>
+      <div class="tl-tags"><span class="tl-flag gold">Open Forum</span></div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-dot"></div>
+      <div class="tl-month">May</div>
+      <div class="tl-title">Elections Held + Chair & Committee Announcements</div>
+      <div class="tl-desc">Formal elections for Exec Board positions. P&G runs the process — ballot management, vote counting, result verification. Chair and Committee announcements follow. New leadership takes effect for the upcoming program year beginning in June.</div>
+      <div class="tl-tags"><span class="tl-flag green">Elections Completed</span><span class="tl-flag green">New Leadership Announced</span></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-month">June</div>
+      <div class="tl-title">Chair & Advisor Training</div>
+      <div class="tl-desc">New Chairs and incoming Exec Board trained. P&G ensures all new leaders understand their roles, the org's bylaws, and their accountability expectations before the program year begins. This is where the Playbook becomes the most valuable tool in the org.</div>
+      <div class="tl-tags"><span class="tl-flag gold">New Year Begins</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="tab-brand" class="tab-panel">
+  <div class="sec">Brand Guidelines</div>
+  <div class="callout gold"><strong>P&G owns E100's brand standards.</strong> How the org looks, how it presents itself, and how it maintains visual and tonal consistency across all materials — from the Comms team's Instagram posts to the Gala program booklet to sponsor decks. Brand standards protect E100's credibility.</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Logo Usage</div><div class="ov-val">Defined Standards</div><div class="ov-sub">Which versions of the E100 logo can be used, on what backgrounds, at what sizes, and by whom. No unauthorized variations.</div></div>
+    <div class="ov-box"><div class="ov-label">Color Palette</div><div class="ov-val">Official Colors Only</div><div class="ov-sub">E100's official color palette. Comms, Eddision Smith, and all external designers must use these. Documented and distributed.</div></div>
+    <div class="ov-box"><div class="ov-label">Typography</div><div class="ov-val">Font Standards</div><div class="ov-sub">Official fonts for print and digital. Consistent across Gala program, social graphics, sponsorship decks.</div></div>
+    <div class="ov-box"><div class="ov-label">Tone & Voice</div><div class="ov-val">How E100 Sounds</div><div class="ov-sub">Professional, warm, mission-driven. Aligned with Comms caption guide. P&G documents the standard, Comms enforces it.</div></div>
+    <div class="ov-box"><div class="ov-label">Brand Enforcement</div><div class="ov-val">P&G Reviews + Flags</div><div class="ov-sub">When any E100 material goes out that violates brand guidelines, P&G flags it and works with the relevant committee to correct.</div></div>
+    <div class="ov-box"><div class="ov-label">Brand Document</div><div class="ov-val">⚑ Needs to be Built</div><div class="ov-sub">A formal E100 brand guideline document does not currently exist. P&G Chair to build and distribute.</div></div>
+  </div>
+</div>
+
+<div id="tab-rules" class="tab-panel">
+  <div class="sec">Rule Enforcement</div>
+  <div class="callout red"><strong>P&G is the referee. Note: P&G (via Parliamentarian) currently runs background checks for BEST Academy mentors — this may expand to other contexts.</strong> When a member or committee violates E100's bylaws, standards of conduct, or meeting expectations — P&G is the body that addresses it. This is not punitive by nature. It is about maintaining the integrity of the org.</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Bylaws</div><div class="ov-val">The Foundation</div><div class="ov-sub">E100's governing bylaws define membership rights, responsibilities, meeting requirements, and conduct standards. P&G is the keeper of the bylaws.</div></div>
+    <div class="ov-box"><div class="ov-label">Attendance Standards</div><div class="ov-val">GBM + Program Expectations</div><div class="ov-sub">P&G may take over compliance tracking — attendance, dues, and conduct. To be formalized.</div></div>
+    <div class="ov-box"><div class="ov-label">Conduct Standards</div><div class="ov-val">Professional Behavior</div><div class="ov-sub">How members represent E100 publicly and privately. A formal conduct policy may be needed — to be determined.</div></div>
+    <div class="ov-box"><div class="ov-label">Enforcement Process</div><div class="ov-val">Fair + Documented</div><div class="ov-sub">When a violation occurs: document, notify, give opportunity to respond, escalate to Exec Board if needed. Never unilateral.</div></div>
+  </div>
+</div>
+
+<div id="tab-contracts" class="tab-panel">
+  <div class="sec">Contracts & Signing Authority</div>
+  <div class="callout gold"><strong>P&G assists with any contracts or documents the org needs executed.</strong> This is not legal counsel — it is organizational review. P&G ensures documents are appropriate before the President or authorized signatory signs on behalf of E100.</div>
+  <div class="ov-grid">
+    <div class="ov-box"><div class="ov-label">Vendor Contracts</div><div class="ov-val">Review Before Signing</div><div class="ov-sub">Affairs to Remember, EAV, Legendary, venue contracts — all reviewed by P&G before Exec Board signs.</div></div>
+    <div class="ov-box"><div class="ov-label">Sponsorship Agreements</div><div class="ov-val">Partnerships Executes · P&G Reviews</div><div class="ov-sub">Partnerships closes deals. P&G reviews the agreement language before execution.</div></div>
+    <div class="ov-box"><div class="ov-label">MOU + Partnerships</div><div class="ov-val">Formal Agreements</div><div class="ov-sub">Any memoranda of understanding with community orgs, schools, or institutions reviewed by P&G.</div></div>
+    <div class="ov-box"><div class="ov-label">Signing Authority</div><div class="ov-val">President + Treasurer</div><div class="ov-sub">Only the President and Treasurer are authorized to sign on behalf of E100. P&G documents this chain clearly.</div></div>
+  </div>
+</div>
+
+<div id="tab-meetings" class="tab-panel">
+  <div class="sec">Meeting Cadence Ownership</div>
+  <div class="callout gold"><strong>P&G owns the meeting structure and agenda.</strong> Corporate Roundtable owns the venue. Together they make GBMs happen every month.</div>
+  <div class="ov-grid">
+    <div class="ov-box" style="border-color:var(--gmid);"><div class="ov-label">General Body Meeting</div><div class="ov-val">3rd Tuesday Monthly</div><div class="ov-sub">Except May, June, July, December. P&G owns agenda. CR owns venue.</div></div>
+    <div class="ov-box"><div class="ov-label">All Chairs Meeting</div><div class="ov-val">2nd Monday Monthly</div><div class="ov-sub">Except May, June, July, December. Virtual. P&G owns agenda and facilitates.</div></div>
+    <div class="ov-box"><div class="ov-label">Chair & Advisor Training</div><div class="ov-val">June Annually</div><div class="ov-sub">New leadership trained before program year begins. P&G co-owns with Exec Board.</div></div>
+    <div class="ov-box"><div class="ov-label">Meeting Notes</div><div class="ov-val">P&G Documents</div><div class="ov-sub">Minutes taken at every GBM and All Chairs meeting. Stored in the org's document repository.</div></div>
+  </div>
+</div>
+
+<div id="tab-raci" class="tab-panel">
+  <div class="sec">RACI Matrix</div>
+  <div class="raci-legend">
+    <div class="rl"><span class="r rR">R</span> Responsible</div>
+    <div class="rl"><span class="r rA">A</span> Accountable</div>
+    <div class="rl"><span class="r rC">C</span> Consulted</div>
+    <div class="rl"><span class="r rI">I</span> Informed</div>
+  </div>
+  <div class="raci-wrap">
+  <table>
+    <thead><tr><th style="min-width:200px">Activity</th><th>Exec Board</th><th>P&G Chair</th><th>CR Chair</th><th>All Chairs</th><th>Members</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Elections cycle management</strong></td><td><span class="r rC">C</span></td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rI">I</span></td><td><span class="r rI">I</span></td></tr>
+      <tr><td><strong>Ballot management + vote counting</strong></td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Brand guidelines (build + enforce)</strong></td><td><span class="r rC">C</span></td><td><span class="r rA">A</span></td><td>—</td><td><span class="r rI">I</span></td><td>—</td></tr>
+      <tr><td><strong>Rule enforcement</strong></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Contract review</strong></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Document signing authorization</strong></td><td><span class="r rR">R</span></td><td><span class="r rC">C</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td><strong>GBM agenda</strong></td><td><span class="r rC">C</span></td><td><span class="r rR">R</span></td><td><span class="r rI">I</span></td><td><span class="r rC">C</span></td><td>—</td></tr>
+      <tr><td><strong>GBM venue</strong></td><td>—</td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td></tr>
+      <tr><td><strong>Meeting minutes</strong></td><td><span class="r rI">I</span></td><td><span class="r rR">R</span></td><td>—</td><td><span class="r rI">I</span></td><td>—</td></tr>
+      <tr><td><strong>Bylaws maintenance</strong></td><td><span class="r rA">A</span></td><td><span class="r rR">R</span></td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div id="tab-takeaways" class="tab-panel">
+  <div class="sec">⚑ Open Items</div>
+  <div class="tko-grid">
+    <div class="tko-item"><div class="tko-num">01</div><div><div class="tko-text"><strong>🔴 Brand Guidelines Document — Build It</strong> — A formal E100 brand guideline document does not currently exist. Logo usage, colors, fonts, tone. P&G Chair to build and distribute to all Chairs and external designers (Eddision Smith, Fiverr contact) before the next program year.</div><div class="tko-owner">Owner: P&G Chair + Exec Board</div></div></div>
+    <div class="tko-item"><div class="tko-num">02</div><div><div class="tko-text"><strong>Elections Process Documentation</strong> — The full elections process — eligibility requirements, nomination process, ballot format, vote counting method, result certification — needs to be written down. Currently lives in institutional memory. Must survive leadership transitions.</div><div class="tko-owner">Owner: P&G Chair</div></div></div>
+    <div class="tko-item"><div class="tko-num">03</div><div><div class="tko-text"><strong>Bylaws Review Cycle</strong> — Bylaws exist and need an update. P&G Chair should update the bylaws this program year, then establish an annual review cycle each June before the new program year begins. Flag any outdated or missing provisions to Exec Board.</div><div class="tko-owner">Owner: P&G Chair + Exec Board</div></div></div>
+    <div class="tko-item"><div class="tko-num">04</div><div><div class="tko-text"><strong>Contract Review Checklist</strong> — What does P&G look for when reviewing a vendor contract or sponsorship agreement? Build a standard review checklist so the process is consistent regardless of who the P&G Chair is.</div><div class="tko-owner">Owner: P&G Chair</div></div></div>
+    <div class="tko-item"><div class="tko-num">05</div><div><div class="tko-text"><strong>Signing Authority Documentation</strong> — Formally document who can sign on behalf of E100 (President + Treasurer), under what circumstances, and what the approval chain is. Distribute to all vendors and partners so they know who to send agreements to.</div><div class="tko-owner">Owner: P&G Chair + President</div></div></div>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:60px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;">
+  <strong style="color:var(--gold)">Emerging 100 of Atlanta — The Playbook</strong><br>
+  Process & Governance · INT-03 · v1.0 · Living Document
+</div>
+</div>
+<script>
+function showTab(id){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('tab-'+id).classList.add('active');event.target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
