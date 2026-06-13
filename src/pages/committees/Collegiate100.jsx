@@ -24,6 +24,7 @@ export default function Collegiate100() {
         'Grow the number of college-aged mentees connected to E100 members by 30%.',
       ]}
       playbookUrl="/playbooks/e100_c100_playbook_v2.html"
+      playbookPdfUrl="/playbooks/pdf/e100_c100_playbook_v2.pdf"
     />
   )
 }

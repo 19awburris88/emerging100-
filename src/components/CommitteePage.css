@@ -282,8 +282,12 @@
   .cp-tabs { flex-direction: column; align-items: flex-start; padding: 8px 0; gap: 0; min-height: auto; }
   .cp-breadcrumb { padding: 6px 0 4px; }
   .cp-tab-nav-right { width: 100%; flex-direction: column; align-items: flex-start; gap: 0; }
-  .cp-tab-list { overflow-x: auto; width: 100%; padding-bottom: 2px; }
+  .cp-tab-list { overflow-x: auto; width: 100%; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
   .cp-tab { padding: 10px 13px; font-size: 0.8rem; }
-  .cp-playbook-btn { margin: 4px 0 8px; }
+  .cp-playbook-btn { margin: 4px 0 8px; font-size: 0.76rem; padding: 6px 12px; }
+  .cp-body { padding: 36px 20px 60px; gap: 32px; }
+  .cp-section-title { font-size: 1.4rem; }
+  .cp-overview { font-size: 1rem; }
+  .cp-resp-grid { grid-template-columns: 1fr; }
   [id^="cp-"] { scroll-margin-top: 220px; }
 }

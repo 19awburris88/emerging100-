@@ -24,6 +24,7 @@ export default function HealthWellness() {
         'Partner with at least two Atlanta health organizations to co-host programming.',
       ]}
       playbookUrl="/playbooks/e100_health_wellness_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_health_wellness_playbook_v1.pdf"
     />
   )
 }

@@ -24,6 +24,7 @@ export default function Partnerships() {
         'Host a partner appreciation event or recognition moment at the Gala.',
       ]}
       playbookUrl="/playbooks/e100_partnerships_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_partnerships_playbook_v1.pdf"
     />
   )
 }

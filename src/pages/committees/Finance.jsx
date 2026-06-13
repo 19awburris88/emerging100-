@@ -24,6 +24,7 @@ export default function Finance() {
         'Explore and present grant or foundation funding opportunities relevant to E100 programs.',
       ]}
       playbookUrl="/playbooks/e100_finance_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_finance_playbook_v1.pdf"
     />
   )
 }

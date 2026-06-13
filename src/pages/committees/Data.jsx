@@ -24,6 +24,7 @@ export default function Data() {
         'Develop a member engagement scoring model to identify and reconnect inactive members.',
       ]}
       playbookUrl="/playbooks/e100_data_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_data_playbook_v1.pdf"
     />
   )
 }

@@ -24,6 +24,7 @@ export default function EmergingLeadersGala() {
         'Create a post-Gala scholarship follow-up program tracking awardee progress.',
       ]}
       playbookUrl="/playbooks/e100_gala_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_gala_playbook_v1.pdf"
     />
   )
 }

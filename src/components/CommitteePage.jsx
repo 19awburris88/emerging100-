@@ -12,6 +12,7 @@ export default function CommitteePage({
   goals = [],
   resources = [],
   playbookUrl = null,
+  playbookPdfUrl = null,
 }) {
   const [activeId, setActiveId] = useState(null)
 
@@ -157,15 +158,21 @@ export default function CommitteePage({
           <div className="tag">Documents</div>
           <h2 className="cp-section-title">Resources</h2>
           <ul className="cp-resource-list">
-            {playbookUrl && (
+            {(playbookPdfUrl || playbookUrl) && (
               <li>
-                <a href={playbookUrl} target="_blank" rel="noopener noreferrer" className="cp-resource-link cp-resource-featured">
-                  <span className="cp-resource-icon">📖</span>
+                <a
+                  href={playbookPdfUrl || playbookUrl}
+                  download={playbookPdfUrl ? true : undefined}
+                  target={playbookPdfUrl ? undefined : '_blank'}
+                  rel={playbookPdfUrl ? undefined : 'noopener noreferrer'}
+                  className="cp-resource-link cp-resource-featured"
+                >
+                  <span className="cp-resource-icon">📥</span>
                   <div>
-                    <span className="cp-resource-featured-label">Full Committee Playbook</span>
-                    <span className="cp-resource-featured-sub">Complete guide — goals, RACI, timelines, checklists & more</span>
+                    <span className="cp-resource-featured-label">Download Committee Playbook</span>
+                    <span className="cp-resource-featured-sub">Full PDF — goals, RACI, timelines, checklists & more</span>
                   </div>
-                  <span className="cp-resource-arrow">↗</span>
+                  <span className="cp-resource-arrow">↓</span>
                 </a>
               </li>
             )}

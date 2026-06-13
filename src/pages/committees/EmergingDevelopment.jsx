@@ -24,6 +24,7 @@ export default function EmergingDevelopment() {
         'Survey member satisfaction at mid-year and end-of-year to track and improve engagement.',
       ]}
       playbookUrl="/playbooks/e100_emerging_development_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_emerging_development_playbook_v1.pdf"
     />
   )
 }

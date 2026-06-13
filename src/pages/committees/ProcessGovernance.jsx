@@ -24,6 +24,7 @@ export default function ProcessGovernance() {
         'Establish a transparent process for member grievances and disciplinary review.',
       ]}
       playbookUrl="/playbooks/e100_process_governance_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_process_governance_playbook_v1.pdf"
     />
   )
 }

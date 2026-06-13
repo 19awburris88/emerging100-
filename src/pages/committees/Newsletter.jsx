@@ -24,6 +24,7 @@ export default function Newsletter() {
         'Create a newsletter archive accessible to all current and prospective members.',
       ]}
       playbookUrl="/playbooks/e100_newsletter_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_newsletter_playbook_v1.pdf"
     />
   )
 }

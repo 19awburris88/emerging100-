@@ -24,6 +24,7 @@ export default function SocialFundraising() {
         'Create a post-event feedback process to continuously improve the member social experience.',
       ]}
       playbookUrl="/playbooks/e100_social_fundraising_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_social_fundraising_playbook_v1.pdf"
     />
   )
 }

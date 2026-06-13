@@ -24,6 +24,7 @@ export default function CorporateRoundtable() {
         'Secure at least two new corporate sponsors for programming through relationship-building.',
       ]}
       playbookUrl="/playbooks/e100_corporate_roundtable_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_corporate_roundtable_playbook_v1.pdf"
     />
   )
 }

@@ -101,7 +101,14 @@
 }
 
 @media (max-width: 768px) {
-  .about-mission { grid-template-columns: 1fr; }
+  .about-mission { grid-template-columns: 1fr; gap: 28px; }
   .about-mission-quote { position: static; }
   .values-grid { grid-template-columns: 1fr !important; }
+  .board-grid { grid-template-columns: 1fr; }
+  .board-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+  .quote-text { font-size: 1.1rem; }
 }

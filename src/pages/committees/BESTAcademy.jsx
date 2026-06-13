@@ -24,6 +24,7 @@ export default function BESTAcademy() {
         'Report measurable academic improvement data for students in the program.',
       ]}
       playbookUrl="/playbooks/e100_best_academy_playbook_v2.html"
+      playbookPdfUrl="/playbooks/pdf/e100_best_academy_playbook_v2.pdf"
     />
   )
 }

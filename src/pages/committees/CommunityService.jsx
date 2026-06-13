@@ -24,6 +24,7 @@ export default function CommunityService() {
         'Increase member participation in service events by making sign-up and logistics seamless.',
       ]}
       playbookUrl="/playbooks/e100_community_service_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_community_service_playbook_v1.pdf"
     />
   )
 }

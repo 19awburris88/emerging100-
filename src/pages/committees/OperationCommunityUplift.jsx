@@ -24,6 +24,7 @@ export default function OperationCommunityUplift() {
         'Create a scalable OCU program model that can be replicated in future terms.',
       ]}
       playbookUrl="/playbooks/e100_ocu_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_ocu_playbook_v1.pdf"
     />
   )
 }

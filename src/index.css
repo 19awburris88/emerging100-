@@ -129,3 +129,14 @@ h3 { letter-spacing: -0.01em; }
 
 /* ── Divider ── */
 .divider { border: none; border-top: 1px solid var(--gray-200); margin: 0; }
+
+@media (max-width: 768px) {
+  .section { padding: 48px 20px; }
+  .section-title { font-size: 1.6rem; }
+  .section-sub { font-size: 0.97rem; }
+  .card { padding: 22px; }
+  .page-hero { padding: 56px 20px 40px; }
+  .page-hero h1 { font-size: clamp(1.9rem, 8vw, 2.8rem); margin-bottom: 14px; }
+  .page-hero p { font-size: 1rem; }
+  .btn { padding: 11px 20px; font-size: 0.87rem; }
+}

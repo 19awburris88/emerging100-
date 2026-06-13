@@ -24,6 +24,7 @@ export default function Communication() {
         'Establish a media contact database to support press outreach for major events.',
       ]}
       playbookUrl="/playbooks/e100_communications_playbook_v1.html"
+      playbookPdfUrl="/playbooks/pdf/e100_communications_playbook_v1.pdf"
     />
   )
 }
