@@ -1,25 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import leadershipImg from '../assets/leadership.jpg'
+import leadershipImg from '../assets/newhero.jpg'
+import { committees as committeeData } from '../data/index.js'
 import './Home.css'
 
-const committees = [
-  { label: 'B.E.S.T. Academy',               path: '/committees/best-academy',             icon: '🎓', desc: 'Mentoring & tutoring for youth development' },
-  { label: 'Collegiate 100',                  path: '/committees/collegiate-100',            icon: '🏛️', desc: 'Supporting college-aged members' },
-  { label: 'Communication',                   path: '/committees/communication',             icon: '📣', desc: 'Brand voice, media & messaging' },
-  { label: 'Community Service',               path: '/committees/community-service',         icon: '🤝', desc: 'Volunteerism & neighborhood engagement' },
-  { label: 'Corporate Roundtable',            path: '/committees/corporate-roundtable',      icon: '💼', desc: 'Professional development & corporate access' },
-  { label: 'Data',                            path: '/committees/data',                      icon: '📊', desc: 'Analytics, metrics & reporting' },
-  { label: 'Emerging Development',            path: '/committees/emerging-development',      icon: '🌱', desc: 'Member growth & leadership pipelines' },
-  { label: 'Awards & Scholarship Gala',       path: '/committees/emerging-leaders-gala',    icon: '🏆', desc: 'Annual scholarship & recognition event' },
-  { label: 'Finance',                         path: '/committees/finance',                   icon: '💰', desc: 'Budget oversight & financial stewardship' },
-  { label: 'Health & Wellness',               path: '/committees/health-wellness',           icon: '💪', desc: 'Physical and mental wellness initiatives' },
-  { label: 'Newsletter',                      path: '/committees/newsletter',                icon: '📰', desc: 'Member communications & storytelling' },
-  { label: 'Operation Community Uplift',      path: '/committees/operation-community-uplift',icon: '⬆️', desc: 'Large-scale community impact programs' },
-  { label: 'Partnerships',                    path: '/committees/partnerships',              icon: '🔗', desc: 'Org relationships & external alliances' },
-  { label: 'Process & Governance',            path: '/committees/process-governance',        icon: '⚖️', desc: 'Bylaws, procedures & org compliance' },
-  { label: 'Social Fundraising',              path: '/committees/social-fundraising',        icon: '🎉', desc: 'Events, fundraising & member engagement' },
-]
+const committees = committeeData.map(c => ({
+  label: c.name,
+  path: `/committees/${c.slug}`,
+  icon: c.icon,
+  desc: c.tagline,
+}))
 
 const pillars = [
   { title: 'Mentorship', desc: 'Connecting Black youth with professional role models who invest in their success.' },

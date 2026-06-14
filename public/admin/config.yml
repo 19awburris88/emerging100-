@@ -1,0 +1,77 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/assets
+public_folder: /assets
+
+collections:
+  - name: committees
+    label: Committees
+    label_singular: Committee
+    folder: src/data/committees
+    create: false
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    identifier_field: name
+    summary: "{{name}}"
+    fields:
+      - label: Committee Name
+        name: name
+        widget: string
+        hint: Full display name of the committee
+
+      - label: Icon (emoji)
+        name: icon
+        widget: string
+        hint: Single emoji shown on cards and pages (e.g. 🎓)
+
+      - label: Tagline
+        name: tagline
+        widget: string
+        hint: One-sentence description shown on the home page committee card
+
+      - label: Overview
+        name: overview
+        widget: text
+        hint: 2–4 sentence committee mission shown at the top of the committee page
+
+      - label: Committee Chairs
+        name: chairs
+        widget: list
+        hint: Add one name per line
+        field:
+          label: Chair Name
+          name: chair
+          widget: string
+
+      - label: Goals & Priorities
+        name: goals
+        widget: list
+        hint: Term goals — one per item
+        field:
+          label: Goal
+          name: goal
+          widget: string
+
+      - label: Key Responsibilities
+        name: responsibilities
+        widget: list
+        hint: Core duties — one per item
+        field:
+          label: Responsibility
+          name: responsibility
+          widget: string
+
+      - label: HTML Playbook URL
+        name: playbookUrl
+        widget: hidden
+
+      - label: PDF Playbook URL
+        name: playbookPdfUrl
+        widget: hidden
+
+      - label: Display Order
+        name: order
+        widget: hidden

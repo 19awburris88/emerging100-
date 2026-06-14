@@ -1,0 +1,30 @@
+{
+  "slug": "communication",
+  "order": 3,
+  "name": "Communication",
+  "icon": "📣",
+  "tagline": "Telling the Emerging 100 story — amplifying our mission, brand, and impact.",
+  "overview": "The Communication committee is responsible for shaping and amplifying the public voice of Emerging 100 ATL. This includes managing social media channels, creating visual content, coordinating press releases and media relationships, and ensuring consistent, professional messaging across all platforms. The committee serves as the brand steward and storytelling engine for the organization.",
+  "chairs": [
+    "Corey Tucker",
+    "Darryl Humphrey II",
+    "Donald Gibson"
+  ],
+  "responsibilities": [
+    "Manage and grow Emerging 100 ATL social media accounts (Instagram, LinkedIn, Facebook, X).",
+    "Develop and maintain brand guidelines, templates, and visual identity standards.",
+    "Draft and distribute press releases for major events, partnerships, and announcements.",
+    "Capture photo and video content at all organization events for archive and promotion.",
+    "Collaborate with the Newsletter committee on editorial content and distribution.",
+    "Coordinate with committee chairs to promote upcoming events and initiatives."
+  ],
+  "goals": [
+    "Grow social media following by 40% across all platforms by end of term.",
+    "Develop an official Emerging 100 ATL brand standards guide.",
+    "Build a consistent content calendar with weekly posts across platforms.",
+    "Produce a year-in-review digital report highlighting organization accomplishments.",
+    "Establish a media contact database to support press outreach for major events."
+  ],
+  "playbookUrl": "/playbooks/e100_communications_playbook_v1.html",
+  "playbookPdfUrl": "/playbooks/pdf/e100_communications_playbook_v1.pdf"
+}

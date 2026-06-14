@@ -1,0 +1,30 @@
+{
+  "slug": "emerging-development",
+  "order": 7,
+  "name": "Emerging Development",
+  "icon": "🌱",
+  "tagline": "Investing in our members so they can invest in the world — leadership begins within.",
+  "overview": "The Emerging Development committee is dedicated to the personal and professional growth of Emerging 100 ATL members. By designing leadership development programming, onboarding experiences, and skills-building workshops, this committee ensures that every member is equipped to fully contribute to the organization's mission and advance in their professional lives. When we develop our members, we multiply our impact.",
+  "chairs": [
+    "Will Fleming",
+    "Brandon Smith",
+    "Charles Rhome"
+  ],
+  "responsibilities": [
+    "Design and deliver a new member onboarding experience that introduces E100 culture, mission, and expectations.",
+    "Plan leadership development workshops, book clubs, and skills seminars for members.",
+    "Identify and promote external leadership programs, conferences, and certifications relevant to members.",
+    "Coordinate an annual member retreat or development intensive.",
+    "Assess member satisfaction and engagement through surveys and feedback loops.",
+    "Develop mentoring tracks pairing newer members with experienced leadership."
+  ],
+  "goals": [
+    "Create a formal new member orientation program launched at the start of each term.",
+    "Host six member development events (workshops, panels, or seminars) per year.",
+    "Launch an internal peer mentoring program pairing members by career track.",
+    "Develop a Member Development Roadmap outlining growth pathways within E100.",
+    "Survey member satisfaction at mid-year and end-of-year to track and improve engagement."
+  ],
+  "playbookUrl": "/playbooks/e100_emerging_development_playbook_v1.html",
+  "playbookPdfUrl": "/playbooks/pdf/e100_emerging_development_playbook_v1.pdf"
+}

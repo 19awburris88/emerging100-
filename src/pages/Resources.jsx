@@ -1,23 +1,14 @@
 import { Link } from 'react-router-dom'
+import { committees as committeeData } from '../data/index.js'
 import './Resources.css'
 
-const committeePlaybooks = [
-  { label: 'B.E.S.T. Academy',                  url: '/playbooks/e100_best_academy_playbook_v2.html',         pdf: '/playbooks/pdf/e100_best_academy_playbook_v2.pdf',         path: '/committees/best-academy',              icon: '🎓' },
-  { label: 'Collegiate 100',                     url: '/playbooks/e100_c100_playbook_v2.html',                 pdf: '/playbooks/pdf/e100_c100_playbook_v2.pdf',                 path: '/committees/collegiate-100',            icon: '🎒' },
-  { label: 'Communication',                      url: '/playbooks/e100_communications_playbook_v1.html',       pdf: '/playbooks/pdf/e100_communications_playbook_v1.pdf',       path: '/committees/communication',             icon: '📣' },
-  { label: 'Community Service',                  url: '/playbooks/e100_community_service_playbook_v1.html',    pdf: '/playbooks/pdf/e100_community_service_playbook_v1.pdf',    path: '/committees/community-service',         icon: '🤝' },
-  { label: 'Corporate Roundtable',               url: '/playbooks/e100_corporate_roundtable_playbook_v1.html', pdf: '/playbooks/pdf/e100_corporate_roundtable_playbook_v1.pdf', path: '/committees/corporate-roundtable',      icon: '💼' },
-  { label: 'Data & Systems',                     url: '/playbooks/e100_data_playbook_v1.html',                 pdf: '/playbooks/pdf/e100_data_playbook_v1.pdf',                 path: '/committees/data',                      icon: '📊' },
-  { label: 'Emerging Development',               url: '/playbooks/e100_emerging_development_playbook_v1.html', pdf: '/playbooks/pdf/e100_emerging_development_playbook_v1.pdf', path: '/committees/emerging-development',      icon: '🌱' },
-  { label: 'Emerging Leaders Awards & Gala',     url: '/playbooks/e100_gala_playbook_v1.html',                 pdf: '/playbooks/pdf/e100_gala_playbook_v1.pdf',                 path: '/committees/emerging-leaders-gala',     icon: '🏆' },
-  { label: 'Finance',                            url: '/playbooks/e100_finance_playbook_v1.html',              pdf: '/playbooks/pdf/e100_finance_playbook_v1.pdf',              path: '/committees/finance',                   icon: '💰' },
-  { label: 'Health & Wellness',                  url: '/playbooks/e100_health_wellness_playbook_v1.html',      pdf: '/playbooks/pdf/e100_health_wellness_playbook_v1.pdf',      path: '/committees/health-wellness',           icon: '💪' },
-  { label: 'Newsletter',                         url: '/playbooks/e100_newsletter_playbook_v1.html',           pdf: '/playbooks/pdf/e100_newsletter_playbook_v1.pdf',           path: '/committees/newsletter',                icon: '📰' },
-  { label: 'Operation Community Uplift',         url: '/playbooks/e100_ocu_playbook_v1.html',                  pdf: '/playbooks/pdf/e100_ocu_playbook_v1.pdf',                  path: '/committees/operation-community-uplift', icon: '🏙️' },
-  { label: 'Partnerships & Fundraising',         url: '/playbooks/e100_partnerships_playbook_v1.html',         pdf: '/playbooks/pdf/e100_partnerships_playbook_v1.pdf',         path: '/committees/partnerships',              icon: '🤜' },
-  { label: 'Process & Governance',               url: '/playbooks/e100_process_governance_playbook_v1.html',   pdf: '/playbooks/pdf/e100_process_governance_playbook_v1.pdf',   path: '/committees/process-governance',        icon: '⚙️' },
-  { label: 'Social Fundraising',                 url: '/playbooks/e100_social_fundraising_playbook_v1.html',   pdf: '/playbooks/pdf/e100_social_fundraising_playbook_v1.pdf',   path: '/committees/social-fundraising',        icon: '🎉' },
-]
+const committeePlaybooks = committeeData.map(c => ({
+  label: c.name,
+  url: c.playbookUrl,
+  pdf: c.playbookPdfUrl,
+  path: `/committees/${c.slug}`,
+  icon: c.icon,
+}))
 
 const sharedDocs = [
   {

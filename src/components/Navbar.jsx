@@ -1,25 +1,13 @@
 import { useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/emeging100playbook-logo.png'
+import { committees as committeeData } from '../data/index.js'
 import './Navbar.css'
 
-const committees = [
-  { label: 'B.E.S.T. Academy',                     path: '/committees/best-academy' },
-  { label: 'Collegiate 100',                        path: '/committees/collegiate-100' },
-  { label: 'Communication',                         path: '/committees/communication' },
-  { label: 'Community Service',                     path: '/committees/community-service' },
-  { label: 'Corporate Roundtable',                  path: '/committees/corporate-roundtable' },
-  { label: 'Data',                                  path: '/committees/data' },
-  { label: 'Emerging Development',                  path: '/committees/emerging-development' },
-  { label: 'Emerging Leaders Awards & Gala',        path: '/committees/emerging-leaders-gala' },
-  { label: 'Finance',                               path: '/committees/finance' },
-  { label: 'Health & Wellness',                     path: '/committees/health-wellness' },
-  { label: 'Newsletter',                            path: '/committees/newsletter' },
-  { label: 'Operation Community Uplift',            path: '/committees/operation-community-uplift' },
-  { label: 'Partnerships',                          path: '/committees/partnerships' },
-  { label: 'Process & Governance',                  path: '/committees/process-governance' },
-  { label: 'Social Fundraising',                    path: '/committees/social-fundraising' },
-]
+const committees = committeeData.map(c => ({
+  label: c.name,
+  path: `/committees/${c.slug}`,
+}))
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
