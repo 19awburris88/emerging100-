@@ -18,6 +18,18 @@ const sharedDocs = [
     url: '/playbooks/e100_master_playbook_hub.html',
   },
   {
+    icon: '📅',
+    label: '2026–2027 Program Calendar',
+    desc: 'Official org-wide calendar with all committee dates, events, and deadlines for the 2026–2027 season.',
+    url: '/playbooks/e100_calendar_2026_2027.html',
+  },
+  {
+    icon: '💬',
+    label: 'Outstanding Chair Questions',
+    desc: '183 questions from incoming chairs — 135 answered and growing. A living reference for new leadership.',
+    url: '/playbooks/e100_outstanding_questions.html',
+  },
+  {
     icon: '✅',
     label: 'Event Checklists',
     desc: 'Step-by-step checklists for every Emerging 100 event type.',
