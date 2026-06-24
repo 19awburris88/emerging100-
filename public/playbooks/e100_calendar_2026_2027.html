@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E100 â 2026-2027 Official Program Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090f;--bg2:#0d1120;--bg3:#111827;--gold:#C9A84C;--gdim:rgba(201,168,76,0.12);--gmid:rgba(201,168,76,0.25);--white:#ede8dd;--muted:#6b7280;--light:#9ca3af;--ac:#4a9eff;--acb:rgba(74,158,255,0.10);--acp:rgba(74,158,255,0.25);--green:#10b981;--greenb:rgba(16,185,129,0.12);--greenp:rgba(16,185,129,0.28);--amber:#f59e0b;--amberb:rgba(245,158,11,0.12);--amberp:rgba(245,158,11,0.28);--red:#ef4444;--redb:rgba(239,68,68,0.12);--redp:rgba(239,68,68,0.28);--purple:#a855f7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--white);font-family:'Instrument Sans',sans-serif;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,0.05) 0%,transparent 60%);}
+.wrap{max-width:1040px;margin:0 auto;padding:60px 24px 100px;position:relative;z-index:1;}
+header{padding-bottom:36px;margin-bottom:36px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,80px);letter-spacing:3px;line-height:.88;color:var(--white);margin-bottom:12px;}
+h1 em{color:var(--gold);font-style:normal;}
+.hdr-rules{background:var(--bg2);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px 20px;margin-bottom:8px;}
+.rule{font-size:12px;color:var(--light);line-height:1.7;display:flex;gap:8px;}
+.rule::before{content:'â';color:var(--gold);flex-shrink:0;}
+
+/* SEASON */
+.season{margin-bottom:48px;}
+.season-hdr{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,42px);letter-spacing:3px;color:var(--white);padding:14px 0 10px;border-bottom:2px solid var(--gold);margin-bottom:24px;}
+
+/* MONTH */
+.month{margin-bottom:32px;}
+.month-hdr{background:var(--bg2);border:1px solid var(--gmid);border-radius:8px;padding:10px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.month-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--gold);}
+.month-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* EVENTS */
+.events{display:grid;gap:6px;margin-bottom:12px;}
+.event{background:var(--bg2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:11px 14px;display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;}
+.event.gbm{border-left:3px solid var(--ac);}
+.event.chairs-mtg{border-left:3px solid var(--purple);}
+.event.best{border-left:3px solid #22c55e;}
+.event.social{border-left:3px solid var(--red);}
+.event.gala{border-left:3px solid var(--gold);}
+.event.cs{border-left:3px solid var(--green);}
+.event.c100{border-left:3px solid #06b6d4;}
+.event.ed{border-left:3px solid var(--amber);}
+.event.hw{border-left:3px solid #ec4899;}
+.event.ocu{border-left:3px solid var(--purple);}
+.event.cr{border-left:3px solid var(--ac);}
+.event.partner{border-left:3px solid var(--gold);}
+.event.org{border-left:3px solid rgba(255,255,255,0.2);}
+.evt-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);white-space:nowrap;}
+.evt-body{}
+.evt-name{font-size:12px;color:var(--white);font-weight:600;}
+.evt-prog{font-size:10px;color:var(--muted);margin-top:1px;}
+.evt-loc{font-family:'DM Mono',monospace;font-size:9px;color:var(--ac);white-space:nowrap;}
+.tbd-badge{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;background:var(--amberb);color:var(--amber);border:1px solid var(--amberp);white-space:nowrap;}
+.conf-badge{font-family:'DM Mono',monospace;font-size:8px;padding:2px 7px;border-radius:4px;background:var(--greenb);color:var(--green);border:1px solid var(--greenp);white-space:nowrap;}
+
+/* NOTABLE */
+.notable{background:var(--bg3);border-radius:8px;padding:10px 14px;margin-bottom:6px;}
+.notable-hdr{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.notable-items{display:flex;flex-wrap:wrap;gap:6px;}
+.notable-item{font-size:11px;color:var(--light);padding:2px 8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:4px;}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);}
+.leg-bar{width:12px;height:3px;border-radius:2px;flex-shrink:0;}
+
+.footer{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.05);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.footer strong{color:var(--gold);}
+@media(max-width:600px){.event{grid-template-columns:1fr;}.evt-loc{display:none;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Emerging 100 of Atlanta</div>
+  <h1>2026â2027<br><em>Official Program</em><br>Calendar</h1>
+  <div class="hdr-rules">
+    <div class="rule">General Body Meetings are the 3rd Tuesday of each month except May, June, July, and December</div>
+    <div class="rule">All Chairs Meetings are the 2nd Monday of each month except May, June, July, and December</div>
+    <div class="rule">BEST Academy Sessions are the 3rd Friday of each month except May, June, July, and December â or if a corporate partner engagement justifies a change</div>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-top:6px;">Last Updated: June 19, 2026 &nbsp;Â·&nbsp; <span style="font-family:'DM Mono',monospace;font-size:8px;padding:3px 10px;background:rgba(16,185,129,0.12);color:#10b981;border:1px solid rgba(16,185,129,0.28);border-radius:4px;">Last Updated: June 19, 2026</span> &nbsp;Â·&nbsp; Living Document</div>
+</header>
+
+<div class="legend">
+  <div class="leg"><div class="leg-bar" style="background:var(--ac)"></div>GBM</div>
+  <div class="leg"><div class="leg-bar" style="background:var(--purple)"></div>All Chairs</div>
+  <div class="leg"><div class="leg-bar" style="background:#22c55e"></div>BEST Academy</div>
+  <div class="leg"><div class="leg-bar" style="background:var(--red)"></div>Social Fundraising</div>
+  <div class="leg"><div class="leg-bar" style="background:var(--gold)"></div>Gala / Partnerships</div>
+  <div class="leg"><div class="leg-bar" style="background:var(--green)"></div>Community Service</div>
+  <div class="leg"><div class="leg-bar" style="background:#06b6d4"></div>Collegiate 100</div>
+  <div class="leg"><div class="leg-bar" style="background:var(--amber)"></div>Emerging Development</div>
+  <div class="leg"><div class="leg-bar" style="background:#ec4899"></div>Health & Wellness</div>
+  <div class="leg"><div class="leg-bar" style="background:var(--purple)"></div>OCU</div>
+</div>
+
+<!-- ââ SUMMER 2026 ââ -->
+<div class="season">
+<div class="season-hdr">Summer 2026</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">June 2026</div><div class="month-meta">Elections Â· C&A Training</div></div>
+  <div class="events">
+    <div class="event org"><div class="evt-date">Wed 6/17âSun 6/21</div><div class="evt-body"><div class="evt-name">100 Black Men of America National Conference</div><div class="evt-prog">100 Black Men of Atlanta</div></div><div class="evt-loc">New York City</div></div>
+    <div class="event org"><div class="evt-date">Sat 6/27</div><div class="evt-body"><div class="evt-name">Chair & Advisor Training</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">CODA Tech Square</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Exec Board Nominations Open: Wed 6/3âMon 6/8</span>
+      <span class="notable-item">Nominees Notified: Wed 6/10</span>
+      <span class="notable-item">Nominee Materials Due: Wed 6/17</span>
+      <span class="notable-item">Notify Membership of Candidates: Mon 6/22</span>
+      <span class="notable-item">Men's Mental Health Awareness Month</span>
+      <span class="notable-item">Juneteenth: Fri 6/19</span>
+      <span class="notable-item">World Cup ATL: 6/15 Â· 6/18 Â· 6/21 Â· 6/24 Â· 6/27</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">July 2026</div><div class="month-meta">Elections Â· Partner Appreciation</div></div>
+  <div class="events">
+    <div class="event partner"><div class="evt-date">Thur 8/6</div><div class="evt-body"><div class="evt-name">Partnership / Sponsorship Appreciation</div><div class="evt-prog">Partnerships & Fundraising</div></div><div class="evt-loc">Fox Theatre</div></div>
+    <div class="event org"><div class="evt-date">Tue 7/7</div><div class="evt-body"><div class="evt-name">Exec Board Candidate Debate Prep & Expectations</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event cs"><div class="evt-date">Sat 7/11 Â· 10AMâ1PM</div><div class="evt-body"><div class="evt-name">Chase Back to School</div><div class="evt-prog">Community Service</div></div><div class="evt-loc">Chase Summerhill</div></div>
+    <div class="event org"><div class="evt-date">Tue 7/14</div><div class="evt-body"><div class="evt-name">Exec Board Candidate Debate & Forum</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event org"><div class="evt-date">Thur 7/23</div><div class="evt-body"><div class="evt-name">Mentorship Training</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Location TBD</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable Â· Elections</div>
+    <div class="notable-items">
+      <span class="notable-item">Candidate Materials Deadline: Wed 7/1</span>
+      <span class="notable-item">Release Materials to Membership: Fri 7/3</span>
+      <span class="notable-item">GBM Exec Board Voting Window: Wed 7/15âTue 7/21</span>
+      <span class="notable-item">Votes Certified: Wed 7/22âFri 7/24</span>
+      <span class="notable-item">Exec Board Notifications: Fri 7/24âFri 7/31</span>
+      <span class="notable-item">Independence Day: Sat 7/4</span>
+      <span class="notable-item">World Cup ATL: Wed 7/1 Â· Tue 7/7 Â· Wed 7/15</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ââ FALL 2026 ââ -->
+<div class="season">
+<div class="season-hdr">Fall 2026</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">August 2026</div><div class="month-meta">Program Year Kickoff</div></div>
+  <div class="events">
+    <div class="event best"><div class="evt-date">Mon 8/3</div><div class="evt-body"><div class="evt-name">First Day of School Celebration</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event partner"><div class="evt-date">Thur 8/6</div><div class="evt-body"><div class="evt-name">Partnership / Sponsorship Appreciation</div><div class="evt-prog">Partnerships & Fundraising</div></div><div class="evt-loc">Fox Theatre</div></div>
+    <div class="event org"><div class="evt-date">Sat 8/8</div><div class="evt-body"><div class="evt-name">Mayor's Dream</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event chairs-mtg"><div class="evt-date">Mon 8/10</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 8/18</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 8/21</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event ocu"><div class="evt-date">Thur 8/27</div><div class="evt-body"><div class="evt-name">Voter Registration Event</div><div class="evt-prog">OCU</div></div><div class="tbd-badge">Location TBD</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Exec Board Officers-Elect Announced: Sat 8/1</span>
+      <span class="notable-item">Render: Aug 12 & 13</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">September 2026</div><div class="month-meta">Park 100 Â· Career Fair Â· NSN</div></div>
+  <div class="events">
+    <div class="event social"><div class="evt-date">Fri 9/4</div><div class="evt-body"><div class="evt-name">Park 100</div><div class="evt-prog">Social Fundraising</div></div><div class="evt-loc">Park Tavern</div></div>
+    <div class="event c100"><div class="evt-date">Sat 9/12</div><div class="evt-body"><div class="evt-name">NSN Student Conference</div><div class="evt-prog">Collegiate 100 Â· Contact: Kim Anderson</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event chairs-mtg"><div class="evt-date">Mon 9/14</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event c100"><div class="evt-date">TBD Â· Sept</div><div class="evt-body"><div class="evt-name">Career Fair</div><div class="evt-prog">Collegiate 100 Â· Contact: Melvina Jones (via Partnerships)</div></div><div class="evt-loc">Delta HQ</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 9/15</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 9/18</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event cs"><div class="evt-date">TBD Â· Sept</div><div class="evt-body"><div class="evt-name">Atlanta Hawks: Million Meals Program</div><div class="evt-prog">Community Service Â· Contact: Alexis Roe</div></div><div class="evt-loc">State Farm Arena</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">C100 Welcome Back / Signing Day</span>
+      <span class="notable-item">Voter Registration Day: Tue 9/15</span>
+      <span class="notable-item">BEST Field Trip: Football game at Morehouse or GSU</span>
+      <span class="notable-item">Labor Day: Mon 9/7</span>
+      <span class="notable-item">Suicide Prevention Month</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">October 2026</div><div class="month-meta">H&W Â· Halloween Social Â· Homecomings</div></div>
+  <div class="events">
+    <div class="event chairs-mtg"><div class="evt-date">Mon 10/5</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event ed"><div class="evt-date">Mon 10/5</div><div class="evt-body"><div class="evt-name">Falcons at Saints Watch Party</div><div class="evt-prog">Emerging Development</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event ocu"><div class="evt-date">Thur 10/10</div><div class="evt-body"><div class="evt-name">Voter Awareness Event</div><div class="evt-prog">OCU</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 10/20</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event hw"><div class="evt-date">Thur 10/22</div><div class="evt-body"><div class="evt-name">Mental Health / Laughing Matters</div><div class="evt-prog">Health & Wellness</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 10/24</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event social"><div class="evt-date">Sat 10/31</div><div class="evt-body"><div class="evt-name">Halloween Social</div><div class="evt-prog">Social Fundraising</div></div><div class="tbd-badge">Location TBD</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable Â· Homecomings</div>
+    <div class="notable-items">
+      <span class="notable-item">Spellhouse Homecoming: Oct 17â18</span>
+      <span class="notable-item">Clark Atlanta Homecoming: Oct 17â18</span>
+      <span class="notable-item">GSU Homecoming: TBD</span>
+      <span class="notable-item">C100 National Conference: Oct 31</span>
+      <span class="notable-item">National Mentoring Day: Tue 10/27</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">November 2026</div><div class="month-meta">Together Tailgate Â· Elections</div></div>
+  <div class="events">
+    <div class="event chairs-mtg"><div class="evt-date">Mon 11/2</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event ocu"><div class="evt-date">TBD</div><div class="evt-body"><div class="evt-name">Election Watch Party</div><div class="evt-prog">OCU</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event cs"><div class="evt-date">Sat 11/14</div><div class="evt-body"><div class="evt-name">Together Tailgate</div><div class="evt-prog">Community Service</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 11/17</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event ed"><div class="evt-date">TBD</div><div class="evt-body"><div class="evt-name">ED Event</div><div class="evt-prog">Emerging Development</div></div><div class="tbd-badge">TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 11/20</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Voting Day: Nov 4</span>
+      <span class="notable-item">National Midterms</span>
+      <span class="notable-item">Veteran's Day: Wed 11/11</span>
+      <span class="notable-item">Thanksgiving: Thur 11/26</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">December 2026</div><div class="month-meta">Holiday SoirÃ©e Â· Toy Drive</div></div>
+  <div class="events">
+    <div class="event social"><div class="evt-date">Fri 12/11</div><div class="evt-body"><div class="evt-name">Holiday SoirÃ©e</div><div class="evt-prog">Social Fundraising</div></div><div class="evt-loc">Coca Cola Roxy</div></div>
+    <div class="event cs"><div class="evt-date">Sat 12/19</div><div class="evt-body"><div class="evt-name">Toy Drive & Gift Wrapping Social</div><div class="evt-prog">Community Service</div></div><div class="tbd-badge">Location TBD</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Giving Tuesday: Tue 12/1</span>
+      <span class="notable-item">International Volunteer Day: Sat 12/5</span>
+      <span class="notable-item">Christmas: Fri 12/25</span>
+      <span class="notable-item">Kwanzaa: Sat 12/26âFri 1/1</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ââ SPRING 2027 ââ -->
+<div class="season">
+<div class="season-hdr">Spring 2027</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">January 2027</div><div class="month-meta">MLK Day Â· Mentoring Month Â· H&W</div></div>
+  <div class="events">
+    <div class="event chairs-mtg"><div class="evt-date">Mon 1/11</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event best"><div class="evt-date">Fri 1/15</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event cs"><div class="evt-date">Mon 1/18</div><div class="evt-body"><div class="evt-name">MLK Day Service Event</div><div class="evt-prog">Community Service</div></div><div class="evt-loc">City Hall</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 1/19</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event c100"><div class="evt-date">Thur 1/28</div><div class="evt-body"><div class="evt-name">National Mentoring Month Activity</div><div class="evt-prog">Collegiate 100</div></div><div class="tbd-badge">Location TBD Â· Format TBD</div></div>
+    <div class="event hw"><div class="evt-date">Sat 1/30</div><div class="evt-body"><div class="evt-name">New Year, New You / Men's Health Brunch</div><div class="evt-prog">Health & Wellness</div></div><div class="tbd-badge">Location TBD</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Scholarship Gala Applications Open</span>
+      <span class="notable-item">MLK Day: Mon 1/18</span>
+      <span class="notable-item">New Year's Day: Fri 1/1</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">February 2027</div><div class="month-meta">H&W Â· ASO Â· Super Bowl Â· CR</div></div>
+  <div class="events">
+    <div class="event chairs-mtg"><div class="evt-date">Mon 2/1</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event hw"><div class="evt-date">Wed 2/3</div><div class="evt-body"><div class="evt-name">Financial Health Event</div><div class="evt-prog">Health & Wellness</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event c100"><div class="evt-date">TBD Â· Feb</div><div class="evt-body"><div class="evt-name">ASO â Atlanta Symphony Orchestra</div><div class="evt-prog">Collegiate 100</div></div><div class="evt-loc">Woodruff Arts Center</div></div>
+    <div class="event ed"><div class="evt-date">Sun 2/14</div><div class="evt-body"><div class="evt-name">Super Bowl Party</div><div class="evt-prog">Emerging Development</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event cr"><div class="evt-date">TBD Â· Feb</div><div class="evt-body"><div class="evt-name">Corporate Roundtable Event</div><div class="evt-prog">Corporate Roundtable</div></div><div class="tbd-badge">TBD</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 2/16</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 2/19</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Black History Month</span>
+      <span class="notable-item">Super Bowl Sunday: Sun 2/14</span>
+      <span class="notable-item">Valentine's Day: Sun 2/14</span>
+      <span class="notable-item">President's Day: Mon 2/15</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">March 2027</div><div class="month-meta">C&C Â· Spring Breaks</div></div>
+  <div class="events">
+    <div class="event chairs-mtg"><div class="evt-date">Mon 3/1</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 3/16</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 3/19</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event social"><div class="evt-date">Sat 3/20</div><div class="evt-body"><div class="evt-name">Cocktails & Conversations</div><div class="evt-prog">Social Fundraising</div></div><div class="tbd-badge">Location TBD</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable Â· Spring Breaks</div>
+    <div class="notable-items">
+      <span class="notable-item">Spelman + Morehouse: Mar 8â11</span>
+      <span class="notable-item">Georgia State: Mar 15â22</span>
+      <span class="notable-item">Clark Atlanta: TBD</span>
+      <span class="notable-item">Oglethorpe: TBD</span>
+      <span class="notable-item">Women's History Month</span>
+      <span class="notable-item">St. Patrick's Day: Wed 3/17</span>
+      <span class="notable-item">Easter: Sun 3/28</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">April 2027</div><div class="month-meta">RISE Â· Volunteer Week Â· Gala Build</div></div>
+  <div class="events">
+    <div class="event hw"><div class="evt-date">Sat 4/3</div><div class="evt-body"><div class="evt-name">Physical Fitness Event</div><div class="evt-prog">Health & Wellness</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event chairs-mtg"><div class="evt-date">Mon 4/5</div><div class="evt-body"><div class="evt-name">All Chairs Meeting</div><div class="evt-prog">All Chairs</div></div><div class="evt-loc">Virtual</div></div>
+    <div class="event c100"><div class="evt-date">Sat 4/10</div><div class="evt-body"><div class="evt-name">The RISE: Emerging Leaders Intensive</div><div class="evt-prog">Collegiate 100</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event best"><div class="evt-date">Fri 4/16</div><div class="evt-body"><div class="evt-name">BEST Academy Session</div><div class="evt-prog">BEST Academy</div></div><div class="evt-loc">BEST Academy</div></div>
+    <div class="event c100"><div class="evt-date">Sat 4/17</div><div class="evt-body"><div class="evt-name">C100 End of Year Cookout</div><div class="evt-prog">Collegiate 100</div></div><div class="tbd-badge">Location TBD</div></div>
+    <div class="event gbm"><div class="evt-date">Tue 4/20</div><div class="evt-body"><div class="evt-name">General Body Meeting</div><div class="evt-prog">Emerging 100 of Atlanta</div></div><div class="tbd-badge">Venue TBD</div></div>
+    <div class="event cs"><div class="evt-date">WedâSat 4/21â24</div><div class="evt-body"><div class="evt-name">National Volunteer Week</div><div class="evt-prog">Community Service</div></div><div class="tbd-badge">Multiple Locations</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Exec Board Chair & Committee Selections</span>
+      <span class="notable-item">National Volunteer Week: Apr 18â24</span>
+      <span class="notable-item">100 Black Men Golf Classic</span>
+      <span class="notable-item">100 Black Men Stakeholders Luncheon</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">May 2027</div><div class="month-meta">The Gala Â· BEST Rites of Passage</div></div>
+  <div class="events">
+    <div class="event gala"><div class="evt-date">Sat 5/15</div><div class="evt-body"><div class="evt-name">14th Annual Emerging Leaders Awards & Scholarship Gala</div><div class="evt-prog">Gala Committee</div></div><div class="evt-loc">Delta Flight Museum</div></div>
+    <div class="event best"><div class="evt-date">TBD Â· May</div><div class="evt-body"><div class="evt-name">BEST Graduation / Rites of Passage</div><div class="evt-prog">BEST Academy Â· Tying of Ties Ceremony</div></div><div class="evt-loc">McCamish Pavilion Â· Georgia Tech</div></div>
+  </div>
+  <div class="notable">
+    <div class="notable-hdr">Notable</div>
+    <div class="notable-items">
+      <span class="notable-item">Chair & Committee Announcements</span>
+      <span class="notable-item">100 Black Men Student Luncheon</span>
+      <span class="notable-item">Mother's Day: Sun 5/9</span>
+      <span class="notable-item">Memorial Day: Mon 5/31</span>
+    </div>
+  </div>
+</div>
+
+<div class="month">
+  <div class="month-hdr"><div class="month-name">Summer 2027</div><div class="month-meta">Transitions Â· Training</div></div>
+  <div class="events">
+    <div class="event org"><div class="evt-date">June 2027</div><div class="evt-body"><div class="evt-name">Chair & Advisor Training</div><div class="evt-prog">All Chairs â Next Cycle Begins</div></div><div class="tbd-badge">Date TBD</div></div>
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  <strong>Emerging 100 of Atlanta â The Emerging Way</strong><br>
+  Official 2026â2027 Program Calendar Â· Last Updated June 19, 2026 Â· Living Document
+</div>
+</div>
+</body>
+</html>
