@@ -8,9 +8,11 @@ export default function CommitteePage({
   tagline,
   overview,
   chairs = [],
+  advisors = [],
   responsibilities = [],
   goals = [],
   resources = [],
+  term = '2025–2027',
   playbookUrl = null,
   playbookPdfUrl = null,
 }) {
@@ -18,7 +20,7 @@ export default function CommitteePage({
 
   const navItems = [
     { id: 'cp-overview',         label: 'Overview',         show: !!overview },
-    { id: 'cp-leadership',       label: 'Leadership',       show: chairs.length > 0 },
+    { id: 'cp-leadership',       label: 'Leadership',       show: chairs.length > 0 || advisors.length > 0 },
     { id: 'cp-goals',            label: 'Goals',            show: goals.length > 0 },
     { id: 'cp-responsibilities', label: 'Responsibilities', show: responsibilities.length > 0 },
     { id: 'cp-resources',        label: 'Resources',        show: true },
@@ -100,8 +102,8 @@ export default function CommitteePage({
 
         <div className="cp-two-col">
 
-          {/* Chairs */}
-          {chairs.length > 0 && (
+          {/* Chairs & Advisors */}
+          {(chairs.length > 0 || advisors.length > 0) && (
             <section className="cp-section cp-card card card-border-top" id="cp-leadership">
               <div className="tag">Leadership</div>
               <h2 className="cp-section-title">Committee Chairs</h2>
@@ -116,13 +118,29 @@ export default function CommitteePage({
                   </div>
                 ))}
               </div>
+              {advisors.length > 0 && (
+                <>
+                  <h3 className="cp-section-subtitle">Advisors</h3>
+                  <div className="cp-chairs">
+                    {advisors.map((a, i) => (
+                      <div key={i} className="cp-chair">
+                        <div className="cp-chair-avatar">{a.charAt(0)}</div>
+                        <div>
+                          <p className="cp-chair-name">{a}</p>
+                          <p className="cp-chair-role">Advisor</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </section>
           )}
 
           {/* Goals */}
           {goals.length > 0 && (
             <section className="cp-section cp-card card card-border-top" id="cp-goals">
-              <div className="tag">2025–2027 Term</div>
+              <div className="tag">{term} Term</div>
               <h2 className="cp-section-title">Goals & Priorities</h2>
               <ul className="cp-list cp-goals">
                 {goals.map((g, i) => (

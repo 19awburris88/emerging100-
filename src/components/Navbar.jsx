@@ -25,7 +25,6 @@ export default function Navbar() {
 
         <nav className={`navbar-nav ${menuOpen ? 'open' : ''}`}>
           <NavLink to="/"           className="nav-link" onClick={closeAll}>Home</NavLink>
-          <NavLink to="/about"      className="nav-link" onClick={closeAll}>About</NavLink>
           <NavLink to="/resources"  className="nav-link" onClick={closeAll}>Resources</NavLink>
 
           <div

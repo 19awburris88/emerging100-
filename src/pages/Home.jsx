@@ -20,7 +20,7 @@ const pillars = [
 
 export default function Home() {
   const [query, setQuery]     = useState('')
-  const [count200, setCount200] = useState(0)
+  const [count163, setCount163] = useState(0)
   const [count15,  setCount15]  = useState(0)
   const statsRef  = useRef(null)
   const firedRef  = useRef(false)
@@ -39,7 +39,7 @@ export default function Home() {
             if (!t0) t0 = ts
             const p = Math.min((ts - t0) / dur, 1)
             const e = 1 - Math.pow(1 - p, 3)
-            setCount200(Math.round(e * 200))
+            setCount163(Math.round(e * 163))
             setCount15(Math.round(e * 15))
             if (p < 1) requestAnimationFrame(step)
           }
@@ -74,7 +74,6 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <Link to="/committees/best-academy" className="btn btn-gold">Explore Committees</Link>
-            <Link to="/about" className="btn btn-outline-white">About E100 ATL</Link>
           </div>
         </div>
       </section>
@@ -83,7 +82,7 @@ export default function Home() {
       <div className="stats-bar" ref={statsRef}>
         <div className="container stats-inner">
           <div className="stat">
-            <span className="stat-num">{count200}+</span>
+            <span className="stat-num">{count163}</span>
             <span className="stat-label">Active Members</span>
           </div>
           <div className="stat-divider" />
@@ -179,14 +178,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission CTA */}
+      {/* Foundation CTA */}
       <section className="mission-cta">
         <div className="container mission-cta-inner">
           <div>
-            <p className="tag">Our Purpose</p>
-            <h2>When we pour into our members,<br />they are better equipped to pour into their communities.</h2>
+            <p className="tag">Our Foundation</p>
+            <h2>The young professionals auxiliary of the<br />100 Black Men of Atlanta, Inc.</h2>
           </div>
-          <Link to="/about" className="btn btn-gold">Learn Our Story</Link>
+          <p style={{ maxWidth: '340px', opacity: 0.85, lineHeight: 1.65 }}>
+            Emerging 100 ATL enhances the mentoring and tutoring programs of our parent organization
+            while developing the next generation of Black male leaders in Atlanta.
+          </p>
         </div>
       </section>
     </main>

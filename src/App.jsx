@@ -5,7 +5,6 @@ import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import BackToTop from './components/BackToTop'
 import Home from './pages/Home'
-import About from './pages/About'
 import Resources from './pages/Resources'
 import CommitteeRoute from './pages/CommitteeRoute'
 import './App.css'
@@ -37,7 +36,6 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/"                    element={<Home />} />
-        <Route path="/about"               element={<About />} />
         <Route path="/resources"           element={<Resources />} />
         <Route path="/committees/:slug"    element={<CommitteeRoute />} />
         <Route path="*"                    element={<NotFound />} />

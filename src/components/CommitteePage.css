@@ -120,6 +120,16 @@
 .cp-card { height: 100%; }
 
 /* Chairs */
+.cp-section-subtitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--navy);
+  opacity: 0.5;
+  margin: 20px 0 12px;
+}
+
 .cp-chairs { display: flex; flex-direction: column; gap: 16px; }
 
 .cp-chair {
