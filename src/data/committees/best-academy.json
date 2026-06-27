@@ -4,27 +4,18 @@
   "name": "B.E.S.T. Academy",
   "icon": "🎓",
   "tagline": "Building Excellence in Students Today — mentoring and tutoring Atlanta's youth.",
-  "overview": "The B.E.S.T. (Building Excellence in Students Today) Academy is the flagship youth development program of Emerging 100 ATL. The committee coordinates mentoring, tutoring, and educational enrichment activities for K–12 students throughout the Atlanta community. Members serve as role models and invest directly in the academic and personal development of the next generation.",
+  "overview": "The B.E.S.T. Academy committee coordinates monthly character development sessions for high school young men at B.E.S.T. Academy. Members serve as mentors and role models, investing directly in the identity, leadership, and personal development of the next generation. Every third Friday, E100 members show up – in a suit or blazer – to model excellence and pour into the young men who are next.",
   "chairs": [
-    "Destorian Cash",
+    "Mikal Driver",
     "Demetrius Odom",
-    "Mikal Driver"
+    "Carlton Coleman"
   ],
-  "responsibilities": [
-    "Plan and coordinate regular tutoring and mentoring sessions with K–12 students in partner schools.",
-    "Recruit and onboard Emerging 100 members as mentors, ensuring training and accountability.",
-    "Track student progress and report outcomes to the executive board each quarter.",
-    "Build and maintain relationships with Atlanta-area schools and education administrators.",
-    "Coordinate logistics for field trips, workshops, and educational enrichment events.",
-    "Collaborate with the B.E.S.T. Academy program of 100 Black Men of Atlanta to align curriculum."
+  "advisors": [
+    "Destorian Cash"
   ],
-  "goals": [
-    "Establish consistent monthly mentoring sessions with at least three partner schools.",
-    "Grow volunteer participation among E100 members by 25% over the term.",
-    "Develop a structured curriculum for mentoring sessions aligned with academic standards.",
-    "Launch a reading and STEM enrichment track for middle school students.",
-    "Report measurable academic improvement data for students in the program."
-  ],
+  "term": "2026–2027",
+  "responsibilities": [],
+  "goals": [],
   "playbookUrl": "/playbooks/e100_best_academy_playbook_v2.html",
   "playbookPdfUrl": "/playbooks/pdf/e100_best_academy_playbook_v2.pdf"
 }

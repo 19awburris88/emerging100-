@@ -9,10 +9,11 @@ export default function CommitteePage({
   overview,
   chairs = [],
   advisors = [],
+  supporting = [],
   responsibilities = [],
   goals = [],
   resources = [],
-  term = '2025–2027',
+  term = '2026–2027',
   playbookUrl = null,
   playbookPdfUrl = null,
 }) {
@@ -102,8 +103,8 @@ export default function CommitteePage({
 
         <div className="cp-two-col">
 
-          {/* Chairs & Advisors */}
-          {(chairs.length > 0 || advisors.length > 0) && (
+          {/* Chairs, Advisors & Supporting */}
+          {(chairs.length > 0 || advisors.length > 0 || supporting.length > 0) && (
             <section className="cp-section cp-card card card-border-top" id="cp-leadership">
               <div className="tag">Leadership</div>
               <h2 className="cp-section-title">Committee Chairs</h2>
@@ -128,6 +129,22 @@ export default function CommitteePage({
                         <div>
                           <p className="cp-chair-name">{a}</p>
                           <p className="cp-chair-role">Advisor</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+              {supporting.length > 0 && (
+                <>
+                  <h3 className="cp-section-subtitle">Supporting</h3>
+                  <div className="cp-chairs">
+                    {supporting.map((s, i) => (
+                      <div key={i} className="cp-chair">
+                        <div className="cp-chair-avatar">{s.charAt(0)}</div>
+                        <div>
+                          <p className="cp-chair-name">{s}</p>
+                          <p className="cp-chair-role">Supporting</p>
                         </div>
                       </div>
                     ))}

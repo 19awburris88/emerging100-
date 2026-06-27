@@ -4,27 +4,20 @@
   "name": "Newsletter",
   "icon": "📰",
   "tagline": "Keeping every member informed, inspired, and connected to what matters most.",
-  "overview": "The Newsletter committee produces and distributes the official Emerging 100 ATL member newsletter. This publication keeps members informed of upcoming events, committee updates, member highlights, community news, and organizational announcements. The committee works closely with Communication and committee chairs to ensure the newsletter reflects the full breadth of E100 activity and celebrates member accomplishments.",
+  "overview": "The Newsletter committee produces and distributes E100's official monthly newsletter — the corporate voice of the organization. Published on the 30th or 31st of each month from August through May, the Newsletter pulls content from everything posted to Instagram and LinkedIn that month and delivers it to 16,000+ subscribers. Jordan Frank leads the issue. Brooks Baptiste and Ashton Edmunds support with Mailchimp production.",
   "chairs": [
-    "Leonard Henry",
-    "Jordan Frank",
-    "Jason Palmer"
+    "Jordan Frank"
   ],
-  "responsibilities": [
-    "Produce and distribute the member newsletter on a consistent monthly or bi-monthly schedule.",
-    "Solicit content contributions from all committee chairs prior to each edition.",
-    "Write, edit, and proofread all newsletter content to ensure professional quality.",
-    "Design newsletter layout and maintain visual consistency with E100 brand standards.",
-    "Manage the newsletter distribution list and ensure all active members are included.",
-    "Archive all newsletter editions in an accessible member resource library."
+  "advisors": [
+    "Leonard Henry"
   ],
-  "goals": [
-    "Publish a newsletter on a reliable monthly schedule with zero missed editions.",
-    "Develop a newsletter template that is on-brand and easy to update each month.",
-    "Introduce a regular member spotlight feature recognizing individual achievements.",
-    "Grow newsletter open rate through improved subject lines and content relevance.",
-    "Create a newsletter archive accessible to all current and prospective members."
+  "supporting": [
+    "Brooks Baptiste",
+    "Ashton Edmunds"
   ],
+  "term": "2026–2027",
+  "responsibilities": [],
+  "goals": [],
   "playbookUrl": "/playbooks/e100_newsletter_playbook_v1.html",
   "playbookPdfUrl": "/playbooks/pdf/e100_newsletter_playbook_v1.pdf"
 }

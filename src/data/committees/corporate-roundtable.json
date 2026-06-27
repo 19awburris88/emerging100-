@@ -4,26 +4,18 @@
   "name": "Corporate Roundtable",
   "icon": "💼",
   "tagline": "Connecting our members to corporate Atlanta — opportunity, access, and professional growth.",
-  "overview": "The Corporate Roundtable committee creates pathways for Emerging 100 members to engage with Atlanta's corporate and business community. Through curated roundtable discussions, executive panels, and professional development programming, this committee ensures members have direct access to the networks and knowledge needed to advance their careers and create economic opportunity in their communities.",
+  "overview": "The Corporate Roundtable committee secures and coordinates all General Body Meeting locations, creating access to Atlanta's most prominent corporate spaces for E100 members. GBMs run the third Tuesday of each month from 6–9PM. Beyond venue logistics, CR creates executive access moments — panels, fireside chats, and leadership conversations — that give members direct exposure to the networks and knowledge needed to advance their careers.",
   "chairs": [
+    "Tyler Royal",
     "Bobby Kannady",
-    "Tyler Royal"
+    "Darren Maynard"
   ],
-  "responsibilities": [
-    "Organize quarterly corporate roundtable events with executives and corporate leaders.",
-    "Cultivate relationships with Atlanta-area companies for sponsorships, partnerships, and engagement.",
-    "Create professional development workshops on career advancement, entrepreneurship, and networking.",
-    "Identify and promote internship, job, and board seat opportunities for E100 members.",
-    "Coordinate lunch-and-learn or fireside chat series featuring member professionals.",
-    "Collaborate with the Partnerships committee on corporate engagement strategy."
+  "advisors": [
+    "Marcus Billie"
   ],
-  "goals": [
-    "Host four corporate roundtable events during the term, each with 20+ member attendance.",
-    "Develop a corporate partner directory with commitment levels and engagement benefits.",
-    "Launch an E100 professional mentoring track connecting members with executives.",
-    "Create a job board or opportunity board accessible to all E100 members.",
-    "Secure at least two new corporate sponsors for programming through relationship-building."
-  ],
+  "term": "2026–2027",
+  "responsibilities": [],
+  "goals": [],
   "playbookUrl": "/playbooks/e100_corporate_roundtable_playbook_v1.html",
   "playbookPdfUrl": "/playbooks/pdf/e100_corporate_roundtable_playbook_v1.pdf"
 }

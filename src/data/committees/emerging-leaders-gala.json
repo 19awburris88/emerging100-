@@ -4,28 +4,21 @@
   "name": "Emerging Leaders Awards & Scholarship Gala",
   "icon": "🏆",
   "tagline": "Celebrating excellence, honoring scholarship, and inspiring the next generation of leaders.",
-  "overview": "The Emerging Leaders Awards & Scholarship Gala committee plans and executes the organization's premier annual event. The Gala recognizes outstanding members, community leaders, and scholarship recipients in a formal, high-profile setting. It is also the organization's largest fundraising event, with proceeds funding scholarships for deserving students pursuing careers in medicine, engineering, law, public service, and beyond.",
+  "overview": "The Gala committee plans and executes E100's premier annual event — the Emerging Leaders Awards and Scholarship Gala. Always in May. Always at the Delta Flight Museum. The Gala is the organization's most visible night: scholars are recognized, partners are celebrated, and the mission is on full display. Partnerships raises the money — Gala runs the show.",
   "chairs": [
-    "Adonis Hill",
-    "Corenza Morris",
+    "Cory Harris",
+    "Dr. Michael Curtis Jr.",
+    "Shakeel Johnson",
+    "Andre Henry"
+  ],
+  "advisors": [
     "Jamario Walker",
-    "Cory Harris"
+    "Brian Hatcher",
+    "Adonis Hill"
   ],
-  "responsibilities": [
-    "Plan all aspects of the annual Gala including venue, program, entertainment, and logistics.",
-    "Manage Gala sponsorship outreach, packages, and fulfillment in collaboration with Partnerships.",
-    "Oversee scholarship application process: promotion, review, selection, and award disbursement.",
-    "Coordinate award nominations, selection committees, and honoree announcements.",
-    "Manage Gala ticket sales, table reservations, and guest experience.",
-    "Produce post-event impact reports on funds raised and scholarships awarded."
-  ],
-  "goals": [
-    "Produce a Gala that raises a record amount in scholarship funds for the current term.",
-    "Expand the scholarship program to support students in at least five academic disciplines.",
-    "Grow Gala attendance and corporate table sales by 20% over the previous year.",
-    "Introduce a community impact award category recognizing a non-member leader.",
-    "Create a post-Gala scholarship follow-up program tracking awardee progress."
-  ],
+  "term": "2026–2027",
+  "responsibilities": [],
+  "goals": [],
   "playbookUrl": "/playbooks/e100_gala_playbook_v1.html",
   "playbookPdfUrl": "/playbooks/pdf/e100_gala_playbook_v1.pdf"
 }
