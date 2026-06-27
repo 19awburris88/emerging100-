@@ -22,8 +22,8 @@ export default function CommitteePage({
   const navItems = [
     { id: 'cp-overview',         label: 'Overview',         show: !!overview },
     { id: 'cp-leadership',       label: 'Leadership',       show: chairs.length > 0 || advisors.length > 0 },
-    { id: 'cp-goals',            label: 'Goals',            show: goals.length > 0 },
-    { id: 'cp-responsibilities', label: 'Responsibilities', show: responsibilities.length > 0 },
+    { id: 'cp-goals',            label: 'Goals',            show: true },
+    { id: 'cp-responsibilities', label: 'Responsibilities', show: true },
     { id: 'cp-resources',        label: 'Resources',        show: true },
   ].filter(n => n.show)
 
@@ -155,10 +155,10 @@ export default function CommitteePage({
           )}
 
           {/* Goals */}
-          {goals.length > 0 && (
-            <section className="cp-section cp-card card card-border-top" id="cp-goals">
-              <div className="tag">{term} Term</div>
-              <h2 className="cp-section-title">Goals & Priorities</h2>
+          <section className="cp-section cp-card card card-border-top" id="cp-goals">
+            <div className="tag">{term} Term</div>
+            <h2 className="cp-section-title">Goals & Priorities</h2>
+            {goals.length > 0 ? (
               <ul className="cp-list cp-goals">
                 {goals.map((g, i) => (
                   <li key={i}>
@@ -167,16 +167,18 @@ export default function CommitteePage({
                   </li>
                 ))}
               </ul>
-            </section>
-          )}
+            ) : (
+              <p className="cp-pending">Goals will be finalized following chair training. Check back soon.</p>
+            )}
+          </section>
 
         </div>
 
         {/* Responsibilities */}
-        {responsibilities.length > 0 && (
-          <section className="cp-section" id="cp-responsibilities">
-            <div className="tag">Core Duties</div>
-            <h2 className="cp-section-title">Key Responsibilities</h2>
+        <section className="cp-section" id="cp-responsibilities">
+          <div className="tag">Core Duties</div>
+          <h2 className="cp-section-title">Key Responsibilities</h2>
+          {responsibilities.length > 0 ? (
             <div className="cp-resp-grid">
               {responsibilities.map((r, i) => (
                 <div key={i} className="cp-resp-card card">
@@ -185,8 +187,10 @@ export default function CommitteePage({
                 </div>
               ))}
             </div>
-          </section>
-        )}
+          ) : (
+            <p className="cp-pending">Responsibilities will be defined following chair training. Check back soon.</p>
+          )}
+        </section>
 
         {/* Resources */}
         <section className="cp-section cp-resources card" id="cp-resources">

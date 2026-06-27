@@ -281,6 +281,16 @@
   color: var(--gray-600);
 }
 
+.cp-pending {
+  background: var(--gray-50);
+  border: 1px dashed var(--gray-200);
+  border-radius: 6px;
+  padding: 28px 32px;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  font-style: italic;
+}
+
 .cp-resources-hint {
   font-size: 0.82rem !important;
   color: var(--gray-400) !important;
