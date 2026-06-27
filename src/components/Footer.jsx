@@ -10,7 +10,6 @@ export default function Footer() {
           <div className="footer-logo">
             <img src={logo} alt="Emerging 100 ATL" className="footer-logo-img" />
           </div>
-          <p>The young professionals auxiliary of the 100 Black Men of Atlanta, Inc.</p>
           <a
             href="https://emerging100atl.org"
             target="_blank"

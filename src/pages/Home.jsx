@@ -183,7 +183,6 @@ export default function Home() {
         <div className="container mission-cta-inner">
           <div>
             <p className="tag">Our Foundation</p>
-            <h2>The young professionals auxiliary of the<br />100 Black Men of Atlanta, Inc.</h2>
           </div>
           <p style={{ maxWidth: '340px', opacity: 0.85, lineHeight: 1.65 }}>
             Emerging 100 ATL enhances the mentoring and tutoring programs of our parent organization
